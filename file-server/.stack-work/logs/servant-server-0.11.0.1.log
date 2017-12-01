@@ -1,0 +1,138 @@
+[1 of 2] Compiling Main             ( /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/servant-server-0.11.0.1/Setup.lhs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/servant-server-0.11.0.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/Main.o )
+[2 of 2] Compiling StackSetupShim   ( /Users/Sam/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/servant-server-0.11.0.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/StackSetupShim.o )
+Linking /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/servant-server-0.11.0.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/setup ...
+Warning: servant-server.cabal: Unknown fields: build-tool-depends (line 127)
+Fields allowed in this section:
+type, main-is, test-module, buildable, build-tools, build-depends,
+cpp-options, cc-options, ld-options, pkgconfig-depends, frameworks,
+extra-framework-dirs, c-sources, js-sources, default-language,
+other-languages, default-extensions, other-extensions, extensions,
+extra-libraries, extra-ghci-libraries, extra-lib-dirs, includes,
+install-includes, include-dirs, hs-source-dirs, other-modules,
+ghc-prof-options, ghcjs-prof-options, ghc-shared-options,
+ghcjs-shared-options, ghc-options, ghcjs-options, jhc-options,
+hugs-options, nhc98-options
+Configuring servant-server-0.11.0.1...
+Building servant-server-0.11.0.1...
+Preprocessing library servant-server-0.11.0.1...
+[ 1 of 11] Compiling Servant.Server.Internal.ServantErr ( src/Servant/Server/Internal/ServantErr.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Internal/ServantErr.o )
+[ 2 of 11] Compiling Servant.Server.Internal.Handler ( src/Servant/Server/Internal/Handler.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Internal/Handler.o )
+[ 3 of 11] Compiling Servant.Server.Internal.RoutingApplication ( src/Servant/Server/Internal/RoutingApplication.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Internal/RoutingApplication.o )
+[ 4 of 11] Compiling Servant.Server.Internal.Router ( src/Servant/Server/Internal/Router.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Internal/Router.o )
+[ 5 of 11] Compiling Servant.Server.Internal.Context ( src/Servant/Server/Internal/Context.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Internal/Context.o )
+[ 6 of 11] Compiling Servant.Server.Internal.BasicAuth ( src/Servant/Server/Internal/BasicAuth.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Internal/BasicAuth.o )
+[ 7 of 11] Compiling Servant.Server.Internal ( src/Servant/Server/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Internal.o )
+[ 8 of 11] Compiling Servant.Server   ( src/Servant/Server.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server.o )
+[ 9 of 11] Compiling Servant.Utils.StaticFiles ( src/Servant/Utils/StaticFiles.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Utils/StaticFiles.o )
+[10 of 11] Compiling Servant          ( src/Servant.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant.o )
+[11 of 11] Compiling Servant.Server.Experimental.Auth ( src/Servant/Server/Experimental/Auth.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Server/Experimental/Auth.o )
+Preprocessing executable 'greet' for servant-server-0.11.0.1...
+[1 of 1] Compiling Main             ( example/greet.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/greet/greet-tmp/Main.o )
+Linking .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/greet/greet ...
+Running Haddock for servant-server-0.11.0.1...
+Preprocessing library servant-server-0.11.0.1...
+Warning: The documentation for the following packages are not installed. No
+links will be generated to these packages: bytestring-builder-0.10.8.1.0
+Haddock coverage:
+  89% ( 32 / 36) in 'Servant.Server.Internal.ServantErr'
+  Missing documentation for:
+    Module header
+    ServantErr (src/Servant/Server/Internal/ServantErr.hs:13)
+     (src/Servant/Server/Internal/ServantErr.hs:19)
+    responseServantErr (src/Servant/Server/Internal/ServantErr.hs:21)
+   0% (  0 /  5) in 'Servant.Server.Internal.Handler'
+  Missing documentation for:
+    Module header
+    Handler (src/Servant/Server/Internal/Handler.hs:21)
+     (src/Servant/Server/Internal/Handler.hs:28)
+     (src/Servant/Server/Internal/Handler.hs:31)
+    runHandler (src/Servant/Server/Internal/Handler.hs:40)
+  49% ( 17 / 35) in 'Servant.Server.Internal.RoutingApplication'
+  Missing documentation for:
+    Module header
+    RoutingApplication (src/Servant/Server/Internal/RoutingApplication.hs:31)
+     (src/Servant/Server/Internal/RoutingApplication.hs:43)
+     (src/Servant/Server/Internal/RoutingApplication.hs:47)
+    RouteResultT (src/Servant/Server/Internal/RoutingApplication.hs:53)
+     (src/Servant/Server/Internal/RoutingApplication.hs:56)
+     (src/Servant/Server/Internal/RoutingApplication.hs:59)
+     (src/Servant/Server/Internal/RoutingApplication.hs:63)
+     (src/Servant/Server/Internal/RoutingApplication.hs:72)
+     (src/Servant/Server/Internal/RoutingApplication.hs:75)
+     (src/Servant/Server/Internal/RoutingApplication.hs:78)
+     (src/Servant/Server/Internal/RoutingApplication.hs:83)
+     (src/Servant/Server/Internal/RoutingApplication.hs:88)
+    toApplication (src/Servant/Server/Internal/RoutingApplication.hs:92)
+     (src/Servant/Server/Internal/RoutingApplication.hs:185)
+    liftRouteResult (src/Servant/Server/Internal/RoutingApplication.hs:206)
+     (src/Servant/Server/Internal/RoutingApplication.hs:209)
+    runDelayedIO (src/Servant/Server/Internal/RoutingApplication.hs:214)
+  73% ( 11 / 15) in 'Servant.Server.Internal.Router'
+  Missing documentation for:
+    Module header
+    Router (src/Servant/Server/Internal/Router.hs:17)
+    runRouterEnv (src/Servant/Server/Internal/Router.hs:152)
+    worseHTTPCode (src/Servant/Server/Internal/Router.hs:209)
+  42% (  5 / 12) in 'Servant.Server.Internal.Context'
+  Missing documentation for:
+    Module header
+     (src/Servant/Server/Internal/Context.hs:39)
+     (src/Servant/Server/Internal/Context.hs:41)
+     (src/Servant/Server/Internal/Context.hs:46)
+     (src/Servant/Server/Internal/Context.hs:48)
+     (src/Servant/Server/Internal/Context.hs:67)
+     (src/Servant/Server/Internal/Context.hs:71)
+  86% (  6 /  7) in 'Servant.Server.Internal.BasicAuth'
+  Missing documentation for:
+    Module header
+  57% ( 24 / 42) in 'Servant.Server.Internal'
+  Missing documentation for:
+    Module header
+    HasServer (src/Servant/Server/Internal.hs:78)
+    Server (src/Servant/Server/Internal.hs:87)
+    allowedMethodHead (src/Servant/Server/Internal.hs:176)
+    allowedMethod (src/Servant/Server/Internal.hs:179)
+    processMethodRouter (src/Servant/Server/Internal.hs:182)
+    methodCheck (src/Servant/Server/Internal.hs:192)
+    acceptCheck (src/Servant/Server/Internal.hs:204)
+    methodRouter (src/Servant/Server/Internal.hs:209)
+    methodRouterHeaders (src/Servant/Server/Internal.hs:223)
+     (src/Servant/Server/Internal.hs:238)
+     (src/Servant/Server/Internal.hs:248)
+     (src/Servant/Server/Internal.hs:510)
+     (src/Servant/Server/Internal.hs:516)
+     (src/Servant/Server/Internal.hs:524)
+     (src/Servant/Server/Internal.hs:530)
+    ct_wildcard (src/Servant/Server/Internal.hs:572)
+     (src/Servant/Server/Internal.hs:580)
+  88% ( 74 / 84) in 'Servant.Server'
+  Missing documentation for:
+    serveWithContext (src/Servant/Server.hs:143)
+    toApplication (src/Servant/Server/Internal/RoutingApplication.hs:92)
+    HasServer (src/Servant/Server/Internal.hs:78)
+    Server (src/Servant/Server/Internal.hs:87)
+    Handler (src/Servant/Server/Internal/Handler.hs:21)
+    runHandler (src/Servant/Server/Internal/Handler.hs:40)
+    runReaderTNat
+    evalStateTLNat
+    evalStateTSNat
+    ServantErr (src/Servant/Server/Internal/ServantErr.hs:13)
+ 100% (  8 /  8) in 'Servant.Utils.StaticFiles'
+  91% ( 10 / 11) in 'Servant'
+  Missing documentation for:
+    Module header
+  83% (  5 /  6) in 'Servant.Server.Experimental.Auth'
+  Missing documentation for:
+    Module header
+Warning: Servant.Server: could not find link destinations for:
+    ~ unsafeIndex unsafeRangeSize
+Warning: Servant: could not find link destinations for:
+    unsafeIndex unsafeRangeSize
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/servant-server/index.html
+Preprocessing executable 'greet' for servant-server-0.11.0.1...
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/servant-server-0.11.0.1-86C524hrioMCtu8I9vCcs2
+Installing executable(s) in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/bin
+Registering servant-server-0.11.0.1...

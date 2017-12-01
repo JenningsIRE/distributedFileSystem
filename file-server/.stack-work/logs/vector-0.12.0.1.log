@@ -1,0 +1,337 @@
+Configuring vector-0.12.0.1...
+Building vector-0.12.0.1...
+Preprocessing library vector-0.12.0.1...
+[ 1 of 21] Compiling Data.Vector.Storable.Internal ( Data/Vector/Storable/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Storable/Internal.o )
+
+Data/Vector/Storable/Internal.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.ForeignPtr’ is redundant
+      except perhaps to import instances from ‘Foreign.ForeignPtr’
+    To import instances alone, use: import Foreign.ForeignPtr()
+
+Data/Vector/Storable/Internal.hs:18:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.Ptr’ is redundant
+      except perhaps to import instances from ‘Foreign.Ptr’
+    To import instances alone, use: import Foreign.Ptr()
+[ 2 of 21] Compiling Data.Vector.Internal.Check ( Data/Vector/Internal/Check.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Internal/Check.o )
+[ 3 of 21] Compiling Data.Vector.Generic.Mutable.Base ( Data/Vector/Generic/Mutable/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Generic/Mutable/Base.o )
+[ 4 of 21] Compiling Data.Vector.Generic.Base ( Data/Vector/Generic/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Generic/Base.o )
+[ 5 of 21] Compiling Data.Vector.Fusion.Util ( Data/Vector/Fusion/Util.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Fusion/Util.o )
+[ 6 of 21] Compiling Data.Vector.Fusion.Stream.Monadic ( Data/Vector/Fusion/Stream/Monadic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Fusion/Stream/Monadic.o )
+[ 7 of 21] Compiling Data.Vector.Fusion.Bundle.Size ( Data/Vector/Fusion/Bundle/Size.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Fusion/Bundle/Size.o )
+[ 8 of 21] Compiling Data.Vector.Fusion.Bundle.Monadic ( Data/Vector/Fusion/Bundle/Monadic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Fusion/Bundle/Monadic.o )
+[ 9 of 21] Compiling Data.Vector.Fusion.Bundle ( Data/Vector/Fusion/Bundle.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Fusion/Bundle.o )
+[10 of 21] Compiling Data.Vector.Generic.Mutable ( Data/Vector/Generic/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Generic/Mutable.o )
+[11 of 21] Compiling Data.Vector.Mutable ( Data/Vector/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Mutable.o )
+[12 of 21] Compiling Data.Vector.Primitive.Mutable ( Data/Vector/Primitive/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Primitive/Mutable.o )
+[13 of 21] Compiling Data.Vector.Storable.Mutable ( Data/Vector/Storable/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Storable/Mutable.o )
+
+Data/Vector/Storable/Mutable.hs:77:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.Ptr’ is redundant
+      except perhaps to import instances from ‘Foreign.Ptr’
+    To import instances alone, use: import Foreign.Ptr()
+[14 of 21] Compiling Data.Vector.Generic.New ( Data/Vector/Generic/New.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Generic/New.o )
+[15 of 21] Compiling Data.Vector.Generic ( Data/Vector/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Generic.o )
+[16 of 21] Compiling Data.Vector.Primitive ( Data/Vector/Primitive.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Primitive.o )
+[17 of 21] Compiling Data.Vector.Unboxed.Base ( Data/Vector/Unboxed/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Unboxed/Base.o )
+[18 of 21] Compiling Data.Vector.Unboxed.Mutable ( Data/Vector/Unboxed/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Unboxed/Mutable.o )
+[19 of 21] Compiling Data.Vector.Storable ( Data/Vector/Storable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Storable.o )
+[20 of 21] Compiling Data.Vector.Unboxed ( Data/Vector/Unboxed.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector/Unboxed.o )
+[21 of 21] Compiling Data.Vector      ( Data/Vector.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vector.o )
+Running Haddock for vector-0.12.0.1...
+Preprocessing library vector-0.12.0.1...
+
+Data/Vector/Storable/Internal.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.ForeignPtr’ is redundant
+      except perhaps to import instances from ‘Foreign.ForeignPtr’
+    To import instances alone, use: import Foreign.ForeignPtr()
+
+Data/Vector/Storable/Internal.hs:18:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.Ptr’ is redundant
+      except perhaps to import instances from ‘Foreign.Ptr’
+    To import instances alone, use: import Foreign.Ptr()
+
+Data/Vector/Storable/Mutable.hs:77:1: warning: [-Wunused-imports]
+    The import of ‘Foreign.Ptr’ is redundant
+      except perhaps to import instances from ‘Foreign.Ptr’
+    To import instances alone, use: import Foreign.Ptr()
+Haddock coverage:
+  25% (  1 /  4) in 'Data.Vector.Storable.Internal'
+  Missing documentation for:
+    getPtr (Data/Vector/Storable/Internal.hs:22)
+    setPtr (Data/Vector/Storable/Internal.hs:26)
+    updPtr (Data/Vector/Storable/Internal.hs:30)
+  11% (  1 /  9) in 'Data.Vector.Internal.Check'
+  Missing documentation for:
+    Checks (Data/Vector/Internal/Check.hs:51)
+    doChecks (Data/Vector/Internal/Check.hs:75)
+    error (Data/Vector/Internal/Check.hs:84)
+    internalError (Data/Vector/Internal/Check.hs:89)
+    check (Data/Vector/Internal/Check.hs:105)
+    checkIndex (Data/Vector/Internal/Check.hs:119)
+    checkLength (Data/Vector/Internal/Check.hs:133)
+    checkSlice (Data/Vector/Internal/Check.hs:147)
+ 100% (  2 /  2) in 'Data.Vector.Generic.Mutable.Base'
+ 100% (  3 /  3) in 'Data.Vector.Generic.Base'
+ 100% (  5 /  5) in 'Data.Vector.Fusion.Util'
+  82% (104 /127) in 'Data.Vector.Fusion.Stream.Monadic'
+  Missing documentation for:
+    generate (Data/Vector/Fusion/Stream/Monadic.hs:192)
+    unbox (Data/Vector/Fusion/Stream/Monadic.hs:444)
+    concatMap (Data/Vector/Fusion/Stream/Monadic.hs:1037)
+    zipWithM_ (Data/Vector/Fusion/Stream/Monadic.hs:520)
+    zipWith3M (Data/Vector/Fusion/Stream/Monadic.hs:524)
+    zipWith4M (Data/Vector/Fusion/Stream/Monadic.hs:552)
+    zipWith5M (Data/Vector/Fusion/Stream/Monadic.hs:559)
+    zipWith6M (Data/Vector/Fusion/Stream/Monadic.hs:566)
+    zipWith (Data/Vector/Fusion/Stream/Monadic.hs:574)
+    zipWith3 (Data/Vector/Fusion/Stream/Monadic.hs:578)
+    zipWith4 (Data/Vector/Fusion/Stream/Monadic.hs:583)
+    zipWith5 (Data/Vector/Fusion/Stream/Monadic.hs:589)
+    zipWith6 (Data/Vector/Fusion/Stream/Monadic.hs:595)
+    zip (Data/Vector/Fusion/Stream/Monadic.hs:601)
+    zip3 (Data/Vector/Fusion/Stream/Monadic.hs:605)
+    zip4 (Data/Vector/Fusion/Stream/Monadic.hs:609)
+    zip5 (Data/Vector/Fusion/Stream/Monadic.hs:614)
+    zip6 (Data/Vector/Fusion/Stream/Monadic.hs:619)
+    mapMaybe (Data/Vector/Fusion/Stream/Monadic.hs:691)
+    and (Data/Vector/Fusion/Stream/Monadic.hs:1011)
+    or (Data/Vector/Fusion/Stream/Monadic.hs:1024)
+    concatMapM (Data/Vector/Fusion/Stream/Monadic.hs:1041)
+    unfoldrN (Data/Vector/Fusion/Stream/Monadic.hs:1103)
+ 100% (  8 /  8) in 'Data.Vector.Fusion.Bundle.Size'
+  79% (106 /135) in 'Data.Vector.Fusion.Bundle.Monadic'
+  Missing documentation for:
+    Chunk (Data/Vector/Fusion/Bundle/Monadic.hs:118)
+    generate (Data/Vector/Fusion/Bundle/Monadic.hs:198)
+    unbox (Data/Vector/Fusion/Bundle/Monadic.hs:309)
+    concatMap (Data/Vector/Fusion/Bundle/Monadic.hs:603)
+    zipWithM_ (Data/Vector/Fusion/Bundle/Monadic.hs:340)
+    zipWith3M (Data/Vector/Fusion/Bundle/Monadic.hs:344)
+    zipWith4M (Data/Vector/Fusion/Bundle/Monadic.hs:351)
+    zipWith5M (Data/Vector/Fusion/Bundle/Monadic.hs:358)
+    zipWith6M (Data/Vector/Fusion/Bundle/Monadic.hs:365)
+    zipWith (Data/Vector/Fusion/Bundle/Monadic.hs:373)
+    zipWith3 (Data/Vector/Fusion/Bundle/Monadic.hs:377)
+    zipWith4 (Data/Vector/Fusion/Bundle/Monadic.hs:382)
+    zipWith5 (Data/Vector/Fusion/Bundle/Monadic.hs:388)
+    zipWith6 (Data/Vector/Fusion/Bundle/Monadic.hs:394)
+    zip (Data/Vector/Fusion/Bundle/Monadic.hs:400)
+    zip3 (Data/Vector/Fusion/Bundle/Monadic.hs:404)
+    zip4 (Data/Vector/Fusion/Bundle/Monadic.hs:408)
+    zip5 (Data/Vector/Fusion/Bundle/Monadic.hs:413)
+    zip6 (Data/Vector/Fusion/Bundle/Monadic.hs:418)
+    and (Data/Vector/Fusion/Bundle/Monadic.hs:595)
+    or (Data/Vector/Fusion/Bundle/Monadic.hs:599)
+    concatMapM (Data/Vector/Fusion/Bundle/Monadic.hs:607)
+    fromVector (Data/Vector/Fusion/Bundle/Monadic.hs:1017)
+    reVector (Data/Vector/Fusion/Bundle/Monadic.hs:1093)
+    fromVectors (Data/Vector/Fusion/Bundle/Monadic.hs:1036)
+    concatVectors (Data/Vector/Fusion/Bundle/Monadic.hs:1062)
+    fromStream (Data/Vector/Fusion/Bundle/Monadic.hs:127)
+    chunks (Data/Vector/Fusion/Bundle/Monadic.hs:134)
+    elements (Data/Vector/Fusion/Bundle/Monadic.hs:138)
+  79% ( 88 /111) in 'Data.Vector.Fusion.Bundle'
+  Missing documentation for:
+    Chunk (Data/Vector/Fusion/Bundle/Monadic.hs:118)
+    inplace (Data/Vector/Fusion/Bundle.hs:117)
+    concatMap (Data/Vector/Fusion/Bundle.hs:269)
+    unbox (Data/Vector/Fusion/Bundle.hs:265)
+    zipWith4 (Data/Vector/Fusion/Bundle.hs:297)
+    zipWith5 (Data/Vector/Fusion/Bundle.hs:303)
+    zipWith6 (Data/Vector/Fusion/Bundle.hs:309)
+    zip (Data/Vector/Fusion/Bundle.hs:315)
+    zip3 (Data/Vector/Fusion/Bundle.hs:319)
+    zip4 (Data/Vector/Fusion/Bundle.hs:323)
+    zip5 (Data/Vector/Fusion/Bundle.hs:328)
+    zip6 (Data/Vector/Fusion/Bundle.hs:333)
+    and (Data/Vector/Fusion/Bundle.hs:419)
+    or (Data/Vector/Fusion/Bundle.hs:423)
+    unsafeFromList (Data/Vector/Fusion/Bundle.hs:631)
+    fromVector (Data/Vector/Fusion/Bundle.hs:635)
+    reVector (Data/Vector/Fusion/Bundle.hs:639)
+    fromVectors (Data/Vector/Fusion/Bundle.hs:643)
+    concatVectors (Data/Vector/Fusion/Bundle.hs:647)
+    zipWithM (Data/Vector/Fusion/Bundle.hs:542)
+    zipWithM_ (Data/Vector/Fusion/Bundle.hs:546)
+    eqBy (Data/Vector/Fusion/Bundle.hs:497)
+    cmpBy (Data/Vector/Fusion/Bundle.hs:506)
+  66% ( 49 / 74) in 'Data.Vector.Generic.Mutable'
+  Missing documentation for:
+    init (Data/Vector/Generic/Mutable.hs:537)
+    tail (Data/Vector/Generic/Mutable.hs:541)
+    take (Data/Vector/Generic/Mutable.hs:516)
+    drop (Data/Vector/Generic/Mutable.hs:520)
+    splitAt (Data/Vector/Generic/Mutable.hs:528)
+    unsafeInit (Data/Vector/Generic/Mutable.hs:555)
+    unsafeTail (Data/Vector/Generic/Mutable.hs:559)
+    unsafeTake (Data/Vector/Generic/Mutable.hs:563)
+    unsafeDrop (Data/Vector/Generic/Mutable.hs:567)
+    growFront (Data/Vector/Generic/Mutable.hs:627)
+    unsafeGrowFront (Data/Vector/Generic/Mutable.hs:666)
+    mstream (Data/Vector/Generic/Mutable.hs:245)
+    mstreamR (Data/Vector/Generic/Mutable.hs:275)
+    transform (Data/Vector/Generic/Mutable.hs:269)
+    transformR (Data/Vector/Generic/Mutable.hs:304)
+    fill (Data/Vector/Generic/Mutable.hs:256)
+    fillR (Data/Vector/Generic/Mutable.hs:288)
+    unsafeAccum (Data/Vector/Generic/Mutable.hs:850)
+    accum (Data/Vector/Generic/Mutable.hs:826)
+    unsafeUpdate (Data/Vector/Generic/Mutable.hs:863)
+    update (Data/Vector/Generic/Mutable.hs:839)
+    reverse (Data/Vector/Generic/Mutable.hs:874)
+    unstablePartition (Data/Vector/Generic/Mutable.hs:883)
+    unstablePartitionBundle (Data/Vector/Generic/Mutable.hs:912)
+    partitionBundle (Data/Vector/Generic/Mutable.hs:940)
+  79% ( 41 / 52) in 'Data.Vector.Mutable'
+  Missing documentation for:
+    IOVector (Data/Vector/Mutable.hs:71)
+    STVector (Data/Vector/Mutable.hs:72)
+    init (Data/Vector/Mutable.hs:223)
+    tail (Data/Vector/Mutable.hs:227)
+    take (Data/Vector/Mutable.hs:211)
+    drop (Data/Vector/Mutable.hs:215)
+    splitAt (Data/Vector/Mutable.hs:220)
+    unsafeInit (Data/Vector/Mutable.hs:248)
+    unsafeTail (Data/Vector/Mutable.hs:252)
+    unsafeTake (Data/Vector/Mutable.hs:240)
+    unsafeDrop (Data/Vector/Mutable.hs:244)
+  79% ( 42 / 53) in 'Data.Vector.Primitive.Mutable'
+  Missing documentation for:
+    IOVector (Data/Vector/Primitive/Mutable.hs:77)
+    STVector (Data/Vector/Primitive/Mutable.hs:78)
+    init (Data/Vector/Primitive/Mutable.hs:165)
+    tail (Data/Vector/Primitive/Mutable.hs:169)
+    take (Data/Vector/Primitive/Mutable.hs:153)
+    drop (Data/Vector/Primitive/Mutable.hs:157)
+    splitAt (Data/Vector/Primitive/Mutable.hs:161)
+    unsafeInit (Data/Vector/Primitive/Mutable.hs:191)
+    unsafeTail (Data/Vector/Primitive/Mutable.hs:195)
+    unsafeTake (Data/Vector/Primitive/Mutable.hs:183)
+    unsafeDrop (Data/Vector/Primitive/Mutable.hs:187)
+  82% ( 49 / 60) in 'Data.Vector.Storable.Mutable'
+  Missing documentation for:
+    IOVector (Data/Vector/Storable/Mutable.hs:101)
+    STVector (Data/Vector/Storable/Mutable.hs:102)
+    init (Data/Vector/Storable/Mutable.hs:266)
+    tail (Data/Vector/Storable/Mutable.hs:270)
+    take (Data/Vector/Storable/Mutable.hs:254)
+    drop (Data/Vector/Storable/Mutable.hs:258)
+    splitAt (Data/Vector/Storable/Mutable.hs:262)
+    unsafeInit (Data/Vector/Storable/Mutable.hs:292)
+    unsafeTail (Data/Vector/Storable/Mutable.hs:296)
+    unsafeTake (Data/Vector/Storable/Mutable.hs:284)
+    unsafeDrop (Data/Vector/Storable/Mutable.hs:288)
+   5% (  1 / 20) in 'Data.Vector.Generic.New'
+  Missing documentation for:
+    New (Data/Vector/Generic/New.hs:40)
+    create (Data/Vector/Generic/New.hs:42)
+    run (Data/Vector/Generic/New.hs:46)
+    runPrim (Data/Vector/Generic/New.hs:50)
+    apply (Data/Vector/Generic/New.hs:54)
+    modify (Data/Vector/Generic/New.hs:58)
+    modifyWithBundle (Data/Vector/Generic/New.hs:62)
+    unstream (Data/Vector/Generic/New.hs:67)
+    transform (Data/Vector/Generic/New.hs:71)
+    unstreamR (Data/Vector/Generic/New.hs:93)
+    transformR (Data/Vector/Generic/New.hs:97)
+    slice (Data/Vector/Generic/New.hs:119)
+    init (Data/Vector/Generic/New.hs:123)
+    tail (Data/Vector/Generic/New.hs:127)
+    take (Data/Vector/Generic/New.hs:131)
+    drop (Data/Vector/Generic/New.hs:135)
+    unsafeSlice (Data/Vector/Generic/New.hs:139)
+    unsafeInit (Data/Vector/Generic/New.hs:143)
+    unsafeTail (Data/Vector/Generic/New.hs:147)
+  93% (238 /256) in 'Data.Vector.Generic'
+  Missing documentation for:
+    zipWith4 (Data/Vector/Generic.hs:1111)
+    zipWith5 (Data/Vector/Generic.hs:1120)
+    zipWith6 (Data/Vector/Generic.hs:1132)
+    izipWith3 (Data/Vector/Generic.hs:1154)
+    izipWith4 (Data/Vector/Generic.hs:1162)
+    izipWith5 (Data/Vector/Generic.hs:1171)
+    izipWith6 (Data/Vector/Generic.hs:1183)
+    zip3 (Data/Vector/Generic.hs:1201)
+    zip4 (Data/Vector/Generic.hs:1206)
+    zip5 (Data/Vector/Generic.hs:1211)
+    zip6 (Data/Vector/Generic.hs:1217)
+    unzip3 (Data/Vector/Generic.hs:1267)
+    unzip4 (Data/Vector/Generic.hs:1274)
+    unzip5 (Data/Vector/Generic.hs:1283)
+    unzip6 (Data/Vector/Generic.hs:1293)
+    liftShowsPrec (Data/Vector/Generic.hs:2167)
+    dataCast (Data/Vector/Generic.hs:2200)
+    mkType (Data/Vector/Generic.hs:2195)
+  97% (192 /198) in 'Data.Vector.Primitive'
+  Missing documentation for:
+    zipWith4 (Data/Vector/Primitive.hs:842)
+    zipWith5 (Data/Vector/Primitive.hs:848)
+    zipWith6 (Data/Vector/Primitive.hs:856)
+    izipWith4 (Data/Vector/Primitive.hs:878)
+    izipWith5 (Data/Vector/Primitive.hs:884)
+    izipWith6 (Data/Vector/Primitive.hs:892)
+  17% (  1 /  6) in 'Data.Vector.Unboxed.Base'
+  Missing documentation for:
+    MVector (Data/Vector/Unboxed/Base.hs:55)
+    IOVector (Data/Vector/Unboxed/Base.hs:58)
+    STVector (Data/Vector/Unboxed/Base.hs:59)
+    Vector (Data/Vector/Unboxed/Base.hs:56)
+    Unbox (Data/Vector/Unboxed/Base.hs:63)
+  80% ( 51 / 64) in 'Data.Vector.Unboxed.Mutable'
+  Missing documentation for:
+    MVector (Data/Vector/Unboxed/Base.hs:55)
+    IOVector (Data/Vector/Unboxed/Base.hs:58)
+    STVector (Data/Vector/Unboxed/Base.hs:59)
+    Unbox (Data/Vector/Unboxed/Base.hs:63)
+    init (Data/Vector/Unboxed/Mutable.hs:103)
+    tail (Data/Vector/Unboxed/Mutable.hs:107)
+    take (Data/Vector/Unboxed/Mutable.hs:91)
+    drop (Data/Vector/Unboxed/Mutable.hs:95)
+    splitAt (Data/Vector/Unboxed/Mutable.hs:99)
+    unsafeInit (Data/Vector/Unboxed/Mutable.hs:129)
+    unsafeTail (Data/Vector/Unboxed/Mutable.hs:133)
+    unsafeTake (Data/Vector/Unboxed/Mutable.hs:121)
+    unsafeDrop (Data/Vector/Unboxed/Mutable.hs:125)
+  97% (201 /207) in 'Data.Vector.Storable'
+  Missing documentation for:
+    zipWith4 (Data/Vector/Storable.hs:852)
+    zipWith5 (Data/Vector/Storable.hs:858)
+    zipWith6 (Data/Vector/Storable.hs:866)
+    izipWith4 (Data/Vector/Storable.hs:888)
+    izipWith5 (Data/Vector/Storable.hs:894)
+    izipWith6 (Data/Vector/Storable.hs:902)
+  96% (216 /225) in 'Data.Vector.Unboxed'
+  Missing documentation for:
+    Vector (Data/Vector/Unboxed/Base.hs:56)
+    MVector (Data/Vector/Unboxed/Base.hs:55)
+    Unbox (Data/Vector/Unboxed/Base.hs:63)
+    zipWith4 (Data/Vector/Unboxed.hs:889)
+    zipWith5 (Data/Vector/Unboxed.hs:895)
+    zipWith6 (Data/Vector/Unboxed.hs:902)
+    izipWith4 (Data/Vector/Unboxed.hs:923)
+    izipWith5 (Data/Vector/Unboxed.hs:929)
+    izipWith6 (Data/Vector/Unboxed.hs:936)
+  94% (218 /231) in 'Data.Vector'
+  Missing documentation for:
+    zipWith4 (Data/Vector.hs:1055)
+    zipWith5 (Data/Vector.hs:1060)
+    zipWith6 (Data/Vector.hs:1066)
+    izipWith4 (Data/Vector.hs:1084)
+    izipWith5 (Data/Vector.hs:1089)
+    izipWith6 (Data/Vector.hs:1095)
+    zip4 (Data/Vector.hs:1111)
+    zip5 (Data/Vector.hs:1116)
+    zip6 (Data/Vector.hs:1121)
+    unzip3 (Data/Vector.hs:1134)
+    unzip4 (Data/Vector.hs:1138)
+    unzip5 (Data/Vector.hs:1142)
+    unzip6 (Data/Vector.hs:1147)
+Warning: Data.Vector.Unboxed.Mutable: could not find link destinations for:
+    D:R:MVectorsBool0 MV_Bool D:R:MVectorsChar0 MV_Char D:R:MVectorsDouble0 MV_Double D:R:MVectorsFloat0 MV_Float D:R:MVectorsWord640 MV_Word64 D:R:MVectorsWord320 MV_Word32 D:R:MVectorsWord160 MV_Word16 D:R:MVectorsWord80 MV_Word8 D:R:MVectorsWord0 MV_Word D:R:MVectorsInt640 MV_Int64 D:R:MVectorsInt320 MV_Int32 D:R:MVectorsInt160 MV_Int16 D:R:MVectorsInt80 MV_Int8 D:R:MVectorsInt0 MV_Int D:R:MVectors()0 MV_Unit D:R:MVectorsComplex0 MV_Complex D:R:MVectors(,)0 MV_2 D:R:MVectors(,,)0 MV_3 D:R:MVectors(,,,)0 MV_4 D:R:MVectors(,,,,)0 MV_5 D:R:MVectors(,,,,,)0 MV_6
+Warning: Data.Vector.Unboxed: could not find link destinations for:
+    D:R:VectorBool0 V_Bool D:R:VectorChar0 V_Char D:R:VectorDouble0 V_Double D:R:VectorFloat0 V_Float D:R:VectorInt0 V_Int D:R:VectorInt80 V_Int8 D:R:VectorInt160 V_Int16 D:R:VectorInt320 V_Int32 D:R:VectorInt640 V_Int64 D:R:VectorWord0 V_Word D:R:VectorWord80 V_Word8 D:R:VectorWord160 V_Word16 D:R:VectorWord320 V_Word32 D:R:VectorWord640 V_Word64 D:R:Vector()0 V_Unit D:R:VectorComplex0 V_Complex D:R:Vector(,)0 V_2 D:R:Vector(,,)0 V_3 D:R:Vector(,,,)0 V_4 D:R:Vector(,,,,)0 V_5 D:R:Vector(,,,,,)0 V_6 D:R:MVectorsBool0 MV_Bool D:R:MVectorsChar0 MV_Char D:R:MVectorsDouble0 MV_Double D:R:MVectorsFloat0 MV_Float D:R:MVectorsWord640 MV_Word64 D:R:MVectorsWord320 MV_Word32 D:R:MVectorsWord160 MV_Word16 D:R:MVectorsWord80 MV_Word8 D:R:MVectorsWord0 MV_Word D:R:MVectorsInt640 MV_Int64 D:R:MVectorsInt320 MV_Int32 D:R:MVectorsInt160 MV_Int16 D:R:MVectorsInt80 MV_Int8 D:R:MVectorsInt0 MV_Int D:R:MVectors()0 MV_Unit D:R:MVectorsComplex0 MV_Complex D:R:MVectors(,)0 MV_2 D:R:MVectors(,,)0 MV_3 D:R:MVectors(,,,)0 MV_4 D:R:MVectors(,,,,)0 MV_5 D:R:MVectors(,,,,,)0 MV_6
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/vector/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ
+Registering vector-0.12.0.1...

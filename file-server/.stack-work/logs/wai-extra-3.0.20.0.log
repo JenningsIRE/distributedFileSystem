@@ -1,0 +1,164 @@
+Configuring wai-extra-3.0.20.0...
+Building wai-extra-3.0.20.0...
+Preprocessing library wai-extra-3.0.20.0...
+[ 1 of 31] Compiling Network.Wai.UrlMap ( Network/Wai/UrlMap.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/UrlMap.o )
+[ 2 of 31] Compiling Network.Wai.Test.Internal ( Network/Wai/Test/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Test/Internal.o )
+[ 3 of 31] Compiling Network.Wai.Test ( Network/Wai/Test.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Test.o )
+[ 4 of 31] Compiling Network.Wai.Request ( Network/Wai/Request.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Request.o )
+[ 5 of 31] Compiling Network.Wai.Parse ( Network/Wai/Parse.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Parse.o )
+[ 6 of 31] Compiling Network.Wai.Middleware.Vhost ( Network/Wai/Middleware/Vhost.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Vhost.o )
+[ 7 of 31] Compiling Network.Wai.Middleware.StripHeaders ( Network/Wai/Middleware/StripHeaders.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/StripHeaders.o )
+[ 8 of 31] Compiling Network.Wai.Middleware.StreamFile ( Network/Wai/Middleware/StreamFile.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/StreamFile.o )
+[ 9 of 31] Compiling Network.Wai.Middleware.Routed ( Network/Wai/Middleware/Routed.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Routed.o )
+[10 of 31] Compiling Network.Wai.Middleware.Rewrite ( Network/Wai/Middleware/Rewrite.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Rewrite.o )
+[11 of 31] Compiling Network.Wai.Middleware.RequestLogger.Internal ( Network/Wai/Middleware/RequestLogger/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/RequestLogger/Internal.o )
+[12 of 31] Compiling Network.Wai.Middleware.MethodOverridePost ( Network/Wai/Middleware/MethodOverridePost.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/MethodOverridePost.o )
+[13 of 31] Compiling Network.Wai.Middleware.MethodOverride ( Network/Wai/Middleware/MethodOverride.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/MethodOverride.o )
+[14 of 31] Compiling Network.Wai.Middleware.Local ( Network/Wai/Middleware/Local.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Local.o )
+[15 of 31] Compiling Network.Wai.Middleware.Jsonp ( Network/Wai/Middleware/Jsonp.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Jsonp.o )
+[16 of 31] Compiling Network.Wai.Middleware.HttpAuth ( Network/Wai/Middleware/HttpAuth.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/HttpAuth.o )
+[17 of 31] Compiling Network.Wai.Middleware.ForceSSL ( Network/Wai/Middleware/ForceSSL.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/ForceSSL.o )
+[18 of 31] Compiling Network.Wai.Middleware.ForceDomain ( Network/Wai/Middleware/ForceDomain.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/ForceDomain.o )
+[19 of 31] Compiling Network.Wai.Middleware.CleanPath ( Network/Wai/Middleware/CleanPath.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/CleanPath.o )
+[20 of 31] Compiling Network.Wai.Middleware.Autohead ( Network/Wai/Middleware/Autohead.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Autohead.o )
+[21 of 31] Compiling Network.Wai.Middleware.Approot ( Network/Wai/Middleware/Approot.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Approot.o )
+[22 of 31] Compiling Network.Wai.Middleware.AddHeaders ( Network/Wai/Middleware/AddHeaders.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/AddHeaders.o )
+[23 of 31] Compiling Network.Wai.Middleware.AcceptOverride ( Network/Wai/Middleware/AcceptOverride.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/AcceptOverride.o )
+[24 of 31] Compiling Network.Wai.Header ( Network/Wai/Header.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Header.o )
+[25 of 31] Compiling Network.Wai.Middleware.Gzip ( Network/Wai/Middleware/Gzip.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/Gzip.o )
+
+Network/Wai/Middleware/Gzip.hs:104:74: warning: [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at Network/Wai/Middleware/Gzip.hs:99:35
+[26 of 31] Compiling Network.Wai.Middleware.RequestLogger ( Network/Wai/Middleware/RequestLogger.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/RequestLogger.o )
+
+Network/Wai/Middleware/RequestLogger.hs:25:1: warning: [-Wunused-imports]
+    The import of ‘unpack’
+    from module ‘Data.ByteString.Char8’ is redundant
+[27 of 31] Compiling Network.Wai.Middleware.RequestLogger.JSON ( Network/Wai/Middleware/RequestLogger/JSON.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Middleware/RequestLogger/JSON.o )
+[28 of 31] Compiling Network.Wai.Handler.CGI ( Network/Wai/Handler/CGI.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Handler/CGI.o )
+[29 of 31] Compiling Network.Wai.Handler.SCGI ( Network/Wai/Handler/SCGI.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Handler/SCGI.o )
+[30 of 31] Compiling Network.Wai.EventSource.EventStream ( Network/Wai/EventSource/EventStream.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/EventSource/EventStream.o )
+[31 of 31] Compiling Network.Wai.EventSource ( Network/Wai/EventSource.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/EventSource.o )
+Running Haddock for wai-extra-3.0.20.0...
+Preprocessing library wai-extra-3.0.20.0...
+Warning: The documentation for the following packages are not installed. No
+links will be generated to these packages: bytestring-builder-0.10.8.1.0
+
+Network/Wai/Middleware/Gzip.hs:104:74: warning: [-Wname-shadowing]
+    This binding for ‘x’ shadows the existing binding
+      bound at Network/Wai/Middleware/Gzip.hs:99:35
+
+Network/Wai/Middleware/RequestLogger.hs:25:1: warning: [-Wunused-imports]
+    The import of ‘unpack’
+    from module ‘Data.ByteString.Char8’ is redundant
+Haddock coverage:
+  57% (  4 /  7) in 'Network.Wai.UrlMap'
+  Missing documentation for:
+    UrlMap' (Network/Wai/UrlMap.hs:38)
+    UrlMap (Network/Wai/UrlMap.hs:53)
+    mapUrls (Network/Wai/UrlMap.hs:103)
+  50% (  3 /  6) in 'Network.Wai.Test.Internal'
+  Missing documentation for:
+    Module header
+    Session (Network/Wai/Test/Internal.hs:11)
+    ClientState (Network/Wai/Test/Internal.hs:18)
+  52% ( 15 / 29) in 'Network.Wai.Test'
+  Missing documentation for:
+    Module header
+    Session (Network/Wai/Test/Internal.hs:11)
+    request (Network/Wai/Test.hs:110)
+    srequest (Network/Wai/Test.hs:170)
+    SRequest (Network/Wai/Test.hs:100)
+    SResponse (Network/Wai/Test.hs:104)
+    setRawPathInfo (Network/Wai/Test.hs:124)
+    assertStatus (Network/Wai/Test.hs:232)
+    assertContentType (Network/Wai/Test.hs:215)
+    assertBody (Network/Wai/Test.hs:242)
+    assertBodyContains (Network/Wai/Test.hs:250)
+    assertHeader (Network/Wai/Test.hs:260)
+    assertNoHeader (Network/Wai/Test.hs:279)
+    WaiTestFailure (Network/Wai/Test.hs:211)
+ 100% (  5 /  5) in 'Network.Wai.Request'
+  97% ( 31 / 32) in 'Network.Wai.Parse'
+  Missing documentation for:
+    sinkRequestBody (Network/Wai/Parse.hs:370)
+   0% (  0 /  5) in 'Network.Wai.Middleware.Vhost'
+  Missing documentation for:
+    Module header
+    vhost (Network/Wai/Middleware/Vhost.hs:14)
+    redirectWWW (Network/Wai/Middleware/Vhost.hs:20)
+    redirectTo (Network/Wai/Middleware/Vhost.hs:30)
+    redirectToLogged (Network/Wai/Middleware/Vhost.hs:34)
+  40% (  2 /  5) in 'Network.Wai.Middleware.StripHeaders'
+  Missing documentation for:
+    Module header
+    stripHeader (Network/Wai/Middleware/StripHeaders.hs:23)
+    stripHeaders (Network/Wai/Middleware/StripHeaders.hs:26)
+ 100% (  2 /  2) in 'Network.Wai.Middleware.StreamFile'
+ 100% (  3 /  3) in 'Network.Wai.Middleware.Routed'
+  95% ( 21 / 22) in 'Network.Wai.Middleware.Rewrite'
+  Missing documentation for:
+    Module header
+  33% (  1 /  3) in 'Network.Wai.Middleware.RequestLogger.Internal'
+  Missing documentation for:
+    logToByteString (Network/Wai/Middleware/RequestLogger/Internal.hs:17)
+    getDateGetter (Network/Wai/Middleware/RequestLogger/Internal.hs:20)
+ 100% (  2 /  2) in 'Network.Wai.Middleware.MethodOverridePost'
+  50% (  1 /  2) in 'Network.Wai.Middleware.MethodOverride'
+  Missing documentation for:
+    Module header
+ 100% (  2 /  2) in 'Network.Wai.Middleware.Local'
+ 100% (  2 /  2) in 'Network.Wai.Middleware.Jsonp'
+ 100% ( 12 / 12) in 'Network.Wai.Middleware.HttpAuth'
+ 100% (  2 /  2) in 'Network.Wai.Middleware.ForceSSL'
+ 100% (  2 /  2) in 'Network.Wai.Middleware.ForceDomain'
+   0% (  0 /  2) in 'Network.Wai.Middleware.CleanPath'
+  Missing documentation for:
+    Module header
+    cleanPath (Network/Wai/Middleware/CleanPath.hs:15)
+  50% (  1 /  2) in 'Network.Wai.Middleware.Autohead'
+  Missing documentation for:
+    autohead (Network/Wai/Middleware/Autohead.hs:11)
+ 100% ( 11 / 11) in 'Network.Wai.Middleware.Approot'
+ 100% (  2 /  2) in 'Network.Wai.Middleware.AddHeaders'
+   0% (  0 /  2) in 'Network.Wai.Middleware.AcceptOverride'
+  Missing documentation for:
+    Module header
+    acceptOverride (Network/Wai/Middleware/AcceptOverride.hs:9)
+ 100% (  2 /  2) in 'Network.Wai.Header'
+  62% (  5 /  8) in 'Network.Wai.Middleware.Gzip'
+  Missing documentation for:
+    GzipSettings (Network/Wai/Middleware/Gzip.hs:48)
+    gzipFiles (Network/Wai/Middleware/Gzip.hs:49)
+    gzipCheckMime (Network/Wai/Middleware/Gzip.hs:50)
+  56% (  9 / 16) in 'Network.Wai.Middleware.RequestLogger'
+  Missing documentation for:
+    Module header
+    mkRequestLogger (Network/Wai/Middleware/RequestLogger.hs:91)
+    OutputFormat (Network/Wai/Middleware/RequestLogger.hs:52)
+    OutputFormatter (Network/Wai/Middleware/RequestLogger.hs:57)
+    OutputFormatterWithDetails (Network/Wai/Middleware/RequestLogger.hs:58)
+    Destination (Network/Wai/Middleware/RequestLogger.hs:61)
+    Callback (Network/Wai/Middleware/RequestLogger.hs:65)
+   0% (  0 /  2) in 'Network.Wai.Middleware.RequestLogger.JSON'
+  Missing documentation for:
+    Module header
+    formatAsJSON (Network/Wai/Middleware/RequestLogger/JSON.hs:23)
+  80% (  4 /  5) in 'Network.Wai.Handler.CGI'
+  Missing documentation for:
+    requestBodyFunc (Network/Wai/Handler/CGI.hs:190)
+   0% (  0 /  3) in 'Network.Wai.Handler.SCGI'
+  Missing documentation for:
+    Module header
+    run (Network/Wai/Handler/SCGI.hs:19)
+    runSendfile (Network/Wai/Handler/SCGI.hs:22)
+ 100% (  3 /  3) in 'Network.Wai.EventSource.EventStream'
+ 100% (  4 /  4) in 'Network.Wai.EventSource'
+Warning: Network.Wai.UrlMap: could not find link destinations for:
+    ToApplication Path
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/wai-extra/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/wai-extra-3.0.20.0-CbEnkp3sjwfBRcLAwtS1d
+Registering wai-extra-3.0.20.0...

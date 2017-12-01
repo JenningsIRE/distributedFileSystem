@@ -1,0 +1,58 @@
+Configuring fast-logger-2.4.10...
+Building fast-logger-2.4.10...
+Preprocessing library fast-logger-2.4.10...
+[1 of 8] Compiling System.Log.FastLogger.LogStr ( System/Log/FastLogger/LogStr.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger/LogStr.o )
+[2 of 8] Compiling System.Log.FastLogger.IORef ( System/Log/FastLogger/IORef.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger/IORef.o )
+[3 of 8] Compiling System.Log.FastLogger.IO ( System/Log/FastLogger/IO.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger/IO.o )
+[4 of 8] Compiling System.Log.FastLogger.FileIO ( System/Log/FastLogger/FileIO.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger/FileIO.o )
+[5 of 8] Compiling System.Log.FastLogger.Logger ( System/Log/FastLogger/Logger.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger/Logger.o )
+[6 of 8] Compiling System.Log.FastLogger.File ( System/Log/FastLogger/File.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger/File.o )
+[7 of 8] Compiling System.Log.FastLogger.Date ( System/Log/FastLogger/Date.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger/Date.o )
+[8 of 8] Compiling System.Log.FastLogger ( System/Log/FastLogger.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Log/FastLogger.o )
+Running Haddock for fast-logger-2.4.10...
+Preprocessing library fast-logger-2.4.10...
+Haddock coverage:
+  75% (  6 /  8) in 'System.Log.FastLogger.LogStr'
+  Missing documentation for:
+    Module header
+    ToLogStr (System/Log/FastLogger/LogStr.hs:69)
+  83% (  5 /  6) in 'System.Log.FastLogger.IORef'
+  Missing documentation for:
+    Module header
+  29% (  2 /  7) in 'System.Log.FastLogger.IO'
+  Missing documentation for:
+    Module header
+    Buffer (System/Log/FastLogger/IO.hs:15)
+    getBuffer (System/Log/FastLogger/IO.hs:24)
+    freeBuffer (System/Log/FastLogger/IO.hs:27)
+    toBufIOWith (System/Log/FastLogger/IO.hs:30)
+   0% (  0 /  7) in 'System.Log.FastLogger.FileIO'
+  Missing documentation for:
+    Module header
+    FD (System/Log/FastLogger/FileIO.hs:49)
+    closeFD (System/Log/FastLogger/FileIO.hs:51)
+    openFileFD (System/Log/FastLogger/FileIO.hs:54)
+    getStderrFD (System/Log/FastLogger/FileIO.hs:57)
+    getStdoutFD (System/Log/FastLogger/FileIO.hs:60)
+    writeRawBufferPtr2FD (System/Log/FastLogger/FileIO.hs:63)
+   0% (  0 /  5) in 'System.Log.FastLogger.Logger'
+  Missing documentation for:
+    Module header
+    Logger (System/Log/FastLogger/Logger.hs:22)
+    newLogger (System/Log/FastLogger/Logger.hs:26)
+    pushLog (System/Log/FastLogger/Logger.hs:35)
+    flushLog (System/Log/FastLogger/Logger.hs:58)
+  75% (  3 /  4) in 'System.Log.FastLogger.File'
+  Missing documentation for:
+    Module header
+  88% (  7 /  8) in 'System.Log.FastLogger.Date'
+  Missing documentation for:
+    TimeFormat (System/Log/FastLogger/Date.hs:36)
+  97% ( 34 / 35) in 'System.Log.FastLogger'
+  Missing documentation for:
+    ToLogStr (System/Log/FastLogger/LogStr.hs:69)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/fast-logger/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/fast-logger-2.4.10-7GMVhEi1femFXwSQxV5ynm
+Registering fast-logger-2.4.10...

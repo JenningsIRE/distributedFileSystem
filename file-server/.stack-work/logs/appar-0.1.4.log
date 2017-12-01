@@ -1,0 +1,34 @@
+Configuring appar-0.1.4...
+Building appar-0.1.4...
+Preprocessing library appar-0.1.4...
+[1 of 5] Compiling Text.Appar.Input ( Text/Appar/Input.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Appar/Input.o )
+[2 of 5] Compiling Text.Appar.Parser ( Text/Appar/Parser.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Appar/Parser.o )
+[3 of 5] Compiling Text.Appar.LazyByteString ( Text/Appar/LazyByteString.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Appar/LazyByteString.o )
+[4 of 5] Compiling Text.Appar.String ( Text/Appar/String.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Appar/String.o )
+[5 of 5] Compiling Text.Appar.ByteString ( Text/Appar/ByteString.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Appar/ByteString.o )
+Running Haddock for appar-0.1.4...
+Preprocessing library appar-0.1.4...
+Haddock coverage:
+  20% (  1 /  5) in 'Text.Appar.Input'
+  Missing documentation for:
+    Module header
+     (Text/Appar/Input.hs:24)
+     (Text/Appar/Input.hs:30)
+     (Text/Appar/Input.hs:36)
+  97% ( 36 / 37) in 'Text.Appar.Parser'
+  Missing documentation for:
+    MkParser (Text/Appar/Parser.hs:63)
+  98% ( 39 / 40) in 'Text.Appar.LazyByteString'
+  Missing documentation for:
+    MkParser (Text/Appar/Parser.hs:63)
+  98% ( 39 / 40) in 'Text.Appar.String'
+  Missing documentation for:
+    MkParser (Text/Appar/Parser.hs:63)
+  98% ( 39 / 40) in 'Text.Appar.ByteString'
+  Missing documentation for:
+    MkParser (Text/Appar/Parser.hs:63)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/appar/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/appar-0.1.4-DGWHHt2WRn9FI49prcwO9
+Registering appar-0.1.4...

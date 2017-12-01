@@ -1,0 +1,24 @@
+Configuring th-lift-0.7.7...
+Building th-lift-0.7.7...
+Preprocessing library th-lift-0.7.7...
+[1 of 1] Compiling Language.Haskell.TH.Lift ( src/Language/Haskell/TH/Lift.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Language/Haskell/TH/Lift.o )
+
+src/Language/Haskell/TH/Lift.hs:247:15: warning: [-Wname-shadowing]
+    This binding for ‘nameSpace’ shadows the existing binding
+      imported from ‘Language.Haskell.TH.Syntax’ at src/Language/Haskell/TH/Lift.hs:38:1-33
+Running Haddock for th-lift-0.7.7...
+Preprocessing library th-lift-0.7.7...
+
+src/Language/Haskell/TH/Lift.hs:247:15: warning: [-Wname-shadowing]
+    This binding for ‘nameSpace’ shadows the existing binding
+      imported from ‘Language.Haskell.TH.Syntax’ at src/Language/Haskell/TH/Lift.hs:38:1-33
+Haddock coverage:
+  75% (  6 /  8) in 'Language.Haskell.TH.Lift'
+  Missing documentation for:
+    Module header
+    deriveLiftMany' (src/Language/Haskell/TH/Lift.hs:60)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/th-lift/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/th-lift-0.7.7-JWI9Gh7wB0MC9Q5wqv5aoI
+Registering th-lift-0.7.7...

@@ -1,0 +1,19 @@
+Configuring case-insensitive-1.2.0.10...
+Building case-insensitive-1.2.0.10...
+Preprocessing library case-insensitive-1.2.0.10...
+[1 of 3] Compiling Data.CaseInsensitive.Internal ( Data/CaseInsensitive/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/CaseInsensitive/Internal.o )
+[2 of 3] Compiling Data.CaseInsensitive.Unsafe ( Data/CaseInsensitive/Unsafe.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/CaseInsensitive/Unsafe.o )
+[3 of 3] Compiling Data.CaseInsensitive ( Data/CaseInsensitive.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/CaseInsensitive.o )
+Running Haddock for case-insensitive-1.2.0.10...
+Preprocessing library case-insensitive-1.2.0.10...
+Haddock coverage:
+ 100% (  8 /  8) in 'Data.CaseInsensitive.Internal'
+ 100% (  2 /  2) in 'Data.CaseInsensitive.Unsafe'
+ 100% (  7 /  7) in 'Data.CaseInsensitive'
+Warning: Data.CaseInsensitive: could not find link destinations for:
+    foldCaseList
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/case-insensitive/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/case-insensitive-1.2.0.10-1D5OUKQ7UrJ7IpOe0di4Un
+Registering case-insensitive-1.2.0.10...

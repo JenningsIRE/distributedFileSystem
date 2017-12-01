@@ -1,0 +1,112 @@
+Configuring iproute-1.7.1...
+Building iproute-1.7.1...
+Preprocessing library iproute-1.7.1...
+[1 of 8] Compiling Data.IP.Addr     ( Data/IP/Addr.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP/Addr.o )
+[2 of 8] Compiling Data.IP.Mask     ( Data/IP/Mask.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP/Mask.o )
+[3 of 8] Compiling Data.IP.Range    ( Data/IP/Range.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP/Range.o )
+[4 of 8] Compiling Data.IP.Internal ( Data/IP/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP/Internal.o )
+[5 of 8] Compiling Data.IP.Op       ( Data/IP/Op.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP/Op.o )
+[6 of 8] Compiling Data.IP.RouteTable.Internal ( Data/IP/RouteTable/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP/RouteTable/Internal.o )
+[7 of 8] Compiling Data.IP.RouteTable ( Data/IP/RouteTable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP/RouteTable.o )
+[8 of 8] Compiling Data.IP          ( Data/IP.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IP.o )
+Running Haddock for iproute-1.7.1...
+Preprocessing library iproute-1.7.1...
+Haddock coverage:
+  35% ( 17 / 49) in 'Data.IP.Addr'
+  Missing documentation for:
+    Module header
+     (Data/IP/Addr.hs:63)
+     (Data/IP/Addr.hs:69)
+    IPv4Addr (Data/IP/Addr.hs:76)
+    IPv6Addr (Data/IP/Addr.hs:77)
+     (Data/IP/Addr.hs:117)
+     (Data/IP/Addr.hs:121)
+     (Data/IP/Addr.hs:163)
+    ip6ToInteger (Data/IP/Addr.hs:191)
+    integerToIP6 (Data/IP/Addr.hs:201)
+     (Data/IP/Addr.hs:216)
+     (Data/IP/Addr.hs:219)
+     (Data/IP/Addr.hs:345)
+     (Data/IP/Addr.hs:348)
+     (Data/IP/Addr.hs:351)
+    parseIP (Data/IP/Addr.hs:354)
+    parseIPv4 (Data/IP/Addr.hs:361)
+    parseIPv6 (Data/IP/Addr.hs:366)
+     (Data/IP/Addr.hs:376)
+     (Data/IP/Addr.hs:379)
+     (Data/IP/Addr.hs:382)
+    dig (Data/IP/Addr.hs:390)
+    ip4 (Data/IP/Addr.hs:396)
+    ip4' (Data/IP/Addr.hs:399)
+    skipSpaces (Data/IP/Addr.hs:411)
+    hex (Data/IP/Addr.hs:419)
+    colon2 (Data/IP/Addr.hs:429)
+    format (Data/IP/Addr.hs:432)
+    ip6 (Data/IP/Addr.hs:443)
+    ip6' (Data/IP/Addr.hs:446)
+    ip4Embedded (Data/IP/Addr.hs:462)
+    fixByteOrder (Data/IP/Addr.hs:510)
+   0% (  0 /  8) in 'Data.IP.Mask'
+  Missing documentation for:
+    Module header
+    maskIPv4 (Data/IP/Mask.hs:7)
+    maskIPv6 (Data/IP/Mask.hs:11)
+    shift128 (Data/IP/Mask.hs:18)
+    shiftL128 (Data/IP/Mask.hs:24)
+    shiftR128 (Data/IP/Mask.hs:28)
+    fromIP6Addr (Data/IP/Mask.hs:32)
+    toIP6Addr (Data/IP/Mask.hs:38)
+  11% (  2 / 18) in 'Data.IP.Range'
+  Missing documentation for:
+    Module header
+     (Data/IP/Range.hs:67)
+     (Data/IP/Range.hs:70)
+     (Data/IP/Range.hs:79)
+    parseIPRange (Data/IP/Range.hs:82)
+     (Data/IP/Range.hs:89)
+     (Data/IP/Range.hs:92)
+    parseIPv4Range (Data/IP/Range.hs:95)
+    parseIPv6Range (Data/IP/Range.hs:100)
+    ip4range (Data/IP/Range.hs:105)
+    maskedIPv4 (Data/IP/Range.hs:116)
+    ip6range (Data/IP/Range.hs:119)
+    maskedIPv6 (Data/IP/Range.hs:130)
+     (Data/IP/Range.hs:140)
+     (Data/IP/Range.hs:143)
+     (Data/IP/Range.hs:146)
+  75% (  3 /  4) in 'Data.IP.Internal'
+  Missing documentation for:
+    Module header
+  67% (  6 /  9) in 'Data.IP.Op'
+  Missing documentation for:
+    Module header
+     (Data/IP/Op.hs:42)
+     (Data/IP/Op.hs:46)
+  37% ( 10 / 27) in 'Data.IP.RouteTable.Internal'
+  Missing documentation for:
+     (Data/IP/RouteTable/Internal.hs:46)
+     (Data/IP/RouteTable/Internal.hs:50)
+    intToTBitIPv4 (Data/IP/RouteTable/Internal.hs:59)
+    intToTBitIPv6 (Data/IP/RouteTable/Internal.hs:62)
+    intToTBitsWord32 (Data/IP/RouteTable/Internal.hs:65)
+    intToTBitsIPv4 (Data/IP/RouteTable/Internal.hs:68)
+    intToTBitsIPv6 (Data/IP/RouteTable/Internal.hs:71)
+     (Data/IP/RouteTable/Internal.hs:106)
+     (Data/IP/RouteTable/Internal.hs:110)
+     (Data/IP/RouteTable/Internal.hs:114)
+    link (Data/IP/RouteTable/Internal.hs:146)
+    glue (Data/IP/RouteTable/Internal.hs:155)
+    keyToTestBit (Data/IP/RouteTable/Internal.hs:162)
+    isLeft (Data/IP/RouteTable/Internal.hs:165)
+    node (Data/IP/RouteTable/Internal.hs:187)
+    search (Data/IP/RouteTable/Internal.hs:217)
+    foldt (Data/IP/RouteTable/Internal.hs:280)
+ 100% ( 14 / 14) in 'Data.IP.RouteTable'
+ 100% ( 27 / 27) in 'Data.IP'
+Warning: Data.IP.Internal: could not find link destinations for:
+    IPv4Addr IPv6Addr
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/iproute/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/iproute-1.7.1-EJjAtfniBUorobFQnk7lR
+Registering iproute-1.7.1...

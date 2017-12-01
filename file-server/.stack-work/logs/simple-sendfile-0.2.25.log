@@ -1,0 +1,28 @@
+Configuring simple-sendfile-0.2.25...
+Building simple-sendfile-0.2.25...
+Preprocessing library simple-sendfile-0.2.25...
+[1 of 4] Compiling Network.Sendfile.Types ( Network/Sendfile/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Sendfile/Types.o )
+[2 of 4] Compiling Network.Sendfile.IOVec ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Sendfile/IOVec.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Sendfile/IOVec.o )
+[3 of 4] Compiling Network.Sendfile.BSD ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Sendfile/BSD.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Sendfile/BSD.o )
+[4 of 4] Compiling Network.Sendfile ( Network/Sendfile.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Sendfile.o )
+Running Haddock for simple-sendfile-0.2.25...
+Preprocessing library simple-sendfile-0.2.25...
+Haddock coverage:
+  50% (  1 /  2) in 'Network.Sendfile.Types'
+  Missing documentation for:
+    Module header
+  20% (  1 /  5) in 'Network.Sendfile.IOVec'
+  Missing documentation for:
+    IOVec (Network/Sendfile/IOVec.hsc:26)
+    SfHdtr (Network/Sendfile/IOVec.hsc:46)
+    withSfHdtr (Network/Sendfile/IOVec.hsc:80)
+    remainingChunks (Network/Sendfile/IOVec.hsc:88)
+  80% (  4 /  5) in 'Network.Sendfile.BSD'
+  Missing documentation for:
+    Module header
+ 100% (  6 /  6) in 'Network.Sendfile'
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/simple-sendfile/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/simple-sendfile-0.2.25-4uYtK5a0djFILo2ePfLs47
+Registering simple-sendfile-0.2.25...

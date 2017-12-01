@@ -1,0 +1,31 @@
+Configuring wai-logger-2.3.0...
+Building wai-logger-2.3.0...
+Preprocessing library wai-logger-2.3.0...
+[1 of 4] Compiling Network.Wai.Logger.IP ( Network/Wai/Logger/IP.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger/IP.o )
+[2 of 4] Compiling Network.Wai.Logger.IORef ( Network/Wai/Logger/IORef.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger/IORef.o )
+[3 of 4] Compiling Network.Wai.Logger.Apache ( Network/Wai/Logger/Apache.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger/Apache.o )
+[4 of 4] Compiling Network.Wai.Logger ( Network/Wai/Logger.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger.o )
+Running Haddock for wai-logger-2.3.0...
+Preprocessing library wai-logger-2.3.0...
+Warning: The documentation for the following packages are not installed. No
+links will be generated to these packages: bytestring-builder-0.10.8.1.0
+Haddock coverage:
+  67% (  2 /  3) in 'Network.Wai.Logger.IP'
+  Missing documentation for:
+    Module header
+  83% (  5 /  6) in 'Network.Wai.Logger.IORef'
+  Missing documentation for:
+    Module header
+  75% (  3 /  4) in 'Network.Wai.Logger.Apache'
+  Missing documentation for:
+    Module header
+  96% ( 23 / 24) in 'Network.Wai.Logger'
+  Missing documentation for:
+    logCheck (Network/Wai/Logger.hs:126)
+Warning: Network.Wai.Logger: could not find link destinations for:
+    NumericAddress
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/wai-logger/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/wai-logger-2.3.0-G2LMsBpHwLV49tDfVWxzX4
+Registering wai-logger-2.3.0...

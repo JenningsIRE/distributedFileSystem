@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE DataKinds #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE ConstraintKinds #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE UndecidableInstances #-}</span><span>
+</span><a name="line-7"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Internal</span><span class="hs-operator">.</span><span class="hs-identifier">Nat</span><span>
+</span><a name="line-8"></a><span>    </span><span class="hs-special">(</span><span> </span><span class="hs-keyword">type</span><span> </span><a href="Crypto.Internal.Nat.html#IsDivisibleBy8"><span class="hs-identifier hs-type">IsDivisibleBy8</span></a><span>
+</span><a name="line-9"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-keyword">type</span><span> </span><a href="Crypto.Internal.Nat.html#IsAtMost"><span class="hs-identifier hs-type">IsAtMost</span></a><span class="hs-special">,</span><span> </span><span class="hs-keyword">type</span><span> </span><a href="Crypto.Internal.Nat.html#IsAtLeast"><span class="hs-identifier hs-type">IsAtLeast</span></a><span>
+</span><a name="line-10"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Crypto.Internal.Nat.html#byteLen"><span class="hs-identifier hs-var">byteLen</span></a><span>
+</span><a name="line-11"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Crypto.Internal.Nat.html#integralNatVal"><span class="hs-identifier hs-var">integralNatVal</span></a><span>
+</span><a name="line-12"></a><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-13"></a><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">TypeLits</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-identifier">byteLen</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">KnownNat</span><span> </span><a href="#local-6989586621679045366"><span class="hs-identifier hs-type">bitlen</span></a><span class="hs-special">,</span><span> </span><a href="Crypto.Internal.Nat.html#IsDivisibleBy8"><span class="hs-identifier hs-type">IsDivisibleBy8</span></a><span> </span><a href="#local-6989586621679045366"><span class="hs-identifier hs-type">bitlen</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Num</span><span> </span><a href="#local-6989586621679045367"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="#local-6989586621679045368"><span class="hs-identifier hs-type">proxy</span></a><span> </span><a href="#local-6989586621679045366"><span class="hs-identifier hs-type">bitlen</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679045367"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-17"></a><a name="byteLen"><a href="Crypto.Internal.Nat.html#byteLen"><span class="hs-identifier">byteLen</span></a></a><span> </span><a name="local-6989586621679045369"><a href="#local-6989586621679045369"><span class="hs-identifier">d</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">fromInteger</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">natVal</span><span> </span><a href="#local-6989586621679045369"><span class="hs-identifier hs-var">d</span></a><span> </span><span class="hs-special">`</span><span class="hs-identifier hs-var">div</span><span class="hs-special">`</span><span> </span><span class="hs-number">8</span><span class="hs-special">)</span><span>
+</span><a name="line-18"></a><span>
+</span><a name="line-19"></a><span class="hs-identifier">integralNatVal</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">KnownNat</span><span> </span><a href="#local-6989586621679045363"><span class="hs-identifier hs-type">bitlen</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Num</span><span> </span><a href="#local-6989586621679045364"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="#local-6989586621679045365"><span class="hs-identifier hs-type">proxy</span></a><span> </span><a href="#local-6989586621679045363"><span class="hs-identifier hs-type">bitlen</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679045364"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-20"></a><a name="integralNatVal"><a href="Crypto.Internal.Nat.html#integralNatVal"><span class="hs-identifier">integralNatVal</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">fromInteger</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">natVal</span><span>
+</span><a name="line-21"></a><span>
+</span><a name="line-22"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span> </span><a name="IsLE"><a href="Crypto.Internal.Nat.html#IsLE"><span class="hs-identifier">IsLE</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679045356"><a href="#local-6989586621679045356"><span class="hs-identifier">bitlen</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Nat</span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679045357"><a href="#local-6989586621679045357"><span class="hs-identifier">n</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Nat</span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679045358"><a href="#local-6989586621679045358"><span class="hs-identifier">c</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Bool</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-23"></a><span>    </span><span class="hs-identifier">IsLE</span><span> </span><a href="#local-6989586621679045359"><span class="hs-identifier hs-type">bitlen</span></a><span> </span><a href="#local-6989586621679045360"><span class="hs-identifier hs-type">n</span></a><span> </span><span class="hs-char">'True  = 'True
+#if MIN_VERSION_base(4,9,0)
+    IsLE bitlen n 'False = TypeError
+      (     ('Text &quot;bitlen &quot; ':&lt;&gt;: 'ShowType bitlen ':&lt;&gt;: 'Text &quot; is greater than &quot; ':&lt;&gt;: 'ShowType n)
+      ':$$: ('Text &quot;You have tried to use an invalid Digest size. Please, refer to the documentation.&quot;)
+      )
+#else
+    IsLE bitlen n 'False = 'False
+#endif
+
+-- | ensure the given `bitlen` is lesser or equal to `n`
+--
+type IsAtMost  (bitlen :: Nat) (n :: Nat) = IsLE bitlen n (bitlen &lt;=? n) ~ 'True
+
+type family IsGE (bitlen :: Nat) (n :: Nat) (c :: Bool) where
+    IsGE bitlen n 'True  = 'True
+#if MIN_VERSION_base(4,9,0)
+    IsGE bitlen n 'False = TypeError
+      (     ('Text &quot;bitlen &quot; ':&lt;&gt;: 'ShowType bitlen ':&lt;&gt;: 'Text &quot; is lesser than &quot; ':&lt;&gt;: 'ShowType n)
+      ':$$: ('Text &quot;You have tried to use an invalid Digest size. Please, refer to the documentation.&quot;)
+      )
+#else
+    IsGE bitlen n 'False = 'False
+#endif
+
+-- | ensure the given `bitlen` is greater or equal to `n`
+--
+type IsAtLeast (bitlen :: Nat) (n :: Nat) = IsGE bitlen n (n &lt;=? bitlen) ~ 'True
+
+type family IsDiv8 (bitLen :: Nat) (n :: Nat) where
+    IsDiv8 bitLen 0 = 'True
+#if MIN_VERSION_base(4,9,0)
+    IsDiv8 bitLen 1 = TypeError ('Text &quot;bitLen &quot; ':&lt;&gt;: 'ShowType bitLen ':&lt;&gt;: 'Text &quot; is not divisible by 8&quot;)
+    IsDiv8 bitLen 2 = TypeError ('Text &quot;bitLen &quot; ':&lt;&gt;: 'ShowType bitLen ':&lt;&gt;: 'Text &quot; is not divisible by 8&quot;)
+    IsDiv8 bitLen 3 = TypeError ('Text &quot;bitLen &quot; ':&lt;&gt;: 'ShowType bitLen ':&lt;&gt;: 'Text &quot; is not divisible by 8&quot;)
+    IsDiv8 bitLen 4 = TypeError ('Text &quot;bitLen &quot; ':&lt;&gt;: 'ShowType bitLen ':&lt;&gt;: 'Text &quot; is not divisible by 8&quot;)
+    IsDiv8 bitLen 5 = TypeError ('Text &quot;bitLen &quot; ':&lt;&gt;: 'ShowType bitLen ':&lt;&gt;: 'Text &quot; is not divisible by 8&quot;)
+    IsDiv8 bitLen 6 = TypeError ('Text &quot;bitLen &quot; ':&lt;&gt;: 'ShowType bitLen ':&lt;&gt;: 'Text &quot; is not divisible by 8&quot;)
+    IsDiv8 bitLen 7 = TypeError ('Text &quot;bitLen &quot; ':&lt;&gt;: 'ShowType bitLen ':&lt;&gt;: 'Text &quot; is not divisible by 8&quot;)
+#else
+    IsDiv8 bitLen 1 = 'False
+    IsDiv8 bitLen 2 = 'False
+    IsDiv8 bitLen 3 = 'False
+    IsDiv8 bitLen 4 = 'False
+    IsDiv8 bitLen 5 = 'False
+    IsDiv8 bitLen 6 = 'False
+    IsDiv8 bitLen 7 = 'False
+#endif
+    IsDiv8 bitLen n = IsDiv8 n (Mod8 n)
+
+type family Mod8 (n :: Nat) where
+    Mod8 0 = 0
+    Mod8 1 = 1
+    Mod8 2 = 2
+    Mod8 3 = 3
+    Mod8 4 = 4
+    Mod8 5 = 5
+    Mod8 6 = 6
+    Mod8 7 = 7
+    Mod8 8 = 0
+    Mod8 9 = 1
+    Mod8 10 = 2
+    Mod8 11 = 3
+    Mod8 12 = 4
+    Mod8 13 = 5
+    Mod8 14 = 6
+    Mod8 15 = 7
+    Mod8 16 = 0
+    Mod8 17 = 1
+    Mod8 18 = 2
+    Mod8 19 = 3
+    Mod8 20 = 4
+    Mod8 21 = 5
+    Mod8 22 = 6
+    Mod8 23 = 7
+    Mod8 24 = 0
+    Mod8 25 = 1
+    Mod8 26 = 2
+    Mod8 27 = 3
+    Mod8 28 = 4
+    Mod8 29 = 5
+    Mod8 30 = 6
+    Mod8 31 = 7
+    Mod8 32 = 0
+    Mod8 33 = 1
+    Mod8 34 = 2
+    Mod8 35 = 3
+    Mod8 36 = 4
+    Mod8 37 = 5
+    Mod8 38 = 6
+    Mod8 39 = 7
+    Mod8 40 = 0
+    Mod8 41 = 1
+    Mod8 42 = 2
+    Mod8 43 = 3
+    Mod8 44 = 4
+    Mod8 45 = 5
+    Mod8 46 = 6
+    Mod8 47 = 7
+    Mod8 48 = 0
+    Mod8 49 = 1
+    Mod8 50 = 2
+    Mod8 51 = 3
+    Mod8 52 = 4
+    Mod8 53 = 5
+    Mod8 54 = 6
+    Mod8 55 = 7
+    Mod8 56 = 0
+    Mod8 57 = 1
+    Mod8 58 = 2
+    Mod8 59 = 3
+    Mod8 60 = 4
+    Mod8 61 = 5
+    Mod8 62 = 6
+    Mod8 63 = 7
+    Mod8 n = Mod8 (n - 64)
+
+type IsDivisibleBy8 bitLen = IsDiv8 bitLen bitLen ~ 'True
+</span></pre></body></html>

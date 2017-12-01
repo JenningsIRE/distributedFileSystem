@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP                   #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE ConstraintKinds       #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE DataKinds             #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE DeriveDataTypeable    #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE DeriveGeneric         #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE FlexibleInstances     #-}</span><span>
+</span><a name="line-7"></a><span class="hs-pragma">{-# LANGUAGE MultiParamTypeClasses #-}</span><span>
+</span><a name="line-8"></a><span class="hs-pragma">{-# LANGUAGE OverloadedStrings     #-}</span><span>
+</span><a name="line-9"></a><span class="hs-pragma">{-# LANGUAGE PolyKinds             #-}</span><span>
+</span><a name="line-10"></a><span class="hs-pragma">{-# LANGUAGE ScopedTypeVariables   #-}</span><span>
+</span><a name="line-11"></a><span class="hs-pragma">{-# LANGUAGE TupleSections         #-}</span><span>
+</span><a name="line-12"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies          #-}</span><span>
+</span><a name="line-13"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators         #-}</span><span>
+</span><a name="line-14"></a><span class="hs-pragma">{-# LANGUAGE UndecidableInstances  #-}</span><span>
+</span><a name="line-15"></a><span class="hs-pragma">{-# OPTIONS_HADDOCK not-home       #-}</span><span>
+</span><a name="line-16"></a><span>
+</span><a name="line-17"></a><span class="hs-cpp">#include &quot;overlapping-compat.h&quot;</span><span>
+</span><a name="line-18"></a><span>
+</span><a name="line-19"></a><span class="hs-comment">-- | A collection of basic Content-Types (also known as Internet Media</span><span>
+</span><a name="line-20"></a><span class="hs-comment">-- Types, or MIME types). Additionally, this module provides classes that</span><span>
+</span><a name="line-21"></a><span class="hs-comment">-- encapsulate how to serialize or deserialize values to or from</span><span>
+</span><a name="line-22"></a><span class="hs-comment">-- a particular Content-Type.</span><span>
+</span><a name="line-23"></a><span class="hs-comment">--</span><span>
+</span><a name="line-24"></a><span class="hs-comment">-- Content-Types are used in `ReqBody` and the method combinators:</span><span>
+</span><a name="line-25"></a><span class="hs-comment">--</span><span>
+</span><a name="line-26"></a><span class="hs-comment">-- &gt;&gt;&gt; type MyEndpoint = ReqBody '[JSON, PlainText] Book :&gt; Get '[JSON, PlainText] Book</span><span>
+</span><a name="line-27"></a><span class="hs-comment">--</span><span>
+</span><a name="line-28"></a><span class="hs-comment">-- Meaning the endpoint accepts requests of Content-Type @application/json@</span><span>
+</span><a name="line-29"></a><span class="hs-comment">-- or @text/plain;charset-utf8@, and returns data in either one of those</span><span>
+</span><a name="line-30"></a><span class="hs-comment">-- formats (depending on the @Accept@ header).</span><span>
+</span><a name="line-31"></a><span class="hs-comment">--</span><span>
+</span><a name="line-32"></a><span class="hs-comment">-- If you would like to support Content-Types beyond those provided here,</span><span>
+</span><a name="line-33"></a><span class="hs-comment">-- then:</span><span>
+</span><a name="line-34"></a><span class="hs-comment">--</span><span>
+</span><a name="line-35"></a><span class="hs-comment">--      (1) Declare a new data type with no constructors (e.g. @data HTML@).</span><span>
+</span><a name="line-36"></a><span class="hs-comment">--      (2) Make an instance of it for `Accept`.</span><span>
+</span><a name="line-37"></a><span class="hs-comment">--      (3) If you want to be able to serialize data *into* that</span><span>
+</span><a name="line-38"></a><span class="hs-comment">--      Content-Type, make an instance of it for `MimeRender`.</span><span>
+</span><a name="line-39"></a><span class="hs-comment">--      (4) If you want to be able to deserialize data *from* that</span><span>
+</span><a name="line-40"></a><span class="hs-comment">--      Content-Type, make an instance of it for `MimeUnrender`.</span><span>
+</span><a name="line-41"></a><span class="hs-comment">--</span><span>
+</span><a name="line-42"></a><span class="hs-comment">-- Note that roles are reversed in @servant-server@ and @servant-client@:</span><span>
+</span><a name="line-43"></a><span class="hs-comment">-- to be able to serve (or even typecheck) a @Get '[JSON, XML] MyData@,</span><span>
+</span><a name="line-44"></a><span class="hs-comment">-- you'll need to have the appropriate `MimeRender` instances in scope,</span><span>
+</span><a name="line-45"></a><span class="hs-comment">-- whereas to query that endpoint with @servant-client@, you'll need</span><span>
+</span><a name="line-46"></a><span class="hs-comment">-- a `MimeUnrender` instance in scope.</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">API</span><span class="hs-operator">.</span><span class="hs-identifier">ContentTypes</span><span>
+</span><a name="line-48"></a><span>    </span><span class="hs-special">(</span><span>
+</span><a name="line-49"></a><span>    </span><span class="hs-comment">-- * Provided Content-Types</span><span>
+</span><a name="line-50"></a><span>      </span><a href="Servant.API.ContentTypes.html#JSON"><span class="hs-identifier hs-type">JSON</span></a><span>
+</span><a name="line-51"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#PlainText"><span class="hs-identifier hs-type">PlainText</span></a><span>
+</span><a name="line-52"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#FormUrlEncoded"><span class="hs-identifier hs-type">FormUrlEncoded</span></a><span>
+</span><a name="line-53"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#OctetStream"><span class="hs-identifier hs-type">OctetStream</span></a><span>
+</span><a name="line-54"></a><span>
+</span><a name="line-55"></a><span>    </span><span class="hs-comment">-- * Building your own Content-Type</span><span>
+</span><a name="line-56"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier hs-type">Accept</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-57"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#MimeRender"><span class="hs-identifier hs-type">MimeRender</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-58"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#MimeUnrender"><span class="hs-identifier hs-type">MimeUnrender</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-59"></a><span>
+</span><a name="line-60"></a><span>    </span><span class="hs-comment">-- * NoContent</span><span>
+</span><a name="line-61"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#NoContent"><span class="hs-identifier hs-type">NoContent</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-62"></a><span>
+</span><a name="line-63"></a><span>    </span><span class="hs-comment">-- * Internal</span><span>
+</span><a name="line-64"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AcceptHeader"><span class="hs-identifier hs-type">AcceptHeader</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-65"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AllCTRender"><span class="hs-identifier hs-type">AllCTRender</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-66"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AllCTUnrender"><span class="hs-identifier hs-type">AllCTUnrender</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-67"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AllMime"><span class="hs-identifier hs-type">AllMime</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-68"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AllMimeRender"><span class="hs-identifier hs-type">AllMimeRender</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-69"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AllMimeUnrender"><span class="hs-identifier hs-type">AllMimeUnrender</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-70"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#eitherDecodeLenient"><span class="hs-identifier hs-var">eitherDecodeLenient</span></a><span>
+</span><a name="line-71"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#canHandleAcceptH"><span class="hs-identifier hs-var">canHandleAcceptH</span></a><span>
+</span><a name="line-72"></a><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-73"></a><span>
+</span><a name="line-74"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Arrow</span><span>                    </span><span class="hs-special">(</span><span class="hs-identifier hs-var">left</span><span class="hs-special">)</span><span>
+</span><a name="line-75"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">Compat</span><span>
+</span><a name="line-76"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span>                       </span><span class="hs-special">(</span><span class="hs-identifier hs-type">FromJSON</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ToJSON</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">encode</span><span class="hs-special">)</span><span>
+</span><a name="line-77"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span class="hs-operator">.</span><span class="hs-identifier">Parser</span><span>                </span><span class="hs-special">(</span><span class="hs-identifier hs-var">value</span><span class="hs-special">)</span><span>
+</span><a name="line-78"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>                 </span><span class="hs-special">(</span><span class="hs-identifier hs-var">parseEither</span><span class="hs-special">)</span><span>
+</span><a name="line-79"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Attoparsec</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Char8</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">endOfInput</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">parseOnly</span><span class="hs-special">,</span><span>
+</span><a name="line-80"></a><span>                                                   </span><span class="hs-identifier hs-var">skipSpace</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">&lt;?&gt;</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-81"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span>                  </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">BS</span><span>
+</span><a name="line-82"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ByteString</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">fromStrict</span><span class="hs-special">,</span><span>
+</span><a name="line-83"></a><span>                                                   </span><span class="hs-identifier hs-var">toStrict</span><span class="hs-special">)</span><span>
+</span><a name="line-84"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span class="hs-operator">.</span><span class="hs-identifier">Char8</span><span>       </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">BC</span><span>
+</span><a name="line-85"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">List</span><span class="hs-operator">.</span><span class="hs-identifier">NonEmpty</span><span>               </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">NE</span><span>
+</span><a name="line-86"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Maybe</span><span>                       </span><span class="hs-special">(</span><span class="hs-identifier hs-var">isJust</span><span class="hs-special">)</span><span>
+</span><a name="line-87"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">String</span><span class="hs-operator">.</span><span class="hs-identifier">Conversions</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-var">cs</span><span class="hs-special">)</span><span>
+</span><a name="line-88"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span>                        </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">TextS</span><span>
+</span><a name="line-89"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Encoding</span><span>               </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">TextS</span><span>
+</span><a name="line-90"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span>                   </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">TextL</span><span>
+</span><a name="line-91"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span class="hs-operator">.</span><span class="hs-identifier">Encoding</span><span>          </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">TextL</span><span>
+</span><a name="line-92"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Typeable</span><span>
+</span><a name="line-93"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">Generics</span><span>                     </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">)</span><span>
+</span><a name="line-94"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">HTTP</span><span class="hs-operator">.</span><span class="hs-identifier">Media</span><span>               </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">M</span><span>
+</span><a name="line-95"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">FormUrlEncoded</span><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-type">FromForm</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ToForm</span><span class="hs-special">,</span><span>
+</span><a name="line-96"></a><span>                                                   </span><span class="hs-identifier hs-var">urlEncodeAsForm</span><span class="hs-special">,</span><span>
+</span><a name="line-97"></a><span>                                                   </span><span class="hs-identifier hs-var">urlDecodeAsForm</span><span class="hs-special">)</span><span>
+</span><a name="line-98"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Prelude</span><span>                          </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-99"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Prelude</span><span class="hs-operator">.</span><span class="hs-identifier">Compat</span><span>
+</span><a name="line-100"></a><span>
+</span><a name="line-101"></a><span class="hs-cpp">#if MIN_VERSION_base(4,9,0)</span><span>
+</span><a name="line-102"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">TypeLits</span><span>                     </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">TL</span><span>
+</span><a name="line-103"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-104"></a><span>
+</span><a name="line-105"></a><span class="hs-comment">-- * Provided content types</span><span>
+</span><a name="line-106"></a><span class="hs-keyword">data</span><span> </span><a name="JSON"><a href="Servant.API.ContentTypes.html#JSON"><span class="hs-identifier">JSON</span></a></a><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-identifier hs-type">Typeable</span><span>
+</span><a name="line-107"></a><span class="hs-keyword">data</span><span> </span><a name="PlainText"><a href="Servant.API.ContentTypes.html#PlainText"><span class="hs-identifier">PlainText</span></a></a><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-identifier hs-type">Typeable</span><span>
+</span><a name="line-108"></a><span class="hs-keyword">data</span><span> </span><a name="FormUrlEncoded"><a href="Servant.API.ContentTypes.html#FormUrlEncoded"><span class="hs-identifier">FormUrlEncoded</span></a></a><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-identifier hs-type">Typeable</span><span>
+</span><a name="line-109"></a><span class="hs-keyword">data</span><span> </span><a name="OctetStream"><a href="Servant.API.ContentTypes.html#OctetStream"><span class="hs-identifier">OctetStream</span></a></a><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-identifier hs-type">Typeable</span><span>
+</span><a name="line-110"></a><span>
+</span><a name="line-111"></a><span class="hs-comment">-- * Accept class</span><span>
+</span><a name="line-112"></a><span>
+</span><a name="line-113"></a><span class="hs-comment">-- | Instances of 'Accept' represent mimetypes. They are used for matching</span><span>
+</span><a name="line-114"></a><span class="hs-comment">-- against the @Accept@ HTTP header of the request, and for setting the</span><span>
+</span><a name="line-115"></a><span class="hs-comment">-- @Content-Type@ header of the response</span><span>
+</span><a name="line-116"></a><span class="hs-comment">--</span><span>
+</span><a name="line-117"></a><span class="hs-comment">-- Example:</span><span>
+</span><a name="line-118"></a><span class="hs-comment">--</span><span>
+</span><a name="line-119"></a><span class="hs-comment">-- &gt;&gt;&gt; import Network.HTTP.Media ((//), (/:))</span><span>
+</span><a name="line-120"></a><span class="hs-comment">-- &gt;&gt;&gt; data HTML</span><span>
+</span><a name="line-121"></a><span class="hs-comment">-- &gt;&gt;&gt; :{</span><span>
+</span><a name="line-122"></a><span class="hs-comment">--instance Accept HTML where</span><span>
+</span><a name="line-123"></a><span class="hs-comment">--    contentType _ = &quot;text&quot; // &quot;html&quot; /: (&quot;charset&quot;, &quot;utf-8&quot;)</span><span>
+</span><a name="line-124"></a><span class="hs-comment">-- :}</span><span>
+</span><a name="line-125"></a><span class="hs-comment">--</span><span>
+</span><a name="line-126"></a><span class="hs-keyword">class</span><span> </span><a name="Accept"><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier">Accept</span></a></a><span> </span><a name="local-6989586621679057247"><a href="#local-6989586621679057247"><span class="hs-identifier">ctype</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-127"></a><span>    </span><span class="hs-identifier">contentType</span><span>   </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679057247"><span class="hs-identifier hs-type">ctype</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">M</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">MediaType</span><span>
+</span><a name="line-128"></a><span>    </span><a name="local-8214565720323831798"><a href="Servant.API.ContentTypes.html#contentType"><span class="hs-identifier">contentType</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">NE</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">head</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><a href="Servant.API.ContentTypes.html#contentTypes"><span class="hs-identifier hs-var">contentTypes</span></a><span>
+</span><a name="line-129"></a><span>
+</span><a name="line-130"></a><span>    </span><span class="hs-identifier">contentTypes</span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679057247"><span class="hs-identifier hs-type">ctype</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">NE</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">NonEmpty</span><span> </span><span class="hs-identifier hs-type">M</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">MediaType</span><span>
+</span><a name="line-131"></a><span>    </span><a name="local-8214565720323831799"><a href="Servant.API.ContentTypes.html#contentTypes"><span class="hs-identifier">contentTypes</span></a></a><span>  </span><span class="hs-glyph">=</span><span>  </span><span class="hs-special">(</span><span class="hs-identifier hs-var">NE</span><span class="hs-operator hs-var">.:|</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><a href="Servant.API.ContentTypes.html#contentType"><span class="hs-identifier hs-var">contentType</span></a><span>
+</span><a name="line-132"></a><span>
+</span><a name="line-133"></a><span>    </span><span class="hs-pragma">{-# MINIMAL contentType | contentTypes #-}</span><span>
+</span><a name="line-134"></a><span>
+</span><a name="line-135"></a><span class="hs-comment">-- | @application/json@</span><span>
+</span><a name="line-136"></a><span class="hs-keyword">instance</span><span> </span><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier hs-type">Accept</span></a><span> </span><a href="Servant.API.ContentTypes.html#JSON"><span class="hs-identifier hs-type">JSON</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-137"></a><span>    </span><a name="local-8214565720323831799"><a href="Servant.API.ContentTypes.html#contentTypes"><span class="hs-identifier">contentTypes</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-138"></a><span>      </span><span class="hs-string">&quot;application&quot;</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">.//</span><span> </span><span class="hs-string">&quot;json&quot;</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">./:</span><span> </span><span class="hs-special">(</span><span class="hs-string">&quot;charset&quot;</span><span class="hs-special">,</span><span> </span><span class="hs-string">&quot;utf-8&quot;</span><span class="hs-special">)</span><span> </span><span class="hs-identifier hs-var">NE</span><span class="hs-operator hs-var">.:|</span><span>
+</span><a name="line-139"></a><span>      </span><span class="hs-special">[</span><span> </span><span class="hs-string">&quot;application&quot;</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">.//</span><span> </span><span class="hs-string">&quot;json&quot;</span><span> </span><span class="hs-special">]</span><span>
+</span><a name="line-140"></a><span>
+</span><a name="line-141"></a><span class="hs-comment">-- | @application/x-www-form-urlencoded@</span><span>
+</span><a name="line-142"></a><span class="hs-keyword">instance</span><span> </span><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier hs-type">Accept</span></a><span> </span><a href="Servant.API.ContentTypes.html#FormUrlEncoded"><span class="hs-identifier hs-type">FormUrlEncoded</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-143"></a><span>    </span><a name="local-8214565720323831798"><a href="Servant.API.ContentTypes.html#contentType"><span class="hs-identifier">contentType</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;application&quot;</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">.//</span><span> </span><span class="hs-string">&quot;x-www-form-urlencoded&quot;</span><span>
+</span><a name="line-144"></a><span>
+</span><a name="line-145"></a><span class="hs-comment">-- | @text/plain;charset=utf-8@</span><span>
+</span><a name="line-146"></a><span class="hs-keyword">instance</span><span> </span><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier hs-type">Accept</span></a><span> </span><a href="Servant.API.ContentTypes.html#PlainText"><span class="hs-identifier hs-type">PlainText</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-147"></a><span>    </span><a name="local-8214565720323831798"><a href="Servant.API.ContentTypes.html#contentType"><span class="hs-identifier">contentType</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;text&quot;</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">.//</span><span> </span><span class="hs-string">&quot;plain&quot;</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">./:</span><span> </span><span class="hs-special">(</span><span class="hs-string">&quot;charset&quot;</span><span class="hs-special">,</span><span> </span><span class="hs-string">&quot;utf-8&quot;</span><span class="hs-special">)</span><span>
+</span><a name="line-148"></a><span>
+</span><a name="line-149"></a><span class="hs-comment">-- | @application/octet-stream@</span><span>
+</span><a name="line-150"></a><span class="hs-keyword">instance</span><span> </span><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier hs-type">Accept</span></a><span> </span><a href="Servant.API.ContentTypes.html#OctetStream"><span class="hs-identifier hs-type">OctetStream</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-151"></a><span>    </span><a name="local-8214565720323831798"><a href="Servant.API.ContentTypes.html#contentType"><span class="hs-identifier">contentType</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;application&quot;</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">.//</span><span> </span><span class="hs-string">&quot;octet-stream&quot;</span><span>
+</span><a name="line-152"></a><span>
+</span><a name="line-153"></a><span class="hs-keyword">newtype</span><span> </span><a name="AcceptHeader"><a href="Servant.API.ContentTypes.html#AcceptHeader"><span class="hs-identifier">AcceptHeader</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="AcceptHeader"><a href="Servant.API.ContentTypes.html#AcceptHeader"><span class="hs-identifier">AcceptHeader</span></a></a><span> </span><span class="hs-identifier hs-type">BS</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ByteString</span><span>
+</span><a name="line-154"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Eq</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Read</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Typeable</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">)</span><span>
+</span><a name="line-155"></a><span>
+</span><a name="line-156"></a><span class="hs-comment">-- * Render (serializing)</span><span>
+</span><a name="line-157"></a><span>
+</span><a name="line-158"></a><span class="hs-comment">-- | Instantiate this class to register a way of serializing a type based</span><span>
+</span><a name="line-159"></a><span class="hs-comment">-- on the @Accept@ header.</span><span>
+</span><a name="line-160"></a><span class="hs-comment">--</span><span>
+</span><a name="line-161"></a><span class="hs-comment">-- Example:</span><span>
+</span><a name="line-162"></a><span class="hs-comment">--</span><span>
+</span><a name="line-163"></a><span class="hs-comment">-- &gt; data MyContentType</span><span>
+</span><a name="line-164"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-165"></a><span class="hs-comment">-- &gt; instance Accept MyContentType where</span><span>
+</span><a name="line-166"></a><span class="hs-comment">-- &gt;    contentType _ = &quot;example&quot; // &quot;prs.me.mine&quot; /: (&quot;charset&quot;, &quot;utf-8&quot;)</span><span>
+</span><a name="line-167"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-168"></a><span class="hs-comment">-- &gt; instance Show a =&gt; MimeRender MyContentType a where</span><span>
+</span><a name="line-169"></a><span class="hs-comment">-- &gt;    mimeRender _ val = pack (&quot;This is MINE! &quot; ++ show val)</span><span>
+</span><a name="line-170"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-171"></a><span class="hs-comment">-- &gt; type MyAPI = &quot;path&quot; :&gt; Get '[MyContentType] Int</span><span>
+</span><a name="line-172"></a><span class="hs-comment">--</span><span>
+</span><a name="line-173"></a><span class="hs-keyword">class</span><span> </span><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier hs-type">Accept</span></a><span> </span><a href="#local-6989586621679057245"><span class="hs-identifier hs-type">ctype</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a name="MimeRender"><a href="Servant.API.ContentTypes.html#MimeRender"><span class="hs-identifier">MimeRender</span></a></a><span> </span><a name="local-6989586621679057245"><a href="#local-6989586621679057245"><span class="hs-identifier">ctype</span></a></a><span> </span><a name="local-6989586621679057246"><a href="#local-6989586621679057246"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-174"></a><span>    </span><span class="hs-identifier">mimeRender</span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679057245"><span class="hs-identifier hs-type">ctype</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679057246"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">ByteString</span><span>
+</span><a name="line-175"></a><span>
+</span><a name="line-176"></a><span class="hs-keyword">class</span><span> </span><span class="hs-special">(</span><a href="Servant.API.ContentTypes.html#AllMime"><span class="hs-identifier hs-type">AllMime</span></a><span> </span><a href="#local-6989586621679057243"><span class="hs-identifier hs-type">list</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a name="AllCTRender"><a href="Servant.API.ContentTypes.html#AllCTRender"><span class="hs-identifier">AllCTRender</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679057243"><a href="#local-6989586621679057243"><span class="hs-identifier">list</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-operator hs-type">*</span><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><a name="local-6989586621679057244"><a href="#local-6989586621679057244"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-177"></a><span>    </span><span class="hs-comment">-- If the Accept header can be matched, returns (Just) a tuple of the</span><span>
+</span><a name="line-178"></a><span>    </span><span class="hs-comment">-- Content-Type and response (serialization of @a@ into the appropriate</span><span>
+</span><a name="line-179"></a><span>    </span><span class="hs-comment">-- mimetype).</span><span>
+</span><a name="line-180"></a><span>    </span><span class="hs-identifier">handleAcceptH</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679057243"><span class="hs-identifier hs-type">list</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Servant.API.ContentTypes.html#AcceptHeader"><span class="hs-identifier hs-type">AcceptHeader</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679057244"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Maybe</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ByteString</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ByteString</span><span class="hs-special">)</span><span>
+</span><a name="line-181"></a><span>
+</span><a name="line-182"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier">OVERLAPPABLE_</span><span>
+</span><a name="line-183"></a><span>         </span><span class="hs-special">(</span><a href="Servant.API.ContentTypes.html#Accept"><span class="hs-identifier hs-type">Accept</span></a><span> </span><a href="#local-6989586621679063772"><span class="hs-identifier hs-type">ct</span></a><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AllMime"><span class="hs-identifier hs-type">AllMime</span></a><span> </span><a href="#local-6989586621679063773"><span class="hs-identifier hs-type">cts</span></a><span class="hs-special">,</span><span> </span><a href="Servant.API.ContentTypes.html#AllMimeRender"><span class="hs-identifier hs-type">AllMimeRender</span></a><span> </span><span class="hs-special">(</span><a href="#local-6989586621679063772"><span class="hs-identifier hs-type">ct</span></a><span> </span><span class="hs-char">': cts) a) =&gt; AllCTRender (ct ': cts) a where
+    handleAcceptH _ (AcceptHeader accept) val = M.mapAcceptMedia lkup accept
+      where pctyps = Proxy :: Proxy (ct ': cts)
+            amrs = allMimeRender pctyps val
+            lkup = fmap (\(a,b) -&gt; (a, (fromStrict $ M.renderHeader a, b))) amrs
+
+#if MIN_VERSION_base(4,9,0)
+instance TL.TypeError ('TL.Text &quot;No instance for (), use NoContent instead.&quot;)
+  =&gt; AllCTRender '[] () where
+  handleAcceptH _ _ _ = error &quot;unreachable&quot;
+#endif
+
+--------------------------------------------------------------------------
+-- * Unrender
+
+-- | Instantiate this class to register a way of deserializing a type based
+-- on the request's @Content-Type@ header.
+--
+-- &gt;&gt;&gt; import Network.HTTP.Media hiding (Accept)
+-- &gt;&gt;&gt; import qualified Data.ByteString.Lazy.Char8 as BSC
+-- &gt;&gt;&gt; data MyContentType = MyContentType String
+--
+-- &gt;&gt;&gt; :{
+--instance Accept MyContentType where
+--    contentType _ = &quot;example&quot; // &quot;prs.me.mine&quot; /: (&quot;charset&quot;, &quot;utf-8&quot;)
+-- :}
+--
+-- &gt;&gt;&gt; :{
+--instance Read a =&gt; MimeUnrender MyContentType a where
+--    mimeUnrender _ bs = case BSC.take 12 bs of
+--      &quot;MyContentType&quot; -&gt; return . read . BSC.unpack $ BSC.drop 12 bs
+--      _ -&gt; Left &quot;didn't start with the magic incantation&quot;
+-- :}
+--
+-- &gt;&gt;&gt; type MyAPI = &quot;path&quot; :&gt; ReqBody '[MyContentType] Int :&gt; Get '[JSON] Int
+--
+class Accept ctype =&gt; MimeUnrender ctype a where
+    mimeUnrender :: Proxy ctype -&gt; ByteString -&gt; Either String a
+    mimeUnrender p = mimeUnrenderWithType p (contentType p)
+
+    -- | Variant which is given the actual 'M.MediaType' provided by the other party.
+    --
+    -- In the most cases you don't want to branch based on the 'M.MediaType'.
+    -- See &lt;https://github.com/haskell-servant/servant/pull/552 pr552&gt; for a motivating example.
+    mimeUnrenderWithType :: Proxy ctype -&gt; M.MediaType -&gt; ByteString -&gt; Either String a
+    mimeUnrenderWithType p _ = mimeUnrender p
+
+    {-# MINIMAL mimeUnrender | mimeUnrenderWithType #-}
+
+class AllCTUnrender (list :: [*]) a where
+    canHandleCTypeH
+        :: Proxy list
+        -&gt; ByteString  -- Content-Type header
+        -&gt; Maybe (ByteString -&gt; Either String a)
+
+    handleCTypeH :: Proxy list
+                 -&gt; ByteString     -- Content-Type header
+                 -&gt; ByteString     -- Request body
+                 -&gt; Maybe (Either String a)
+    handleCTypeH p ctypeH body = ($ body) `fmap` canHandleCTypeH p ctypeH
+
+instance ( AllMimeUnrender ctyps a ) =&gt; AllCTUnrender ctyps a where
+    canHandleCTypeH p ctypeH =
+        M.mapContentMedia (allMimeUnrender p) (cs ctypeH)
+
+--------------------------------------------------------------------------
+-- * Utils (Internal)
+
+class AllMime (list :: [*]) where
+    allMime :: Proxy list -&gt; [M.MediaType]
+
+instance AllMime '[] where
+    allMime _ = []
+
+instance (Accept ctyp, AllMime ctyps) =&gt; AllMime (ctyp ': ctyps) where
+    allMime _ = NE.toList (contentTypes pctyp) ++ allMime pctyps
+      where
+        pctyp  = Proxy :: Proxy ctyp
+        pctyps = Proxy :: Proxy ctyps
+
+canHandleAcceptH :: AllMime list =&gt; Proxy list -&gt; AcceptHeader -&gt; Bool
+canHandleAcceptH p (AcceptHeader h ) = isJust $ M.matchAccept (allMime p) h
+
+--------------------------------------------------------------------------
+-- Check that all elements of list are instances of MimeRender
+--------------------------------------------------------------------------
+class (AllMime list) =&gt; AllMimeRender (list :: [*]) a where
+    allMimeRender :: Proxy list
+                  -&gt; a                              -- value to serialize
+                  -&gt; [(M.MediaType, ByteString)]    -- content-types/response pairs
+
+instance OVERLAPPABLE_ ( MimeRender ctyp a ) =&gt; AllMimeRender '[ctyp] a where
+    allMimeRender _ a = map (, bs) $ NE.toList $ contentTypes pctyp
+      where
+        bs    = mimeRender pctyp a
+        pctyp = Proxy :: Proxy ctyp
+
+instance OVERLAPPABLE_
+         ( MimeRender ctyp a
+         , AllMimeRender (ctyp' ': ctyps) a
+         ) =&gt; AllMimeRender (ctyp ': ctyp' ': ctyps) a where
+    allMimeRender _ a =
+        (map (, bs) $ NE.toList $ contentTypes pctyp)
+        ++ allMimeRender pctyps a
+      where
+        bs     = mimeRender pctyp a
+        pctyp  = Proxy :: Proxy ctyp
+        pctyps = Proxy :: Proxy (ctyp' ': ctyps)
+
+
+-- Ideally we would like to declare a 'MimeRender a NoContent' instance, and
+-- then this would be taken care of. However there is no more specific instance
+-- between that and 'MimeRender JSON a', so we do this instead
+instance OVERLAPPING_ ( Accept ctyp ) =&gt; AllMimeRender '[ctyp] NoContent where
+    allMimeRender _ _ = map (, &quot;&quot;) $ NE.toList $ contentTypes pctyp
+      where
+        pctyp = Proxy :: Proxy ctyp
+
+instance OVERLAPPING_
+         ( AllMime (ctyp ': ctyp' ': ctyps)
+         ) =&gt; AllMimeRender (ctyp ': ctyp' ': ctyps) NoContent where
+    allMimeRender p _ = zip (allMime p) (repeat &quot;&quot;)
+
+--------------------------------------------------------------------------
+-- Check that all elements of list are instances of MimeUnrender
+--------------------------------------------------------------------------
+class (AllMime list) =&gt; AllMimeUnrender (list :: [*]) a where
+    allMimeUnrender :: Proxy list
+                    -&gt; [(M.MediaType, ByteString -&gt; Either String a)]
+
+instance AllMimeUnrender '[] a where
+    allMimeUnrender _ = []
+
+instance ( MimeUnrender ctyp a
+         , AllMimeUnrender ctyps a
+         ) =&gt; AllMimeUnrender (ctyp ': ctyps) a where
+    allMimeUnrender _ =
+        (map mk $ NE.toList $ contentTypes pctyp)
+        ++ allMimeUnrender pctyps
+      where
+        mk ct   = (ct, \bs -&gt; mimeUnrenderWithType pctyp ct bs)
+        pctyp  = Proxy :: Proxy ctyp
+        pctyps = Proxy :: Proxy ctyps
+
+--------------------------------------------------------------------------
+-- * MimeRender Instances
+
+-- | `encode`
+instance OVERLAPPABLE_
+         ToJSON a =&gt; MimeRender JSON a where
+    mimeRender _ = encode
+
+-- | @urlEncodeAsForm@
+-- Note that the @mimeUnrender p (mimeRender p x) == Right x@ law only
+-- holds if every element of x is non-null (i.e., not @(&quot;&quot;, &quot;&quot;)@)
+instance OVERLAPPABLE_
+         ToForm a =&gt; MimeRender FormUrlEncoded a where
+    mimeRender _ = urlEncodeAsForm
+
+-- | `TextL.encodeUtf8`
+instance MimeRender PlainText TextL.Text where
+    mimeRender _ = TextL.encodeUtf8
+
+-- | @fromStrict . TextS.encodeUtf8@
+instance MimeRender PlainText TextS.Text where
+    mimeRender _ = fromStrict . TextS.encodeUtf8
+
+-- | @BC.pack@
+instance MimeRender PlainText String where
+    mimeRender _ = BC.pack
+
+-- | @id@
+instance MimeRender OctetStream ByteString where
+    mimeRender _ = id
+
+-- | `fromStrict`
+instance MimeRender OctetStream BS.ByteString where
+    mimeRender _ = fromStrict
+
+-- | A type for responses without content-body.
+data NoContent = NoContent
+  deriving (Show, Eq, Read, Generic)
+
+
+--------------------------------------------------------------------------
+-- * MimeUnrender Instances
+
+-- | Like 'Data.Aeson.eitherDecode' but allows all JSON values instead of just
+-- objects and arrays.
+--
+-- Will handle trailing whitespace, but not trailing junk. ie.
+--
+-- &gt;&gt;&gt; eitherDecodeLenient &quot;1 &quot; :: Either String Int
+-- Right 1
+--
+-- &gt;&gt;&gt; eitherDecodeLenient &quot;1 junk&quot; :: Either String Int
+-- Left &quot;trailing junk after valid JSON: endOfInput&quot;
+eitherDecodeLenient :: FromJSON a =&gt; ByteString -&gt; Either String a
+eitherDecodeLenient input =
+    parseOnly parser (cs input) &gt;&gt;= parseEither parseJSON
+  where
+    parser = skipSpace
+          *&gt; Data.Aeson.Parser.value
+          &lt;* skipSpace
+          &lt;* (endOfInput &lt;?&gt; &quot;trailing junk after valid JSON&quot;)
+
+-- | `eitherDecode`
+instance FromJSON a =&gt; MimeUnrender JSON a where
+    mimeUnrender _ = eitherDecodeLenient
+
+-- | @urlDecodeAsForm@
+-- Note that the @mimeUnrender p (mimeRender p x) == Right x@ law only
+-- holds if every element of x is non-null (i.e., not @(&quot;&quot;, &quot;&quot;)@)
+instance FromForm a =&gt; MimeUnrender FormUrlEncoded a where
+    mimeUnrender _ = left TextS.unpack . urlDecodeAsForm
+
+-- | @left show . TextL.decodeUtf8'@
+instance MimeUnrender PlainText TextL.Text where
+    mimeUnrender _ = left show . TextL.decodeUtf8'
+
+-- | @left show . TextS.decodeUtf8' . toStrict@
+instance MimeUnrender PlainText TextS.Text where
+    mimeUnrender _ = left show . TextS.decodeUtf8' . toStrict
+
+-- | @Right . BC.unpack@
+instance MimeUnrender PlainText String where
+    mimeUnrender _ = Right . BC.unpack
+
+-- | @Right . id@
+instance MimeUnrender OctetStream ByteString where
+    mimeUnrender _ = Right . id
+
+-- | @Right . toStrict@
+instance MimeUnrender OctetStream BS.ByteString where
+    mimeUnrender _ = Right . toStrict
+
+
+
+-- $setup
+-- &gt;&gt;&gt; :set -XFlexibleInstances
+-- &gt;&gt;&gt; :set -XMultiParamTypeClasses
+-- &gt;&gt;&gt; :set -XOverloadedStrings
+-- &gt;&gt;&gt; import Servant.API
+-- &gt;&gt;&gt; import Data.Aeson
+-- &gt;&gt;&gt; import Data.Text
+-- &gt;&gt;&gt; data Book
+-- &gt;&gt;&gt; instance ToJSON Book where { toJSON = undefined }
+</span></pre></body></html>

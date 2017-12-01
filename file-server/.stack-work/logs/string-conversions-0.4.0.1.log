@@ -1,0 +1,45 @@
+Configuring string-conversions-0.4.0.1...
+Building string-conversions-0.4.0.1...
+Preprocessing library string-conversions-0.4.0.1...
+[1 of 2] Compiling Data.String.Conversions ( src/Data/String/Conversions.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/String/Conversions.o )
+[2 of 2] Compiling Data.String.Conversions.Monomorphic ( src/Data/String/Conversions/Monomorphic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/String/Conversions/Monomorphic.o )
+Running Haddock for string-conversions-0.4.0.1...
+Preprocessing library string-conversions-0.4.0.1...
+Haddock coverage:
+  33% (  5 / 15) in 'Data.String.Conversions'
+  Missing documentation for:
+    ConvertibleStrings (src/Data/String/Conversions.hs:63)
+    cs (src/Data/String/Conversions.hs:66)
+    StrictByteString (src/Data/String/Conversions.hs:76)
+    SBS (src/Data/String/Conversions.hs:77)
+    LazyByteString (src/Data/String/Conversions.hs:79)
+    LBS (src/Data/String/Conversions.hs:80)
+    StrictText (src/Data/String/Conversions.hs:82)
+    ST (src/Data/String/Conversions.hs:83)
+    LazyText (src/Data/String/Conversions.hs:85)
+    LT (src/Data/String/Conversions.hs:86)
+  14% (  3 / 21) in 'Data.String.Conversions.Monomorphic'
+  Missing documentation for:
+    toString (src/Data/String/Conversions/Monomorphic.hs:41)
+    toStrictByteString (src/Data/String/Conversions/Monomorphic.hs:44)
+    toSBS (src/Data/String/Conversions/Monomorphic.hs:47)
+    toLazyByteString (src/Data/String/Conversions/Monomorphic.hs:50)
+    toLBS (src/Data/String/Conversions/Monomorphic.hs:53)
+    toStrictText (src/Data/String/Conversions/Monomorphic.hs:56)
+    toST (src/Data/String/Conversions/Monomorphic.hs:59)
+    toLazyText (src/Data/String/Conversions/Monomorphic.hs:62)
+    toLT (src/Data/String/Conversions/Monomorphic.hs:65)
+    fromString (src/Data/String/Conversions/Monomorphic.hs:70)
+    fromStrictByteString (src/Data/String/Conversions/Monomorphic.hs:73)
+    fromSBS (src/Data/String/Conversions/Monomorphic.hs:76)
+    fromLazyByteString (src/Data/String/Conversions/Monomorphic.hs:79)
+    fromLBS (src/Data/String/Conversions/Monomorphic.hs:82)
+    fromStrictText (src/Data/String/Conversions/Monomorphic.hs:85)
+    fromST (src/Data/String/Conversions/Monomorphic.hs:88)
+    fromLazyText (src/Data/String/Conversions/Monomorphic.hs:91)
+    fromLT (src/Data/String/Conversions/Monomorphic.hs:94)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/string-conversions/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/string-conversions-0.4.0.1-HK2T4drDKhqGigpJdBBdRG
+Registering string-conversions-0.4.0.1...

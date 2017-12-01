@@ -1,0 +1,138 @@
+Configuring uri-bytestring-0.2.3.3...
+Building uri-bytestring-0.2.3.3...
+Preprocessing library uri-bytestring-0.2.3.3...
+[1 of 5] Compiling URI.ByteString.Types ( src/URI/ByteString/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/Types.o )
+[2 of 5] Compiling URI.ByteString.Lens ( src/URI/ByteString/Lens.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/Lens.o )
+[3 of 5] Compiling URI.ByteString.Internal ( src/URI/ByteString/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/Internal.o )
+[4 of 5] Compiling URI.ByteString   ( src/URI/ByteString.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString.o )
+[5 of 5] Compiling URI.ByteString.QQ ( src/URI/ByteString/QQ.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/QQ.o )
+Running Haddock for uri-bytestring-0.2.3.3...
+Preprocessing library uri-bytestring-0.2.3.3...
+Haddock coverage:
+  31% (  5 / 16) in 'URI.ByteString.Types'
+  Missing documentation for:
+    Module header
+    Host (src/URI/ByteString/Types.hs:44)
+    UserInfo (src/URI/ByteString/Types.hs:66)
+    Authority (src/URI/ByteString/Types.hs:78)
+    Query (src/URI/ByteString/Types.hs:91)
+    Absolute (src/URI/ByteString/Types.hs:101)
+    Relative (src/URI/ByteString/Types.hs:110)
+    URI (src/URI/ByteString/Types.hs:148)
+    RelativeRef (src/URI/ByteString/Types.hs:152)
+    URINormalizationOptions (src/URI/ByteString/Types.hs:164)
+    URIParseError (src/URI/ByteString/Types.hs:196)
+   0% (  0 / 27) in 'URI.ByteString.Lens'
+  Missing documentation for:
+    Module header
+    schemeBSL (src/URI/ByteString/Lens.hs:21)
+    hostBSL (src/URI/ByteString/Lens.hs:28)
+    portNumberL (src/URI/ByteString/Lens.hs:36)
+    authorityUserInfoL (src/URI/ByteString/Lens.hs:44)
+    authorityHostL (src/URI/ByteString/Lens.hs:51)
+    authorityPortL (src/URI/ByteString/Lens.hs:58)
+    uiUsernameL (src/URI/ByteString/Lens.hs:65)
+    uiPasswordL (src/URI/ByteString/Lens.hs:73)
+    queryPairsL (src/URI/ByteString/Lens.hs:81)
+    uriAuthorityL (src/URI/ByteString/Lens.hs:89)
+    uriPathL (src/URI/ByteString/Lens.hs:97)
+    uriQueryL (src/URI/ByteString/Lens.hs:105)
+    uriFragmentL (src/URI/ByteString/Lens.hs:113)
+    rrAuthorityL (src/URI/ByteString/Lens.hs:121)
+    rrPathL (src/URI/ByteString/Lens.hs:129)
+    rrQueryL (src/URI/ByteString/Lens.hs:137)
+    rrFragmentL (src/URI/ByteString/Lens.hs:145)
+    uriSchemeL (src/URI/ByteString/Lens.hs:153)
+    authorityL (src/URI/ByteString/Lens.hs:161)
+    pathL (src/URI/ByteString/Lens.hs:173)
+    queryL (src/URI/ByteString/Lens.hs:185)
+    fragmentL (src/URI/ByteString/Lens.hs:197)
+    upoValidQueryCharL (src/URI/ByteString/Lens.hs:209)
+    Lens (src/URI/ByteString/Lens.hs:219)
+    Lens' (src/URI/ByteString/Lens.hs:221)
+    lens (src/URI/ByteString/Lens.hs:225)
+  65% ( 68 /105) in 'URI.ByteString.Internal'
+  Missing documentation for:
+    Module header
+    normalizeURIRef' (src/URI/ByteString/Internal.hs:150)
+    normalizeURI (src/URI/ByteString/Internal.hs:155)
+    normalizeRelativeRef (src/URI/ByteString/Internal.hs:167)
+    serializeQuery (src/URI/ByteString/Internal.hs:253)
+    serializeAuthority (src/URI/ByteString/Internal.hs:265)
+    serializeUserInfo (src/URI/ByteString/Internal.hs:288)
+    bs (src/URI/ByteString/Internal.hs:293)
+    c8 (src/URI/ByteString/Internal.hs:298)
+    validForQuery (src/URI/ByteString/Internal.hs:612)
+    validForQueryLax (src/URI/ByteString/Internal.hs:617)
+    isAlpha (src/URI/ByteString/Internal.hs:646)
+    isDigit (src/URI/ByteString/Internal.hs:651)
+    pchar (src/URI/ByteString/Internal.hs:656)
+    unreserved (src/URI/ByteString/Internal.hs:664)
+    unreserved8 (src/URI/ByteString/Internal.hs:669)
+    unreservedPath8 (src/URI/ByteString/Internal.hs:674)
+    ord8 (src/URI/ByteString/Internal.hs:678)
+    subDelims (src/URI/ByteString/Internal.hs:691)
+    alphaNum (src/URI/ByteString/Internal.hs:696)
+    alpha (src/URI/ByteString/Internal.hs:701)
+    digit (src/URI/ByteString/Internal.hs:706)
+    colon (src/URI/ByteString/Internal.hs:711)
+    oBracket (src/URI/ByteString/Internal.hs:716)
+    cBracket (src/URI/ByteString/Internal.hs:721)
+    equals (src/URI/ByteString/Internal.hs:726)
+    question (src/URI/ByteString/Internal.hs:731)
+    ampersand (src/URI/ByteString/Internal.hs:736)
+    hash (src/URI/ByteString/Internal.hs:741)
+    period (src/URI/ByteString/Internal.hs:746)
+    slash (src/URI/ByteString/Internal.hs:751)
+    parseBetween (src/URI/ByteString/Internal.hs:848)
+    fmapL (src/URI/ByteString/Internal.hs:881)
+    downcaseBS (src/URI/ByteString/Internal.hs:949)
+    |> (src/URI/ByteString/Internal.hs:958)
+    rl2L (src/URI/ByteString/Internal.hs:962)
+    unsnoc (src/URI/ByteString/Internal.hs:966)
+  58% ( 46 / 80) in 'URI.ByteString'
+  Missing documentation for:
+    Host (src/URI/ByteString/Types.hs:44)
+    Authority (src/URI/ByteString/Types.hs:78)
+    UserInfo (src/URI/ByteString/Types.hs:66)
+    Query (src/URI/ByteString/Types.hs:91)
+    Absolute (src/URI/ByteString/Types.hs:101)
+    Relative (src/URI/ByteString/Types.hs:110)
+    URIParseError (src/URI/ByteString/Types.hs:196)
+    URINormalizationOptions (src/URI/ByteString/Types.hs:164)
+    normalizeURIRef' (src/URI/ByteString/Internal.hs:150)
+    schemeBSL (src/URI/ByteString/Lens.hs:21)
+    hostBSL (src/URI/ByteString/Lens.hs:28)
+    portNumberL (src/URI/ByteString/Lens.hs:36)
+    authorityUserInfoL (src/URI/ByteString/Lens.hs:44)
+    authorityHostL (src/URI/ByteString/Lens.hs:51)
+    authorityPortL (src/URI/ByteString/Lens.hs:58)
+    uiUsernameL (src/URI/ByteString/Lens.hs:65)
+    uiPasswordL (src/URI/ByteString/Lens.hs:73)
+    queryPairsL (src/URI/ByteString/Lens.hs:81)
+    uriSchemeL (src/URI/ByteString/Lens.hs:153)
+    authorityL (src/URI/ByteString/Lens.hs:161)
+    pathL (src/URI/ByteString/Lens.hs:173)
+    queryL (src/URI/ByteString/Lens.hs:185)
+    fragmentL (src/URI/ByteString/Lens.hs:197)
+    upoValidQueryCharL (src/URI/ByteString/Lens.hs:209)
+    URI (src/URI/ByteString/Types.hs:148)
+    RelativeRef (src/URI/ByteString/Types.hs:152)
+    uriAuthorityL (src/URI/ByteString/Lens.hs:89)
+    uriPathL (src/URI/ByteString/Lens.hs:97)
+    uriQueryL (src/URI/ByteString/Lens.hs:105)
+    uriFragmentL (src/URI/ByteString/Lens.hs:113)
+    rrAuthorityL (src/URI/ByteString/Lens.hs:121)
+    rrPathL (src/URI/ByteString/Lens.hs:129)
+    rrQueryL (src/URI/ByteString/Lens.hs:137)
+    rrFragmentL (src/URI/ByteString/Lens.hs:145)
+  67% (  2 /  3) in 'URI.ByteString.QQ'
+  Missing documentation for:
+    Module header
+Warning: URI.ByteString: could not find link destinations for:
+    Lens'
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/uri-bytestring/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/uri-bytestring-0.2.3.3-Hc1wKsF7VwW2mAD17PrIxh
+Registering uri-bytestring-0.2.3.3...

@@ -1,0 +1,27 @@
+Configuring uuid-types-1.0.3...
+Building uuid-types-1.0.3...
+Preprocessing library uuid-types-1.0.3...
+[1 of 3] Compiling Data.UUID.Types.Internal.Builder ( Data/UUID/Types/Internal/Builder.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/UUID/Types/Internal/Builder.o )
+[2 of 3] Compiling Data.UUID.Types.Internal ( Data/UUID/Types/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/UUID/Types/Internal.o )
+[3 of 3] Compiling Data.UUID.Types  ( Data/UUID/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/UUID/Types.o )
+Running Haddock for uuid-types-1.0.3...
+Preprocessing library uuid-types-1.0.3...
+Haddock coverage:
+  29% (  2 /  7) in 'Data.UUID.Types.Internal.Builder'
+  Missing documentation for:
+    Module header
+    Takes1Byte (Data/UUID/Types/Internal/Builder.hs:46)
+    Takes2Bytes (Data/UUID/Types/Internal/Builder.hs:47)
+    Takes3Bytes (Data/UUID/Types/Internal/Builder.hs:48)
+    Takes4Bytes (Data/UUID/Types/Internal/Builder.hs:49)
+  86% ( 19 / 22) in 'Data.UUID.Types.Internal'
+  Missing documentation for:
+    UnpackedUUID (Data/UUID/Types/Internal.hs:111)
+    pack (Data/UUID/Types/Internal.hs:147)
+    unpack (Data/UUID/Types/Internal.hs:127)
+ 100% ( 16 / 16) in 'Data.UUID.Types'
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/uuid-types/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/uuid-types-1.0.3-HQOuja9trySCcuflACyDTJ
+Registering uuid-types-1.0.3...

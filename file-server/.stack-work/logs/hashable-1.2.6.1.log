@@ -1,0 +1,42 @@
+Configuring hashable-1.2.6.1...
+Building hashable-1.2.6.1...
+Preprocessing library hashable-1.2.6.1...
+[1 of 4] Compiling Data.Hashable.Class ( Data/Hashable/Class.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable/Class.o )
+[2 of 4] Compiling Data.Hashable.Generic ( Data/Hashable/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable/Generic.o )
+
+Data/Hashable/Generic.hs:21:1: warning: [-Wunused-imports]
+    The import of ‘Data.Bits’ is redundant
+      except perhaps to import instances from ‘Data.Bits’
+    To import instances alone, use: import Data.Bits()
+[3 of 4] Compiling Data.Hashable.Lifted ( Data/Hashable/Lifted.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable/Lifted.o )
+[4 of 4] Compiling Data.Hashable    ( Data/Hashable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable.o )
+Running Haddock for hashable-1.2.6.1...
+Preprocessing library hashable-1.2.6.1...
+
+Data/Hashable/Generic.hs:21:1: warning: [-Wunused-imports]
+    The import of ‘Data.Bits’ is redundant
+      except perhaps to import instances from ‘Data.Bits’
+    To import instances alone, use: import Data.Bits()
+Haddock coverage:
+  81% ( 22 / 27) in 'Data.Hashable.Class'
+  Missing documentation for:
+    Hashable1 (Data/Hashable/Class.hs:252)
+    Hashable2 (Data/Hashable/Class.hs:260)
+    HashArgs (Data/Hashable/Class.hs:242)
+    Zero (Data/Hashable/Class.hs:239)
+    One (Data/Hashable/Class.hs:240)
+ 100% (  1 /  1) in 'Data.Hashable.Generic'
+  80% (  8 / 10) in 'Data.Hashable.Lifted'
+  Missing documentation for:
+    Hashable1 (Data/Hashable/Class.hs:252)
+    Hashable2 (Data/Hashable/Class.hs:260)
+ 100% ( 28 / 28) in 'Data.Hashable'
+Warning: Data.Hashable.Lifted: could not find link destinations for:
+    GHashable One
+Warning: Data.Hashable: could not find link destinations for:
+    GHashable Zero
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/hashable/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/hashable-1.2.6.1-2ZLNuHq395GGIHwEHuqZol
+Registering hashable-1.2.6.1...

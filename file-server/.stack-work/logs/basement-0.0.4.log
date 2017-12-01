@@ -1,0 +1,878 @@
+Configuring basement-0.0.4...
+Building basement-0.0.4...
+Preprocessing library basement-0.0.4...
+[ 1 of 79] Compiling Basement.Numerical.Conversion ( Basement/Numerical/Conversion.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Numerical/Conversion.o )
+[ 2 of 79] Compiling Basement.Compat.Typeable ( Basement/Compat/Typeable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/Typeable.o )
+[ 3 of 79] Compiling Basement.Compat.Semigroup ( Basement/Compat/Semigroup.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/Semigroup.o )
+[ 4 of 79] Compiling Basement.Compat.PrimTypes ( Basement/Compat/PrimTypes.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/PrimTypes.o )
+[ 5 of 79] Compiling Basement.Compat.Primitive ( Basement/Compat/Primitive.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/Primitive.o )
+[ 6 of 79] Compiling Basement.Compat.Natural ( Basement/Compat/Natural.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/Natural.o )
+[ 7 of 79] Compiling Basement.Compat.NumLiteral ( Basement/Compat/NumLiteral.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/NumLiteral.o )
+[ 8 of 79] Compiling Basement.Compat.IsList ( Basement/Compat/IsList.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/IsList.o )
+[ 9 of 79] Compiling Basement.Compat.Identity ( Basement/Compat/Identity.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/Identity.o )
+[10 of 79] Compiling Basement.Compat.CallStack ( Basement/Compat/CallStack.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/CallStack.o )
+[11 of 79] Compiling Basement.Compat.Bifunctor ( Basement/Compat/Bifunctor.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/Bifunctor.o )
+[12 of 79] Compiling Basement.Compat.Base ( Basement/Compat/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/Base.o )
+[13 of 79] Compiling Basement.Compat.MonadTrans ( Basement/Compat/MonadTrans.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/MonadTrans.o )
+[14 of 79] Compiling Basement.Endianness ( Basement/Endianness.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Endianness.o )
+[15 of 79] Compiling Basement.Floating ( Basement/Floating.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Floating.o )
+[16 of 79] Compiling Basement.Monad   ( Basement/Monad.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Monad.o )
+[17 of 79] Compiling Basement.FinalPtr ( Basement/FinalPtr.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/FinalPtr.o )
+[18 of 79] Compiling Basement.Numerical.Number ( Basement/Numerical/Number.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Numerical/Number.o )
+[19 of 79] Compiling Basement.IntegralConv ( Basement/IntegralConv.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/IntegralConv.o )
+[20 of 79] Compiling Basement.Types.Char7 ( Basement/Types/Char7.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Types/Char7.o )
+[21 of 79] Compiling Basement.Types.Word128 ( Basement/Types/Word128.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Types/Word128.o )
+[22 of 79] Compiling Basement.Types.Word256 ( Basement/Types/Word256.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Types/Word256.o )
+[23 of 79] Compiling Basement.Nat     ( Basement/Nat.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Nat.o )
+[24 of 79] Compiling Basement.UTF8.Table ( Basement/UTF8/Table.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/UTF8/Table.o )
+[25 of 79] Compiling Basement.Bounded ( Basement/Bounded.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Bounded.o )
+[26 of 79] Compiling Basement.Numerical.Additive ( Basement/Numerical/Additive.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Numerical/Additive.o )
+[27 of 79] Compiling Basement.Numerical.Multiplicative ( Basement/Numerical/Multiplicative.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Numerical/Multiplicative.o )
+[28 of 79] Compiling Basement.Numerical.Subtractive ( Basement/Numerical/Subtractive.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Numerical/Subtractive.o )
+[29 of 79] Compiling Basement.Types.OffsetSize ( Basement/Types/OffsetSize.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Types/OffsetSize.o )
+[30 of 79] Compiling Basement.Compat.ExtList ( Basement/Compat/ExtList.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Compat/ExtList.o )
+[31 of 79] Compiling Basement.Exception ( Basement/Exception.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Exception.o )
+[32 of 79] Compiling Basement.NonEmpty ( Basement/NonEmpty.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/NonEmpty.o )
+[33 of 79] Compiling Basement.MutableBuilder ( Basement/MutableBuilder.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/MutableBuilder.o )
+[34 of 79] Compiling Basement.NormalForm ( Basement/NormalForm.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/NormalForm.o )
+[35 of 79] Compiling Basement.These   ( Basement/These.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/These.o )
+[36 of 79] Compiling Basement.PrimType ( Basement/PrimType.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/PrimType.o )
+[37 of 79] Compiling Basement.Runtime ( Basement/Runtime.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Runtime.o )
+[38 of 79] Compiling Basement.Sized.List ( Basement/Sized/List.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Sized/List.o )
+[39 of 79] Compiling Basement.Terminal.Size ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Terminal/Size.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Terminal/Size.o )
+[40 of 79] Compiling Basement.Terminal ( Basement/Terminal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Terminal.o )
+[41 of 79] Compiling Basement.Types.Ptr ( Basement/Types/Ptr.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Types/Ptr.o )
+[42 of 79] Compiling Basement.UTF8.Helper ( Basement/UTF8/Helper.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/UTF8/Helper.o )
+[43 of 79] Compiling Basement.UTF8.Types ( Basement/UTF8/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/UTF8/Types.o )
+[44 of 79] Compiling Basement.Bindings.Memory ( Basement/Bindings/Memory.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Bindings/Memory.o )
+[45 of 79] Compiling Basement.Block.Base ( Basement/Block/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Block/Base.o )
+[46 of 79] Compiling Basement.Block.Mutable ( Basement/Block/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Block/Mutable.o )
+[47 of 79] Compiling Basement.Base16  ( Basement/Base16.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Base16.o )
+[48 of 79] Compiling Basement.Alg.Native.Prim ( Basement/Alg/Native/Prim.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Native/Prim.o )
+[49 of 79] Compiling Basement.Alg.Native.UTF8 ( Basement/Alg/Native/UTF8.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Native/UTF8.o )
+[50 of 79] Compiling Basement.Alg.Native.String ( Basement/Alg/Native/String.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Native/String.o )
+[51 of 79] Compiling Basement.Alg.Foreign.Prim ( Basement/Alg/Foreign/Prim.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Foreign/Prim.o )
+[52 of 79] Compiling Basement.Alg.Foreign.UTF8 ( Basement/Alg/Foreign/UTF8.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Foreign/UTF8.o )
+[53 of 79] Compiling Basement.Alg.Foreign.String ( Basement/Alg/Foreign/String.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Foreign/String.o )
+[54 of 79] Compiling Basement.Alg.Class ( Basement/Alg/Class.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Class.o )
+[55 of 79] Compiling Basement.Alg.Mutable ( Basement/Alg/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/Mutable.o )
+[56 of 79] Compiling Basement.Alg.PrimArray ( Basement/Alg/PrimArray.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Alg/PrimArray.o )
+[57 of 79] Compiling Basement.Block   ( Basement/Block.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Block.o )
+[58 of 79] Compiling Basement.Sized.Block ( Basement/Sized/Block.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Sized/Block.o )
+[59 of 79] Compiling Basement.BlockN  ( Basement/BlockN.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/BlockN.o )
+[60 of 79] Compiling Basement.UArray.Base ( Basement/UArray/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/UArray/Base.o )
+[61 of 79] Compiling Basement.BoxedArray ( Basement/BoxedArray.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/BoxedArray.o )
+[62 of 79] Compiling Basement.Sized.Vect ( Basement/Sized/Vect.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Sized/Vect.o )
+[63 of 79] Compiling Basement.UArray.Mutable ( Basement/UArray/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/UArray/Mutable.o )
+[64 of 79] Compiling Basement.UArray  ( Basement/UArray.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/UArray.o )
+[65 of 79] Compiling Basement.Sized.UVect ( Basement/Sized/UVect.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Sized/UVect.o )
+[66 of 79] Compiling Basement.String.Encoding.Encoding ( Basement/String/Encoding/Encoding.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/String/Encoding/Encoding.o )
+[67 of 79] Compiling Basement.String.Encoding.ASCII7 ( Basement/String/Encoding/ASCII7.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/String/Encoding/ASCII7.o )
+[68 of 79] Compiling Basement.String.Encoding.ISO_8859_1 ( Basement/String/Encoding/ISO_8859_1.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/String/Encoding/ISO_8859_1.o )
+[69 of 79] Compiling Basement.String.Encoding.UTF16 ( Basement/String/Encoding/UTF16.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/String/Encoding/UTF16.o )
+[70 of 79] Compiling Basement.String.Encoding.UTF32 ( Basement/String/Encoding/UTF32.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/String/Encoding/UTF32.o )
+[71 of 79] Compiling Basement.Types.AsciiString ( Basement/Types/AsciiString.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Types/AsciiString.o )
+[72 of 79] Compiling Basement.UTF8.Base ( Basement/UTF8/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/UTF8/Base.o )
+[73 of 79] Compiling Basement.Environment ( Basement/Environment.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Environment.o )
+[74 of 79] Compiling Basement.Error   ( Basement/Error.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Error.o )
+[75 of 79] Compiling Basement.Show    ( Basement/Show.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Show.o )
+[76 of 79] Compiling Basement.Imports ( Basement/Imports.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Imports.o )
+[77 of 79] Compiling Basement.String  ( Basement/String.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/String.o )
+[78 of 79] Compiling Basement.From    ( Basement/From.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/From.o )
+[79 of 79] Compiling Basement.Terminal.ANSI ( Basement/Terminal/ANSI.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Basement/Terminal/ANSI.o )
+Running Haddock for basement-0.0.4...
+Preprocessing library basement-0.0.4...
+Haddock coverage:
+   8% (  1 / 13) in 'Basement.Numerical.Conversion'
+  Missing documentation for:
+    Module header
+    intToInt64 (Basement/Numerical/Conversion.hs:29)
+    int64ToInt (Basement/Numerical/Conversion.hs:36)
+    wordToWord64 (Basement/Numerical/Conversion.hs:43)
+    word64ToWord (Basement/Numerical/Conversion.hs:50)
+    word64ToWord32s (Basement/Numerical/Conversion.hs:82)
+    wordToChar (Basement/Numerical/Conversion.hs:89)
+    wordToInt (Basement/Numerical/Conversion.hs:92)
+    word64ToWord# (Basement/Numerical/Conversion.hs:72)
+    charToInt (Basement/Numerical/Conversion.hs:95)
+    int64ToWord64 (Basement/Numerical/Conversion.hs:64)
+    word64ToInt64 (Basement/Numerical/Conversion.hs:57)
+ 100% (  2 /  2) in 'Basement.Compat.Typeable'
+  33% (  1 /  3) in 'Basement.Compat.Semigroup'
+  Missing documentation for:
+    Module header
+    ListNonEmpty (Basement/Compat/Semigroup.hs:16)
+ 100% (  6 /  6) in 'Basement.Compat.PrimTypes'
+  60% (  9 / 15) in 'Basement.Compat.Primitive'
+  Missing documentation for:
+    toPinnedStatus# (Basement/Compat/Primitive.hs:47)
+    compatGetSizeofMutableByteArray# (Basement/Compat/Primitive.hs:126)
+    compatShrinkMutableByteArray# (Basement/Compat/Primitive.hs:134)
+    compatResizeMutableByteArray# (Basement/Compat/Primitive.hs:147)
+    compatIsByteArrayPinned# (Basement/Compat/Primitive.hs:170)
+    compatIsMutableByteArrayPinned# (Basement/Compat/Primitive.hs:173)
+  25% (  1 /  4) in 'Basement.Compat.Natural'
+  Missing documentation for:
+    Module header
+    integerToNatural (Basement/Compat/Natural.hs:57)
+    naturalToInteger (Basement/Compat/Natural.hs:60)
+ 100% (  4 /  4) in 'Basement.Compat.NumLiteral'
+ 100% (  2 /  2) in 'Basement.Compat.IsList'
+ 100% (  2 /  2) in 'Basement.Compat.Identity'
+  50% (  1 /  2) in 'Basement.Compat.CallStack'
+  Missing documentation for:
+    Module header
+ 100% (  2 /  2) in 'Basement.Compat.Bifunctor'
+  97% ( 63 / 65) in 'Basement.Compat.Base'
+  Missing documentation for:
+    Ordering
+    Bool
+ 100% (  3 /  3) in 'Basement.Compat.MonadTrans'
+  92% ( 12 / 13) in 'Basement.Endianness'
+  Missing documentation for:
+    Endianness (Basement/Endianness.hs:46)
+   0% (  0 / 10) in 'Basement.Floating'
+  Missing documentation for:
+    Module header
+    integerToDouble (Basement/Floating.hs:26)
+    naturalToDouble (Basement/Floating.hs:31)
+    doubleExponant (Basement/Floating.hs:34)
+    integerToFloat (Basement/Floating.hs:37)
+    naturalToFloat (Basement/Floating.hs:40)
+    wordToFloat (Basement/Floating.hs:43)
+    floatToWord (Basement/Floating.hs:51)
+    wordToDouble (Basement/Floating.hs:59)
+    doubleToWord (Basement/Floating.hs:67)
+ 100% (  9 /  9) in 'Basement.Monad'
+  80% (  8 / 10) in 'Basement.FinalPtr'
+  Missing documentation for:
+    touchFinalPtr (Basement/FinalPtr.hs:91)
+    withFinalPtrNoTouch (Basement/FinalPtr.hs:73)
+  67% (  2 /  3) in 'Basement.Numerical.Number'
+  Missing documentation for:
+    Module header
+  31% (  4 / 13) in 'Basement.IntegralConv'
+  Missing documentation for:
+    Module header
+    intToInt64 (Basement/Numerical/Conversion.hs:29)
+    int64ToInt (Basement/Numerical/Conversion.hs:36)
+    wordToWord64 (Basement/Numerical/Conversion.hs:43)
+    word64ToWord32s (Basement/Numerical/Conversion.hs:82)
+    word64ToWord (Basement/Numerical/Conversion.hs:50)
+    wordToChar (Basement/Numerical/Conversion.hs:89)
+    wordToInt (Basement/Numerical/Conversion.hs:92)
+    charToInt (Basement/Numerical/Conversion.hs:95)
+  28% (  7 / 25) in 'Basement.Types.Char7'
+  Missing documentation for:
+    Module header
+    c7_LF (Basement/Types/Char7.hs:69)
+    c7_CR (Basement/Types/Char7.hs:72)
+    c7_minus (Basement/Types/Char7.hs:75)
+    c7_a (Basement/Types/Char7.hs:78)
+    c7_A (Basement/Types/Char7.hs:81)
+    c7_z (Basement/Types/Char7.hs:84)
+    c7_Z (Basement/Types/Char7.hs:87)
+    c7_0 (Basement/Types/Char7.hs:90)
+    c7_1 (Basement/Types/Char7.hs:90)
+    c7_2 (Basement/Types/Char7.hs:90)
+    c7_3 (Basement/Types/Char7.hs:90)
+    c7_4 (Basement/Types/Char7.hs:90)
+    c7_5 (Basement/Types/Char7.hs:90)
+    c7_6 (Basement/Types/Char7.hs:90)
+    c7_7 (Basement/Types/Char7.hs:90)
+    c7_8 (Basement/Types/Char7.hs:90)
+    c7_9 (Basement/Types/Char7.hs:90)
+  82% (  9 / 11) in 'Basement.Types.Word128'
+  Missing documentation for:
+    Module header
+    fromNatural (Basement/Types/Word128.hs:239)
+  82% (  9 / 11) in 'Basement.Types.Word256'
+  Missing documentation for:
+    Module header
+    fromNatural (Basement/Types/Word256.hs:312)
+  57% ( 16 / 28) in 'Basement.Nat'
+  Missing documentation for:
+    Module header
+    natValNatural (Basement/Nat.hs:52)
+    natValInt (Basement/Nat.hs:55)
+    natValInt8 (Basement/Nat.hs:67)
+    natValInt16 (Basement/Nat.hs:64)
+    natValInt32 (Basement/Nat.hs:61)
+    natValInt64 (Basement/Nat.hs:58)
+    natValWord (Basement/Nat.hs:70)
+    natValWord8 (Basement/Nat.hs:82)
+    natValWord16 (Basement/Nat.hs:79)
+    natValWord32 (Basement/Nat.hs:76)
+    natValWord64 (Basement/Nat.hs:73)
+  71% (  5 /  7) in 'Basement.UTF8.Table'
+  Missing documentation for:
+    isContinuation2 (Basement/UTF8/Table.hs:30)
+    isContinuation3 (Basement/UTF8/Table.hs:37)
+  78% (  7 /  9) in 'Basement.Bounded'
+  Missing documentation for:
+    unZn64 (Basement/Bounded.hs:34)
+    unZn (Basement/Bounded.hs:72)
+  50% (  1 /  2) in 'Basement.Numerical.Additive'
+  Missing documentation for:
+    Module header
+  60% (  3 /  5) in 'Basement.Numerical.Multiplicative'
+  Missing documentation for:
+    Module header
+    recip (Basement/Numerical/Multiplicative.hs:165)
+  50% (  1 /  2) in 'Basement.Numerical.Subtractive'
+  Missing documentation for:
+    Module header
+  27% (  8 / 30) in 'Basement.Types.OffsetSize'
+  Missing documentation for:
+    offsetOfE (Basement/Types/OffsetSize.hs:109)
+    offsetPlusE (Basement/Types/OffsetSize.hs:112)
+    offsetMinusE (Basement/Types/OffsetSize.hs:115)
+    offsetRecast (Basement/Types/OffsetSize.hs:125)
+    offsetCast (Basement/Types/OffsetSize.hs:136)
+    offsetShiftL (Basement/Types/OffsetSize.hs:133)
+    offsetShiftR (Basement/Types/OffsetSize.hs:130)
+    sizeCast (Basement/Types/OffsetSize.hs:140)
+    sizeLastOffset (Basement/Types/OffsetSize.hs:156)
+    sizeAsOffset (Basement/Types/OffsetSize.hs:161)
+    offsetAsSize (Basement/Types/OffsetSize.hs:165)
+    +. (Basement/Types/OffsetSize.hs:100)
+    .==# (Basement/Types/OffsetSize.hs:105)
+    sizeOfE (Basement/Types/OffsetSize.hs:219)
+    csizeOfOffset (Basement/Types/OffsetSize.hs:237)
+    csizeOfSize (Basement/Types/OffsetSize.hs:230)
+    sizeOfCSSize (Basement/Types/OffsetSize.hs:244)
+    sizeOfCSize (Basement/Types/OffsetSize.hs:252)
+    Countable (Basement/Types/OffsetSize.hs:268)
+    Offsetable (Basement/Types/OffsetSize.hs:269)
+    natValCountOf (Basement/Types/OffsetSize.hs:259)
+    natValOffset (Basement/Types/OffsetSize.hs:262)
+  33% (  2 /  6) in 'Basement.Compat.ExtList'
+  Missing documentation for:
+    Module header
+    null (Basement/Compat/ExtList.hs:25)
+    reverse (Basement/Compat/ExtList.hs:38)
+    !! (Basement/Compat/ExtList.hs:44)
+  40% (  4 / 10) in 'Basement.Exception'
+  Missing documentation for:
+    isOutOfBound (Basement/Exception.hs:51)
+    outOfBound (Basement/Exception.hs:43)
+    primOutOfBound (Basement/Exception.hs:47)
+    InvalidRecast (Basement/Exception.hs:60)
+    RecastSourceSize (Basement/Exception.hs:55)
+    RecastDestinationSize (Basement/Exception.hs:57)
+ 100% (  2 /  2) in 'Basement.NonEmpty'
+  33% (  1 /  3) in 'Basement.MutableBuilder'
+  Missing documentation for:
+    Module header
+    Builder (Basement/MutableBuilder.hs:12)
+  25% (  1 /  4) in 'Basement.NormalForm'
+  Missing documentation for:
+    Module header
+    deepseq (Basement/NormalForm.hs:22)
+    force (Basement/NormalForm.hs:25)
+ 100% (  2 /  2) in 'Basement.These'
+  14% (  3 / 21) in 'Basement.PrimType'
+  Missing documentation for:
+    Module header
+    primBaIndex (Basement/PrimType.hs:132)
+    primMbaRead (Basement/PrimType.hs:136)
+    primMbaWrite (Basement/PrimType.hs:140)
+    primArrayIndex (Basement/PrimType.hs:144)
+    primMutableArrayRead (Basement/PrimType.hs:148)
+    primMutableArrayWrite (Basement/PrimType.hs:152)
+    primOffsetOfE (Basement/PrimType.hs:709)
+    primOffsetRecast (Basement/PrimType.hs:685)
+    offsetAsSize (Basement/Types/OffsetSize.hs:165)
+    sizeAsOffset (Basement/Types/OffsetSize.hs:161)
+    sizeInBytes (Basement/PrimType.hs:666)
+    offsetInBytes (Basement/PrimType.hs:669)
+    offsetInElements (Basement/PrimType.hs:677)
+    offsetIsAligned (Basement/PrimType.hs:695)
+    primWordGetByteAndShift (Basement/PrimType.hs:713)
+    primWord64GetByteAndShift (Basement/PrimType.hs:718)
+    primWord64GetHiLo (Basement/PrimType.hs:721)
+ 100% (  2 /  2) in 'Basement.Runtime'
+   5% (  2 / 39) in 'Basement.Sized.List'
+  Missing documentation for:
+    ListN (Basement/Sized/List.hs:71)
+    toListN (Basement/Sized/List.hs:80)
+    unListN (Basement/Sized/List.hs:71)
+    length (Basement/Sized/List.hs:109)
+    create (Basement/Sized/List.hs:112)
+    createFrom (Basement/Sized/List.hs:117)
+    empty (Basement/Sized/List.hs:106)
+    singleton (Basement/Sized/List.hs:124)
+    uncons (Basement/Sized/List.hs:99)
+    cons (Basement/Sized/List.hs:103)
+    index (Basement/Sized/List.hs:162)
+    indexStatic (Basement/Sized/List.hs:159)
+    map (Basement/Sized/List.hs:165)
+    elem (Basement/Sized/List.hs:127)
+    foldl (Basement/Sized/List.hs:168)
+    foldl' (Basement/Sized/List.hs:171)
+    foldr (Basement/Sized/List.hs:174)
+    append (Basement/Sized/List.hs:130)
+    minimum (Basement/Sized/List.hs:136)
+    maximum (Basement/Sized/List.hs:133)
+    head (Basement/Sized/List.hs:139)
+    tail (Basement/Sized/List.hs:143)
+    take (Basement/Sized/List.hs:147)
+    drop (Basement/Sized/List.hs:151)
+    splitAt (Basement/Sized/List.hs:155)
+    zip (Basement/Sized/List.hs:177)
+    zip3 (Basement/Sized/List.hs:180)
+    zip4 (Basement/Sized/List.hs:186)
+    zip5 (Basement/Sized/List.hs:192)
+    zipWith (Basement/Sized/List.hs:198)
+    zipWith3 (Basement/Sized/List.hs:203)
+    zipWith4 (Basement/Sized/List.hs:213)
+    zipWith5 (Basement/Sized/List.hs:224)
+    replicate (Basement/Sized/List.hs:96)
+    replicateM (Basement/Sized/List.hs:87)
+    mapM (Basement/Sized/List.hs:90)
+    mapM_ (Basement/Sized/List.hs:93)
+  50% (  1 /  2) in 'Basement.Terminal.Size'
+  Missing documentation for:
+    Module header
+  33% (  1 /  3) in 'Basement.Terminal'
+  Missing documentation for:
+    Module header
+    initialize (Basement/Terminal.hs:14)
+  20% (  2 / 10) in 'Basement.Types.Ptr'
+  Missing documentation for:
+    Module header
+    Addr (Basement/Types/Ptr.hs:21)
+    addrPlus (Basement/Types/Ptr.hs:24)
+    addrPlusSz (Basement/Types/Ptr.hs:27)
+    addrPlusCSz (Basement/Types/Ptr.hs:30)
+    ptrPlus (Basement/Types/Ptr.hs:33)
+    ptrPlusSz (Basement/Types/Ptr.hs:36)
+    ptrPlusCSz (Basement/Types/Ptr.hs:39)
+  17% (  3 / 18) in 'Basement.UTF8.Helper'
+  Missing documentation for:
+    maskContinuation# (Basement/UTF8/Helper.hs:27)
+    maskHeader2# (Basement/UTF8/Helper.hs:32)
+    maskHeader3# (Basement/UTF8/Helper.hs:37)
+    maskHeader4# (Basement/UTF8/Helper.hs:42)
+    or3# (Basement/UTF8/Helper.hs:46)
+    or4# (Basement/UTF8/Helper.hs:50)
+    toChar# (Basement/UTF8/Helper.hs:54)
+    toChar1 (Basement/UTF8/Helper.hs:58)
+    toChar2 (Basement/UTF8/Helper.hs:61)
+    toChar3 (Basement/UTF8/Helper.hs:65)
+    toChar4 (Basement/UTF8/Helper.hs:72)
+    numBytes (Basement/UTF8/Helper.hs:123)
+    skipNextHeaderValue (Basement/UTF8/Helper.hs:130)
+    headerIsAscii (Basement/UTF8/Helper.hs:138)
+    charToBytes (Basement/UTF8/Helper.hs:141)
+  70% (  7 / 10) in 'Basement.UTF8.Types'
+  Missing documentation for:
+    Module header
+    isValidStepASCII (Basement/UTF8/Types.hs:37)
+    isValidStepDigit (Basement/UTF8/Types.hs:40)
+   0% (  0 /  7) in 'Basement.Bindings.Memory'
+  Missing documentation for:
+    Module header
+    sysHsMemcmpBaBa (Basement/Bindings/Memory.hs:14)
+    sysHsMemcmpBaPtr (Basement/Bindings/Memory.hs:17)
+    sysHsMemcmpPtrBa (Basement/Bindings/Memory.hs:20)
+    sysHsMemcmpPtrPtr (Basement/Bindings/Memory.hs:23)
+    sysHsMemFindByteBa (Basement/Bindings/Memory.hs:26)
+    sysHsMemFindByteAddr (Basement/Bindings/Memory.hs:29)
+  74% ( 17 / 23) in 'Basement.Block.Base'
+  Missing documentation for:
+    Module header
+    unsafeCopyElementsRO (Basement/Block/Base.hs:286)
+    length (Basement/Block/Base.hs:79)
+    lengthBytes (Basement/Block/Base.hs:87)
+    mutableEmpty (Basement/Block/Base.hs:101)
+    newPinned (Basement/Block/Base.hs:268)
+  81% ( 17 / 21) in 'Basement.Block.Mutable'
+  Missing documentation for:
+    mutableLengthBytes (Basement/Block/Mutable.hs:81)
+    newPinned (Basement/Block/Base.hs:268)
+    mutableEmpty (Basement/Block/Base.hs:101)
+    unsafeCopyElementsRO (Basement/Block/Base.hs:286)
+  50% (  3 /  6) in 'Basement.Base16'
+  Missing documentation for:
+    Module header
+    escapeByte (Basement/Base16.hs:33)
+    Base16Escape (Basement/Base16.hs:17)
+   0% (  0 /  7) in 'Basement.Alg.Native.Prim'
+  Missing documentation for:
+    Module header
+    Immutable (Basement/Alg/Native/Prim.hs:18)
+    Mutable (Basement/Alg/Native/Prim.hs:19)
+    primIndex (Basement/Alg/Native/Prim.hs:21)
+    primIndex64 (Basement/Alg/Native/Prim.hs:25)
+    primRead (Basement/Alg/Native/Prim.hs:29)
+    primWrite (Basement/Alg/Native/Prim.hs:33)
+  10% (  2 / 21) in 'Basement.Alg.Native.UTF8'
+  Missing documentation for:
+    Module header
+    Immutable (Basement/Alg/Native/Prim.hs:18)
+    Mutable (Basement/Alg/Native/Prim.hs:19)
+    nextAscii (Basement/Alg/Native/UTF8.hs:61)
+    expectAscii (Basement/Alg/Native/UTF8.hs:72)
+    next (Basement/Alg/Native/UTF8.hs:76)
+    nextSkip (Basement/Alg/Native/UTF8.hs:91)
+    prev (Basement/Alg/Native/UTF8.hs:97)
+    prevSkip (Basement/Alg/Native/UTF8.hs:120)
+    write (Basement/Alg/Native/UTF8.hs:128)
+    toList (Basement/Alg/Native/UTF8.hs:170)
+    all (Basement/Alg/Native/UTF8.hs:178)
+    any (Basement/Alg/Native/UTF8.hs:188)
+    foldr (Basement/Alg/Native/UTF8.hs:198)
+    length (Basement/Alg/Native/UTF8.hs:208)
+    reverse (Basement/Alg/Native/UTF8.hs:251)
+    primIndex64 (Basement/Alg/Native/Prim.hs:25)
+    primRead8 (Basement/Alg/Native/UTF8.hs:53)
+    primWrite8 (Basement/Alg/Native/UTF8.hs:49)
+   0% (  0 /  5) in 'Basement.Alg.Native.String'
+  Missing documentation for:
+    Module header
+    copyFilter (Basement/Alg/Native/String.hs:28)
+    validate (Basement/Alg/Native/String.hs:49)
+    findIndexPredicate (Basement/Alg/Native/String.hs:99)
+    revFindIndexPredicate (Basement/Alg/Native/String.hs:113)
+   0% (  0 /  7) in 'Basement.Alg.Foreign.Prim'
+  Missing documentation for:
+    Module header
+    Immutable (Basement/Alg/Foreign/Prim.hs:18)
+    Mutable (Basement/Alg/Foreign/Prim.hs:19)
+    primIndex (Basement/Alg/Foreign/Prim.hs:21)
+    primIndex64 (Basement/Alg/Foreign/Prim.hs:25)
+    primRead (Basement/Alg/Foreign/Prim.hs:29)
+    primWrite (Basement/Alg/Foreign/Prim.hs:33)
+  10% (  2 / 21) in 'Basement.Alg.Foreign.UTF8'
+  Missing documentation for:
+    Module header
+    Immutable (Basement/Alg/Foreign/Prim.hs:18)
+    Mutable (Basement/Alg/Foreign/Prim.hs:19)
+    nextAscii (Basement/Alg/Foreign/UTF8.hs:61)
+    expectAscii (Basement/Alg/Foreign/UTF8.hs:72)
+    next (Basement/Alg/Foreign/UTF8.hs:76)
+    nextSkip (Basement/Alg/Foreign/UTF8.hs:91)
+    prev (Basement/Alg/Foreign/UTF8.hs:97)
+    prevSkip (Basement/Alg/Foreign/UTF8.hs:120)
+    write (Basement/Alg/Foreign/UTF8.hs:128)
+    toList (Basement/Alg/Foreign/UTF8.hs:170)
+    all (Basement/Alg/Foreign/UTF8.hs:178)
+    any (Basement/Alg/Foreign/UTF8.hs:188)
+    foldr (Basement/Alg/Foreign/UTF8.hs:198)
+    length (Basement/Alg/Foreign/UTF8.hs:208)
+    reverse (Basement/Alg/Foreign/UTF8.hs:251)
+    primIndex64 (Basement/Alg/Foreign/Prim.hs:25)
+    primRead8 (Basement/Alg/Foreign/UTF8.hs:53)
+    primWrite8 (Basement/Alg/Foreign/UTF8.hs:49)
+   0% (  0 /  5) in 'Basement.Alg.Foreign.String'
+  Missing documentation for:
+    Module header
+    copyFilter (Basement/Alg/Foreign/String.hs:28)
+    validate (Basement/Alg/Foreign/String.hs:49)
+    findIndexPredicate (Basement/Alg/Foreign/String.hs:99)
+    revFindIndexPredicate (Basement/Alg/Foreign/String.hs:113)
+   0% (  0 /  6) in 'Basement.Alg.Class'
+  Missing documentation for:
+    Module header
+    Indexable (Basement/Alg/Class.hs:10)
+    index (Basement/Alg/Class.hs:11)
+    RandomAccess (Basement/Alg/Class.hs:13)
+    read (Basement/Alg/Class.hs:14)
+    write (Basement/Alg/Class.hs:15)
+   0% (  0 /  2) in 'Basement.Alg.Mutable'
+  Missing documentation for:
+    Module header
+    inplaceSortBy (Basement/Alg/Mutable.hs:16)
+   0% (  0 / 13) in 'Basement.Alg.PrimArray'
+  Missing documentation for:
+    Module header
+    Indexable (Basement/Alg/Class.hs:10)
+    index (Basement/Alg/Class.hs:11)
+    findIndexElem (Basement/Alg/PrimArray.hs:27)
+    revFindIndexElem (Basement/Alg/PrimArray.hs:36)
+    findIndexPredicate (Basement/Alg/PrimArray.hs:48)
+    revFindIndexPredicate (Basement/Alg/PrimArray.hs:57)
+    foldl (Basement/Alg/PrimArray.hs:69)
+    foldr (Basement/Alg/PrimArray.hs:77)
+    foldl1 (Basement/Alg/PrimArray.hs:85)
+    all (Basement/Alg/PrimArray.hs:106)
+    any (Basement/Alg/PrimArray.hs:115)
+    filter (Basement/Alg/PrimArray.hs:93)
+  36% ( 16 / 45) in 'Basement.Block'
+  Missing documentation for:
+    length (Basement/Block/Base.hs:79)
+    freeze (Basement/Block.hs:141)
+    isPinned (Basement/Block.hs:118)
+    isMutablePinned (Basement/Block.hs:121)
+    singleton (Basement/Block.hs:124)
+    replicate (Basement/Block.hs:127)
+    foldl' (Basement/Block.hs:179)
+    foldr (Basement/Block.hs:170)
+    foldl1' (Basement/Block.hs:188)
+    foldr1 (Basement/Block.hs:197)
+    cons (Basement/Block.hs:201)
+    snoc (Basement/Block.hs:212)
+    uncons (Basement/Block.hs:235)
+    unsnoc (Basement/Block.hs:242)
+    sub (Basement/Block.hs:223)
+    splitAt (Basement/Block.hs:248)
+    revSplitAt (Basement/Block.hs:260)
+    splitOn (Basement/Block.hs:320)
+    break (Basement/Block.hs:266)
+    breakEnd (Basement/Block.hs:277)
+    span (Basement/Block.hs:287)
+    elem (Basement/Block.hs:290)
+    all (Basement/Block.hs:300)
+    any (Basement/Block.hs:310)
+    find (Basement/Block.hs:335)
+    filter (Basement/Block.hs:345)
+    reverse (Basement/Block.hs:348)
+    sortBy (Basement/Block.hs:367)
+    intersperse (Basement/Block.hs:377)
+   4% (  1 / 27) in 'Basement.Sized.Block'
+  Missing documentation for:
+    BlockN (Basement/Sized/Block.hs:55)
+    MutableBlockN (Basement/Sized/Block.hs:57)
+    toBlockN (Basement/Sized/Block.hs:59)
+    toBlock (Basement/Sized/Block.hs:66)
+    singleton (Basement/Sized/Block.hs:69)
+    replicate (Basement/Sized/Block.hs:72)
+    thaw (Basement/Sized/Block.hs:75)
+    freeze (Basement/Sized/Block.hs:78)
+    index (Basement/Sized/Block.hs:84)
+    indexStatic (Basement/Sized/Block.hs:81)
+    map (Basement/Sized/Block.hs:87)
+    foldl' (Basement/Sized/Block.hs:90)
+    foldr (Basement/Sized/Block.hs:93)
+    cons (Basement/Sized/Block.hs:96)
+    snoc (Basement/Sized/Block.hs:99)
+    elem (Basement/Sized/Block.hs:132)
+    sub (Basement/Sized/Block.hs:102)
+    uncons (Basement/Sized/Block.hs:115)
+    unsnoc (Basement/Sized/Block.hs:120)
+    splitAt (Basement/Sized/Block.hs:127)
+    all (Basement/Sized/Block.hs:135)
+    any (Basement/Sized/Block.hs:138)
+    find (Basement/Sized/Block.hs:141)
+    reverse (Basement/Sized/Block.hs:144)
+    sortBy (Basement/Sized/Block.hs:147)
+    intersperse (Basement/Sized/Block.hs:150)
+Warning: Basement.BlockN: Could not find documentation for exported module: X
+ 100% (  1 /  1) in 'Basement.BlockN'
+  53% ( 25 / 47) in 'Basement.UArray.Base'
+  Missing documentation for:
+    Module header
+    MUArrayBackend (Basement/UArray/Base.hs:87)
+    UArrayBackend (Basement/UArray/Base.hs:107)
+    newUnpinned (Basement/UArray/Base.hs:174)
+    newNative (Basement/UArray/Base.hs:177)
+    unsafeFreezeShrink (Basement/UArray/Base.hs:247)
+    unsafeIndexer (Basement/UArray/Base.hs:232)
+    onBackend (Basement/UArray/Base.hs:275)
+    onBackendPure (Basement/UArray/Base.hs:284)
+    onBackendPure' (Basement/UArray/Base.hs:291)
+    onBackendPrim (Basement/UArray/Base.hs:303)
+    onMutableBackend (Basement/UArray/Base.hs:312)
+    unsafeDewrap (Basement/UArray/Base.hs:322)
+    unsafeDewrap2 (Basement/UArray/Base.hs:330)
+    empty (Basement/UArray/Base.hs:585)
+    length (Basement/UArray/Base.hs:141)
+    offset (Basement/UArray/Base.hs:145)
+    ValidRange (Basement/UArray/Base.hs:149)
+    offsetsValidRange (Basement/UArray/Base.hs:151)
+    equalMemcmp (Basement/UArray/Base.hs:442)
+    compare
+    pureST (Basement/UArray/Base.hs:345)
+  29% ( 17 / 58) in 'Basement.BoxedArray'
+  Missing documentation for:
+    empty (Basement/BoxedArray.hs:354)
+    length (Basement/BoxedArray.hs:357)
+    freeze (Basement/BoxedArray.hs:243)
+    singleton (Basement/BoxedArray.hs:570)
+    replicate (Basement/BoxedArray.hs:576)
+    null (Basement/BoxedArray.hs:445)
+    take (Basement/BoxedArray.hs:448)
+    drop (Basement/BoxedArray.hs:456)
+    splitAt (Basement/BoxedArray.hs:462)
+    revTake (Basement/BoxedArray.hs:476)
+    revDrop (Basement/BoxedArray.hs:479)
+    revSplitAt (Basement/BoxedArray.hs:482)
+    splitOn (Basement/BoxedArray.hs:485)
+    sub (Basement/BoxedArray.hs:501)
+    intersperse (Basement/BoxedArray.hs:532)
+    span (Basement/BoxedArray.hs:550)
+    spanEnd (Basement/BoxedArray.hs:553)
+    break (Basement/BoxedArray.hs:509)
+    breakEnd (Basement/BoxedArray.hs:520)
+    mapFromUnboxed (Basement/BoxedArray.hs:559)
+    mapToUnboxed (Basement/BoxedArray.hs:562)
+    cons (Basement/BoxedArray.hs:579)
+    snoc (Basement/BoxedArray.hs:590)
+    uncons (Basement/BoxedArray.hs:601)
+    unsnoc (Basement/BoxedArray.hs:608)
+    sortBy (Basement/BoxedArray.hs:639)
+    filter (Basement/BoxedArray.hs:648)
+    reverse (Basement/BoxedArray.hs:671)
+    elem (Basement/BoxedArray.hs:615)
+    find (Basement/BoxedArray.hs:624)
+    foldl' (Basement/BoxedArray.hs:685)
+    foldr (Basement/BoxedArray.hs:677)
+    foldl1' (Basement/BoxedArray.hs:693)
+    foldr1 (Basement/BoxedArray.hs:697)
+    all (Basement/BoxedArray.hs:701)
+    any (Basement/BoxedArray.hs:710)
+    isPrefixOf (Basement/BoxedArray.hs:719)
+    isSuffixOf (Basement/BoxedArray.hs:727)
+    builderAppend (Basement/BoxedArray.hs:735)
+    builderBuild (Basement/BoxedArray.hs:750)
+    builderBuild_ (Basement/BoxedArray.hs:774)
+   0% (  0 / 27) in 'Basement.Sized.Vect'
+  Missing documentation for:
+    Module header
+    Vect (Basement/Sized/Vect.hs:47)
+    MVect (Basement/Sized/Vect.hs:48)
+    unVect (Basement/Sized/Vect.hs:47)
+    toVect (Basement/Sized/Vect.hs:53)
+    empty (Basement/Sized/Vect.hs:60)
+    singleton (Basement/Sized/Vect.hs:63)
+    replicate (Basement/Sized/Vect.hs:71)
+    thaw (Basement/Sized/Vect.hs:74)
+    freeze (Basement/Sized/Vect.hs:77)
+    index (Basement/Sized/Vect.hs:89)
+    map (Basement/Sized/Vect.hs:92)
+    foldl' (Basement/Sized/Vect.hs:95)
+    foldr (Basement/Sized/Vect.hs:98)
+    cons (Basement/Sized/Vect.hs:101)
+    snoc (Basement/Sized/Vect.hs:104)
+    elem (Basement/Sized/Vect.hs:136)
+    sub (Basement/Sized/Vect.hs:107)
+    uncons (Basement/Sized/Vect.hs:119)
+    unsnoc (Basement/Sized/Vect.hs:124)
+    splitAt (Basement/Sized/Vect.hs:131)
+    all (Basement/Sized/Vect.hs:139)
+    any (Basement/Sized/Vect.hs:142)
+    find (Basement/Sized/Vect.hs:145)
+    reverse (Basement/Sized/Vect.hs:148)
+    sortBy (Basement/Sized/Vect.hs:151)
+    intersperse (Basement/Sized/Vect.hs:154)
+  70% ( 16 / 23) in 'Basement.UArray.Mutable'
+  Missing documentation for:
+    sizeInMutableBytesOfContent (Basement/UArray/Mutable.hs:59)
+    mutableOffset (Basement/UArray/Mutable.hs:191)
+    mutableSame (Basement/UArray/Mutable.hs:87)
+    onMutableBackend (Basement/UArray/Base.hs:312)
+    newNative (Basement/UArray/Base.hs:177)
+    mutableForeignMem (Basement/UArray/Mutable.hs:92)
+    sub (Basement/UArray/Mutable.hs:98)
+  42% ( 37 / 88) in 'Basement.UArray'
+  Missing documentation for:
+    unsafeRecast (Basement/UArray.hs:332)
+    length (Basement/UArray/Base.hs:141)
+    freeze (Basement/UArray.hs:191)
+    sub (Basement/UArray.hs:467)
+    withPtr (Basement/UArray.hs:295)
+    unsafeFreezeShrink (Basement/UArray/Base.hs:247)
+    freezeShrink (Basement/UArray.hs:198)
+    unsafeUpdate (Basement/UArray.hs:272)
+    unsafeIndexer (Basement/UArray/Base.hs:232)
+    unsafeDewrap (Basement/UArray/Base.hs:322)
+    equalMemcmp (Basement/UArray/Base.hs:442)
+    singleton (Basement/UArray.hs:252)
+    replicate (Basement/UArray.hs:255)
+    map (Basement/UArray.hs:580)
+    mapIndex (Basement/UArray.hs:584)
+    findIndex (Basement/UArray.hs:475)
+    revFindIndex (Basement/UArray.hs:486)
+    null (Basement/UArray.hs:340)
+    unsafeTake (Basement/UArray.hs:350)
+    unsafeDrop (Basement/UArray.hs:360)
+    splitOn (Basement/UArray.hs:449)
+    break (Basement/UArray.hs:497)
+    breakElem (Basement/UArray.hs:373)
+    elem (Basement/UArray.hs:547)
+    indices (Basement/UArray.hs:693)
+    intersperse (Basement/UArray.hs:556)
+    span (Basement/UArray.hs:574)
+    spanEnd (Basement/UArray.hs:577)
+    cons (Basement/UArray.hs:587)
+    snoc (Basement/UArray.hs:598)
+    uncons (Basement/UArray.hs:609)
+    unsnoc (Basement/UArray.hs:616)
+    find (Basement/UArray.hs:622)
+    sortBy (Basement/UArray.hs:632)
+    filter (Basement/UArray.hs:647)
+    reverse (Basement/UArray.hs:660)
+    foldr (Basement/UArray.hs:760)
+    foldl' (Basement/UArray.hs:768)
+    foldr1 (Basement/UArray.hs:776)
+    foldl1' (Basement/UArray.hs:772)
+    all (Basement/UArray.hs:780)
+    any (Basement/UArray.hs:784)
+    isPrefixOf (Basement/UArray.hs:924)
+    isSuffixOf (Basement/UArray.hs:933)
+    foreignMem (Basement/UArray.hs:156)
+    fromForeignPtr (Basement/UArray.hs:162)
+    builderAppend (Basement/UArray.hs:788)
+    builderBuild (Basement/UArray.hs:803)
+    builderBuild_ (Basement/UArray.hs:827)
+    toHexadecimal (Basement/UArray.hs:830)
+    toBase64Internal (Basement/UArray.hs:854)
+   0% (  0 / 27) in 'Basement.Sized.UVect'
+  Missing documentation for:
+    Module header
+    UVect (Basement/Sized/UVect.hs:47)
+    MUVect (Basement/Sized/UVect.hs:48)
+    unUVect (Basement/Sized/UVect.hs:47)
+    toUVect (Basement/Sized/UVect.hs:50)
+    empty (Basement/Sized/UVect.hs:57)
+    singleton (Basement/Sized/UVect.hs:60)
+    replicate (Basement/Sized/UVect.hs:68)
+    thaw (Basement/Sized/UVect.hs:71)
+    freeze (Basement/Sized/UVect.hs:74)
+    index (Basement/Sized/UVect.hs:86)
+    map (Basement/Sized/UVect.hs:89)
+    foldl' (Basement/Sized/UVect.hs:92)
+    foldr (Basement/Sized/UVect.hs:95)
+    cons (Basement/Sized/UVect.hs:98)
+    snoc (Basement/Sized/UVect.hs:101)
+    elem (Basement/Sized/UVect.hs:134)
+    sub (Basement/Sized/UVect.hs:104)
+    uncons (Basement/Sized/UVect.hs:117)
+    unsnoc (Basement/Sized/UVect.hs:122)
+    splitAt (Basement/Sized/UVect.hs:129)
+    all (Basement/Sized/UVect.hs:137)
+    any (Basement/Sized/UVect.hs:140)
+    find (Basement/Sized/UVect.hs:143)
+    reverse (Basement/Sized/UVect.hs:146)
+    sortBy (Basement/Sized/UVect.hs:149)
+    intersperse (Basement/Sized/UVect.hs:152)
+  67% (  2 /  3) in 'Basement.String.Encoding.Encoding'
+  Missing documentation for:
+    Encoding (Basement/String/Encoding/Encoding.hs:26)
+  33% (  1 /  3) in 'Basement.String.Encoding.ASCII7'
+  Missing documentation for:
+    ASCII7 (Basement/String/Encoding/ASCII7.hs:44)
+    ASCII7_Invalid (Basement/String/Encoding/ASCII7.hs:38)
+  33% (  1 /  3) in 'Basement.String.Encoding.ISO_8859_1'
+  Missing documentation for:
+    ISO_8859_1 (Basement/String/Encoding/ISO_8859_1.hs:39)
+    ISO_8859_1_Invalid (Basement/String/Encoding/ISO_8859_1.hs:34)
+  33% (  1 /  3) in 'Basement.String.Encoding.UTF16'
+  Missing documentation for:
+    UTF16 (Basement/String/Encoding/UTF16.hs:35)
+    UTF16_Invalid (Basement/String/Encoding/UTF16.hs:29)
+  33% (  1 /  3) in 'Basement.String.Encoding.UTF32'
+  Missing documentation for:
+    UTF32 (Basement/String/Encoding/UTF32.hs:27)
+    UTF32_Invalid (Basement/String/Encoding/UTF32.hs:29)
+  83% (  5 /  6) in 'Basement.Types.AsciiString'
+  Missing documentation for:
+    MutableAsciiString (Basement/Types/AsciiString.hs:35)
+  35% (  8 / 23) in 'Basement.UTF8.Base'
+  Missing documentation for:
+     (Basement/UTF8/Base.hs:60)
+     (Basement/UTF8/Base.hs:62)
+     (Basement/UTF8/Base.hs:64)
+     (Basement/UTF8/Base.hs:69)
+     (Basement/UTF8/Base.hs:74)
+    stringType (Basement/UTF8/Base.hs:77)
+    sToListStream (Basement/UTF8/Base.hs:105)
+    next (Basement/UTF8/Base.hs:176)
+    prev (Basement/UTF8/Base.hs:184)
+    nextAscii (Basement/UTF8/Base.hs:194)
+    expectAscii (Basement/UTF8/Base.hs:199)
+    write (Basement/UTF8/Base.hs:203)
+    newNative (Basement/UTF8/Base.hs:216)
+    freeze (Basement/UTF8/Base.hs:222)
+    freezeShrink (Basement/UTF8/Base.hs:226)
+  67% (  2 /  3) in 'Basement.Environment'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Basement.Error'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Basement.Show'
+  Missing documentation for:
+    Module header
+  97% ( 75 / 77) in 'Basement.Imports'
+  Missing documentation for:
+    Ordering
+    Bool
+  92% ( 66 / 72) in 'Basement.String'
+  Missing documentation for:
+    indices (Basement/String.hs:810)
+    breakEnd (Basement/String.hs:467)
+    builderBuild_ (Basement/String.hs:1052)
+    readInteger (Basement/String.hs:1088)
+    all (Basement/String.hs:1373)
+    any (Basement/String.hs:1380)
+  71% (  5 /  7) in 'Basement.From'
+  Missing documentation for:
+    Into (Basement/From.hs:71)
+    TryInto (Basement/From.hs:88)
+  29% (  9 / 31) in 'Basement.Terminal.ANSI'
+  Missing documentation for:
+    Escape (Basement/Terminal/ANSI.hs:62)
+    Displacement (Basement/Terminal/ANSI.hs:64)
+    cursorUp (Basement/Terminal/ANSI.hs:75)
+    cursorDown (Basement/Terminal/ANSI.hs:75)
+    cursorForward (Basement/Terminal/ANSI.hs:75)
+    cursorBack (Basement/Terminal/ANSI.hs:75)
+    cursorNextLine (Basement/Terminal/ANSI.hs:75)
+    cursorPrevLine (Basement/Terminal/ANSI.hs:75)
+    cursorHorizontalAbsolute (Basement/Terminal/ANSI.hs:75)
+    cursorPosition (Basement/Terminal/ANSI.hs:86)
+    eraseScreenFromCursor (Basement/Terminal/ANSI.hs:89)
+    eraseScreenToCursor (Basement/Terminal/ANSI.hs:89)
+    eraseScreenAll (Basement/Terminal/ANSI.hs:89)
+    eraseLineFromCursor (Basement/Terminal/ANSI.hs:89)
+    eraseLineToCursor (Basement/Terminal/ANSI.hs:89)
+    eraseLineAll (Basement/Terminal/ANSI.hs:89)
+    scrollUp (Basement/Terminal/ANSI.hs:102)
+    scrollDown (Basement/Terminal/ANSI.hs:102)
+    sgrForegroundGray24 (Basement/Terminal/ANSI.hs:124)
+    sgrBackgroundGray24 (Basement/Terminal/ANSI.hs:124)
+    sgrForegroundColor216 (Basement/Terminal/ANSI.hs:128)
+    sgrBackgroundColor216 (Basement/Terminal/ANSI.hs:134)
+Warning: Basement.Compat.PrimTypes: could not find link destinations for:
+    Word64#
+Warning: Basement.Compat.Primitive: could not find link destinations for:
+    D:R:URecWordp0 UWord uWord#
+Warning: Basement.Compat.Natural: could not find link destinations for:
+    unsafeIndex unsafeRangeSize
+Warning: Basement.Compat.Identity: could not find link destinations for:
+    unsafeIndex unsafeRangeSize
+Warning: Basement.Compat.Base: could not find link destinations for:
+    ~ Id StateL StateR SingI sing Sing SingKind fromSing DemoteRep D:R:SingMaybeb0 SNothing SJust EqMaybe EqOrdering D:R:SingBoola0 STrue SFalse EqBool D:R:URecIntp0 UInt uInt# D:R:URecCharp0 UChar uChar# unsafeIndex unsafeRangeSize byteSwap D:R:URecWordp0 UWord uWord# D:R:URecDoublep0 UDouble uDouble# D:R:URecFloatp0 UFloat uFloat# EqEither Array Max Min D:R:URecPtrp0 UAddr uAddr#
+Warning: Basement.Endianness: could not find link destinations for:
+    byteSwap
+Warning: Basement.IntegralConv: could not find link destinations for:
+    ~
+Warning: Basement.Nat: could not find link destinations for:
+    EqNat natSing ~
+Warning: Basement.Bounded: could not find link destinations for:
+    ~
+Warning: Basement.Sized.List: could not find link destinations for:
+    ~
+Warning: Basement.Types.Ptr: could not find link destinations for:
+    D:R:URecPtrp0 UAddr uAddr#
+Warning: Basement.Sized.Block: could not find link destinations for:
+    ~
+Warning: Basement.Sized.Vect: could not find link destinations for:
+    ~
+Warning: Basement.UArray.Mutable: could not find link destinations for:
+    MUArrayBackend
+Warning: Basement.UArray: could not find link destinations for:
+    UArrayBackend
+Warning: Basement.Sized.UVect: could not find link destinations for:
+    ~
+Warning: Basement.Imports: could not find link destinations for:
+    ~ Id StateL StateR SingI sing Sing SingKind fromSing DemoteRep D:R:SingMaybeb0 SNothing SJust EqMaybe EqOrdering D:R:SingBoola0 STrue SFalse EqBool D:R:URecIntp0 UInt uInt# unsafeIndex unsafeRangeSize D:R:URecCharp0 UChar uChar# byteSwap D:R:URecWordp0 UWord uWord# D:R:URecDoublep0 UDouble uDouble# D:R:URecFloatp0 UFloat uFloat# EqEither Array Max Min D:R:URecPtrp0 UAddr uAddr#
+Warning: Basement.String: could not find link destinations for:
+    validate ReadFloatingCallback
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/basement/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ
+Registering basement-0.0.4...

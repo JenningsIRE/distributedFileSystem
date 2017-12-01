@@ -1,0 +1,59 @@
+Configuring vault-0.3.0.7...
+Building vault-0.3.0.7...
+Preprocessing library vault-0.3.0.7...
+[1 of 5] Compiling Data.Unique.Really ( src/Data/Unique/Really.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Unique/Really.o )
+
+src/Data/Unique/Really.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+[2 of 5] Compiling Data.Vault.ST.Lazy ( src/Data/Vault/ST/Lazy.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vault/ST/Lazy.o )
+
+src/Data/Vault/ST/ST.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+[3 of 5] Compiling Data.Vault.Lazy  ( src/Data/Vault/Lazy.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vault/Lazy.o )
+[4 of 5] Compiling Data.Vault.ST.Strict ( src/Data/Vault/ST/Strict.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vault/ST/Strict.o )
+
+src/Data/Vault/ST/ST.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+[5 of 5] Compiling Data.Vault.Strict ( src/Data/Vault/Strict.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Vault/Strict.o )
+Running Haddock for vault-0.3.0.7...
+Preprocessing library vault-0.3.0.7...
+
+src/Data/Unique/Really.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+src/Data/Vault/ST/ST.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+src/Data/Vault/ST/ST.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+Haddock coverage:
+ 100% (  4 /  4) in 'Data.Unique.Really'
+  80% ( 12 / 15) in 'Data.Vault.ST.Lazy'
+  Missing documentation for:
+    Vault (src/Data/Vault/ST/backends/GHC.hs:18)
+    Key (src/Data/Vault/ST/backends/GHC.hs:19)
+    Locker (src/Data/Vault/ST/backends/GHC.hs:40)
+ 100% ( 15 / 15) in 'Data.Vault.Lazy'
+  80% ( 12 / 15) in 'Data.Vault.ST.Strict'
+  Missing documentation for:
+    Vault (src/Data/Vault/ST/backends/GHC.hs:18)
+    Key (src/Data/Vault/ST/backends/GHC.hs:19)
+    Locker (src/Data/Vault/ST/backends/GHC.hs:40)
+ 100% ( 15 / 15) in 'Data.Vault.Strict'
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/vault/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/vault-0.3.0.7-FSJCPczyPWW8DwvwP76qt4
+Registering vault-0.3.0.7...

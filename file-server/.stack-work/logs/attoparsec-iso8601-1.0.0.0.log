@@ -1,0 +1,20 @@
+Configuring attoparsec-iso8601-1.0.0.0...
+Building attoparsec-iso8601-1.0.0.0...
+Preprocessing library attoparsec-iso8601-1.0.0.0...
+[1 of 2] Compiling Data.Attoparsec.Time.Internal ( Data/Attoparsec/Time/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Attoparsec/Time/Internal.o )
+[2 of 2] Compiling Data.Attoparsec.Time ( Data/Attoparsec/Time.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Attoparsec/Time.o )
+Running Haddock for attoparsec-iso8601-1.0.0.0...
+Preprocessing library attoparsec-iso8601-1.0.0.0...
+Haddock coverage:
+  33% (  2 /  6) in 'Data.Attoparsec.Time.Internal'
+  Missing documentation for:
+    fromPico (Data/Attoparsec/Time/Internal.hs:34)
+    toPico (Data/Attoparsec/Time/Internal.hs:31)
+    diffTimeOfDay64 (Data/Attoparsec/Time/Internal.hs:54)
+    toTimeOfDay64 (Data/Attoparsec/Time/Internal.hs:60)
+ 100% (  7 /  7) in 'Data.Attoparsec.Time'
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/attoparsec-iso8601/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/attoparsec-iso8601-1.0.0.0-CiauZZhskHA6jYy7CqE2mZ
+Registering attoparsec-iso8601-1.0.0.0...

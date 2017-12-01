@@ -1,0 +1,22 @@
+Configuring wai-3.2.1.1...
+Building wai-3.2.1.1...
+Preprocessing library wai-3.2.1.1...
+[1 of 2] Compiling Network.Wai.Internal ( Network/Wai/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Internal.o )
+[2 of 2] Compiling Network.Wai      ( Network/Wai.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai.o )
+Running Haddock for wai-3.2.1.1...
+Preprocessing library wai-3.2.1.1...
+Warning: The documentation for the following packages are not installed. No
+links will be generated to these packages: bytestring-builder-0.10.8.1.0
+Haddock coverage:
+  75% (  6 /  8) in 'Network.Wai.Internal'
+  Missing documentation for:
+     (Network/Wai/Internal.hs:98)
+    Response (Network/Wai/Internal.hs:119)
+  98% ( 47 / 48) in 'Network.Wai'
+  Missing documentation for:
+    Response (Network/Wai/Internal.hs:119)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/wai/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/wai-3.2.1.1-GYhAFGd1F2uKjCUZVPyC2C
+Registering wai-3.2.1.1...

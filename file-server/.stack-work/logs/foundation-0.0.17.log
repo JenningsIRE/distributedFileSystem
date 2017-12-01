@@ -1,0 +1,741 @@
+Configuring foundation-0.0.17...
+Building foundation-0.0.17...
+Preprocessing library foundation-0.0.17...
+[ 1 of 99] Compiling Foundation.VFS.Path ( Foundation/VFS/Path.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/VFS/Path.o )
+[ 2 of 99] Compiling Foundation.VFS.URI ( Foundation/VFS/URI.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/VFS/URI.o )
+[ 3 of 99] Compiling Foundation.System.Entropy.Common ( Foundation/System/Entropy/Common.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Entropy/Common.o )
+[ 4 of 99] Compiling Foundation.System.Bindings.Time ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Time.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Time.o )
+[ 5 of 99] Compiling Foundation.System.Bindings.PosixDef ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/PosixDef.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/PosixDef.o )
+[ 6 of 99] Compiling Foundation.System.Bindings.Posix ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Posix.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Posix.o )
+[ 7 of 99] Compiling Foundation.System.Bindings.Network ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Network.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Network.o )
+[ 8 of 99] Compiling Foundation.System.Bindings.Macos ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Macos.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Macos.o )
+[ 9 of 99] Compiling Foundation.System.Bindings.Hs ( Foundation/System/Bindings/Hs.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings/Hs.o )
+[10 of 99] Compiling Foundation.System.Bindings ( Foundation/System/Bindings.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Bindings.o )
+[11 of 99] Compiling Foundation.String.Read ( Foundation/String/Read.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/String/Read.o )
+[12 of 99] Compiling Foundation.String.Builder ( Foundation/String/Builder.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/String/Builder.o )
+[13 of 99] Compiling Foundation.String ( Foundation/String.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/String.o )
+[14 of 99] Compiling Foundation.System.Info ( Foundation/System/Info.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Info.o )
+[15 of 99] Compiling Foundation.Strict ( Foundation/Strict.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Strict.o )
+[16 of 99] Compiling Foundation.Primitive ( Foundation/Primitive.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Primitive.o )
+[17 of 99] Compiling Foundation.Tuple ( Foundation/Tuple.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Tuple.o )
+[18 of 99] Compiling Foundation.Tuple.Nth ( Foundation/Tuple/Nth.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Tuple/Nth.o )
+[19 of 99] Compiling Foundation.Partial ( Foundation/Partial.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Partial.o )
+[20 of 99] Compiling Foundation.Numerical.Floating ( Foundation/Numerical/Floating.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Numerical/Floating.o )
+[21 of 99] Compiling Foundation.Numerical ( Foundation/Numerical.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Numerical.o )
+[22 of 99] Compiling Foundation.System.Entropy.Unix ( Foundation/System/Entropy/Unix.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Entropy/Unix.o )
+[23 of 99] Compiling Foundation.System.Entropy ( Foundation/System/Entropy.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/System/Entropy.o )
+[24 of 99] Compiling Foundation.Random.Class ( Foundation/Random/Class.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Random/Class.o )
+[25 of 99] Compiling Foundation.Random.DRG ( Foundation/Random/DRG.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Random/DRG.o )
+[26 of 99] Compiling Foundation.Time.Types ( Foundation/Time/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Time/Types.o )
+[27 of 99] Compiling Foundation.Time.StopWatch ( Foundation/Time/StopWatch.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Time/StopWatch.o )
+
+Foundation/Time/StopWatch.hs:111:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘secondInNano’
+[28 of 99] Compiling Foundation.Monad.Transformer ( Foundation/Monad/Transformer.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/Transformer.o )
+[29 of 99] Compiling Foundation.Monad.MonadIO ( Foundation/Monad/MonadIO.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/MonadIO.o )
+[30 of 99] Compiling Foundation.Monad.Exception ( Foundation/Monad/Exception.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/Exception.o )
+[31 of 99] Compiling Foundation.Monad.Identity ( Foundation/Monad/Identity.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/Identity.o )
+[32 of 99] Compiling Foundation.Monad.Base ( Foundation/Monad/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/Base.o )
+[33 of 99] Compiling Foundation.Monad.Reader ( Foundation/Monad/Reader.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/Reader.o )
+[34 of 99] Compiling Foundation.Monad.Except ( Foundation/Monad/Except.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/Except.o )
+[35 of 99] Compiling Foundation.Monad.State ( Foundation/Monad/State.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad/State.o )
+[36 of 99] Compiling Foundation.Monad ( Foundation/Monad.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Monad.o )
+[37 of 99] Compiling Foundation.Math.Trigonometry ( Foundation/Math/Trigonometry.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Math/Trigonometry.o )
+[38 of 99] Compiling Foundation.List.ListN ( Foundation/List/ListN.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/List/ListN.o )
+[39 of 99] Compiling Foundation.IO.Terminal ( Foundation/IO/Terminal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/IO/Terminal.o )
+[40 of 99] Compiling Foundation.Foreign.Alloc ( Foundation/Foreign/Alloc.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Foreign/Alloc.o )
+[41 of 99] Compiling Foundation.Time.Bindings ( Foundation/Time/Bindings.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Time/Bindings.o )
+[42 of 99] Compiling Foundation.Foreign ( Foundation/Foreign.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Foreign.o )
+[43 of 99] Compiling Foundation.Exception ( Foundation/Exception.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Exception.o )
+[44 of 99] Compiling Foundation.Conduit.Internal ( Foundation/Conduit/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Conduit/Internal.o )
+
+Foundation/Conduit/Internal.hs:147:11: warning: [-Winline-rule-shadowing]
+    Rule "conduit: await >>= maybe" may never fire
+      because ‘maybe’ might inline first
+    Probable fix: add an INLINE[n] or NOINLINE[n] pragma for ‘maybe’
+[45 of 99] Compiling Foundation.Collection.Mutable ( Foundation/Collection/Mutable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Mutable.o )
+[46 of 99] Compiling Foundation.Collection.Mappable ( Foundation/Collection/Mappable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Mappable.o )
+[47 of 99] Compiling Foundation.Collection.List ( Foundation/Collection/List.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/List.o )
+[48 of 99] Compiling Foundation.Collection.Keyed ( Foundation/Collection/Keyed.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Keyed.o )
+[49 of 99] Compiling Foundation.Collection.Element ( Foundation/Collection/Element.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Element.o )
+[50 of 99] Compiling Foundation.Collection.Foldable ( Foundation/Collection/Foldable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Foldable.o )
+[51 of 99] Compiling Foundation.Collection.Indexed ( Foundation/Collection/Indexed.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Indexed.o )
+[52 of 99] Compiling Foundation.Collection.InnerFunctor ( Foundation/Collection/InnerFunctor.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/InnerFunctor.o )
+[53 of 99] Compiling Foundation.Collection.Copy ( Foundation/Collection/Copy.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Copy.o )
+[54 of 99] Compiling Foundation.Collection.Collection ( Foundation/Collection/Collection.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Collection.o )
+[55 of 99] Compiling Foundation.Collection.Sequential ( Foundation/Collection/Sequential.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Sequential.o )
+[56 of 99] Compiling Foundation.Collection.Zippable ( Foundation/Collection/Zippable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Zippable.o )
+[57 of 99] Compiling Foundation.Collection.Buildable ( Foundation/Collection/Buildable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection/Buildable.o )
+[58 of 99] Compiling Foundation.Collection ( Foundation/Collection.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Collection.o )
+[59 of 99] Compiling Foundation.Conduit.Textual ( Foundation/Conduit/Textual.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Conduit/Textual.o )
+[60 of 99] Compiling Foundation.List.DList ( Foundation/List/DList.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/List/DList.o )
+[61 of 99] Compiling Foundation.Parser ( Foundation/Parser.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Parser.o )
+[62 of 99] Compiling Foundation.Timing ( Foundation/Timing.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Timing.o )
+[63 of 99] Compiling Foundation.Timing.Main ( Foundation/Timing/Main.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Timing/Main.o )
+[64 of 99] Compiling Foundation.Class.Storable ( Foundation/Class/Storable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Class/Storable.o )
+[65 of 99] Compiling Foundation.Random.ChaChaDRG ( Foundation/Random/ChaChaDRG.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Random/ChaChaDRG.o )
+[66 of 99] Compiling Foundation.Random ( Foundation/Random.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Random.o )
+[67 of 99] Compiling Foundation.Class.Bifunctor ( Foundation/Class/Bifunctor.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Class/Bifunctor.o )
+[68 of 99] Compiling Foundation.Bits  ( Foundation/Bits.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Bits.o )
+[69 of 99] Compiling Foundation.Random.XorShift ( Foundation/Random/XorShift.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Random/XorShift.o )
+[70 of 99] Compiling Foundation.Array.Internal ( Foundation/Array/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Array/Internal.o )
+[71 of 99] Compiling Foundation.Array.Chunked.Unboxed ( Foundation/Array/Chunked/Unboxed.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Array/Chunked/Unboxed.o )
+[72 of 99] Compiling Foundation.Array.Bitmap ( Foundation/Array/Bitmap.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Array/Bitmap.o )
+[73 of 99] Compiling Foundation.Array ( Foundation/Array.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Array.o )
+[74 of 99] Compiling Foundation.Hashing.Hasher ( Foundation/Hashing/Hasher.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Hashing/Hasher.o )
+[75 of 99] Compiling Foundation.Hashing.FNV ( Foundation/Hashing/FNV.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Hashing/FNV.o )
+[76 of 99] Compiling Foundation.Hashing.Hashable ( Foundation/Hashing/Hashable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Hashing/Hashable.o )
+[77 of 99] Compiling Foundation.Network.IPv4 ( Foundation/Network/IPv4.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Network/IPv4.o )
+[78 of 99] Compiling Foundation.Network.IPv6 ( Foundation/Network/IPv6.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Network/IPv6.o )
+[79 of 99] Compiling Foundation.UUID  ( Foundation/UUID.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/UUID.o )
+[80 of 99] Compiling Foundation.Hashing.SipHash ( Foundation/Hashing/SipHash.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Hashing/SipHash.o )
+[81 of 99] Compiling Foundation.Check.Gen ( Foundation/Check/Gen.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check/Gen.o )
+[82 of 99] Compiling Foundation.Check.Arbitrary ( Foundation/Check/Arbitrary.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check/Arbitrary.o )
+[83 of 99] Compiling Foundation.Check.Config ( Foundation/Check/Config.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check/Config.o )
+[84 of 99] Compiling Foundation.Check.Property ( Foundation/Check/Property.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check/Property.o )
+[85 of 99] Compiling Foundation.Check.Types ( Foundation/Check/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check/Types.o )
+[86 of 99] Compiling Foundation.Check.Print ( Foundation/Check/Print.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check/Print.o )
+[87 of 99] Compiling Foundation.Check ( Foundation/Check.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check.o )
+[88 of 99] Compiling Foundation.Check.Main ( Foundation/Check/Main.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Check/Main.o )
+[89 of 99] Compiling Foundation.Hashing ( Foundation/Hashing.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Hashing.o )
+[90 of 99] Compiling Foundation.VFS.FilePath ( Foundation/VFS/FilePath.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/VFS/FilePath.o )
+[91 of 99] Compiling Foundation.VFS   ( Foundation/VFS.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/VFS.o )
+[92 of 99] Compiling Foundation.Foreign.MemoryMap.Types ( Foundation/Foreign/MemoryMap/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Foreign/MemoryMap/Types.o )
+[93 of 99] Compiling Foundation.Foreign.MemoryMap.Posix ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Foreign/MemoryMap/Posix.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Foreign/MemoryMap/Posix.o )
+[94 of 99] Compiling Foundation.Foreign.MemoryMap ( Foundation/Foreign/MemoryMap.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Foreign/MemoryMap.o )
+[95 of 99] Compiling Foundation.IO.File ( Foundation/IO/File.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/IO/File.o )
+[96 of 99] Compiling Foundation.IO    ( Foundation/IO.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/IO.o )
+[97 of 99] Compiling Foundation.IO.FileMap ( Foundation/IO/FileMap.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/IO/FileMap.o )
+[98 of 99] Compiling Foundation       ( Foundation.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation.o )
+[99 of 99] Compiling Foundation.Conduit ( Foundation/Conduit.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Foundation/Conduit.o )
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib: file: .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/objs-36485/libHSfoundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf.a(foundation_time.o) has no symbols
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib: file: .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/objs-36485/libHSfoundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf.a(foundation_utf8.o) has no symbols
+Running Haddock for foundation-0.0.17...
+Preprocessing library foundation-0.0.17...
+Haddock coverage:
+ 100% (  7 /  7) in 'Foundation.VFS.Path'
+  29% (  2 /  7) in 'Foundation.VFS.URI'
+  Missing documentation for:
+    URISchema (Foundation/VFS/URI.hs:27)
+    URIAuthority (Foundation/VFS/URI.hs:28)
+    URIQuery (Foundation/VFS/URI.hs:29)
+    URIFragment (Foundation/VFS/URI.hs:30)
+    URIPath (Foundation/VFS/URI.hs:31)
+  50% (  1 /  2) in 'Foundation.System.Entropy.Common'
+  Missing documentation for:
+    EntropySystemMissing (Foundation/System/Entropy/Common.hs:17)
+   5% (  1 / 19) in 'Foundation.System.Bindings.Time'
+  Missing documentation for:
+    CClockId (Foundation/System/Bindings/Time.hsc:16)
+    CTimeSpec (Foundation/System/Bindings/Time.hsc:17)
+    CTimeVal (Foundation/System/Bindings/Time.hsc:18)
+    CTimeZone (Foundation/System/Bindings/Time.hsc:19)
+    size_CTimeSpec (Foundation/System/Bindings/Time.hsc:21)
+    ofs_CTimeSpec_Seconds (Foundation/System/Bindings/Time.hsc:24)
+    ofs_CTimeSpec_NanoSeconds (Foundation/System/Bindings/Time.hsc:27)
+    size_CTimeVal (Foundation/System/Bindings/Time.hsc:30)
+    size_CTimeZone (Foundation/System/Bindings/Time.hsc:33)
+    size_CTimeT (Foundation/System/Bindings/Time.hsc:36)
+    sysTime_CLOCK_REALTIME (Foundation/System/Bindings/Time.hsc:50)
+    sysTime_CLOCK_MONOTONIC (Foundation/System/Bindings/Time.hsc:57)
+    sysTime_CLOCK_PROCESS_CPUTIME_ID (Foundation/System/Bindings/Time.hsc:64)
+    sysTime_CLOCK_THREAD_CPUTIME_ID (Foundation/System/Bindings/Time.hsc:71)
+    sysTime_CLOCK_MONOTONIC_RAW (Foundation/System/Bindings/Time.hsc:79)
+    sysTimeClockGetRes (Foundation/System/Bindings/Time.hsc:119)
+    sysTimeClockGetTime (Foundation/System/Bindings/Time.hsc:121)
+    sysTimeGetTimeOfDay (Foundation/System/Bindings/Time.hsc:125)
+   0% (  0 / 11) in 'Foundation.System.Bindings.PosixDef'
+  Missing documentation for:
+    Module header
+    CErrno (Foundation/System/Bindings/PosixDef.hsc:18)
+    CFd (Foundation/System/Bindings/PosixDef.hsc:19)
+    CMemProtFlags (Foundation/System/Bindings/PosixDef.hsc:20)
+    CMemMappingFlags (Foundation/System/Bindings/PosixDef.hsc:21)
+    CMemAdvice (Foundation/System/Bindings/PosixDef.hsc:22)
+    CMemSyncFlags (Foundation/System/Bindings/PosixDef.hsc:23)
+    CSysconfName (Foundation/System/Bindings/PosixDef.hsc:24)
+    COpenFlags (Foundation/System/Bindings/PosixDef.hsc:25)
+    COff
+    CMode
+   1% (  1 /134) in 'Foundation.System.Bindings.Posix'
+  Missing documentation for:
+    CDir (Foundation/System/Bindings/Posix.hsc:30)
+    CDirent (Foundation/System/Bindings/Posix.hsc:31)
+    sysPosix_E2BIG (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EACCES (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EADDRINUSE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EADDRNOTAVAIL (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EAFNOSUPPORT (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EAGAIN (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EALREADY (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EBADF (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EBUSY (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ECANCELED (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ECHILD (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ECONNABORTED (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ECONNREFUSED (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ECONNRESET (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EDEADLK (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EDESTADDRREQ (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EDOM (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EDQUOT (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EEXIST (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EFAULT (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EFBIG (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EHOSTUNREACH (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EIDRM (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EILSEQ (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EINPROGRESS (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EINTR (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EINVAL (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EIO (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EISCONN (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EISDIR (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ELOOP (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EMFILE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EMLINK (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EMSGSIZE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENAMETOOLONG (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENETDOWN (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENETRESET (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENETUNREACH (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENFILE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOBUFS (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENODEV (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOENT (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOEXEC (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOLCK (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOMEM (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOMSG (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOPROTOOPT (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOSPC (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOSYS (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOTCONN (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOTDIR (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOTEMPTY (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOTSOCK (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOTSUP (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENOTTY (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENXIO (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EOPNOTSUPP (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EOVERFLOW (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EPERM (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EPIPE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EPROTONOSUPPORT (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EPROTOTYPE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ERANGE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EROFS (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ESPIPE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ESRCH (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ESTALE (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ETIMEDOUT (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ETXTBSY (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EWOULDBLOCK (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_EXDEV (Foundation/System/Bindings/Posix.hsc:33)
+    sysPosix_ENODATA (Foundation/System/Bindings/Posix.hsc:177)
+    sysPosix_ENOSR (Foundation/System/Bindings/Posix.hsc:182)
+    sysPosix_ENOSTR (Foundation/System/Bindings/Posix.hsc:187)
+    sysPosix_ETIME (Foundation/System/Bindings/Posix.hsc:192)
+    sysPosix_EBADMSG (Foundation/System/Bindings/Posix.hsc:197)
+    sysPosix_EMULTIHOP (Foundation/System/Bindings/Posix.hsc:202)
+    sysPosix_ENOLINK (Foundation/System/Bindings/Posix.hsc:207)
+    sysPosix_ENOTRECOVERABLE (Foundation/System/Bindings/Posix.hsc:212)
+    sysPosix_EOWNERDEAD (Foundation/System/Bindings/Posix.hsc:217)
+    sysPosix_EPROTO (Foundation/System/Bindings/Posix.hsc:222)
+    sysPosix_O_RDONLY (Foundation/System/Bindings/Posix.hsc:226)
+    sysPosix_O_WRONLY (Foundation/System/Bindings/Posix.hsc:226)
+    sysPosix_O_RDWR (Foundation/System/Bindings/Posix.hsc:226)
+    sysPosix_O_NONBLOCK (Foundation/System/Bindings/Posix.hsc:226)
+    sysPosix_O_APPEND (Foundation/System/Bindings/Posix.hsc:226)
+    sysPosix_O_CREAT (Foundation/System/Bindings/Posix.hsc:226)
+    sysPosix_O_TRUNC (Foundation/Sys
+Foundation/Time/StopWatch.hs:111:1: warning: [-Wunused-top-binds]
+    Defined but not used: ‘secondInNano’
+tem/Bindings/Posix.hsc:226)
+    sysPosix_O_EXCL (Foundation/System/Bindings/Posix.hsc:226)
+    sysPosix_O_NOFOLLOW (Foundation/System/Bindings/Posix.hsc:244)
+    sysPosix_O_CLOEXEC (Foundation/System/Bindings/Posix.hsc:249)
+    sysPosix_PROT_NONE (Foundation/System/Bindings/Posix.hsc:253)
+    sysPosix_PROT_READ (Foundation/System/Bindings/Posix.hsc:253)
+    sysPosix_PROT_WRITE (Foundation/System/Bindings/Posix.hsc:253)
+    sysPosix_PROT_EXEC (Foundation/System/Bindings/Posix.hsc:253)
+    sysPosix_MAP_SHARED (Foundation/System/Bindings/Posix.hsc:262)
+    sysPosix_MAP_PRIVATE (Foundation/System/Bindings/Posix.hsc:262)
+    sysPosix_MAP_FIXED (Foundation/System/Bindings/Posix.hsc:262)
+    sysPosix_MAP_ANONYMOUS (Foundation/System/Bindings/Posix.hsc:262)
+    sysPosix_MADV_NORMAL (Foundation/System/Bindings/Posix.hsc:275)
+    sysPosix_MADV_RANDOM (Foundation/System/Bindings/Posix.hsc:275)
+    sysPosix_MADV_SEQUENTIAL (Foundation/System/Bindings/Posix.hsc:275)
+    sysPosix_MADV_WILLNEED (Foundation/System/Bindings/Posix.hsc:275)
+    sysPosix_MADV_DONTNEED (Foundation/System/Bindings/Posix.hsc:275)
+    sysPosix_MS_ASYNC (Foundation/System/Bindings/Posix.hsc:294)
+    sysPosix_MS_SYNC (Foundation/System/Bindings/Posix.hsc:294)
+    sysPosix_MS_INVALIDATE (Foundation/System/Bindings/Posix.hsc:294)
+    sysPosixMmap (Foundation/System/Bindings/Posix.hsc:301)
+    sysPosixMunmap (Foundation/System/Bindings/Posix.hsc:304)
+    sysPosixMadvise (Foundation/System/Bindings/Posix.hsc:308)
+    sysPosixMsync (Foundation/System/Bindings/Posix.hsc:315)
+    sysPosixMprotect (Foundation/System/Bindings/Posix.hsc:318)
+    sysPosixMlock (Foundation/System/Bindings/Posix.hsc:322)
+    sysPosixMunlock (Foundation/System/Bindings/Posix.hsc:330)
+    sysPosix_SC_PAGESIZE (Foundation/System/Bindings/Posix.hsc:337)
+    sysPosixSysconf (Foundation/System/Bindings/Posix.hsc:340)
+    sysPosixOpen (Foundation/System/Bindings/Posix.hsc:345)
+    sysPosixOpenAt (Foundation/System/Bindings/Posix.hsc:347)
+    sysPosixClose (Foundation/System/Bindings/Posix.hsc:349)
+    sysPosixFnctlNoArg (Foundation/System/Bindings/Posix.hsc:352)
+    sysPosixFnctlPtr (Foundation/System/Bindings/Posix.hsc:354)
+    sysPosixFtruncate (Foundation/System/Bindings/Posix.hsc:357)
+    sysPosixOpendir (Foundation/System/Bindings/Posix.hsc:364)
+    sysPosixFdopendir (Foundation/System/Bindings/Posix.hsc:366)
+    sysPosixReaddir (Foundation/System/Bindings/Posix.hsc:368)
+    sysPosixReaddirR (Foundation/System/Bindings/Posix.hsc:370)
+    sysPosixTelldir (Foundation/System/Bindings/Posix.hsc:372)
+    sysPosixSeekdir (Foundation/System/Bindings/Posix.hsc:374)
+    sysPosixRewinddir (Foundation/System/Bindings/Posix.hsc:376)
+    sysPosixClosedir (Foundation/System/Bindings/Posix.hsc:378)
+    sysPosixDirfd (Foundation/System/Bindings/Posix.hsc:380)
+  29% (  2 /  7) in 'Foundation.System.Bindings.Network'
+  Missing documentation for:
+    getHErrno (Foundation/System/Bindings/Network.hsc:45)
+    herr_HostNotFound (Foundation/System/Bindings/Network.hsc:28)
+    herr_NoData (Foundation/System/Bindings/Network.hsc:28)
+    herr_NoRecovery (Foundation/System/Bindings/Network.hsc:28)
+    herr_TryAgain (Foundation/System/Bindings/Network.hsc:28)
+   0% (  0 / 11) in 'Foundation.System.Bindings.Macos'
+  Missing documentation for:
+    Module header
+    sysMacos_O_SHLOCK (Foundation/System/Bindings/Macos.hsc:17)
+    sysMacos_O_EXLOCK (Foundation/System/Bindings/Macos.hsc:17)
+    sysMacos_O_SYMLINK (Foundation/System/Bindings/Macos.hsc:17)
+    sysMacos_O_EVTONLY (Foundation/System/Bindings/Macos.hsc:17)
+    MachTimebaseInfo (Foundation/System/Bindings/Macos.hsc:26)
+    size_MachTimebaseInfo (Foundation/System/Bindings/Macos.hsc:28)
+    ofs_MachTimebaseInfo_numer (Foundation/System/Bindings/Macos.hsc:31)
+    ofs_MachTimebaseInfo_denom (Foundation/System/Bindings/Macos.hsc:34)
+    sysMacos_absolute_time (Foundation/System/Bindings/Macos.hsc:37)
+    sysMacos_timebase_info (Foundation/System/Bindings/Macos.hsc:39)
+   0% (  0 /  2) in 'Foundation.System.Bindings.Hs'
+  Missing documentation for:
+    Module header
+    sysHsCoreGetErrno (Foundation/System/Bindings/Hs.hs:10)
+Warning: Foundation.System.Bindings: Could not find documentation for exported module: X
+   0% (  0 /  1) in 'Foundation.System.Bindings'
+  Missing documentation for:
+    Module header
+  71% (  5 /  7) in 'Foundation.String.Read'
+  Missing documentation for:
+    Module header
+    readInteger
+  20% (  1 /  5) in 'Foundation.String.Builder'
+  Missing documentation for:
+    Builder (Foundation/String/Builder.hs:24)
+    emit (Foundation/String/Builder.hs:39)
+    emitChar (Foundation/String/Builder.hs:42)
+    toString (Foundation/String/Builder.hs:45)
+  94% ( 17 / 18) in 'Foundation.String'
+  Missing documentation for:
+    indices
+  86% ( 12 / 14) in 'Foundation.System.Info'
+  Missing documentation for:
+    OS (Foundation/System/Info.hs:36)
+    Endianness
+  14% (  1 /  7) in 'Foundation.Strict'
+  Missing documentation for:
+    strict1 (Foundation/Strict.hs:20)
+    strict2 (Foundation/Strict.hs:23)
+    strict3 (Foundation/Strict.hs:26)
+    strict4 (Foundation/Strict.hs:29)
+    strict5 (Foundation/Strict.hs:32)
+    strict6 (Foundation/Strict.hs:35)
+  93% ( 25 / 27) in 'Foundation.Primitive'
+  Missing documentation for:
+    force
+    deepseq
+ 100% (  7 /  7) in 'Foundation.Tuple'
+ 100% (  2 /  2) in 'Foundation.Tuple.Nth'
+  80% (  8 / 10) in 'Foundation.Partial'
+  Missing documentation for:
+    fromLeft (Foundation/Partial.hs:76)
+    fromRight (Foundation/Partial.hs:69)
+  50% (  1 /  2) in 'Foundation.Numerical.Floating'
+  Missing documentation for:
+    Module header
+  85% ( 11 / 13) in 'Foundation.Numerical'
+  Missing documentation for:
+    recip
+    IntegralRounding (Foundation/Numerical.hs:81)
+  33% (  2 /  6) in 'Foundation.System.Entropy.Unix'
+  Missing documentation for:
+    EntropyCtx (Foundation/System/Entropy/Unix.hs:29)
+    entropyOpen (Foundation/System/Entropy/Unix.hs:33)
+    entropyClose (Foundation/System/Entropy/Unix.hs:49)
+    entropyMaximumSize (Foundation/System/Entropy/Unix.hs:53)
+ 100% (  2 /  2) in 'Foundation.System.Entropy'
+  50% (  1 /  2) in 'Foundation.Random.Class'
+  Missing documentation for:
+    Module header
+  75% (  3 /  4) in 'Foundation.Random.DRG'
+  Missing documentation for:
+    Module header
+ 100% (  3 /  3) in 'Foundation.Time.Types'
+  75% (  3 /  4) in 'Foundation.Time.StopWatch'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Foundation.Monad.Transformer'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Foundation.Monad.MonadIO'
+  Missing documentation for:
+    Module header
+  75% (  3 /  4) in 'Foundation.Monad.Exception'
+  Missing documentation for:
+    Module header
+  67% (  2 /  3) in 'Foundation.Monad.Identity'
+  Missing documentation for:
+    runIdentityT (Foundation/Monad/Identity.hs:18)
+  90% (  9 / 10) in 'Foundation.Monad.Base'
+  Missing documentation for:
+    Module header
+  67% (  4 /  6) in 'Foundation.Monad.Reader'
+  Missing documentation for:
+    MonadReader (Foundation/Monad/Reader.hs:18)
+    runReaderT (Foundation/Monad/Reader.hs:23)
+   0% (  0 /  2) in 'Foundation.Monad.Except'
+  Missing documentation for:
+    Module header
+    ExceptT (Foundation/Monad/Except.hs:10)
+  38% (  3 /  8) in 'Foundation.Monad.State'
+  Missing documentation for:
+    Module header
+    MonadState (Foundation/Monad/State.hs:18)
+    get (Foundation/Monad/State.hs:22)
+    put (Foundation/Monad/State.hs:25)
+    runStateT (Foundation/Monad/State.hs:29)
+  89% (  8 /  9) in 'Foundation.Monad'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Foundation.Math.Trigonometry'
+  Missing documentation for:
+    Module header
+Warning: Foundation.List.ListN: Could not find documentation for exported module: X
+ 100% (  1 /  1) in 'Foundation.List.ListN'
+ 100% (  8 /  8) in 'Foundation.IO.Terminal'
+   0% (  0 /  2) in 'Foundation.Foreign.Alloc'
+  Missing documentation for:
+    Module header
+    allocaBytes (Foundation/Foreign/Alloc.hs:10)
+   0% (  0 /  3) in 'Foundation.Time.Bindings'
+  Missing documentation for:
+    Module header
+    measuringNanoSeconds (Foundation/Time/Bindings.hs:15)
+    getMonotonicTime (Foundation/Time/Bindings.hs:24)
+  60% (  3 /  5) in 'Foundation.Foreign'
+  Missing documentation for:
+    foreignMem
+    mutableForeignMem
+  25% (  1 /  4) in 'Foundation.Exception'
+  Missing documentation for:
+    Module header
+    finally (Foundation/Exception.hs:11)
+    try (Foundation/Exception.hs:14)
+  59% ( 10 / 17) in 'Foundation.Conduit.Internal'
+  Missing documentation for:
+    Module header
+    ZipSink (Foundation/Conduit/Internal.hs:259)
+    ResourceT (Foundation/Conduit/Internal.hs:305)
+    MonadResource (Foundation/Conduit/Internal.hs:392)
+    runResourceT (Foundation/Conduit/Internal.hs:346)
+    awaitForever (Foundation/Conduit/Internal.hs:149)
+    bracketConduit (Foundation/Conduit/Internal.hs:182)
+ 100% (  2 /  2) in 'Foundation.Collection.Mutable'
+ 100% (  7 /  7) in 'Foundation.Collection.Mappable'
+  25% (  2 /  8) in 'Foundation.Collection.List'
+  Missing documentation for:
+    revTake (Foundation/Collection/List.hs:34)
+    revDrop (Foundation/Collection/List.hs:39)
+    revSplitAt (Foundation/Collection/List.hs:44)
+    breakEnd (Foundation/Collection/List.hs:49)
+    uncons (Foundation/Collection/List.hs:54)
+    unsnoc (Foundation/Collection/List.hs:58)
+ 100% (  2 /  2) in 'Foundation.Collection.Keyed'
+ 100% (  2 /  2) in 'Foundation.Collection.Element'
+ 100% (  3 /  3) in 'Foundation.Collection.Foldable'
+ 100% (  2 /  2) in 'Foundation.Collection.Indexed'
+  50% (  1 /  2) in 'Foundation.Collection.InnerFunctor'
+  Missing documentation for:
+    Module header
+   0% (  0 /  2) in 'Foundation.Collection.Copy'
+  Missing documentation for:
+    Module header
+    Copy (Foundation/Collection/Copy.hs:12)
+  80% (  8 / 10) in 'Foundation.Collection.Collection'
+  Missing documentation for:
+    getNonEmpty
+    nonEmptyFmap (Foundation/Collection/Collection.hs:63)
+ 100% (  2 /  2) in 'Foundation.Collection.Sequential'
+  33% (  1 /  3) in 'Foundation.Collection.Zippable'
+  Missing documentation for:
+    BoxedZippable (Foundation/Collection/Zippable.hs:104)
+    Zippable (Foundation/Collection/Zippable.hs:30)
+  50% (  3 /  6) in 'Foundation.Collection.Buildable'
+  Missing documentation for:
+    Builder
+    builderLift (Foundation/Collection/Buildable.hs:60)
+    build_ (Foundation/Collection/Buildable.hs:67)
+  76% ( 22 / 29) in 'Foundation.Collection'
+  Missing documentation for:
+    BoxedZippable (Foundation/Collection/Zippable.hs:104)
+    getNonEmpty
+    nonEmptyFmap (Foundation/Collection/Collection.hs:63)
+    Zippable (Foundation/Collection/Zippable.hs:30)
+    build_ (Foundation/Collection/Buildable.hs:67)
+    Builder
+    Copy (Foundation/Collection/Copy.hs:12)
+  20% (  1 /  5) in 'Foundation.Conduit.Textual'
+  Missing documentation for:
+    Module header
+    words (Foundation/Conduit/Textual.hs:45)
+    fromBytes (Foundation/Conduit/Textual.hs:61)
+    toBytes (Foundation/Conduit/Textual.hs:75)
+  50% (  1 /  2) in 'Foundation.List.DList'
+  Missing documentation for:
+    DList (Foundation/List/DList.hs:19)
+  68% ( 21 / 31) in 'Foundation.Parser'
+  Missing documentation for:
+    ParserSource (Foundation/Parser.hs:122)
+    element (Foundation/Parser.hs:304)
+    elements (Foundation/Parser.hs:317)
+    string (Foundation/Parser.hs:457)
+    take (Foundation/Parser.hs:367)
+    takeWhile (Foundation/Parser.hs:383)
+    skip (Foundation/Parser.hs:419)
+    skipWhile (Foundation/Parser.hs:428)
+    Condition (Foundation/Parser.hs:461)
+    And (Foundation/Parser.hs:463)
+  60% (  3 /  5) in 'Foundation.Timing'
+  Missing documentation for:
+    Timing (Foundation/Timing.hs:31)
+    Measure (Foundation/Timing.hs:36)
+  50% (  1 /  2) in 'Foundation.Timing.Main'
+  Missing documentation for:
+    defaultMain (Foundation/Timing/Main.hs:47)
+  67% ( 10 / 15) in 'Foundation.Class.Storable'
+  Missing documentation for:
+    plusPtr (Foundation/Class/Storable.hs:63)
+    peekArray (Foundation/Class/Storable.hs:76)
+    peekArrayEndedBy (Foundation/Class/Storable.hs:87)
+    pokeArray (Foundation/Class/Storable.hs:97)
+    pokeArrayEndedBy (Foundation/Class/Storable.hs:106)
+  33% (  1 /  3) in 'Foundation.Random.ChaChaDRG'
+  Missing documentation for:
+    Module header
+    keySize (Foundation/Random/ChaChaDRG.hs:34)
+  86% (  6 /  7) in 'Foundation.Random'
+  Missing documentation for:
+    RNGv1 (Foundation/Random.hs:40)
+ 100% (  2 /  2) in 'Foundation.Class.Bifunctor'
+  83% (  5 /  6) in 'Foundation.Bits'
+  Missing documentation for:
+    Module header
+  33% (  2 /  6) in 'Foundation.Random.XorShift'
+  Missing documentation for:
+    initialize (Foundation/Random/XorShift.hs:50)
+    next (Foundation/Random/XorShift.hs:60)
+    nextList (Foundation/Random/XorShift.hs:67)
+    nextDouble (Foundation/Random/XorShift.hs:80)
+  73% (  8 / 11) in 'Foundation.Array.Internal'
+  Missing documentation for:
+    fromForeignPtr
+    withPtr
+    toHexadecimal
+  50% (  1 /  2) in 'Foundation.Array.Chunked.Unboxed'
+  Missing documentation for:
+    ChunkedUArray (Foundation/Array/Chunked/Unboxed.hs:38)
+  29% (  4 / 14) in 'Foundation.Array.Bitmap'
+  Missing documentation for:
+    Bitmap (Foundation/Array/Bitmap.hs:48)
+    MutableBitmap (Foundation/Array/Bitmap.hs:50)
+    empty (Foundation/Array/Bitmap.hs:263)
+    concat (Foundation/Array/Bitmap.hs:340)
+    read (Foundation/Array/Bitmap.hs:226)
+    unsafeRead (Foundation/Array/Bitmap.hs:212)
+    write (Foundation/Array/Bitmap.hs:218)
+    unsafeWrite (Foundation/Array/Bitmap.hs:204)
+    snoc (Foundation/Array/Bitmap.hs:394)
+    cons (Foundation/Array/Bitmap.hs:391)
+  70% (  7 / 10) in 'Foundation.Array'
+  Missing documentation for:
+    ChunkedUArray (Foundation/Array/Chunked/Unboxed.hs:38)
+    Bitmap (Foundation/Array/Bitmap.hs:48)
+    MutableBitmap (Foundation/Array/Bitmap.hs:50)
+  50% (  1 /  2) in 'Foundation.Hashing.Hasher'
+  Missing documentation for:
+    Module header
+ 100% (  8 /  8) in 'Foundation.Hashing.FNV'
+ 100% (  2 /  2) in 'Foundation.Hashing.Hashable'
+  56% (  5 /  9) in 'Foundation.Network.IPv4'
+  Missing documentation for:
+    fromString
+    toString (Foundation/Network/IPv4.hs:59)
+    fromTuple (Foundation/Network/IPv4.hs:70)
+    toTuple (Foundation/Network/IPv4.hs:84)
+  92% ( 12 / 13) in 'Foundation.Network.IPv6'
+  Missing documentation for:
+    fromString
+   0% (  0 /  6) in 'Foundation.UUID'
+  Missing documentation for:
+    Module header
+    UUID (Foundation/UUID.hs:29)
+    newUUID (Foundation/UUID.hs:74)
+    nil (Foundation/UUID.hs:71)
+    fromBinary (Foundation/UUID.hs:79)
+    uuidParser (Foundation/UUID.hs:106)
+ 100% (  5 /  5) in 'Foundation.Hashing.SipHash'
+  12% (  1 /  8) in 'Foundation.Check.Gen'
+  Missing documentation for:
+    Module header
+    runGen (Foundation/Check/Gen.hs:49)
+    GenParams (Foundation/Check/Gen.hs:24)
+    GenRng (Foundation/Check/Gen.hs:30)
+    genRng (Foundation/Check/Gen.hs:34)
+    genWithRng (Foundation/Check/Gen.hs:69)
+    genWithParams (Foundation/Check/Gen.hs:73)
+  33% (  2 /  6) in 'Foundation.Check.Arbitrary'
+  Missing documentation for:
+    Module header
+    oneof (Foundation/Check/Arbitrary.hs:180)
+    elements (Foundation/Check/Arbitrary.hs:183)
+    between (Foundation/Check/Arbitrary.hs:186)
+  14% (  1 /  7) in 'Foundation.Check.Config'
+  Missing documentation for:
+    Module header
+    Config (Foundation/Check/Config.hs:24)
+    Seed (Foundation/Check/Config.hs:16)
+    DisplayOption (Foundation/Check/Config.hs:18)
+    parseArgs (Foundation/Check/Config.hs:72)
+    configHelp (Foundation/Check/Config.hs:84)
+  50% (  7 / 14) in 'Foundation.Check.Property'
+  Missing documentation for:
+    Module header
+    Property (Foundation/Check/Property.hs:51)
+    IsProperty (Foundation/Check/Property.hs:53)
+    property (Foundation/Check/Property.hs:54)
+    checkHasSucceed (Foundation/Check/Property.hs:37)
+    checkHasFailed (Foundation/Check/Property.hs:44)
+    propertyFail (Foundation/Check/Property.hs:105)
+  50% (  5 / 10) in 'Foundation.Check.Types'
+  Missing documentation for:
+    fqTestName (Foundation/Check/Types.hs:80)
+    groupHasSubGroup (Foundation/Check/Types.hs:83)
+    Check (Foundation/Check/Types.hs:56)
+    PlanState (Foundation/Check/Types.hs:49)
+    HasFailures (Foundation/Check/Types.hs:47)
+  25% (  1 /  4) in 'Foundation.Check.Print'
+  Missing documentation for:
+    Module header
+    propertyToResult (Foundation/Check/Print.hs:20)
+    diffBlame (Foundation/Check/Print.hs:72)
+  57% ( 13 / 23) in 'Foundation.Check'
+  Missing documentation for:
+    oneof (Foundation/Check/Arbitrary.hs:180)
+    elements (Foundation/Check/Arbitrary.hs:183)
+    between (Foundation/Check/Arbitrary.hs:186)
+    Property (Foundation/Check/Property.hs:51)
+    IsProperty (Foundation/Check/Property.hs:53)
+    propertyFail (Foundation/Check/Property.hs:105)
+    Check (Foundation/Check/Types.hs:56)
+    validate (Foundation/Check.hs:52)
+    pick (Foundation/Check.hs:64)
+    iterateProperty (Foundation/Check.hs:70)
+ 100% (  2 /  2) in 'Foundation.Check.Main'
+ 100% ( 10 / 10) in 'Foundation.Hashing'
+  82% (  9 / 11) in 'Foundation.VFS.FilePath'
+  Missing documentation for:
+    filePathToString (Foundation/VFS/FilePath.hs:207)
+    extension (Foundation/VFS/FilePath.hs:254)
+  92% ( 11 / 12) in 'Foundation.VFS'
+  Missing documentation for:
+    filePathToString (Foundation/VFS/FilePath.hs:207)
+  75% (  3 /  4) in 'Foundation.Foreign.MemoryMap.Types'
+  Missing documentation for:
+    FileMapReadF (Foundation/Foreign/MemoryMap/Types.hs:34)
+  94% ( 16 / 17) in 'Foundation.Foreign.MemoryMap.Posix'
+  Missing documentation for:
+    fileMapRead (Foundation/Foreign/MemoryMap/Posix.hsc:246)
+  50% (  2 /  4) in 'Foundation.Foreign.MemoryMap'
+  Missing documentation for:
+    Module header
+    fileMapRead (Foundation/Foreign/MemoryMap/Posix.hsc:246)
+  91% ( 10 / 11) in 'Foundation.IO.File'
+  Missing documentation for:
+    hPut (Foundation/IO/File.hs:83)
+  93% ( 13 / 14) in 'Foundation.IO'
+  Missing documentation for:
+    hPut (Foundation/IO/File.hs:83)
+ 100% (  3 /  3) in 'Foundation.IO.FileMap'
+  96% (143 /149) in 'Foundation'
+  Missing documentation for:
+    deepseq
+    force
+    Ordering
+    Bool
+    toCount (Foundation.hs:205)
+    fromCount (Foundation.hs:202)
+  52% ( 11 / 21) in 'Foundation.Conduit'
+  Missing documentation for:
+    Module header
+    ResourceT (Foundation/Conduit/Internal.hs:305)
+    ZipSink (Foundation/Conduit/Internal.hs:259)
+    awaitForever (Foundation/Conduit/Internal.hs:149)
+    sourceFile (Foundation/Conduit.hs:41)
+    sourceHandle (Foundation/Conduit.hs:47)
+    sinkFile (Foundation/Conduit.hs:67)
+    sinkHandle (Foundation/Conduit.hs:73)
+    sinkList (Foundation/Conduit.hs:83)
+    bracketConduit (Foundation/Conduit/Internal.hs:182)
+Warning: Foundation.String.Read: could not find link destinations for:
+    ReadFloatingCallback
+Warning: Foundation.String: could not find link destinations for:
+    ~
+Warning: Foundation.Primitive: could not find link destinations for:
+    byteSwap ~
+Warning: Foundation.Monad: could not find link destinations for:
+    unsafeIndex unsafeRangeSize
+Warning: Foundation.Collection: could not find link destinations for:
+    ~
+Warning: Foundation.List.DList: could not find link destinations for:
+    ~
+Warning: Foundation.Parser: could not find link destinations for:
+    ~
+Warning: Foundation.Timing.Main: could not find link destinations for:
+    TimingPlan
+Warning: Foundation.Class.Storable: could not find link destinations for:
+    D:R:URecPtrp0 UAddr uAddr#
+Warning: Foundation.Random: could not find link destinations for:
+    State
+Warning: Foundation.Array.Internal: could not find link destinations for:
+    UArrayBackend ~
+Warning: Foundation.Array: could not find link destinations for:
+    ~ RandomAccess read write
+Warning: Foundation.Network.IPv4: could not find link destinations for:
+    ~
+Warning: Foundation.Network.IPv6: could not find link destinations for:
+    ~
+Warning: Foundation.UUID: could not find link destinations for:
+    ~
+Warning: Foundation.Check: could not find link destinations for:
+    PropertyTestArg TestResult GenParams GenRng PropertyResult
+Warning: Foundation.Hashing: could not find link destinations for:
+    hashNew hashNewParam hashMix8 hashEnd HashInitParam HashResult hashMix16 hashMix32 hashMix64 hashMixBytes
+Warning: Foundation.IO: could not find link destinations for:
+    unsafeIndex unsafeRangeSize
+Warning: Foundation: could not find link destinations for:
+    FD HandleType UTF32_Invalid UTF16_Invalid ISO_8859_1_Invalid ASCII7_Invalid Array STArray ~ Id P StateL StateR SingI sing Sing SingKind fromSing DemoteRep D:R:SingMaybeb0 SNothing SJust EqMaybe unsafeIndex unsafeRangeSize EqOrdering D:R:SingBoola0 STrue SFalse EqBool D:R:URecCharp0 UChar uChar# spr UPrintf hspr EqEither byteSwap D:R:URecWordp0 UWord uWord# D:R:URecIntp0 UInt uInt# D:R:URecFloatp0 UFloat uFloat# D:R:URecDoublep0 UDouble uDouble# Max Min
+Warning: Foundation.Conduit: could not find link destinations for:
+    ~ MonadResource
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/foundation/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf
+Registering foundation-0.0.17...

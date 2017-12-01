@@ -1,0 +1,59 @@
+Configuring psqueues-0.2.4.0...
+Building psqueues-0.2.4.0...
+Preprocessing library psqueues-0.2.4.0...
+[1 of 7] Compiling Data.OrdPSQ.Internal ( src/Data/OrdPSQ/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/OrdPSQ/Internal.o )
+[2 of 7] Compiling Data.OrdPSQ      ( src/Data/OrdPSQ.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/OrdPSQ.o )
+[3 of 7] Compiling Data.BitUtil     ( src/Data/BitUtil.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/BitUtil.o )
+[4 of 7] Compiling Data.IntPSQ.Internal ( src/Data/IntPSQ/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IntPSQ/Internal.o )
+[5 of 7] Compiling Data.HashPSQ.Internal ( src/Data/HashPSQ/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/HashPSQ/Internal.o )
+[6 of 7] Compiling Data.HashPSQ     ( src/Data/HashPSQ.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/HashPSQ.o )
+[7 of 7] Compiling Data.IntPSQ      ( src/Data/IntPSQ.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/IntPSQ.o )
+Running Haddock for psqueues-0.2.4.0...
+Preprocessing library psqueues-0.2.4.0...
+Haddock coverage:
+  72% ( 38 / 53) in 'Data.OrdPSQ.Internal'
+  Missing documentation for:
+    Module header
+    LTree (src/Data/OrdPSQ/Internal.hs:113)
+    TourView (src/Data/OrdPSQ/Internal.hs:443)
+    tourView (src/Data/OrdPSQ/Internal.hs:448)
+    left (src/Data/OrdPSQ/Internal.hs:488)
+    right (src/Data/OrdPSQ/Internal.hs:488)
+    maxKey (src/Data/OrdPSQ/Internal.hs:498)
+    lsingleLeft (src/Data/OrdPSQ/Internal.hs:549)
+    rsingleLeft (src/Data/OrdPSQ/Internal.hs:561)
+    lsingleRight (src/Data/OrdPSQ/Internal.hs:568)
+    rsingleRight (src/Data/OrdPSQ/Internal.hs:575)
+    ldoubleLeft (src/Data/OrdPSQ/Internal.hs:587)
+    rdoubleLeft (src/Data/OrdPSQ/Internal.hs:605)
+    ldoubleRight (src/Data/OrdPSQ/Internal.hs:596)
+    rdoubleRight (src/Data/OrdPSQ/Internal.hs:614)
+ 100% ( 35 / 35) in 'Data.OrdPSQ'
+ 100% (  2 /  2) in 'Data.BitUtil'
+  81% ( 39 / 48) in 'Data.IntPSQ.Internal'
+  Missing documentation for:
+    Module header
+    Nat (src/Data/IntPSQ/Internal.hs:95)
+    Key (src/Data/IntPSQ/Internal.hs:97)
+    unsafeInsertIncreasePriorityView (src/Data/IntPSQ/Internal.hs:546)
+    unsafeInsertWithIncreasePriorityView (src/Data/IntPSQ/Internal.hs:583)
+    hasBadNils (src/Data/IntPSQ/Internal.hs:675)
+    hasDuplicateKeys (src/Data/IntPSQ/Internal.hs:682)
+    hasMinHeapProperty (src/Data/IntPSQ/Internal.hs:693)
+    validMask (src/Data/IntPSQ/Internal.hs:707)
+  88% ( 35 / 40) in 'Data.HashPSQ.Internal'
+  Missing documentation for:
+    Module header
+    Bucket (src/Data/HashPSQ/Internal.hs:73)
+    unsafeLookupIncreasePriority (src/Data/HashPSQ/Internal.hs:428)
+    unsafeInsertIncreasePriority (src/Data/HashPSQ/Internal.hs:449)
+    unsafeInsertIncreasePriorityView (src/Data/HashPSQ/Internal.hs:464)
+ 100% ( 34 / 34) in 'Data.HashPSQ'
+ 100% ( 34 / 34) in 'Data.IntPSQ'
+Warning: Data.IntPSQ: could not find link destinations for:
+    Key
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/psqueues/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/psqueues-0.2.4.0-CvAhEbuBRGQCwl61vq8zYS
+Registering psqueues-0.2.4.0...
