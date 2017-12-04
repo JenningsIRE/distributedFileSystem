@@ -1,0 +1,49 @@
+name:                file-server-library
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/JenningsIRE/file-server-library#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Sam Jennings
+maintainer:          jennins@tcd.ie
+copyright:           Copyright (C) 2017
+category:            assignment
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Lib
+  build-depends:       base >= 4.7 && < 5
+                     , aeson
+                     , servant-server
+                     , wai
+                     , warp
+  default-language:    Haskell2010
+
+executable file-server-library-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , file-server-library
+  default-language:    Haskell2010
+
+test-suite file-server-library-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , file-server-library
+                     , hspec
+                     , hspec-wai
+                     , hspec-wai-json
+                     , aeson
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/JenningsIRE/file-server-library
