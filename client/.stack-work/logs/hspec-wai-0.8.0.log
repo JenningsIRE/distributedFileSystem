@@ -8,5 +8,5 @@ Preprocessing library hspec-wai-0.8.0...
 [5 of 6] Compiling Test.Hspec.Wai   ( src/Test/Hspec/Wai.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Test/Hspec/Wai.o )
 [6 of 6] Compiling Paths_hspec_wai  ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/autogen/Paths_hspec_wai.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Paths_hspec_wai.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/hspec-wai-0.8.0-JsfKvQPP5MeKhyCej22wIo
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-8.24/8.0.2/lib/x86_64-osx-ghc-8.0.2/hspec-wai-0.8.0-7Ke0sUyrZgR5qf3qNBzVQn
 Registering hspec-wai-0.8.0...

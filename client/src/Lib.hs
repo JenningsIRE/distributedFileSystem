@@ -9,6 +9,7 @@ module Lib
 
 import           Control.Monad                      (join, when)
 import           Data.List
+import           Data.Proxy
 import           Data.Semigroup                     ((<>))
 import           Distribution.PackageDescription.TH
 import           Git.Embed
@@ -22,14 +23,10 @@ import           System.Environment
 import           UseHaskellAPI
 import           UseHaskellAPIClient
 
--- | A helper function to make it easier to execute rest calls and report errors if the occur
 reportExceptionOr act b =  b >>= \ b' ->
   case b' of
      Left err -> putStrLn $ "Call failed with error: " ++ show err
      Right b'' ->  act b''
-
--- | a simple handler class to print the response. We can pass this as the first parameter of calls to
--- reportOrException. It will call the appropriate version depending on the type of the returned results.
 
 class PrintResponse a where
   resp :: Show a => a -> String
@@ -49,44 +46,19 @@ instance PrintResponse Bool where
   resp True =  "Response is a boolean : Totally!"
   resp False = "Response is a boolean : Like No Way!"
 
--- | Command line option handlers, one for each command
--- These are called from the options parsing and do the actuall work of the program.
-
--- let's put all the hard work in a helper...
 doCall f h p = reportExceptionOr (putStrLn . resp) (SC.runClientM f =<< env h p)
 
--- which makes the actual rest calls trivial...(notice the currying)
+doPostFile :: String -> String -> Maybe String -> Maybe String -> IO ()
+doPostFile n m  = doCall $ postFile $ Message n m
 
-doLoadEnvVars :: Maybe String -> Maybe String -> Maybe String -> IO ()
-doLoadEnvVars s = doCall $ loadEnvVars s
+doGetFile :: String -> Maybe String -> Maybe String -> IO ()
+doGetFile s  = doCall $ getFile $ Just s
 
-doGetREADME :: Maybe String -> Maybe String -> IO ()
-doGetREADME  = doCall getREADME
-
-doStoreMessage :: String -> String -> Maybe String -> Maybe String -> IO ()
-doStoreMessage n m  = doCall $ storeMessage $ Message n m
-
-doSearchMessage :: String -> Maybe String -> Maybe String -> IO ()
-doSearchMessage s  = doCall $ searchMessage $ Just s
-
-doPerformRestCall :: Maybe String -> Maybe String -> Maybe String -> IO ()
-doPerformRestCall s  =  doCall $ performRestCall s
-
-
--- | The options handling
-
--- First we invoke the options on the entry point.
 someFunc :: IO ()
 someFunc = do
-  doStoreMessage "1" "this is a test" (Just "localhost") (Just "8080")
-  doSearchMessage "1" (Just "localhost") (Just "8080")
+  doPostFile "1" "this is a test" (Just "localhost") (Just "8080")
+  doGetFile "1" (Just "localhost") (Just "8080")
 
--- | Defined in the applicative style, opts provides a declaration of the entire command line
---   parser structure. To add a new command just follow the example of the existing commands. A
---   new 'doCall' function should be defined for your new command line option, with a type matching the
---   ordering of the application of arguments in the <$> arg1 <*> arg2 .. <*> argN style below.
-
--- helpers to simplify the creation of command line options
 withInfo :: Parser a -> String -> ParserInfo a
 withInfo opts desc = info (helper <*> opts) $ progDesc desc
 
@@ -102,13 +74,6 @@ serverPortOption = optional $ strOption (  long "port"
                                         <> short 'n'
                                         <> metavar "PORT_NUMBER"
                                         <> help "The port number of the use-haskell service.")
-
-
-
--- | function to build the client environment for performing a servant client rest call
--- It uses the host name and port parameters if Just x, or else uses envrionment variables
--- This uses an applicative programming style that is very condensed, and easy to understand when you get used to it,
--- compared to the alternative sequence of calls and subsequent record construction.
 
 env :: Maybe String -> Maybe String -> IO SC.ClientEnv
 env host port = SC.ClientEnv <$> newManager defaultManagerSettings
@@ -130,15 +95,6 @@ env host port = SC.ClientEnv <$> newManager defaultManagerSettings
    usehaskellPort :: IO String
    usehaskellPort = devEnv "USE_HASKELL_PORT" id "8080" True
 
-
-   -- | Helper function to simplify the setting of environment variables
-   -- function that looks up environment variable and returns the result of running funtion fn over it
-   -- or if the environment variable does not exist, returns the value def. The function will optionally log a
-   -- warning based on Boolean tag
-
-   -- note that this is a good example of a commonly required function that could usefully be put in a shared library
-   -- but I'm not going to do that for now.
-
    devEnv :: Show a
           => String        -- Environment Variable name
           -> (String -> a)  -- function to process variable string (set as 'id' if not needed)
@@ -155,3 +111,4 @@ env host port = SC.ClientEnv <$> newManager defaultManagerSettings
             when wn $ putStrLn $ "Environment variable: " ++ e ++
                                     " is not set. Defaulting to " ++ (show s)
             return s
+

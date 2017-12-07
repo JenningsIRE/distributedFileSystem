@@ -42,8 +42,8 @@
   (major1) == 0 && (major2) <  1 || \
   (major1) == 0 && (major2) == 1 && (minor) <= 0)
 
-/* package http-client-0.5.7.1 */
-#define VERSION_http_client "0.5.7.1"
+/* package http-client-0.5.7.0 */
+#define VERSION_http_client "0.5.7.0"
 #define MIN_VERSION_http_client(major1,major2,minor) (\
   (major1) <  0 || \
   (major1) == 0 && (major2) <  5 || \
@@ -63,19 +63,19 @@
   (major1) == 1 && (major2) <  1 || \
   (major1) == 1 && (major2) == 1 && (minor) <= 3)
 
-/* package servant-0.11 */
-#define VERSION_servant "0.11"
+/* package servant-0.9.1.1 */
+#define VERSION_servant "0.9.1.1"
 #define MIN_VERSION_servant(major1,major2,minor) (\
   (major1) <  0 || \
-  (major1) == 0 && (major2) <  11 || \
-  (major1) == 0 && (major2) == 11 && (minor) <= 0)
+  (major1) == 0 && (major2) <  9 || \
+  (major1) == 0 && (major2) == 9 && (minor) <= 1)
 
-/* package servant-client-0.11 */
-#define VERSION_servant_client "0.11"
+/* package servant-client-0.9.1.1 */
+#define VERSION_servant_client "0.9.1.1"
 #define MIN_VERSION_servant_client(major1,major2,minor) (\
   (major1) <  0 || \
-  (major1) == 0 && (major2) <  11 || \
-  (major1) == 0 && (major2) == 11 && (minor) <= 0)
+  (major1) == 0 && (major2) <  9 || \
+  (major1) == 0 && (major2) == 9 && (minor) <= 1)
 
 /* package use-haskell-api-0.1.0.0 */
 #define VERSION_use_haskell_api "0.1.0.0"
@@ -84,19 +84,19 @@
   (major1) == 0 && (major2) <  1 || \
   (major1) == 0 && (major2) == 1 && (minor) <= 0)
 
-/* package aeson-1.1.2.0 */
-#define VERSION_aeson "1.1.2.0"
+/* package aeson-1.0.2.1 */
+#define VERSION_aeson "1.0.2.1"
 #define MIN_VERSION_aeson(major1,major2,minor) (\
   (major1) <  1 || \
-  (major1) == 1 && (major2) <  1 || \
-  (major1) == 1 && (major2) == 1 && (minor) <= 2)
+  (major1) == 1 && (major2) <  0 || \
+  (major1) == 1 && (major2) == 0 && (minor) <= 2)
 
-/* package hspec-2.4.4 */
-#define VERSION_hspec "2.4.4"
+/* package hspec-2.4.3 */
+#define VERSION_hspec "2.4.3"
 #define MIN_VERSION_hspec(major1,major2,minor) (\
   (major1) <  2 || \
   (major1) == 2 && (major2) <  4 || \
-  (major1) == 2 && (major2) == 4 && (minor) <= 4)
+  (major1) == 2 && (major2) == 4 && (minor) <= 3)
 
 /* package hspec-wai-0.8.0 */
 #define VERSION_hspec_wai "0.8.0"
@@ -147,12 +147,12 @@
   (major1) == 2 && (major2) <  17 || \
   (major1) == 2 && (major2) == 17 && (minor) <= 3)
 
-/* tool happy-1.19.8 */
-#define TOOL_VERSION_happy "1.19.8"
+/* tool happy-1.19.5 */
+#define TOOL_VERSION_happy "1.19.5"
 #define MIN_TOOL_VERSION_happy(major1,major2,minor) (\
   (major1) <  1 || \
   (major1) == 1 && (major2) <  19 || \
-  (major1) == 1 && (major2) == 19 && (minor) <= 8)
+  (major1) == 1 && (major2) == 19 && (minor) <= 5)
 
 /* tool hpc-0.67 */
 #define TOOL_VERSION_hpc "0.67"
@@ -182,7 +182,7 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 2)
 
-#define CURRENT_COMPONENT_ID "client-0.1.0.0-5tkdlA7eYDn23SZ5t3xG2L"
+#define CURRENT_COMPONENT_ID "client-0.1.0.0-7DicJ5RakFM98g3fclTc7v"
 
-#define CURRENT_PACKAGE_KEY "client-0.1.0.0-5tkdlA7eYDn23SZ5t3xG2L"
+#define CURRENT_PACKAGE_KEY "client-0.1.0.0-7DicJ5RakFM98g3fclTc7v"
 

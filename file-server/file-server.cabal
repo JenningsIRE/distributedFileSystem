@@ -17,10 +17,26 @@ library
   hs-source-dirs:      src
   exposed-modules:     Lib
   build-depends:       base >= 4.7 && < 5
-                     , aeson
-                     , servant-server
-                     , wai
-                     , warp
+                    , aeson
+                    , servant
+                    , servant-server
+                    , servant-client
+                    , transformers
+                    , wai
+                    , warp
+                    , wai-logger
+                    , mongoDB
+                    , hslogger
+                    , time
+                    , bson-generic
+                    , resourcet
+                    , text
+                    , bytestring
+                    , bson
+                    , mtl
+                    , http-client
+                    , use-haskell
+                    , use-haskell-api
   default-language:    Haskell2010
 
 executable file-server-exe

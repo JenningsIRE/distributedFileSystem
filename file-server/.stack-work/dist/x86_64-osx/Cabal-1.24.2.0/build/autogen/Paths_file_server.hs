@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-osx/lts-9.14/8.0.2/bin"
-libdir     = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/file-server-0.1.0.0-6ScmlYjykCB1xucBKeQrgy"
+libdir     = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/file-server-0.1.0.0-7pBqXYo0PQZ9oh7I0gpSpr"
 dynlibdir  = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2"
 datadir    = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-osx/lts-9.14/8.0.2/share/x86_64-osx-ghc-8.0.2/file-server-0.1.0.0"
 libexecdir = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-osx/lts-9.14/8.0.2/libexec"

@@ -1,0 +1,3 @@
+Preprocessing library file-server-0.1.0.0...
+Module imports form a cycle:
+  module ‘Lib’ (src/Lib.hs) imports itself

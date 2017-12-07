@@ -1,0 +1,115 @@
+Configuring mongoDB-2.3.0...
+Building mongoDB-2.3.0...
+Preprocessing library mongoDB-2.3.0...
+[1 of 9] Compiling Database.MongoDB.Transport ( Database/MongoDB/Transport.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/Transport.o )
+[2 of 9] Compiling Database.MongoDB.Internal.Util ( Database/MongoDB/Internal/Util.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/Internal/Util.o )
+
+Database/MongoDB/Internal/Util.hs:24:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+
+Database/MongoDB/Internal/Util.hs:72:34: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Database/MongoDB/Internal/Util.hs:74:31: warning: [-Wdeprecations]
+    In the use of ‘strMsg’
+    (imported from Control.Monad.Error, but defined in Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+[3 of 9] Compiling Database.MongoDB.Internal.Protocol ( Database/MongoDB/Internal/Protocol.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/Internal/Protocol.o )
+
+Database/MongoDB/Internal/Protocol.hs:112:24: warning: [-Wdeprecations]
+    In the use of ‘isEmptyChan’
+    (imported from Control.Concurrent.Chan):
+    Deprecated: "if you need this operation, use Control.Concurrent.STM.TChan instead.  See <http://ghc.haskell.org/trac/ghc/ticket/4154> for details"
+[4 of 9] Compiling Database.MongoDB.Query ( Database/MongoDB/Query.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/Query.o )
+
+Database/MongoDB/Query.hs:74:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+
+Database/MongoDB/Query.hs:140:10: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Database/MongoDB/Query.hs:140:10: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+[5 of 9] Compiling Database.MongoDB.Connection ( Database/MongoDB/Connection.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/Connection.o )
+
+Database/MongoDB/Connection.hs:42:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+[6 of 9] Compiling Database.MongoDB.Admin ( Database/MongoDB/Admin.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/Admin.o )
+[7 of 9] Compiling Database.MongoDB ( Database/MongoDB.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB.o )
+[8 of 9] Compiling Database.MongoDB.GridFS ( Database/MongoDB/GridFS.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/GridFS.o )
+
+Database/MongoDB/GridFS.hs:27:1: warning: [-Wunused-imports]
+    The import of ‘Control.Concurrent’ is redundant
+      except perhaps to import instances from ‘Control.Concurrent’
+    To import instances alone, use: import Control.Concurrent()
+
+Database/MongoDB/GridFS.hs:30:1: warning: [-Wunused-imports]
+    The import of ‘MonadTrans’
+    from module ‘Control.Monad.Trans’ is redundant
+
+Database/MongoDB/GridFS.hs:31:1: warning: [-Wunused-imports]
+    The import of ‘Control.Monad.Trans.Resource’ is redundant
+      except perhaps to import instances from ‘Control.Monad.Trans.Resource’
+    To import instances alone, use: import Control.Monad.Trans.Resource()
+
+Database/MongoDB/GridFS.hs:43:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.Conduit.Binary’ is redundant
+      except perhaps to import instances from ‘Data.Conduit.Binary’
+    To import instances alone, use: import Data.Conduit.Binary()
+
+Database/MongoDB/GridFS.hs:44:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.Conduit.List’ is redundant
+      except perhaps to import instances from ‘Data.Conduit.List’
+    To import instances alone, use: import Data.Conduit.List()
+
+Database/MongoDB/GridFS.hs:120:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwChunkSize’
+
+Database/MongoDB/GridFS.hs:121:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwBucket’
+
+Database/MongoDB/GridFS.hs:122:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwFilesId’
+
+Database/MongoDB/GridFS.hs:123:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwChunkIndex’
+
+Database/MongoDB/GridFS.hs:124:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwSize’
+
+Database/MongoDB/GridFS.hs:125:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwAcc’
+
+Database/MongoDB/GridFS.hs:126:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwMd5Context’
+
+Database/MongoDB/GridFS.hs:127:5: warning: [-Wunused-top-binds]
+    Defined but not used: ‘fwMd5acc’
+
+Database/MongoDB/GridFS.hs:135:3: warning: [-Wname-shadowing]
+    This binding for ‘timestamp’ shadows the existing binding
+      imported from ‘Database.MongoDB’ at Database/MongoDB/GridFS.hs:38:1-23
+      (and originally defined in ‘Data.Bson’)
+
+Database/MongoDB/GridFS.hs:156:28: warning: [-Wname-shadowing]
+    This binding for ‘rest’ shadows the existing binding
+      imported from ‘Database.MongoDB’ at Database/MongoDB/GridFS.hs:38:1-23
+      (and originally defined in ‘Database.MongoDB.Query’
+         at Database/MongoDB/Query.hs:1289:1-4)
+
+Database/MongoDB/GridFS.hs:164:12: warning: [-Wname-shadowing]
+    This binding for ‘chunk’ shadows the existing binding
+      bound at Database/MongoDB/GridFS.hs:148:81
+[9 of 9] Compiling Database.MongoDB.Transport.Tls ( Database/MongoDB/Transport/Tls.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/MongoDB/Transport/Tls.o )
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/mongoDB-2.3.0-3964LhVmHfjKG82Ft8qAAD
+Registering mongoDB-2.3.0...

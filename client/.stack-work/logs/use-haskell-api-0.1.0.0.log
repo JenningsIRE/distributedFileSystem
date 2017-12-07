@@ -4,5 +4,5 @@ Preprocessing library use-haskell-api-0.1.0.0...
 [2 of 3] Compiling UseHaskellAPIClient ( src/UseHaskellAPIClient.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/UseHaskellAPIClient.o )
 [3 of 3] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Lib.o )
 Installing library in
-/Users/Sam/distributedFileSystem/client/.stack-work/install/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/use-haskell-api-0.1.0.0-8MxUbjRQYgu5Bbsn4uOVRO
+/Users/Sam/distributedFileSystem/client/.stack-work/install/x86_64-osx/lts-8.24/8.0.2/lib/x86_64-osx-ghc-8.0.2/use-haskell-api-0.1.0.0-4YZEcWEToqwJq7QNcDK9AZ
 Registering use-haskell-api-0.1.0.0...
