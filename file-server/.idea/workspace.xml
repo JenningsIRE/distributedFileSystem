@@ -13,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Lib.hs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Lib.hs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Lib.hs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="753">
@@ -33,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stack.yaml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="stack.yaml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stack.yaml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="426">
@@ -79,7 +79,7 @@
     <option name="x" value="840" />
     <option name="y" value="23" />
     <option name="width" value="840" />
-    <option name="height" value="963" />
+    <option name="height" value="961" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -242,15 +242,15 @@
       <option name="presentableId" value="Default" />
       <updated>1512095793684</updated>
       <workItem from="1512095796905" duration="5667000" />
-      <workItem from="1512465666077" duration="8342000" />
+      <workItem from="1512465666077" duration="8939000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14009000" />
+    <option name="totallyTimeSpent" value="14606000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="840" y="23" width="840" height="963" extended-state="0" />
+    <frame x="840" y="23" width="840" height="961" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -325,14 +325,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stack.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="45" column="4" lean-forward="false" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.hs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -353,6 +345,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="753">
           <caret line="95" column="22" lean-forward="false" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stack.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="45" column="4" lean-forward="false" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
           <folding />
         </state>
       </provider>

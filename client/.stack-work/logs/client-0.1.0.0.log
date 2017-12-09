@@ -2,9 +2,9 @@ Configuring client-0.1.0.0...
 Preprocessing library client-0.1.0.0...
 [1 of 1] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Lib.o )
 
-src/Lib.hs:51:28: error:
+src/Lib.hs:52:28: error:
     Variable not in scope: postFile :: Message -> SC.ClientM a0
 
-src/Lib.hs:54:25: error:
+src/Lib.hs:55:25: error:
     • Variable not in scope: getFile :: Maybe String -> SC.ClientM a1
     • Perhaps you meant ‘getLine’ (imported from Prelude)
