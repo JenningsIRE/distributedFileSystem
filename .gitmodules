@@ -1,0 +1,3 @@
+[submodule "file-server-api"]
+	path = file-server-api
+	url = git@github.com:JenningsIRE/file-server-api.git
