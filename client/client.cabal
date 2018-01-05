@@ -22,6 +22,7 @@ library
                      , http-client
                      , optparse-applicative
                      , use-haskell-api
+                     , file-server-api
                      , cabal-file-th >= 0.2.4
                      , pretty
                      , Cabal

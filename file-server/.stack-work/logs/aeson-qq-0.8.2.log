@@ -1,9 +1,9 @@
 Configuring aeson-qq-0.8.2...
 Building aeson-qq-0.8.2...
 Preprocessing library aeson-qq-0.8.2...
-[1 of 3] Compiling Paths_aeson_qq   ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/autogen/Paths_aeson_qq.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Paths_aeson_qq.o )
-[2 of 3] Compiling Data.JSON.QQ     ( src/Data/JSON/QQ.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/JSON/QQ.o )
-[3 of 3] Compiling Data.Aeson.QQ    ( src/Data/Aeson/QQ.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Aeson/QQ.o )
+[1 of 3] Compiling Paths_aeson_qq   ( .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/autogen/Paths_aeson_qq.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Paths_aeson_qq.o )
+[2 of 3] Compiling Data.JSON.QQ     ( src/Data/JSON/QQ.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/JSON/QQ.o )
+[3 of 3] Compiling Data.Aeson.QQ    ( src/Data/Aeson/QQ.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Aeson/QQ.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/aeson-qq-0.8.2-FPRnpHrQkWw9qd6h8j5SuD
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/aeson-qq-0.8.2-FPRnpHrQkWw9qd6h8j5SuD
 Registering aeson-qq-0.8.2...

@@ -1,12 +1,12 @@
 Configuring servant-client-0.11...
 Building servant-client-0.11...
 Preprocessing library servant-client-0.11...
-[1 of 6] Compiling Servant.Common.BaseUrl ( src/Servant/Common/BaseUrl.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Common/BaseUrl.o )
-[2 of 6] Compiling Servant.Common.Req ( src/Servant/Common/Req.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Common/Req.o )
-[3 of 6] Compiling Servant.Common.BasicAuth ( src/Servant/Common/BasicAuth.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Common/BasicAuth.o )
-[4 of 6] Compiling Servant.Client.Experimental.Auth ( src/Servant/Client/Experimental/Auth.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Client/Experimental/Auth.o )
-[5 of 6] Compiling Servant.Client   ( src/Servant/Client.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Client.o )
-[6 of 6] Compiling Servant.Client.Generic ( src/Servant/Client/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Client/Generic.o )
+[1 of 6] Compiling Servant.Common.BaseUrl ( src/Servant/Common/BaseUrl.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/Common/BaseUrl.o )
+[2 of 6] Compiling Servant.Common.Req ( src/Servant/Common/Req.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/Common/Req.o )
+[3 of 6] Compiling Servant.Common.BasicAuth ( src/Servant/Common/BasicAuth.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/Common/BasicAuth.o )
+[4 of 6] Compiling Servant.Client.Experimental.Auth ( src/Servant/Client/Experimental/Auth.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/Client/Experimental/Auth.o )
+[5 of 6] Compiling Servant.Client   ( src/Servant/Client.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/Client.o )
+[6 of 6] Compiling Servant.Client.Generic ( src/Servant/Client/Generic.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/Client/Generic.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/servant-client-0.11-Ad7e9Gk0NLBu5WTEUQGCs
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/servant-client-0.11-Ad7e9Gk0NLBu5WTEUQGCs
 Registering servant-client-0.11...

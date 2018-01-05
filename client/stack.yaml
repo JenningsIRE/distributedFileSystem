@@ -43,6 +43,9 @@ packages:
   - location:
       git: https://esjmb@bitbucket.org/esjmb/use-haskell-api.git
       commit: 9a48929
+  - location:
+        git: https://github.com/JenningsIRE/file-server-api.git
+        commit: 2c76e4f
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
 extra-deps: [git-embed-0.1.0]

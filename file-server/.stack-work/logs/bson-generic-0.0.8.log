@@ -3,7 +3,7 @@ Preprocessing library bson-generic-0.0.8...
 
 src/Data/Bson/Generic.hs:11:14: warning:
     -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
-[1 of 1] Compiling Data.Bson.Generic ( src/Data/Bson/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Bson/Generic.o )
+[1 of 1] Compiling Data.Bson.Generic ( src/Data/Bson/Generic.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Bson/Generic.o )
 Installing library in
-/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/bson-generic-0.0.8-KBDLQ72ry6AGolDV8Ib2n4
+/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/bson-generic-0.0.8-KBDLQ72ry6AGolDV8Ib2n4
 Registering bson-generic-0.0.8...

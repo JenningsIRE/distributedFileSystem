@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-12-04 00:23:06.040009 UTC
+2018-01-05 00:57:52.122722 UTC
 
-interface client-0.1.0.0-5tkdlA7eYDn23SZ5t3xG2L:Lib 8002
-  interface hash: 9e47b3f5be798f2da41364a6885225d6
-  ABI hash: 2c5fc062d51aac7a85dfd34bd1398a19
-  export-list hash: e44d23f4ada0fa73054ee41257798784
+interface client-0.1.0.0-9SNBOitpTHbA2rbSSSdy4F:Lib 8002
+  interface hash: 48d0550a177253935226d8f570e8bf29
+  ABI hash: 1fdf58d82dbd69b2ef3b05a09b82cfb6
+  export-list hash: a25905f1b7c951d740d7acfa4bed3b36
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 4588db47dbe2c81f582bad0035d339fa
   sig of: Nothing
@@ -15,123 +15,108 @@ exports:
   Lib.someFunc
 module dependencies:
 package dependencies: Cabal-1.24.2.0@Cabal-1.24.2.0
-                      aeson-1.1.2.0@aeson-1.1.2.0-7ssY6fy1GxZGXxTPcOtf2k
+                      aeson-1.0.2.1@aeson-1.0.2.1-1etpxceMb6x9mZOLZOXYsC
                       ansi-terminal-0.6.3.1@ansi-terminal-0.6.3.1-3RTqikoQf47ajVD9m8zgB
                       ansi-wl-pprint-0.6.7.3@ansi-wl-pprint-0.6.7.3-A79v826bgPr574HtaZPPqC
                       array-0.5.1.1@array-0.5.1.1
-                      attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ
-                      attoparsec-iso8601-1.0.0.0@attoparsec-iso8601-1.0.0.0-CiauZZhskHA6jYy7CqE2mZ
+                      attoparsec-0.13.1.0@attoparsec-0.13.1.0-IEEYoTzFh3JE4HjRWbqraH
+                      attoparsec-iso8601-1.0.0.0@attoparsec-iso8601-1.0.0.0-4MOd6xlwKyM9z08XC1d09i
                       base-4.9.1.0
                       base-compat-0.9.3@base-compat-0.9.3-KeJp8zYMpcS9WibvTcxU22
-                      base-orphans-0.6@base-orphans-0.6-AbJ3lKVXygDCG0eeQEv8Iu
                       base64-bytestring-1.0.0.1@base64-bytestring-1.0.0.1-4O9TExPPz6eI82Yj7L4SIj
-                      basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ
-                      bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw
                       binary-0.8.3.0@binary-0.8.3.0
-                      blaze-builder-0.4.0.2@blaze-builder-0.4.0.2-LxClHUTiKUUAxWtvJ5Oeoy
-                      blaze-html-0.9.0.1@blaze-html-0.9.0.1-GQ0yZtPYt2i2KdgnUEOA8p
-                      blaze-markup-0.8.0.0@blaze-markup-0.8.0.0-GsxkVbRgODkgUQDmmDVob
-                      bson-0.3.2.3@bson-0.3.2.3-Iehu4r10AM7DJbw1eJ6rnI
-                      bson-generic-0.0.8@bson-generic-0.0.8-JZVOqBk1rL7HpOeD6vuRQ4
+                      blaze-builder-0.4.0.2@blaze-builder-0.4.0.2-CGB8BvrFgghHy5bLy0SFOg
+                      blaze-html-0.8.1.3@blaze-html-0.8.1.3-4x5sR7CihaZBuBa398ibiy
+                      blaze-markup-0.7.1.1@blaze-markup-0.7.1.1-7tIWNv8iALFJhJ4kVxNmNT
+                      bson-0.3.2.3@bson-0.3.2.3-IAfEEKU5kB93eb2J8F9Qu7
+                      bson-generic-0.0.8@bson-generic-0.0.8-76koXMvY2BQGWJw4YBTM8a
                       bytestring-0.10.8.1@bytestring-0.10.8.1
                       cabal-file-th-0.2.4@cabal-file-th-0.2.4-A8eX74dd8VkCM7ViVF2n79
-                      case-insensitive-1.2.0.10@case-insensitive-1.2.0.10-1D5OUKQ7UrJ7IpOe0di4Un
-                      comonad-5.0.2@comonad-5.0.2-Fq9Xy9jdx6uIyJZn00E6Yc
+                      case-insensitive-1.2.0.10@case-insensitive-1.2.0.10-Fiik8BUGIOz3LnHv8R26NC
                       containers-0.5.7.1@containers-0.5.7.1
-                      cookie-0.4.3@cookie-0.4.3-LVlxdgOdUJj73o1VFenWKF
-                      cryptohash-0.11.9@cryptohash-0.11.9-5dDfrhx2UhlI8lrNc4mH7Y
-                      cryptonite-0.23@cryptonite-0.23-7aE9caGlGrwDnGcKBpfJ80
+                      cookie-0.4.2.1@cookie-0.4.2.1-K68NuFIZ07nEstxwB6c3aL
+                      cryptohash-0.11.9@cryptohash-0.11.9-Bt2dNkCL077B7rR8Aom5us
+                      cryptonite-0.21@cryptonite-0.21-KGlwixLJXrd6sgN0FjLIwH
                       data-default-class-0.1.2.0@data-default-class-0.1.2.0-GsXqKN6o1X9jr0fF5qCVD
                       deepseq-1.4.2.0@deepseq-1.4.2.0 directory-1.3.0.0@directory-1.3.0.0
-                      distributive-0.5.3@distributive-0.5.3-IX4kyVcHAyoH4uFYrsjY1R
-                      dlist-0.8.0.3@dlist-0.8.0.3-BHFBNaw8k6n9WiaUNzoXpk
+                      dlist-0.8.0.2@dlist-0.8.0.2-6Wnps4GD7EFnRucVzXIFD
                       exceptions-0.8.3@exceptions-0.8.3-ADEDRATtUrMK1JW4zMQ9U
                       file-embed-0.0.10@file-embed-0.0.10-KWMmUDaNSRP7AxWSEHlrrK
                       filepath-1.4.1.1@filepath-1.4.1.1
-                      foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf
+                      foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa
                       ghc-boot-th-8.0.2@ghc-boot-th-8.0.2 ghc-prim-0.5.0.0
                       git-embed-0.1.0@git-embed-0.1.0-CTVZWW1MQCjqsznzsHhCb
-                      hashable-1.2.6.1@hashable-1.2.6.1-2ZLNuHq395GGIHwEHuqZol
-                      http-api-data-0.3.7.1@http-api-data-0.3.7.1-AT41KDpP9ayH63FPNXWrvF
-                      http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ
-                      http-date-0.0.6.1@http-date-0.0.6.1-AkYFHBFn90lGSerD29arC9
-                      http-media-0.6.4@http-media-0.6.4-L2HKUvjwG4m4RLl78rlCa
-                      http-types-0.9.1@http-types-0.9.1-G7E1zHPzooHCYxKqGuQmxY
+                      hashable-1.2.6.1@hashable-1.2.6.1-I8TtfTMw8kCEo1q1h2BgxU
+                      http-api-data-0.3.7.1@http-api-data-0.3.7.1-MDikHkokKn81PsqfyL2eF
+                      http-client-0.5.7.0@http-client-0.5.7.0-FsgTN5AmvYu95tBUE5crdW
+                      http-date-0.0.6.1@http-date-0.0.6.1-ICLjftrhQ5dDNj4DUILAr7
+                      http-media-0.6.4@http-media-0.6.4-FNtOOgO9qfc7AjETjozNDt
+                      http-types-0.9.1@http-types-0.9.1-Qy5Ex19QlZ74tBRRG3v2y
                       integer-gmp-1.0.0.1
-                      integer-logarithms-1.0.2@integer-logarithms-1.0.2-92lMiWV9mmYAwfMEYgfQ0D
-                      lifted-base-0.2.3.11@lifted-base-0.2.3.11-Ei0JSPdt7KOCD2HIA5jFqV
-                      memory-0.14.9@memory-0.14.9-DuHWmOqOt5MKvG5MS8KASe
-                      mime-types-0.1.0.7@mime-types-0.1.0.7-6b3z22GcDYZLEl2kkfCUAB
+                      integer-logarithms-1.0.1@integer-logarithms-1.0.1-IEHCuEd5sG4JjSjlx7m5JF
+                      memory-0.14.6@memory-0.14.6-Aar7hKewN999MXzU9kvt2a
+                      mime-types-0.1.0.7@mime-types-0.1.0.7-31dnC2ifQ9r5TApUZagLPk
                       mmorph-1.0.9@mmorph-1.0.9-5bASEvmIkr5CpdAYXwPsn0
-                      monad-control-1.0.2.2@monad-control-1.0.2.2-1Ci8dYJ8Tb7E3HTcTqOb8l
                       mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6
-                      natural-transformation-0.4@natural-transformation-0.4-1wekIVD0YQa62debXjfFg3
                       network-2.6.3.2@network-2.6.3.2-IsLM4TXcLoRI0fmmBYVyQz
-                      network-uri-2.6.1.0@network-uri-2.6.1.0-7BN1tbB3iHQ2XgvmqLAYph
+                      network-uri-2.6.1.0@network-uri-2.6.1.0-EwGrJ9bdUqR1E7dAIJ4cwF
                       optparse-applicative-0.13.2.0@optparse-applicative-0.13.2.0-EqIYOWOFTvf23sT5QTYn9U
-                      parsec-3.1.11@parsec-3.1.11-1aqiimsgq2dCv7eoaC8WuX
+                      parsec-3.1.11@parsec-3.1.11-113irVHGgd88sRnywByDNw
                       pretty-1.1.3.3@pretty-1.1.3.3
-                      primitive-0.6.2.0@primitive-0.6.2.0-4578caNkWQ54Gt1mxLF2Yh
+                      primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH
                       process-1.4.3.0@process-1.4.3.0
                       random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
-                      resourcet-1.1.9@resourcet-1.1.9-L2BUQrxWZMwDiwhcuyPuNi
                       safe-0.3.15@safe-0.3.15-2Yd45VWFfdcKqKyispOifY
-                      scientific-0.3.5.2@scientific-0.3.5.2-FM2NdrNTcdbCDq9wuNnhIA
-                      semigroupoids-5.2.1@semigroupoids-5.2.1-Db8txM8kTsI6Y49CY6g5Jn
-                      servant-0.11@servant-0.11-5n0Jq59NGG63K7rfpU5Dxs
-                      servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y
-                      servant-server-0.11.0.1@servant-server-0.11.0.1-Dzlz1R4sOiMKQugTBmyK0x
+                      scientific-0.3.5.1@scientific-0.3.5.1-ExDzxC7QmbS5TvW39AAm4A
+                      servant-0.9.1.1@servant-0.9.1.1-ANMR2Ly77UJKZyQDBmKLKX
+                      servant-client-0.9.1.1@servant-client-0.9.1.1-ancMfMlIu83xe7DWAb2NI
+                      servant-server-0.9.1.1@servant-server-0.9.1.1-DPVuwEqPtiRDtXTIGiBJmY
                       stm-2.4.4.1@stm-2.4.4.1-JQn4hNPyYjP5m9AcbI88Ve
-                      streaming-commons-0.1.17@streaming-commons-0.1.17-6xuIA5RXrs65yyeq3HWIWP
-                      string-conversions-0.4.0.1@string-conversions-0.4.0.1-HK2T4drDKhqGigpJdBBdRG
+                      streaming-commons-0.1.17@streaming-commons-0.1.17-ANLyYjCKvHm5Mv911o5sOC
+                      string-conversions-0.4.0.1@string-conversions-0.4.0.1-5bhARACLQyXG4DLNegoSj4
                       tagged-0.8.5@tagged-0.8.5-1mTloBSoUxv8dqUr8XBGBt
                       template-haskell-2.11.1.0
-                      text-1.2.2.2@text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00
+                      text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR
                       th-lift-0.7.7@th-lift-0.7.7-JWI9Gh7wB0MC9Q5wqv5aoI
-                      th-lift-instances-0.1.11@th-lift-instances-0.1.11-A7sWuFC2KLsFTBmLagoRSX
+                      th-lift-instances-0.1.11@th-lift-instances-0.1.11-6UGhWEzsqtPBL6URKwAy1o
                       time-1.6.0.1@time-1.6.0.1
                       time-locale-compat-0.1.1.3@time-locale-compat-0.1.1.3-KZ1jqNx8uhlHjmuPPj6V1Y
-                      transformers-0.5.2.0@transformers-0.5.2.0
-                      transformers-base-0.4.4@transformers-base-0.4.4-GKSs0LKukAL8ymq2naFmrH
-                      transformers-compat-0.5.1.4@transformers-compat-0.5.1.4-IuFogs8HAVUJBWVNMhtssu
-                      unix-2.7.2.1@unix-2.7.2.1
+                      transformers-0.5.2.0@transformers-0.5.2.0 unix-2.7.2.1@unix-2.7.2.1
                       unix-compat-0.4.3.1@unix-compat-0.4.3.1-Ausmw6d7KIwA7sl52mzqxC
-                      unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-Bp9XgxjuHxcI4tFehVMDGC
-                      uri-bytestring-0.2.3.3@uri-bytestring-0.2.3.3-Hc1wKsF7VwW2mAD17PrIxh
-                      use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-8MxUbjRQYgu5Bbsn4uOVRO
+                      unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-6txQagwbKwSESVNJVBgwqv
+                      uri-bytestring-0.2.3.3@uri-bytestring-0.2.3.3-2Imk8vPs3cPG9gbvxXXJkI
+                      use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-4YZEcWEToqwJq7QNcDK9AZ
                       utf8-string-1.0.1.1@utf8-string-1.0.1.1-1DpjxLeTvGg7ttZZojxJR5
-                      uuid-types-1.0.3@uuid-types-1.0.3-HQOuja9trySCcuflACyDTJ
-                      vault-0.3.0.7@vault-0.3.0.7-FSJCPczyPWW8DwvwP76qt4
-                      vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ
-                      wai-3.2.1.1@wai-3.2.1.1-GYhAFGd1F2uKjCUZVPyC2C
-                      wai-app-static-3.1.6.1@wai-app-static-3.1.6.1-7lzPCIcKJr41gr3SLmdLji
-                      word8-0.1.3@word8-0.1.3-9o1uWQQ6KysJq8GGsVHHit
+                      uuid-types-1.0.3@uuid-types-1.0.3-3qZyCmY7VWB1pGj23GIEzw
+                      vault-0.3.0.7@vault-0.3.0.7-H4kfNuSlFqmKLHmBSHcOfT
+                      vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG
+                      wai-3.2.1.1@wai-3.2.1.1-2ORFowrqBlw8LrI3bTChZy
+                      wai-app-static-3.1.6.1@wai-app-static-3.1.6.1-KckN0SDsFrH10Ph7tyd9l9
+                      word8-0.1.2@word8-0.1.2-9WDPGCTpW7JJnsiAQavtd1
                       zlib-0.6.1.2@zlib-0.6.1.2-7negTfm2ujt1gW4wr40MUp
-orphans: attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ:Data.Attoparsec.ByteString.Char8
-         attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ:Data.Attoparsec.Text.Internal
+orphans: attoparsec-0.13.1.0@attoparsec-0.13.1.0-IEEYoTzFh3JE4HjRWbqraH:Data.Attoparsec.ByteString.Char8
+         attoparsec-0.13.1.0@attoparsec-0.13.1.0-IEEYoTzFh3JE4HjRWbqraH:Data.Attoparsec.Text.Internal
          base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
-         base-orphans-0.6@base-orphans-0.6-AbJ3lKVXygDCG0eeQEv8Iu:Data.Orphans
-         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.Block
-         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.UArray.Base
          binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
-         bson-generic-0.0.8@bson-generic-0.0.8-JZVOqBk1rL7HpOeD6vuRQ4:Data.Bson.Generic
+         bson-generic-0.0.8@bson-generic-0.0.8-76koXMvY2BQGWJw4YBTM8a:Data.Bson.Generic
          bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
-         hashable-1.2.6.1@hashable-1.2.6.1-2ZLNuHq395GGIHwEHuqZol:Data.Hashable.Generic
-         http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ:Network.HTTP.Client.Request
+         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Collection.Collection
+         hashable-1.2.6.1@hashable-1.2.6.1-I8TtfTMw8kCEo1q1h2BgxU:Data.Hashable.Generic
+         http-client-0.5.7.0@http-client-0.5.7.0-FsgTN5AmvYu95tBUE5crdW:Network.HTTP.Client.Request
          network-2.6.3.2@network-2.6.3.2-IsLM4TXcLoRI0fmmBYVyQz:Network.Socket
          stm-2.4.4.1@stm-2.4.4.1-JQn4hNPyYjP5m9AcbI88Ve:Control.Monad.STM
-         text-1.2.2.2@text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00:Data.Text
-         text-1.2.2.2@text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00:Data.Text.Lazy
-         text-1.2.2.2@text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00:Data.Text.Show
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Lazy
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Show
          th-lift-0.7.7@th-lift-0.7.7-JWI9Gh7wB0MC9Q5wqv5aoI:Language.Haskell.TH.Lift
-         th-lift-instances-0.1.11@th-lift-instances-0.1.11-A7sWuFC2KLsFTBmLagoRSX:Instances.TH.Lift
+         th-lift-instances-0.1.11@th-lift-instances-0.1.11-6UGhWEzsqtPBL6URKwAy1o:Instances.TH.Lift
          time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
          time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
          time-1.6.0.1@time-1.6.0.1:Data.Time.LocalTime.LocalTime
          transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
-         use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-8MxUbjRQYgu5Bbsn4uOVRO:UseHaskellAPI
-         vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Fusion.Bundle
-         vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Unboxed
+         use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-4YZEcWEToqwJq7QNcDK9AZ:UseHaskellAPI
+         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Fusion.Bundle
+         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Unboxed
 family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semigroup
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compiler
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.License
@@ -142,7 +127,7 @@ family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semig
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Verbosity
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Version
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Language.Haskell.Extension
-                         attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ:Data.Attoparsec.Internal.Types
+                         attoparsec-0.13.1.0@attoparsec-0.13.1.0-IEEYoTzFh3JE4HjRWbqraH:Data.Attoparsec.Internal.Types
                          base-4.9.1.0:Control.Applicative base-4.9.1.0:Data.Complex
                          base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Compose
                          base-4.9.1.0:Data.Functor.Const base-4.9.1.0:Data.Functor.Identity
@@ -152,80 +137,66 @@ family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semig
                          base-4.9.1.0:Data.Version base-4.9.1.0:Data.Void
                          base-4.9.1.0:GHC.Exts base-4.9.1.0:GHC.Generics
                          base-4.9.1.0:GHC.IO.Exception base-4.9.1.0:GHC.TypeLits
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.Block.Base
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.BoxedArray
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.Monad
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.MutableBuilder
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.Nat
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.NonEmpty
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.Numerical.Subtractive
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.String
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.String.Encoding.ASCII7
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.String.Encoding.ISO_8859_1
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.String.Encoding.UTF16
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.String.Encoding.UTF32
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.Types.AsciiString
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.Types.OffsetSize
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.UArray.Base
-                         basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ:Basement.UTF8.Base
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Biff
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Clown
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Flip
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Join
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Joker
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Product
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Tannen
-                         bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Wrapped
-                         bson-generic-0.0.8@bson-generic-0.0.8-JZVOqBk1rL7HpOeD6vuRQ4:Data.Bson.Generic
+                         bson-generic-0.0.8@bson-generic-0.0.8-76koXMvY2BQGWJw4YBTM8a:Data.Bson.Generic
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Sequence
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
-                         dlist-0.8.0.3@dlist-0.8.0.3-BHFBNaw8k6n9WiaUNzoXpk:Data.DList
-                         foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf:Foundation.Array.Bitmap
-                         foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf:Foundation.Array.Chunked.Unboxed
-                         foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf:Foundation.Collection.Buildable
-                         foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf:Foundation.Collection.Element
-                         foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf:Foundation.Collection.Keyed
-                         foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf:Foundation.Collection.Mutable
-                         foundation-0.0.17@foundation-0.0.17-CL5hY2f92B7EywaUc6v2Lf:Foundation.Tuple
+                         dlist-0.8.0.2@dlist-0.8.0.2-6Wnps4GD7EFnRucVzXIFD:Data.DList
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Array.Bitmap
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Array.Boxed
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Array.Chunked.Unboxed
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Boot.Builder
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Collection.Buildable
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Collection.Collection
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Collection.Element
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Collection.Keyed
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Collection.Mutable
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Monad.Exception
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Numerical.Subtractive
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Primitive.Block.Base
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Primitive.Monad
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Primitive.Types.OffsetSize
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Primitive.UArray.Base
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Primitive.UTF8.Base
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.String.Encoding.ASCII7
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.String.Encoding.ISO_8859_1
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.String.Encoding.UTF16
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.String.Encoding.UTF32
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.String.UTF8
+                         foundation-0.0.13@foundation-0.0.13-G4GHWkMwmXnF7HKMtT8vGa:Foundation.Tuple
                          ghc-boot-th-8.0.2@ghc-boot-th-8.0.2:GHC.LanguageExtensions.Type
-                         http-api-data-0.3.7.1@http-api-data-0.3.7.1-AT41KDpP9ayH63FPNXWrvF:Web.Internal.FormUrlEncoded
-                         http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ:Network.HTTP.Client
-                         monad-control-1.0.2.2@monad-control-1.0.2.2-1Ci8dYJ8Tb7E3HTcTqOb8l:Control.Monad.Trans.Control
-                         network-uri-2.6.1.0@network-uri-2.6.1.0-7BN1tbB3iHQ2XgvmqLAYph:Network.URI
+                         http-api-data-0.3.7.1@http-api-data-0.3.7.1-MDikHkokKn81PsqfyL2eF:Web.Internal.FormUrlEncoded
+                         http-client-0.5.7.0@http-client-0.5.7.0-FsgTN5AmvYu95tBUE5crdW:Network.HTTP.Client
+                         network-uri-2.6.1.0@network-uri-2.6.1.0-EwGrJ9bdUqR1E7dAIJ4cwF:Network.URI
                          pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.Annotated.HughesPJ
                          pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.HughesPJ
-                         primitive-0.6.2.0@primitive-0.6.2.0-4578caNkWQ54Gt1mxLF2Yh:Control.Monad.Primitive
-                         primitive-0.6.2.0@primitive-0.6.2.0-4578caNkWQ54Gt1mxLF2Yh:Data.Primitive.Array
-                         resourcet-1.1.9@resourcet-1.1.9-L2BUQrxWZMwDiwhcuyPuNi:Control.Monad.Trans.Resource.Internal
-                         servant-0.11@servant-0.11-5n0Jq59NGG63K7rfpU5Dxs:Servant.API.ContentTypes
-                         servant-0.11@servant-0.11-5n0Jq59NGG63K7rfpU5Dxs:Servant.API.IsSecure
-                         servant-0.11@servant-0.11-5n0Jq59NGG63K7rfpU5Dxs:Servant.API.Verbs
-                         servant-0.11@servant-0.11-5n0Jq59NGG63K7rfpU5Dxs:Servant.Utils.Links
-                         servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y:Servant.Client
-                         servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y:Servant.Common.BaseUrl
-                         servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y:Servant.Common.Req
-                         servant-server-0.11.0.1@servant-server-0.11.0.1-Dzlz1R4sOiMKQugTBmyK0x:Servant.Server.Internal
-                         servant-server-0.11.0.1@servant-server-0.11.0.1-Dzlz1R4sOiMKQugTBmyK0x:Servant.Server.Internal.BasicAuth
-                         servant-server-0.11.0.1@servant-server-0.11.0.1-Dzlz1R4sOiMKQugTBmyK0x:Servant.Server.Internal.Handler
-                         servant-server-0.11.0.1@servant-server-0.11.0.1-Dzlz1R4sOiMKQugTBmyK0x:Servant.Server.Internal.RoutingApplication
+                         primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
+                         servant-0.9.1.1@servant-0.9.1.1-ANMR2Ly77UJKZyQDBmKLKX:Servant.API.ContentTypes
+                         servant-0.9.1.1@servant-0.9.1.1-ANMR2Ly77UJKZyQDBmKLKX:Servant.API.IsSecure
+                         servant-0.9.1.1@servant-0.9.1.1-ANMR2Ly77UJKZyQDBmKLKX:Servant.API.Verbs
+                         servant-0.9.1.1@servant-0.9.1.1-ANMR2Ly77UJKZyQDBmKLKX:Servant.Utils.Links
+                         servant-client-0.9.1.1@servant-client-0.9.1.1-ancMfMlIu83xe7DWAb2NI:Servant.Client
+                         servant-client-0.9.1.1@servant-client-0.9.1.1-ancMfMlIu83xe7DWAb2NI:Servant.Common.BaseUrl
+                         servant-client-0.9.1.1@servant-client-0.9.1.1-ancMfMlIu83xe7DWAb2NI:Servant.Common.Req
+                         servant-server-0.9.1.1@servant-server-0.9.1.1-DPVuwEqPtiRDtXTIGiBJmY:Servant.Server.Internal
+                         servant-server-0.9.1.1@servant-server-0.9.1.1-DPVuwEqPtiRDtXTIGiBJmY:Servant.Server.Internal.BasicAuth
                          tagged-0.8.5@tagged-0.8.5-1mTloBSoUxv8dqUr8XBGBt:Data.Tagged
                          template-haskell-2.11.1.0:Language.Haskell.TH.Syntax
-                         text-1.2.2.2@text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00:Data.Text
-                         text-1.2.2.2@text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00:Data.Text.Lazy
-                         unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-Bp9XgxjuHxcI4tFehVMDGC:Data.HashMap.Base
-                         unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-Bp9XgxjuHxcI4tFehVMDGC:Data.HashSet
-                         uri-bytestring-0.2.3.3@uri-bytestring-0.2.3.3-Hc1wKsF7VwW2mAD17PrIxh:URI.ByteString.Types
-                         use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-8MxUbjRQYgu5Bbsn4uOVRO:UseHaskellAPI
-                         uuid-types-1.0.3@uuid-types-1.0.3-HQOuja9trySCcuflACyDTJ:Data.UUID.Types.Internal
-                         uuid-types-1.0.3@uuid-types-1.0.3-HQOuja9trySCcuflACyDTJ:Data.UUID.Types.Internal.Builder
-                         vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector
-                         vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Primitive
-                         vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Storable
-                         vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Unboxed
-                         vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Unboxed.Base
+                         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
+                         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Lazy
+                         unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-6txQagwbKwSESVNJVBgwqv:Data.HashMap.Base
+                         unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-6txQagwbKwSESVNJVBgwqv:Data.HashSet
+                         uri-bytestring-0.2.3.3@uri-bytestring-0.2.3.3-2Imk8vPs3cPG9gbvxXXJkI:URI.ByteString.Types
+                         use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-4YZEcWEToqwJq7QNcDK9AZ:UseHaskellAPI
+                         uuid-types-1.0.3@uuid-types-1.0.3-3qZyCmY7VWB1pGj23GIEzw:Data.UUID.Types.Internal
+                         uuid-types-1.0.3@uuid-types-1.0.3-3qZyCmY7VWB1pGj23GIEzw:Data.UUID.Types.Internal.Builder
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Primitive
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Storable
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Unboxed
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-7negTfm2ujt1gW4wr40MUp:Codec.Compression.Zlib.Stream
 import  -/  ansi-terminal-0.6.3.1@ansi-terminal-0.6.3.1-3RTqikoQf47ajVD9m8zgB:System.Console.ANSI 6f9e98afbd24fbb5fc7a0ee1d84164e5
 import  -/  base-4.9.1.0:Control.Applicative 32430a90492e727f4bd80db71c28600c
@@ -234,6 +205,7 @@ import  -/  base-4.9.1.0:Data.Either 20b09ef8d0a5b74fdec011c40c1587f5
 import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
 import  -/  base-4.9.1.0:Data.List 07ae2acca6538aa0800bd0a993ac6ac1
 import  -/  base-4.9.1.0:Data.OldList 27987919d8da2f92e3f472ca81f730f8
+import  -/  base-4.9.1.0:Data.Proxy d7f87a37cf7ec5ca87c59c8d2859031f
 import  -/  base-4.9.1.0:Data.Semigroup fc55c71ff629dcbd821309c310055959
 import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
 import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
@@ -244,43 +216,510 @@ import  -/  base-4.9.1.0:Text.Read 75c59863e882ebaec4532e9465e2ee9b
 import  -/  cabal-file-th-0.2.4@cabal-file-th-0.2.4-A8eX74dd8VkCM7ViVF2n79:Distribution.PackageDescription.TH ed8cf657ab94c0ecbf0c60d45e2f58f6
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 import  -/  git-embed-0.1.0@git-embed-0.1.0-CTVZWW1MQCjqsznzsHhCb:Git.Embed 984aeb22c77d2bdb5638e4f05866c542
-import  -/  http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ:Network.HTTP.Client 5fcc60d23df427f66e62e8521ee35210
-import  -/  http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ:Network.HTTP.Client.Manager f8df28f04ab015bddaecad60f3a5d2b4
+import  -/  http-client-0.5.7.0@http-client-0.5.7.0-FsgTN5AmvYu95tBUE5crdW:Network.HTTP.Client c5b08e9062029a86a582928f70619034
+import  -/  http-client-0.5.7.0@http-client-0.5.7.0-FsgTN5AmvYu95tBUE5crdW:Network.HTTP.Client.Manager 7289b55bf9fd9005b8b6eeab81d0b12c
 import  -/  optparse-applicative-0.13.2.0@optparse-applicative-0.13.2.0-EqIYOWOFTvf23sT5QTYn9U:Options.Applicative 23f520fcf2cade55e41560c008c2a3d8
 import  -/  optparse-applicative-0.13.2.0@optparse-applicative-0.13.2.0-EqIYOWOFTvf23sT5QTYn9U:Options.Applicative.Builder 9af5be12ece5b5d5a516e8dfd0a31ae0
 import  -/  optparse-applicative-0.13.2.0@optparse-applicative-0.13.2.0-EqIYOWOFTvf23sT5QTYn9U:Options.Applicative.Extra b1f9bd035b3f0e3d7dcacd48ff90ce62
 import  -/  optparse-applicative-0.13.2.0@optparse-applicative-0.13.2.0-EqIYOWOFTvf23sT5QTYn9U:Options.Applicative.Types 51a5ed351e52971e6533467cf30252fe
-import  -/  servant-0.11@servant-0.11-5n0Jq59NGG63K7rfpU5Dxs:Servant.API 2e0ce07b50a0ba572d7f1274fcc1f606
-import  -/  servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y:Servant.Client 09d24c3393d0a8da0cdd0087dc955a67
-import  -/  servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y:Servant.Common.BaseUrl ac67779df2682bdc007be92c7a196e41
-import  -/  servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y:Servant.Common.Req e7a963d443018e6ace36d70a55aa13bf
-import  -/  use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-8MxUbjRQYgu5Bbsn4uOVRO:UseHaskellAPI f2a610b9e50d887a0f94a19d13d8ec8e
-import  -/  use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-8MxUbjRQYgu5Bbsn4uOVRO:UseHaskellAPIClient a77771723ad4c97bcea94c602f7fcd50
-68b5572373d8b21315d47f02aad2c40b
+import  -/  servant-0.9.1.1@servant-0.9.1.1-ANMR2Ly77UJKZyQDBmKLKX:Servant.API 4ee0e8129a6288f28b58ad2959f79bed
+import  -/  servant-client-0.9.1.1@servant-client-0.9.1.1-ancMfMlIu83xe7DWAb2NI:Servant.Client c16d8ebaeb857bf9a8ec967dd3e2c109
+import  -/  servant-client-0.9.1.1@servant-client-0.9.1.1-ancMfMlIu83xe7DWAb2NI:Servant.Common.BaseUrl 098b967726c2f05ed75abedefd83cb7a
+import  -/  servant-client-0.9.1.1@servant-client-0.9.1.1-ancMfMlIu83xe7DWAb2NI:Servant.Common.Req dee4f38ae4bf887664431b34c7cc6ccc
+import  -/  use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-4YZEcWEToqwJq7QNcDK9AZ:UseHaskellAPI 4e58167c8d4891aefef08d575e57e5d5
+import  -/  use-haskell-api-0.1.0.0@use-haskell-api-0.1.0.0-4YZEcWEToqwJq7QNcDK9AZ:UseHaskellAPIClient 674918793123cab3b9d508d68f85df64
+3788b82f8b08fa27d3d1c940f83cce63
   $fPrintResponseBool :: Lib.PrintResponse GHC.Types.Bool
   DFunId
-68b5572373d8b21315d47f02aad2c40b
+  {- Arity: 2, Strictness: <L,A><S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Lib.$fPrintResponseBool_$cresp
+                  `cast`
+                (Sym (Lib.N:PrintResponse[0] <GHC.Types.Bool>_N)) -}
+dce7175c7e0bc7db099fb5a8de8f8fae
+  $fPrintResponseBool1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "Response is a boolean : Totally!"#) -}
+eb52165ec0c5ffb5e726b7a0071a98c2
+  $fPrintResponseBool2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "Response is a boolean : Like No Way!"#) -}
+14c5513848a5471b2a62961f6f35391a
+  $fPrintResponseBool_$cresp ::
+    GHC.Show.Show GHC.Types.Bool => GHC.Types.Bool -> GHC.Base.String
+  {- Arity: 2, Strictness: <L,A><S,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ ($dShow :: GHC.Show.Show GHC.Types.Bool)
+                   (ds :: GHC.Types.Bool) ->
+                 case ds of wild {
+                   GHC.Types.False -> Lib.$fPrintResponseBool2
+                   GHC.Types.True -> Lib.$fPrintResponseBool1 }) -}
+3788b82f8b08fa27d3d1c940f83cce63
   $fPrintResponseResponseData ::
     Lib.PrintResponse UseHaskellAPI.ResponseData
   DFunId
-68b5572373d8b21315d47f02aad2c40b
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,A><L,1*U(1*U)>,
+     Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Lib.$fPrintResponseResponseData_$cresp
+                  `cast`
+                (Sym (Lib.N:PrintResponse[0] <UseHaskellAPI.ResponseData>_N)) -}
+54ab8be5419f05b8ccb1da69dc5e1e02
+  $fPrintResponseResponseData_$cresp ::
+    GHC.Show.Show UseHaskellAPI.ResponseData =>
+    UseHaskellAPI.ResponseData -> GHC.Base.String
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,A><L,1*U(1*U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, True)
+                (\ (w :: GHC.Show.Show UseHaskellAPI.ResponseData)
+                   (w1 :: UseHaskellAPI.ResponseData) ->
+                 Lib.$w$cresp w1) -}
+3788b82f8b08fa27d3d1c940f83cce63
   $fPrintResponse[] :: Lib.PrintResponse [UseHaskellAPI.ResponseData]
   DFunId
-68b5572373d8b21315d47f02aad2c40b
+  {- Arity: 2, Strictness: <L,A><L,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Lib.$fPrintResponse[]_$cresp
+                  `cast`
+                (Sym (Lib.N:PrintResponse[0] <[UseHaskellAPI.ResponseData]>_N)) -}
+3788b82f8b08fa27d3d1c940f83cce63
   $fPrintResponse[]0 :: Lib.PrintResponse [UseHaskellAPI.Message]
   DFunId
-292f1a9e124f4d7bcd6a2af709556c7a
+  {- Arity: 2, Strictness: <L,A><S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Lib.$fPrintResponse[]0_$cresp
+                  `cast`
+                (Sym (Lib.N:PrintResponse[0] <[UseHaskellAPI.Message]>_N)) -}
+7bc751a7ad0c43881a67b88bf689574f
+  $fPrintResponse[]0_$cresp ::
+    GHC.Show.Show [UseHaskellAPI.Message] =>
+    [UseHaskellAPI.Message] -> GHC.Base.String
+  {- Arity: 2, Strictness: <L,A><S,1*U>, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, True)
+                (\ (w :: GHC.Show.Show [UseHaskellAPI.Message])
+                   (w1 :: [UseHaskellAPI.Message]) ->
+                 Lib.$w$cresp2 w1) -}
+7714de2111506f0208916e1754ff254d
+  $fPrintResponse[]1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
+4788ad9ecbf5507b883e9634156186a2
+  $fPrintResponse[]2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "No messages."#) -}
+384debe2f8afa2c63b56487bca82203a
+  $fPrintResponse[]_$cresp ::
+    GHC.Show.Show [UseHaskellAPI.ResponseData] =>
+    [UseHaskellAPI.ResponseData] -> GHC.Base.String
+  {- Arity: 2, Strictness: <L,A><L,1*U>, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, True)
+                (\ (w :: GHC.Show.Show [UseHaskellAPI.ResponseData])
+                   (w1 :: [UseHaskellAPI.ResponseData]) ->
+                 Lib.$w$cresp1 w1) -}
+8f171eb56dc60ebb5ffb7278352c5838
   $tc'C:PrintResponse :: GHC.Types.TyCon
-212fb0effe5744970fcbfe3f428d63f0
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   16858181015501573375##
+                   5988139685687572916##
+                   Lib.$trModule
+                   Lib.$tc'C:PrintResponse1) -}
+b192b2014c0414fc5e950759a4683146
+  $tc'C:PrintResponse1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'C:PrintResponse"#) -}
+99920dc3f7486f136fcd5bec2dc8141a
   $tcPrintResponse :: GHC.Types.TyCon
-593f2a50922193733f48b4a51569b211
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   9166428900844291007##
+                   17367295072313841278##
+                   Lib.$trModule
+                   Lib.$tcPrintResponse1) -}
+1ac486f055f7050d369ab153c786722a
+  $tcPrintResponse1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "PrintResponse"#) -}
+3970c3683a97723f64241ce235dc857f
   $trModule :: GHC.Types.Module
-68b5572373d8b21315d47f02aad2c40b
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module Lib.$trModule2 Lib.$trModule1) -}
+52d29212ae89e07cde3774726256d0f9
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Lib"#) -}
+a0885ab11006d33db7259e3152676866
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "client-0.1.0.0-9SNBOitpTHbA2rbSSSdy4F"#) -}
+0f6d8d83999aa42e5184471877cc962b
+  $w$cresp :: UseHaskellAPI.ResponseData -> [GHC.Types.Char]
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(1*U)>, Inline: [0],
+     Unfolding: (\ (w :: UseHaskellAPI.ResponseData) ->
+                 GHC.CString.unpackAppendCString#
+                   "Response is a single value: "#
+                   (case w of wild { UseHaskellAPI.ResponseData ds1 -> ds1 })) -}
+e8fd57a44e92cc89124932b30c20fab1
+  $w$cresp1 :: [UseHaskellAPI.ResponseData] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <L,1*U>, Inline: [0],
+     Unfolding: (\ (w :: [UseHaskellAPI.ResponseData]) ->
+                 GHC.CString.unpackAppendCString#
+                   "Response is an array with values: "#
+                   (case GHC.Base.map
+                           @ UseHaskellAPI.ResponseData
+                           @ [GHC.Types.Char]
+                           UseHaskellAPI.response
+                           w of wild {
+                      [] -> GHC.Types.[] @ GHC.Types.Char
+                      : x xs1
+                      -> Data.OldList.intercalate_$spoly_go
+                           @ GHC.Types.Char
+                           x
+                           (Data.OldList.prependToAll
+                              @ [GHC.Types.Char]
+                              Lib.$fPrintResponse[]1
+                              xs1) })) -}
+b63126dc1c9cf35dae086c8498784193
+  $w$cresp2 :: [UseHaskellAPI.Message] -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
+     Unfolding: (\ (w :: [UseHaskellAPI.Message]) ->
+                 case w of wild {
+                   [] -> Lib.$fPrintResponse[]2
+                   : x ds
+                   -> case ds of wild1 {
+                        []
+                        -> GHC.CString.unpackAppendCString#
+                             "Response is a single message: "#
+                             (case x of wild2 { UseHaskellAPI.Message ds1 ds2 -> ds2 })
+                        : ipv ipv1
+                        -> GHC.CString.unpackAppendCString#
+                             "Response is an array with messages: "#
+                             (case GHC.Base.map
+                                     @ UseHaskellAPI.Message
+                                     @ [GHC.Types.Char]
+                                     UseHaskellAPI.message
+                                     wild of wild2 {
+                                [] -> GHC.Types.[] @ GHC.Types.Char
+                                : x1 xs1
+                                -> Data.OldList.intercalate_$spoly_go
+                                     @ GHC.Types.Char
+                                     x1
+                                     (Data.OldList.prependToAll
+                                        @ [GHC.Types.Char]
+                                        Lib.$fPrintResponse[]1
+                                        xs1) }) } }) -}
+cac9a477fc72b7f66172e502573f673e
+  $w$j ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <S,U>, Inline: [0],
+     Unfolding: (\ (w :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Network.HTTP.Client.Manager.$wnewManager
+                        Network.HTTP.Client.Manager.defaultManagerSettings13
+                        Network.HTTP.Client.Manager.defaultManagerSettings10
+                          `cast`
+                        (Sym (GHC.Types.N:IO[0]
+                                  <GHC.Base.Maybe Network.Socket.Types.HostAddress
+                                   -> GHC.Base.String
+                                   -> GHC.Types.Int
+                                   -> GHC.Types.IO Network.HTTP.Client.Types.Connection>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings9
+                          `cast`
+                        (Sym (GHC.Types.N:IO[0]
+                                  <GHC.Base.Maybe Network.Socket.Types.HostAddress
+                                   -> GHC.Base.String
+                                   -> GHC.Types.Int
+                                   -> GHC.Types.IO Network.HTTP.Client.Types.Connection>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings6
+                          `cast`
+                        (Sym (GHC.Types.N:IO[0]
+                                  <Data.ByteString.Internal.ByteString
+                                   -> (Network.HTTP.Client.Types.Connection -> GHC.Types.IO ())
+                                   -> GHC.Base.String
+                                   -> GHC.Base.Maybe Network.Socket.Types.HostAddress
+                                   -> GHC.Base.String
+                                   -> GHC.Types.Int
+                                   -> GHC.Types.IO Network.HTTP.Client.Types.Connection>_R))
+                        Network.HTTP.Client.Types.ResponseTimeoutDefault
+                        Network.HTTP.Client.Manager.defaultManagerSettings5
+                        Network.HTTP.Client.Manager.defaultManagerSettings3
+                          `cast`
+                        (forall (a :: <*>_N).
+                         <Network.HTTP.Client.Types.Request>_R
+                         ->_R <GHC.Types.IO a>_R
+                         ->_R Sym (GHC.Types.N:IO[0] <a>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings2
+                        (GHC.Base.returnIO1 @ Network.HTTP.Client.Types.Request)
+                          `cast`
+                        (<Network.HTTP.Client.Types.Request>_R
+                         ->_R Sym (GHC.Types.N:IO[0] <Network.HTTP.Client.Types.Request>_R))
+                        (GHC.Base.returnIO1
+                           @ (Network.HTTP.Client.Types.Response
+                                Network.HTTP.Client.Types.BodyReader))
+                          `cast`
+                        (<Network.HTTP.Client.Types.Response
+                            Network.HTTP.Client.Types.BodyReader>_R
+                         ->_R Sym (GHC.Types.N:IO[0]
+                                       <Network.HTTP.Client.Types.Response
+                                          Network.HTTP.Client.Types.BodyReader>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings1
+                          `cast`
+                        (Trans
+                             (<GHC.Types.Bool>_R
+                              ->_R Sym (GHC.Types.N:IO[0]
+                                            <Network.HTTP.Client.Types.Request
+                                             -> Network.HTTP.Client.Types.Request>_R))
+                             (Sym (Network.HTTP.Client.Types.N:ProxyOverride[0])))
+                        Network.HTTP.Client.Manager.defaultManagerSettings1
+                          `cast`
+                        (Trans
+                             (<GHC.Types.Bool>_R
+                              ->_R Sym (GHC.Types.N:IO[0]
+                                            <Network.HTTP.Client.Types.Request
+                                             -> Network.HTTP.Client.Types.Request>_R))
+                             (Sym (Network.HTTP.Client.Types.N:ProxyOverride[0])))
+                        w of ds { (#,#) ipv ipv1 ->
+                 case ((UseHaskellAPIClient.searchMessage1 Lib.someFunc8)
+                         `cast`
+                       (Trans
+                            (Sub (Servant.Client.D:R:ClientTYPEVerb2[0]
+                                      <Network.HTTP.Types.Method.StdMethod>_N
+                                      <[UseHaskellAPI.Message]>_N
+                                      <'[Servant.API.ContentTypes.JSON]>_N
+                                      <200>_N
+                                      <'Network.HTTP.Types.Method.GET>_N))
+                            (Trans
+                                 (Servant.Common.Req.N:ClientM[0] <[UseHaskellAPI.Message]>_N)
+                                 (Control.Monad.Trans.Reader.N:ReaderT[0]
+                                      <*>_N
+                                      <Servant.Common.Req.ClientEnv>_R
+                                      <Control.Monad.Trans.Except.ExceptT
+                                         Servant.Common.Req.ServantError GHC.Types.IO>_R
+                                      <[UseHaskellAPI.Message]>_N)))
+                         (Servant.Common.Req.ClientEnv ipv1 Lib.someFunc2))
+                        `cast`
+                      (Trans
+                           (Control.Monad.Trans.Except.N:ExceptT[0]
+                                <Servant.Common.Req.ServantError>_N
+                                <GHC.Types.IO>_R
+                                <[UseHaskellAPI.Message]>_N)
+                           (GHC.Types.N:IO[0]
+                                <Data.Either.Either
+                                   Servant.Common.Req.ServantError [UseHaskellAPI.Message]>_R))
+                        ipv of ds1 { (#,#) ipv2 ipv3 ->
+                 case ipv3 of wild {
+                   Data.Either.Left err
+                   -> GHC.IO.Handle.Text.hPutStr2
+                        GHC.IO.Handle.FD.stdout
+                        (GHC.CString.unpackAppendCString#
+                           "Call failed with error: "#
+                           (Servant.Common.Req.$w$cshowsPrec
+                              0#
+                              err
+                              (GHC.Types.[] @ GHC.Types.Char)))
+                        GHC.Types.True
+                        ipv2
+                   Data.Either.Right b''
+                   -> GHC.IO.Handle.Text.hPutStr2
+                        GHC.IO.Handle.FD.stdout
+                        (Lib.$w$cresp2 b'')
+                        GHC.Types.True
+                        ipv2 } } }) -}
+3788b82f8b08fa27d3d1c940f83cce63
   class PrintResponse a where
     resp :: GHC.Show.Show a => a -> GHC.Base.String
     {-# MINIMAL resp #-}
-bf36dc6906ab44069d5756bf75148327
+f85ffca13b264cff737dd5bfc2b1fc59
   someFunc :: GHC.Types.IO ()
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Lib.someFunc1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
+7db394427c736bf98736ec34d8260c44
+  someFunc1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Network.HTTP.Client.Manager.$wnewManager
+                        Network.HTTP.Client.Manager.defaultManagerSettings13
+                        Network.HTTP.Client.Manager.defaultManagerSettings10
+                          `cast`
+                        (Sym (GHC.Types.N:IO[0]
+                                  <GHC.Base.Maybe Network.Socket.Types.HostAddress
+                                   -> GHC.Base.String
+                                   -> GHC.Types.Int
+                                   -> GHC.Types.IO Network.HTTP.Client.Types.Connection>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings9
+                          `cast`
+                        (Sym (GHC.Types.N:IO[0]
+                                  <GHC.Base.Maybe Network.Socket.Types.HostAddress
+                                   -> GHC.Base.String
+                                   -> GHC.Types.Int
+                                   -> GHC.Types.IO Network.HTTP.Client.Types.Connection>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings6
+                          `cast`
+                        (Sym (GHC.Types.N:IO[0]
+                                  <Data.ByteString.Internal.ByteString
+                                   -> (Network.HTTP.Client.Types.Connection -> GHC.Types.IO ())
+                                   -> GHC.Base.String
+                                   -> GHC.Base.Maybe Network.Socket.Types.HostAddress
+                                   -> GHC.Base.String
+                                   -> GHC.Types.Int
+                                   -> GHC.Types.IO Network.HTTP.Client.Types.Connection>_R))
+                        Network.HTTP.Client.Types.ResponseTimeoutDefault
+                        Network.HTTP.Client.Manager.defaultManagerSettings5
+                        Network.HTTP.Client.Manager.defaultManagerSettings3
+                          `cast`
+                        (forall (a :: <*>_N).
+                         <Network.HTTP.Client.Types.Request>_R
+                         ->_R <GHC.Types.IO a>_R
+                         ->_R Sym (GHC.Types.N:IO[0] <a>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings2
+                        (GHC.Base.returnIO1 @ Network.HTTP.Client.Types.Request)
+                          `cast`
+                        (<Network.HTTP.Client.Types.Request>_R
+                         ->_R Sym (GHC.Types.N:IO[0] <Network.HTTP.Client.Types.Request>_R))
+                        (GHC.Base.returnIO1
+                           @ (Network.HTTP.Client.Types.Response
+                                Network.HTTP.Client.Types.BodyReader))
+                          `cast`
+                        (<Network.HTTP.Client.Types.Response
+                            Network.HTTP.Client.Types.BodyReader>_R
+                         ->_R Sym (GHC.Types.N:IO[0]
+                                       <Network.HTTP.Client.Types.Response
+                                          Network.HTTP.Client.Types.BodyReader>_R))
+                        Network.HTTP.Client.Manager.defaultManagerSettings1
+                          `cast`
+                        (Trans
+                             (<GHC.Types.Bool>_R
+                              ->_R Sym (GHC.Types.N:IO[0]
+                                            <Network.HTTP.Client.Types.Request
+                                             -> Network.HTTP.Client.Types.Request>_R))
+                             (Sym (Network.HTTP.Client.Types.N:ProxyOverride[0])))
+                        Network.HTTP.Client.Manager.defaultManagerSettings1
+                          `cast`
+                        (Trans
+                             (<GHC.Types.Bool>_R
+                              ->_R Sym (GHC.Types.N:IO[0]
+                                            <Network.HTTP.Client.Types.Request
+                                             -> Network.HTTP.Client.Types.Request>_R))
+                             (Sym (Network.HTTP.Client.Types.N:ProxyOverride[0])))
+                        s of ds { (#,#) ipv ipv1 ->
+                 case ((UseHaskellAPIClient.storeMessage1 Lib.someFunc10)
+                         `cast`
+                       (Trans
+                            (Sub (Servant.Client.D:R:ClientTYPEVerb2[0]
+                                      <Network.HTTP.Types.Method.StdMethod>_N
+                                      <GHC.Types.Bool>_N
+                                      <'[Servant.API.ContentTypes.JSON]>_N
+                                      <200>_N
+                                      <'Network.HTTP.Types.Method.POST>_N))
+                            (Trans
+                                 (Servant.Common.Req.N:ClientM[0] <GHC.Types.Bool>_N)
+                                 (Control.Monad.Trans.Reader.N:ReaderT[0]
+                                      <*>_N
+                                      <Servant.Common.Req.ClientEnv>_R
+                                      <Control.Monad.Trans.Except.ExceptT
+                                         Servant.Common.Req.ServantError GHC.Types.IO>_R
+                                      <GHC.Types.Bool>_N)))
+                         (Servant.Common.Req.ClientEnv ipv1 Lib.someFunc2))
+                        `cast`
+                      (Trans
+                           (Control.Monad.Trans.Except.N:ExceptT[0]
+                                <Servant.Common.Req.ServantError>_N
+                                <GHC.Types.IO>_R
+                                <GHC.Types.Bool>_N)
+                           (GHC.Types.N:IO[0]
+                                <Data.Either.Either
+                                   Servant.Common.Req.ServantError GHC.Types.Bool>_R))
+                        ipv of ds1 { (#,#) ipv2 ipv3 ->
+                 case ipv3 of wild {
+                   Data.Either.Left err
+                   -> case GHC.IO.Handle.Text.hPutStr2
+                             GHC.IO.Handle.FD.stdout
+                             (GHC.CString.unpackAppendCString#
+                                "Call failed with error: "#
+                                (Servant.Common.Req.$w$cshowsPrec
+                                   0#
+                                   err
+                                   (GHC.Types.[] @ GHC.Types.Char)))
+                             GHC.Types.True
+                             ipv2 of ds2 { (#,#) ipv4 ipv5 ->
+                      Lib.$w$j ipv4 }
+                   Data.Either.Right b''
+                   -> case GHC.IO.Handle.Text.hPutStr2
+                             GHC.IO.Handle.FD.stdout
+                             (case b'' of wild1 {
+                                GHC.Types.False -> Lib.$fPrintResponseBool2
+                                GHC.Types.True -> Lib.$fPrintResponseBool1 })
+                             GHC.Types.True
+                             ipv2 of ds2 { (#,#) ipv4 ipv5 ->
+                      Lib.$w$j ipv4 } } } }) -}
+af5079b3f8818f527ecc63b2807c500e
+  someFunc10 :: UseHaskellAPI.Message
+  {- Unfolding: (UseHaskellAPI.Message
+                   Lib.someFunc9
+                   Lib.someFunc11) -}
+2497379e02abb5aea06d184227d6963d
+  someFunc11 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "this is a test"#) -}
+7813d79268f46fe3e8b6cfdd5ed2a7f2
+  someFunc2 :: Servant.Common.BaseUrl.BaseUrl
+  {- Unfolding: (Servant.Common.BaseUrl.BaseUrl
+                   Servant.Common.BaseUrl.Http
+                   Lib.someFunc7
+                   Lib.someFunc3
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+10a4419a1ba226956893fcf0d5bbb2ae
+  someFunc3 :: GHC.Types.Int
+  {- Unfolding: (case Text.Read.readEither6
+                        @ GHC.Types.Int
+                        Lib.someFunc4 of wild {
+                   []
+                   -> GHC.Err.error
+                        @ 'GHC.Types.PtrRepLifted
+                        @ GHC.Types.Int
+                        GHC.Err.errorWithoutStackTrace_wild1
+                          `cast`
+                        (Sym (GHC.Classes.N:IP[0]
+                                  <"callStack">_N <GHC.Stack.Types.CallStack>_N))
+                        Text.Read.readEither4
+                   : x ds
+                   -> case ds of wild1 {
+                        [] -> x
+                        : ipv ipv1
+                        -> GHC.Err.error
+                             @ 'GHC.Types.PtrRepLifted
+                             @ GHC.Types.Int
+                             GHC.Err.errorWithoutStackTrace_wild1
+                               `cast`
+                             (Sym (GHC.Classes.N:IP[0]
+                                       <"callStack">_N <GHC.Stack.Types.CallStack>_N))
+                             Text.Read.readEither2 } }) -}
+d58e35c25c1d74b203057cbb0c021ad7
+  someFunc4 :: [(GHC.Types.Int, GHC.Base.String)]
+  {- Unfolding: (Text.ParserCombinators.ReadP.run
+                   @ GHC.Types.Int
+                   Lib.someFunc6
+                   Lib.someFunc5) -}
+c3f5fd7a88b46bcdcafc3a7bdb1cf9d5
+  someFunc5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "8080"#) -}
+e503d6eec0f20a2f55584c01200b2fb9
+  someFunc6 :: Text.ParserCombinators.ReadP.P GHC.Types.Int
+  {- Unfolding: (GHC.Read.$fReadInt3
+                   GHC.Read.$fReadInt_$sconvertInt
+                   Text.ParserCombinators.ReadPrec.minPrec
+                   @ GHC.Types.Int
+                   (Text.Read.readEither5 @ GHC.Types.Int)) -}
+46333f11ef487c08743e6a8247ae0423
+  someFunc7 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "localhost"#) -}
+d7034e22b7874e866f92c12a57394978
+  someFunc8 :: GHC.Base.Maybe GHC.Base.String
+  {- Unfolding: (GHC.Base.Just @ GHC.Base.String Lib.someFunc9) -}
+193ce270032d15ef601b9bef0023f358
+  someFunc9 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "1"#) -}
 instance Lib.PrintResponse [GHC.Types.Bool]
   = Lib.$fPrintResponseBool
 instance Lib.PrintResponse [UseHaskellAPI.ResponseData]

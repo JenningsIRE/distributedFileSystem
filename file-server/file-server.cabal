@@ -37,6 +37,7 @@ library
                     , http-client
                     , use-haskell
                     , use-haskell-api
+                    , file-server-api
   default-language:    Haskell2010
 
 executable file-server-exe

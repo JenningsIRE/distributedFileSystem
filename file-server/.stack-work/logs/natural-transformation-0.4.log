@@ -1,19 +1,9 @@
 Configuring natural-transformation-0.4...
 Building natural-transformation-0.4...
 Preprocessing library natural-transformation-0.4...
-[1 of 3] Compiling Control.Natural  ( src/Control/Natural.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Control/Natural.o )
-[2 of 3] Compiling Control.Natural.RULES ( src/Control/Natural/RULES.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Control/Natural/RULES.o )
-[3 of 3] Compiling Control.Object   ( src/Control/Object.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Control/Object.o )
-Running Haddock for natural-transformation-0.4...
-Preprocessing library natural-transformation-0.4...
-Haddock coverage:
- 100% ( 10 / 10) in 'Control.Natural'
- 100% (  1 /  1) in 'Control.Natural.RULES'
- 100% (  3 /  3) in 'Control.Object'
-Warning: Control.Natural: could not find link destinations for:
-    ~
-Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/natural-transformation/index.html
+[1 of 3] Compiling Control.Natural  ( src/Control/Natural.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Control/Natural.o )
+[2 of 3] Compiling Control.Natural.RULES ( src/Control/Natural/RULES.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Control/Natural/RULES.o )
+[3 of 3] Compiling Control.Object   ( src/Control/Object.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Control/Object.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/natural-transformation-0.4-1wekIVD0YQa62debXjfFg3
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/natural-transformation-0.4-1wekIVD0YQa62debXjfFg3
 Registering natural-transformation-0.4...

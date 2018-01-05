@@ -20,8 +20,10 @@ import qualified Servant.API                        as SC
 import qualified Servant.Client                     as SC
 import           System.Console.ANSI
 import           System.Environment
-import           UseHaskellAPI
-import           UseHaskellAPIClient
+--import           UseHaskellAPI
+--import           UseHaskellAPIClient
+import           API
+import           ClientAPI
 
 reportExceptionOr act b =  b >>= \ b' ->
   case b' of
@@ -54,10 +56,20 @@ doPostFile n m  = doCall $ postFile $ Message n m
 doGetFile :: String -> Maybe String -> Maybe String -> IO ()
 doGetFile s  = doCall $ getFile $ Just s
 
+--doStoreMessage :: String -> String -> Maybe String -> Maybe String -> IO ()
+--doStoreMessage n m  = doCall $ storeMessage $ Message n m
+
+--doSearchMessage :: String -> Maybe String -> Maybe String -> IO ()
+--doSearchMessage s  = doCall $ searchMessage $ Just s
+
+
 someFunc :: IO ()
 someFunc = do
   doPostFile "1" "this is a test" (Just "localhost") (Just "8080")
   doGetFile "1" (Just "localhost") (Just "8080")
+  --doStoreMessage "1" "this is a test" (Just "localhost") (Just "8080")
+  --doSearchMessage "1" (Just "localhost") (Just "8080")
+
 
 withInfo :: Parser a -> String -> ParserInfo a
 withInfo opts desc = info (helper <*> opts) $ progDesc desc

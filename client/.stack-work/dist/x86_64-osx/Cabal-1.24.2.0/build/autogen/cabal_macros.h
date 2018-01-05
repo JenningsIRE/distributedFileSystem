@@ -35,6 +35,13 @@
   (major1) == 0 && (major2) <  2 || \
   (major1) == 0 && (major2) == 2 && (minor) <= 4)
 
+/* package file-server-api-0.1.0.0 */
+#define VERSION_file_server_api "0.1.0.0"
+#define MIN_VERSION_file_server_api(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  1 || \
+  (major1) == 0 && (major2) == 1 && (minor) <= 0)
+
 /* package git-embed-0.1.0 */
 #define VERSION_git_embed "0.1.0"
 #define MIN_VERSION_git_embed(major1,major2,minor) (\
@@ -182,7 +189,7 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 2)
 
-#define CURRENT_COMPONENT_ID "client-0.1.0.0-7DicJ5RakFM98g3fclTc7v"
+#define CURRENT_COMPONENT_ID "client-0.1.0.0-9SNBOitpTHbA2rbSSSdy4F"
 
-#define CURRENT_PACKAGE_KEY "client-0.1.0.0-7DicJ5RakFM98g3fclTc7v"
+#define CURRENT_PACKAGE_KEY "client-0.1.0.0-9SNBOitpTHbA2rbSSSdy4F"
 

@@ -1,10 +1,9 @@
-Configuring client-0.1.0.0...
 Preprocessing library client-0.1.0.0...
 [1 of 1] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Lib.o )
-
-src/Lib.hs:52:28: error:
-    Variable not in scope: postFile :: Message -> SC.ClientM a0
-
-src/Lib.hs:55:25: error:
-    • Variable not in scope: getFile :: Maybe String -> SC.ClientM a1
-    • Perhaps you meant ‘getLine’ (imported from Prelude)
+Preprocessing executable 'client-exe' for client-0.1.0.0...
+Linking .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/client-exe/client-exe ...
+Installing library in
+/Users/Sam/distributedFileSystem/client/.stack-work/install/x86_64-osx/lts-8.24/8.0.2/lib/x86_64-osx-ghc-8.0.2/client-0.1.0.0-9SNBOitpTHbA2rbSSSdy4F
+Installing executable(s) in
+/Users/Sam/distributedFileSystem/client/.stack-work/install/x86_64-osx/lts-8.24/8.0.2/bin
+Registering client-0.1.0.0...

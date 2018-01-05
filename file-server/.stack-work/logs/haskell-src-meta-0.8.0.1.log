@@ -1,10 +1,10 @@
 Configuring haskell-src-meta-0.8.0.1...
 Building haskell-src-meta-0.8.0.1...
 Preprocessing library haskell-src-meta-0.8.0.1...
-[1 of 4] Compiling Language.Haskell.Meta.Syntax.Translate ( src/Language/Haskell/Meta/Syntax/Translate.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Language/Haskell/Meta/Syntax/Translate.o )
-[2 of 4] Compiling Language.Haskell.Meta.Parse ( src/Language/Haskell/Meta/Parse.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Language/Haskell/Meta/Parse.o )
-[3 of 4] Compiling Language.Haskell.Meta ( src/Language/Haskell/Meta.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Language/Haskell/Meta.o )
-[4 of 4] Compiling Language.Haskell.Meta.Utils ( src/Language/Haskell/Meta/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Language/Haskell/Meta/Utils.o )
+[1 of 4] Compiling Language.Haskell.Meta.Syntax.Translate ( src/Language/Haskell/Meta/Syntax/Translate.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Language/Haskell/Meta/Syntax/Translate.o )
+[2 of 4] Compiling Language.Haskell.Meta.Parse ( src/Language/Haskell/Meta/Parse.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Language/Haskell/Meta/Parse.o )
+[3 of 4] Compiling Language.Haskell.Meta ( src/Language/Haskell/Meta.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Language/Haskell/Meta.o )
+[4 of 4] Compiling Language.Haskell.Meta.Utils ( src/Language/Haskell/Meta/Utils.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Language/Haskell/Meta/Utils.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/haskell-src-meta-0.8.0.1-lT7xd2gLOrHQb8PIQQ7BS
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/haskell-src-meta-0.8.0.1-lT7xd2gLOrHQb8PIQQ7BS
 Registering haskell-src-meta-0.8.0.1...
