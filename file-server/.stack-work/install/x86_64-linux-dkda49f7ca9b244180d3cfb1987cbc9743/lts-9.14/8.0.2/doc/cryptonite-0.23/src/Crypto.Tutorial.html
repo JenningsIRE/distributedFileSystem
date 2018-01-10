@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span>
+</span><a name="line-2"></a><span class="hs-comment">{- How to use @cryptonite@ with symmetric block ciphers 
+
+&gt; {-# LANGUAGE OverloadedStrings #-}
+&gt; {-# LANGUAGE ScopedTypeVariables #-}
+&gt; {-# LANGUAGE GADTs #-}
+&gt; 
+&gt; import           Crypto.Cipher.AES (AES256)
+&gt; import           Crypto.Cipher.Types (BlockCipher(..), Cipher(..), nullIV, KeySizeSpecifier(..), IV, makeIV)
+&gt; import           Crypto.Error (CryptoFailable(..), CryptoError(..))
+&gt; 
+&gt; import qualified Crypto.Random.Types as CRT
+&gt; 
+&gt; import           Data.ByteArray (ByteArray)
+&gt; import           Data.ByteString (ByteString)
+&gt; 
+&gt; -- | Not required, but most general implementation
+&gt; data Key c a where
+&gt;   Key :: (BlockCipher c, ByteArray a) =&gt; a -&gt; Key c a 
+&gt; 
+&gt; -- | Generates a string of bytes (key) of a specific length for a given block cipher 
+&gt; genSecretKey :: forall m c a. (CRT.MonadRandom m, BlockCipher c, ByteArray a) =&gt; c -&gt; Int -&gt; m (Key c a) 
+&gt; genSecretKey _ = fmap Key . CRT.getRandomBytes 
+&gt;   
+&gt; -- | Generate a random initialization vector for a given block cipher
+&gt; genRandomIV :: forall m c. (CRT.MonadRandom m, BlockCipher c) =&gt; c -&gt; m (Maybe (IV c)) 
+&gt; genRandomIV _ = do
+&gt;   bytes :: ByteString &lt;- CRT.getRandomBytes $ blockSize (undefined :: c) 
+&gt;   return $ makeIV bytes 
+&gt; 
+&gt; -- | Initialize a block cipher
+&gt; initCipher :: (BlockCipher c, ByteArray a) =&gt; Key c a -&gt; Either CryptoError c
+&gt; initCipher (Key k) = case cipherInit k of
+&gt;   CryptoFailed e -&gt; Left e
+&gt;   CryptoPassed a -&gt; Right a
+&gt; 
+&gt; encrypt :: (BlockCipher c, ByteArray a) =&gt; Key c a -&gt; IV c -&gt; a -&gt; Either CryptoError a
+&gt; encrypt secretKey initIV msg = 
+&gt;   case initCipher secretKey of
+&gt;     Left e -&gt; Left e
+&gt;     Right c -&gt; Right $ ctrCombine c initIV msg
+&gt;     
+&gt; decrypt :: (BlockCipher c, ByteArray a) =&gt; Key c a -&gt; IV c -&gt; a -&gt; Either CryptoError a 
+&gt; decrypt = encrypt
+&gt; 
+&gt; exampleAES256 :: ByteString -&gt; IO ()
+&gt; exampleAES256 msg = do
+&gt;   -- secret key needs 256 bits (32 * 8) 
+&gt;   secretKey &lt;- genSecretKey (undefined :: AES256) 32
+&gt;   mInitIV &lt;- genRandomIV (undefined :: AES256) 
+&gt;   case mInitIV of
+&gt;     Nothing -&gt; error &quot;Failed to generate and initialization vector.&quot;
+&gt;     Just initIV -&gt; do
+&gt;       let encryptedMsg = encrypt secretKey initIV msg
+&gt;           decryptedMsg = decrypt secretKey initIV =&lt;&lt; encryptedMsg
+&gt;       case (,) &lt;$&gt; encryptedMsg &lt;*&gt; decryptedMsg of
+&gt;         Left err -&gt; error $ show err
+&gt;         Right (eMsg, dMsg) -&gt; do
+&gt;           putStrLn $ &quot;Original Message: &quot; ++ show msg
+&gt;           putStrLn $ &quot;Message after encryption: &quot; ++ show eMsg 
+&gt;           putStrLn $ &quot;Message after decryption: &quot; ++ show dMsg
+
+|-}</span><span>
+</span><a name="line-64"></a><span>
+</span><a name="line-65"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Tutorial</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-66"></a></pre></body></html>

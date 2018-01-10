@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE TemplateHaskell #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><a name="line-4"></a><span class="hs-comment">-- | This module uses template Haskell. Following is a simplified explanation of usage for those unfamiliar with calling Template Haskell functions.</span><span>
+</span><a name="line-5"></a><span class="hs-comment">--</span><span>
+</span><a name="line-6"></a><span class="hs-comment">-- The function @embedFile@ in this modules embeds a file into the executable</span><span>
+</span><a name="line-7"></a><span class="hs-comment">-- that you can use it at runtime. A file is represented as a @ByteString@.</span><span>
+</span><a name="line-8"></a><span class="hs-comment">-- However, as you can see below, the type signature indicates a value of type</span><span>
+</span><a name="line-9"></a><span class="hs-comment">-- @Q Exp@ will be returned. In order to convert this into a @ByteString@, you</span><span>
+</span><a name="line-10"></a><span class="hs-comment">-- must use Template Haskell syntax, e.g.:</span><span>
+</span><a name="line-11"></a><span class="hs-comment">--</span><span>
+</span><a name="line-12"></a><span class="hs-comment">-- &gt; $(embedFile &quot;myfile.txt&quot;)</span><span>
+</span><a name="line-13"></a><span class="hs-comment">--</span><span>
+</span><a name="line-14"></a><span class="hs-comment">-- This expression will have type @ByteString@. Be certain to enable the</span><span>
+</span><a name="line-15"></a><span class="hs-comment">-- TemplateHaskell language extension, usually by adding the following to the</span><span>
+</span><a name="line-16"></a><span class="hs-comment">-- top of your module:</span><span>
+</span><a name="line-17"></a><span class="hs-comment">--</span><span>
+</span><a name="line-18"></a><span class="hs-comment">-- &gt; {-# LANGUAGE TemplateHaskell #-}</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">FileEmbed</span><span>
+</span><a name="line-20"></a><span>    </span><span class="hs-special">(</span><span> </span><span class="hs-comment">-- * Embed at compile time</span><span>
+</span><a name="line-21"></a><span>      </span><a href="Data.FileEmbed.html#embedFile"><span class="hs-identifier hs-var">embedFile</span></a><span>
+</span><a name="line-22"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#embedOneFileOf"><span class="hs-identifier hs-var">embedOneFileOf</span></a><span>
+</span><a name="line-23"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#embedDir"><span class="hs-identifier hs-var">embedDir</span></a><span>
+</span><a name="line-24"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#getDir"><span class="hs-identifier hs-var">getDir</span></a><span>
+</span><a name="line-25"></a><span>      </span><span class="hs-comment">-- * Embed as a IsString</span><span>
+</span><a name="line-26"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#embedStringFile"><span class="hs-identifier hs-var">embedStringFile</span></a><span>
+</span><a name="line-27"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#embedOneStringFileOf"><span class="hs-identifier hs-var">embedOneStringFileOf</span></a><span>
+</span><a name="line-28"></a><span>      </span><span class="hs-comment">-- * Inject into an executable</span><span>
+</span><a name="line-29"></a><span>      </span><span class="hs-comment">-- $inject</span><span>
+</span><a name="line-30"></a><span class="hs-cpp">#if MIN_VERSION_template_haskell(2,5,0)</span><span>
+</span><a name="line-31"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#dummySpace"><span class="hs-identifier hs-var">dummySpace</span></a><span>
+</span><a name="line-32"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#dummySpaceWith"><span class="hs-identifier hs-var">dummySpaceWith</span></a><span>
+</span><a name="line-33"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-34"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#inject"><span class="hs-identifier hs-var">inject</span></a><span>
+</span><a name="line-35"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#injectFile"><span class="hs-identifier hs-var">injectFile</span></a><span>
+</span><a name="line-36"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#injectWith"><span class="hs-identifier hs-var">injectWith</span></a><span>
+</span><a name="line-37"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#injectFileWith"><span class="hs-identifier hs-var">injectFileWith</span></a><span>
+</span><a name="line-38"></a><span>      </span><span class="hs-comment">-- * Relative path manipulation</span><span>
+</span><a name="line-39"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#makeRelativeToProject"><span class="hs-identifier hs-var">makeRelativeToProject</span></a><span>
+</span><a name="line-40"></a><span>      </span><span class="hs-comment">-- * Internal</span><span>
+</span><a name="line-41"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#stringToBs"><span class="hs-identifier hs-var">stringToBs</span></a><span>
+</span><a name="line-42"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#bsToExp"><span class="hs-identifier hs-var">bsToExp</span></a><span>
+</span><a name="line-43"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Data.FileEmbed.html#strToExp"><span class="hs-identifier hs-var">strToExp</span></a><span>
+</span><a name="line-44"></a><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-45"></a><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Language</span><span class="hs-operator">.</span><span class="hs-identifier">Haskell</span><span class="hs-operator">.</span><span class="hs-identifier">TH</span><span class="hs-operator">.</span><span class="hs-identifier">Syntax</span><span>
+</span><a name="line-47"></a><span>    </span><span class="hs-special">(</span><span> </span><span class="hs-identifier hs-type">Exp</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">AppE</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">ListE</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">LitE</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">TupE</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">SigE</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">VarE</span><span class="hs-special">)</span><span>
+</span><a name="line-48"></a><span class="hs-cpp">#if MIN_VERSION_template_haskell(2,5,0)</span><span>
+</span><a name="line-49"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Lit</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">StringL</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">StringPrimL</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">IntegerL</span><span class="hs-special">)</span><span>
+</span><a name="line-50"></a><span class="hs-cpp">#else</span><span>
+</span><a name="line-51"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier">Lit</span><span> </span><span class="hs-special">(</span><span class="hs-identifier">StringL</span><span class="hs-special">,</span><span> </span><span class="hs-identifier">IntegerL</span><span class="hs-special">)</span><span>
+</span><a name="line-52"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-53"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Q</span><span>
+</span><a name="line-54"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">runIO</span><span>
+</span><a name="line-55"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">qLocation</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">loc_filename</span><span>
+</span><a name="line-56"></a><span class="hs-cpp">#if MIN_VERSION_template_haskell(2,7,0)</span><span>
+</span><a name="line-57"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Quasi</span><span class="hs-special">(</span><span class="hs-identifier hs-var">qAddDependentFile</span><span class="hs-special">)</span><span>
+</span><a name="line-58"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-59"></a><span>    </span><span class="hs-special">)</span><span>
+</span><a name="line-60"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Directory</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">doesDirectoryExist</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">doesFileExist</span><span class="hs-special">,</span><span>
+</span><a name="line-61"></a><span>                         </span><span class="hs-identifier hs-var">getDirectoryContents</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">canonicalizePath</span><span class="hs-special">)</span><span>
+</span><a name="line-62"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Exception</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">throw</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ErrorCall</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-63"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">filterM</span><span class="hs-special">)</span><span>
+</span><a name="line-64"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">B</span><span>
+</span><a name="line-65"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Char8</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">B8</span><span>
+</span><a name="line-66"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Arrow</span><span> </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-var">&amp;&amp;&amp;</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">second</span><span class="hs-special">)</span><span>
+</span><a name="line-67"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Applicative</span><span> </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-var">&lt;$&gt;</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-68"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Unsafe</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">unsafePackAddressLen</span><span class="hs-special">)</span><span>
+</span><a name="line-69"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">IO</span><span class="hs-operator">.</span><span class="hs-identifier">Unsafe</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">unsafePerformIO</span><span class="hs-special">)</span><span>
+</span><a name="line-70"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">FilePath</span><span> </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-var">&lt;/&gt;</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">takeDirectory</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">takeExtension</span><span class="hs-special">)</span><span>
+</span><a name="line-71"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">String</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">fromString</span><span class="hs-special">)</span><span>
+</span><a name="line-72"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Prelude</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">P</span><span>
+</span><a name="line-73"></a><span>
+</span><a name="line-74"></a><span class="hs-comment">-- | Embed a single file in your source code.</span><span>
+</span><a name="line-75"></a><span class="hs-comment">--</span><span>
+</span><a name="line-76"></a><span class="hs-comment">-- &gt; import qualified Data.ByteString</span><span>
+</span><a name="line-77"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-78"></a><span class="hs-comment">-- &gt; myFile :: Data.ByteString.ByteString</span><span>
+</span><a name="line-79"></a><span class="hs-comment">-- &gt; myFile = $(embedFile &quot;dirName/fileName&quot;)</span><span>
+</span><a name="line-80"></a><span class="hs-identifier">embedFile</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">FilePath</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Q</span><span> </span><span class="hs-identifier hs-type">Exp</span><span>
+</span><a name="line-81"></a><a name="embedFile"><a href="Data.FileEmbed.html#embedFile"><span class="hs-identifier">embedFile</span></a></a><span> </span><a name="local-6989586621679046476"><a href="#local-6989586621679046476"><span class="hs-identifier">fp</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-82"></a><span class="hs-cpp">#if MIN_VERSION_template_haskell(2,7,0)</span><span>
+</span><a name="line-83"></a><span>    </span><span class="hs-identifier hs-var">qAddDependentFile</span><span> </span><a href="#local-6989586621679046476"><span class="hs-identifier hs-var">fp</span></a><span> </span><span class="hs-operator hs-var">&gt;&gt;</span><span>
+</span><a name="line-84"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-85"></a><span>  </span><span class="hs-special">(</span><span class="hs-identifier hs-var">runIO</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">B</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">readFile</span><span> </span><a href="#local-6989586621679046476"><span class="hs-identifier hs-var">fp</span></a><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">&gt;&gt;=</span><span> </span><a href="Data.FileEmbed.html#bsToExp"><span class="hs-identifier hs-var">bsToExp</span></a><span>
+</span><a name="line-86"></a><span>
+</span><a name="line-87"></a><span class="hs-comment">-- | Embed a single existing file in your source code</span><span>
+</span><a name="line-88"></a><span class="hs-comment">-- out of list a list of paths supplied.</span><span>
+</span><a name="line-89"></a><span class="hs-comment">--</span><span>
+</span><a name="line-90"></a><span class="hs-comment">-- &gt; import qualified Data.ByteString</span><span>
+</span><a name="line-91"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-92"></a><span class="hs-comment">-- &gt; myFile :: Data.ByteString.ByteString</span><span>
+</span><a name="line-93"></a><span class="hs-comment">-- &gt; myFile = $(embedFile' [ &quot;dirName/fileName&quot;, &quot;src/dirName/fileName&quot; ])</span><span>
+</span><a name="line-94"></a><span class="hs-identifier">embedOneFileOf</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-identifier hs-type">FilePath</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Q</span><span> </span><span class="hs-identifier hs-type">Exp</span><span>
+</span><a name="line-95"></a><a name="embedOneFileOf"><a href="Data.FileEmbed.html#embedOneFileOf"><span class="hs-identifier">embedOneFileOf</span></a></a><span> </span><a name="local-6989586621679046477"><a href="#local-6989586621679046477"><span class="hs-identifier">ps</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-96"></a><span>  </span><span class="hs-special">(</span><span class="hs-identifier hs-var">runIO</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><a href="#local-6989586621679046478"><span class="hs-identifier hs-var">readExistingFile</span></a><span> </span><a href="#local-6989586621679046477"><span class="hs-identifier hs-var">ps</span></a><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">&gt;&gt;=</span><span> </span><span class="hs-glyph">\</span><span> </span><span class="hs-special">(</span><span> </span><a name="local-6989586621679046740"><a href="#local-6989586621679046740"><span class="hs-identifier">path</span></a></a><span class="hs-special">,</span><span> </span><a name="local-6989586621679046741"><a href="#local-6989586621679046741"><span class="hs-identifier">content</span></a></a><span> </span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-97"></a><span class="hs-cpp">#if MIN_VERSION_template_haskell(2,7,0)</span><span>
+</span><a name="line-98"></a><span>    </span><span class="hs-identifier hs-var">qAddDependentFile</span><span> </span><a href="#local-6989586621679046740"><span class="hs-identifier hs-var">path</span></a><span>
+</span><a name="line-99"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-100"></a><span>    </span><a href="Data.FileEmbed.html#bsToExp"><span class="hs-identifier hs-var">bsToExp</span></a><span> </span><a href="#local-6989586621679046741"><span class="hs-identifier hs-var">content</span></a><span>
+</span><a name="line-101"></a><span>  </span><span class="hs-keyword">where</span><span>
+</span><a name="line-102"></a><span>    </span><span class="hs-identifier">readExistingFile</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-identifier hs-type">FilePath</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-special">(</span><span> </span><span class="hs-identifier hs-type">FilePath</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">B</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ByteString</span><span> </span><span class="hs-special">)</span><span>
+</span><a name="line-103"></a><span>    </span><a name="local-6989586621679046478"><a href="#local-6989586621679046478"><span class="hs-identifier">readExistingFile</span></a></a><span> </span><a name="local-6989586621679046479"><a href="#local-6989586621679046479"><span class="hs-identifier">xs</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-104"></a><span>      </span><a name="local-6989586621679046480"><a href="#local-6989586621679046480"><span class="hs-identifier">ys</span></a></a><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-identifier hs-var">filterM</span><span> </span><span class="hs-identifier hs-var">doesFileExist</span><span> </span><a href="#local-6989586621679046479"><span class="hs-identifier hs-var">xs</span></a><span>
+</span><a name="line-105"></a><span>      </span><span class="hs-keyword">case</span><span> </span><a href="#local-6989586621679046480"><span class="hs-identifier hs-var">ys</span></a><span> </span><span class="hs-keyword">of</span><span>
+</span><a name="line-106"></a><span>        </span><span class="hs-special">(</span><a name="local-6989586621679046481"><a href="#local-6989586621679046481"><span class="hs-identifier">p</span></a></a><span class="hs-glyph">:</span><span class="hs-identifier">_</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">B</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">readFile</span><span> </span><a href="#local-6989586621679046481"><span class="hs-identifier hs-var">p</span></a><span> </span><span class="hs-operator hs-var">&gt;&gt;=</span><span> </span><span class="hs-glyph">\</span><span> </span><a name="local-6989586621679046482"><a href="#local-6989586621679046482"><span class="hs-identifier">c</span></a></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">return</span><span> </span><span class="hs-special">(</span><span> </span><a href="#local-6989586621679046481"><span class="hs-identifier hs-var">p</span></a><span class="hs-special">,</span><span> </span><a href="#local-6989586621679046482"><span class="hs-identifier hs-var">c</span></a><span> </span><span class="hs-special">)</span><span>
+</span><a name="line-107"></a><span>        </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">throw</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">ErrorCall</span><span> </span><span class="hs-string">&quot;Cannot find file to embed as resource&quot;</span><span>
+</span><a name="line-108"></a><span>
+</span><a name="line-109"></a><span class="hs-comment">-- | Embed a directory recursively in your source code.</span><span>
+</span><a name="line-110"></a><span class="hs-comment">--</span><span>
+</span><a name="line-111"></a><span class="hs-comment">-- &gt; import qualified Data.ByteString</span><span>
+</span><a name="line-112"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-113"></a><span class="hs-comment">-- &gt; myDir :: [(FilePath, Data.ByteString.ByteString)]</span><span>
+</span><a name="line-114"></a><span class="hs-comment">-- &gt; myDir = $(embedDir &quot;dirName&quot;)</span><span>
+</span><a name="line-115"></a><span class="hs-identifier">embedDir</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">FilePath</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Q</span><span> </span><span class="hs-identifier hs-type">Exp</span><span>
+</span><a name="line-116"></a><a name="embedDir"><a href="Data.FileEmbed.html#embedDir"><span class="hs-identifier">embedDir</span></a></a><span> </span><a name="local-6989586621679046742"><a href="#local-6989586621679046742"><span class="hs-identifier">fp</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-117"></a><span>    </span><a name="local-6989586621679046743"><a href="#local-6989586621679046743"><span class="hs-identifier">typ</span></a></a><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-special">[</span><span class="hs-identifier">t</span><span class="hs-glyph">|</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="hs-identifier hs-type">FilePath</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">B</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ByteString</span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">|</span><span class="hs-special">]</span><span>
+</span><a name="line-118"></a><span>    </span><a name="local-6989586621679047228"><a href="#local-6989586621679047228"><span class="hs-identifier">e</span></a></a><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-identifier hs-var">ListE</span><span> </span><span class="hs-operator hs-var">&lt;$&gt;</span><span> </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-identifier hs-var">runIO</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><a href="Data.FileEmbed.html#fileList"><span class="hs-identifier hs-var">fileList</span></a><span> </span><a href="#local-6989586621679046742"><span class="hs-identifier hs-var">fp</span></a><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">&gt;&gt;=</span><span> </span><span class="hs-identifier hs-var">mapM</span><span> </span><span class="hs-special">(</span><a href="Data.FileEmbed.html#pairToExp"><span class="hs-identifier hs-var">pairToExp</span></a><span> </span><a href="#local-6989586621679046742"><span class="hs-identifier hs-var">fp</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-119"></a><span>    </span><span class="hs-identifier hs-var">return</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">SigE</span><span> </span><a href="#local-6989586621679047228"><span class="hs-identifier hs-var">e</span></a><span> </span><a href="#local-6989586621679046743"><span class="hs-identifier hs-var">typ</span></a><span>
+</span><a name="line-120"></a><span>
+</span><a name="line-121"></a><span class="hs-comment">-- | Get a directory tree in the IO monad.</span><span>
+</span><a name="line-122"></a><span class="hs-comment">--</span><span>
+</span><a name="line-123"></a><span class="hs-comment">-- This is the workhorse of 'embedDir'</span><span>
+</span><a name="line-124"></a><span class="hs-identifier">getDir</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">FilePath</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="hs-identifier hs-type">FilePath</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">B</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ByteString</span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><a name="line-125"></a><a name="getDir"><a href="Data.FileEmbed.html#getDir"><span class="hs-identifier">getDir</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Data.FileEmbed.html#fileList"><span class="hs-identifier hs-var">fileList</span></a><span>
+</span><a name="line-126"></a><span>
+</span><a name="line-127"></a><span class="hs-identifier">pairToExp</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">FilePath</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">FilePath</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">B</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ByteString</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Q</span><span> </span><span class="hs-identifier hs-type">Exp</span><span>
+</span><a name="line-128"></a><a name="pairToExp"><a href="Data.FileEmbed.html#pairToExp"><span class="hs-identifier">pairToExp</span></a></a><span> </span><a name="local-6989586621679047229"><a href="#local-6989586621679047229"><span class="hs-identifier">_root</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679047230"><a href="#local-6989586621679047230"><span class="hs-identifier">path</span></a></a><span class="hs-special">,</span><span> </span><a name="local-6989586621679047231"><a href="#local-6989586621679047231"><span class="hs-identifier">bs</span></a></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-129"></a><span class="hs-cpp">#if MIN_VERSION_template_haskell(2,7,0)</span><span>
+</span><a name="line-130"></a><span>    </span><span class="hs-identifier hs-var">qAddDependentFile</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><a href="#local-6989586621679047229"><span class="hs-identifier hs-var">_root</span></a><span> </span><span class="hs-operator hs-var">++</span><span> </span><span class="hs-char">'/'</span><span> </span><span class="hs-glyph">:</span><span> </span><a href="#local-6989586621679047230"><span class="hs-identifier hs-var">path</span></a><span>
+</span><a name="line-131"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-132"></a><span>    </span><a name="local-6989586621679047232"><a href="#local-6989586621679047232"><span class="hs-identifier">exp'</span></a></a><span> </span><span class="hs-glyph">&lt;-</span><span> </span><a href="Data.FileEmbed.html#bsToExp"><span class="hs-identifier hs-var">bsToExp</span></a><span> </span><a href="#local-6989586621679047231"><span class="hs-identifier hs-var">bs</span></a><span>
+</span><a name="line-133"></a><span>    </span><span class="hs-identifier hs-var">return</span><span> </span><span class="hs-operator hs-var">$!</span><span> </span><span class="hs-identifier hs-var">TupE</span><span> </span><span class="hs-special">[</span><span class="hs-identifier hs-var">LitE</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">StringL</span><span> </span><a href="#local-6989586621679047230"><span class="hs-identifier hs-var">path</span></a><span class="hs-special">,</span><span> </span><a href="#local-6989586621679047232"><span class="hs-identifier hs-var">exp'</span></a><span class="hs-special">]</span><span>
+</span><a name="line-134"></a><span>
+</span><a name="line-135"></a><span class="hs-identifier">bsToExp</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">B</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ByteString</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Q</span><span> </span><span class="hs-identifier hs-type">Exp</span><span>
+</span><a name="line-136"></a><span class="hs-cpp">#if MIN_VERSION_template_haskell(2, 5, 0)</span><span>
+</span><a name="line-137"></a><a name="bsToExp"><a href="Data.FileEmbed.html#bsToExp"><span class="hs-identifier">bsToExp</span></a></a><span> </span><a name="local-6989586621679047233"><a href="#local-6989586621679047233"><span class="hs-identifier">bs</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-138"></a><span>    </span><span class="hs-identifier hs-var">return</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">VarE</span><span> </span><span class="hs-char">'unsafePerformIO
+      `AppE` (VarE 'unsafePackAddressLen
+      `AppE` LitE (IntegerL $ fromIntegral $ B8.length bs)
+#if MIN_VERSION_template_haskell(2, 8, 0)
+      `AppE` LitE (StringPrimL $ B.unpack bs))
+#else
+      `AppE` LitE (StringPrimL $ B8.unpack bs))
+#endif
+#else
+bsToExp bs = do
+    helper &lt;- [| stringToBs |]
+    let chars = B8.unpack bs
+    return $! AppE helper $! LitE $! StringL chars
+#endif
+
+stringToBs :: String -&gt; B.ByteString
+stringToBs = B8.pack
+
+-- | Embed a single file in your source code.
+--
+-- &gt; import Data.String
+-- &gt;
+-- &gt; myFile :: IsString a =&gt; a
+-- &gt; myFile = $(embedStringFile &quot;dirName/fileName&quot;)
+--
+-- Since 0.0.9
+embedStringFile :: FilePath -&gt; Q Exp
+embedStringFile fp =
+#if MIN_VERSION_template_haskell(2,7,0)
+    qAddDependentFile fp &gt;&gt;
+#endif
+  (runIO $ P.readFile fp) &gt;&gt;= strToExp
+
+-- | Embed a single existing string file in your source code
+-- out of list a list of paths supplied.
+--
+-- Since 0.0.9
+embedOneStringFileOf :: [FilePath] -&gt; Q Exp
+embedOneStringFileOf ps =
+  (runIO $ readExistingFile ps) &gt;&gt;= \ ( path, content ) -&gt; do
+#if MIN_VERSION_template_haskell(2,7,0)
+    qAddDependentFile path
+#endif
+    strToExp content
+  where
+    readExistingFile :: [FilePath] -&gt; IO ( FilePath, String )
+    readExistingFile xs = do
+      ys &lt;- filterM doesFileExist xs
+      case ys of
+        (p:_) -&gt; P.readFile p &gt;&gt;= \ c -&gt; return ( p, c )
+        _ -&gt; throw $ ErrorCall &quot;Cannot find file to embed as resource&quot;
+
+strToExp :: String -&gt; Q Exp
+#if MIN_VERSION_template_haskell(2, 5, 0)
+strToExp s =
+    return $ VarE 'fromString
+      `AppE` LitE (StringL s)
+#else
+strToExp s = do
+    helper &lt;- [| fromString |]
+    return $! AppE helper $! LitE $! StringL s
+#endif
+
+notHidden :: FilePath -&gt; Bool
+notHidden ('.':_) = False
+notHidden _ = True
+
+fileList :: FilePath -&gt; IO [(FilePath, B.ByteString)]
+fileList top = fileList' top &quot;&quot;
+
+fileList' :: FilePath -&gt; FilePath -&gt; IO [(FilePath, B.ByteString)]
+fileList' realTop top = do
+    allContents &lt;- filter notHidden &lt;$&gt; getDirectoryContents (realTop &lt;/&gt; top)
+    let all' = map ((top &lt;/&gt;) &amp;&amp;&amp; (\x -&gt; realTop &lt;/&gt; top &lt;/&gt; x)) allContents
+    files &lt;- filterM (doesFileExist . snd) all' &gt;&gt;=
+             mapM (liftPair2 . second B.readFile)
+    dirs &lt;- filterM (doesDirectoryExist . snd) all' &gt;&gt;=
+            mapM (fileList' realTop . fst)
+    return $ concat $ files : dirs
+
+liftPair2 :: Monad m =&gt; (a, m b) -&gt; m (a, b)
+liftPair2 (a, b) = b &gt;&gt;= \b' -&gt; return (a, b')
+
+magic :: B.ByteString -&gt; B.ByteString
+magic x = B8.concat [&quot;fe&quot;, x]
+
+sizeLen :: Int
+sizeLen = 20
+
+getInner :: B.ByteString -&gt; B.ByteString
+getInner b =
+    let (sizeBS, rest) = B.splitAt sizeLen b
+     in case reads $ B8.unpack sizeBS of
+            (i, _):_ -&gt; B.take i rest
+            [] -&gt; error &quot;Data.FileEmbed (getInner): Your dummy space has been corrupted.&quot;
+
+padSize :: Int -&gt; String
+padSize i =
+    let s = show i
+     in replicate (sizeLen - length s) '0' ++ s
+
+#if MIN_VERSION_template_haskell(2,5,0)
+-- | Allocate the given number of bytes in the generate executable. That space
+-- can be filled up with the 'inject' and 'injectFile' functions.
+dummySpace :: Int -&gt; Q Exp
+dummySpace = dummySpaceWith &quot;MS&quot;
+
+-- | Like 'dummySpace', but takes a postfix for the magic string.  In
+-- order for this to work, the same postfix must be used by 'inject' /
+-- 'injectFile'.  This allows an executable to have multiple
+-- 'ByteString's injected into it, without encountering collisions.
+--
+-- Since 0.0.8
+dummySpaceWith :: B.ByteString -&gt; Int -&gt; Q Exp
+dummySpaceWith postfix space = do
+    let size = padSize space
+        magic' = magic postfix
+        start = B8.unpack magic' ++ size
+        magicLen = B8.length magic'
+        len = magicLen + sizeLen + space
+        chars = LitE $ StringPrimL $
+#if MIN_VERSION_template_haskell(2,6,0)
+            map (toEnum . fromEnum) $
+#endif
+            start ++ replicate space '0'
+    [| getInner (B.drop magicLen (unsafePerformIO (unsafePackAddressLen len $(return chars)))) |]
+#endif
+
+-- | Inject some raw data inside a @ByteString@ containing empty, dummy space
+-- (allocated with @dummySpace@). Typically, the original @ByteString@ is an
+-- executable read from the filesystem.
+inject :: B.ByteString -- ^ bs to inject
+       -&gt; B.ByteString -- ^ original BS containing dummy
+       -&gt; Maybe B.ByteString -- ^ new BS, or Nothing if there is insufficient dummy space
+inject = injectWith &quot;MS&quot;
+
+-- | Like 'inject', but takes a postfix for the magic string.
+--
+-- Since 0.0.8
+injectWith :: B.ByteString -- ^ postfix of magic string
+           -&gt; B.ByteString -- ^ bs to inject
+           -&gt; B.ByteString -- ^ original BS containing dummy
+           -&gt; Maybe B.ByteString -- ^ new BS, or Nothing if there is insufficient dummy space
+injectWith postfix toInj orig =
+    if toInjL &gt; size
+        then Nothing
+        else Just $ B.concat [before, magic', B8.pack $ padSize toInjL, toInj, B8.pack $ replicate (size - toInjL) '0', after]
+  where
+    magic' = magic postfix
+    toInjL = B.length toInj
+    (before, rest) = B.breakSubstring magic' orig
+    (sizeBS, rest') = B.splitAt sizeLen $ B.drop (B8.length magic') rest
+    size = case reads $ B8.unpack sizeBS of
+            (i, _):_ -&gt; i
+            [] -&gt; error $ &quot;Data.FileEmbed (inject): Your dummy space has been corrupted. Size is: &quot; ++ show sizeBS
+    after = B.drop size rest'
+
+-- | Same as 'inject', but instead of performing the injecting in memory, read
+-- the contents from the filesystem and write back to a different file on the
+-- filesystem.
+injectFile :: B.ByteString -- ^ bs to inject
+           -&gt; FilePath -- ^ template file
+           -&gt; FilePath -- ^ output file
+           -&gt; IO ()
+injectFile = injectFileWith &quot;MS&quot;
+
+-- | Like 'injectFile', but takes a postfix for the magic string.
+--
+-- Since 0.0.8
+injectFileWith :: B.ByteString -- ^ postfix of magic string
+               -&gt; B.ByteString -- ^ bs to inject
+               -&gt; FilePath -- ^ template file
+               -&gt; FilePath -- ^ output file
+               -&gt; IO ()
+injectFileWith postfix inj srcFP dstFP = do
+    src &lt;- B.readFile srcFP
+    case injectWith postfix inj src of
+        Nothing -&gt; error &quot;Insufficient dummy space&quot;
+        Just dst -&gt; B.writeFile dstFP dst
+
+{- $inject
+
+The inject system allows arbitrary content to be embedded inside a Haskell
+executable, post compilation. Typically, file-embed allows you to read some
+contents from the file system at compile time and embed them inside your
+executable. Consider a case, instead, where you would want to embed these
+contents after compilation. Two real-world examples are:
+
+* You would like to embed a hash of the executable itself, for sanity checking in a network protocol. (Obviously the hash will change after you embed the hash.)
+
+* You want to create a self-contained web server that has a set of content, but will need to update the content on machines that do not have access to GHC.
+
+The typical workflow use:
+
+* Use 'dummySpace' or 'dummySpaceWith' to create some empty space in your executable
+
+* Use 'injectFile' or 'injectFileWith' from a separate utility to modify that executable to have the updated content.
+
+The reason for the @With@-variant of the functions is for cases where you wish
+to inject multiple different kinds of content, and therefore need control over
+the magic key. If you know for certain that there will only be one dummy space
+available, you can use the non-@With@ variants.
+
+-}
+
+-- | Take a relative file path and attach it to the root of the current
+-- project.
+--
+-- The idea here is that, when building with Stack, the build will always be
+-- executed with a current working directory of the root of the project (where
+-- your .cabal file is located). However, if you load up multiple projects with
+-- @stack ghci@, the working directory may be something else entirely.
+--
+-- This function looks at the source location of the Haskell file calling it,
+-- finds the first parent directory with a .cabal file, and uses that as the
+-- root directory for fixing the relative path.
+--
+-- @@@
+-- $(makeRelativeToProject &quot;data/foo.txt&quot; &gt;&gt;= fileEmbed)
+-- @@@
+--
+-- @since 0.0.10
+makeRelativeToProject :: FilePath -&gt; Q FilePath
+makeRelativeToProject rel = do
+    loc &lt;- qLocation
+    runIO $ do
+        srcFP &lt;- canonicalizePath $ loc_filename loc
+        mdir &lt;- findProjectDir srcFP
+        case mdir of
+            Nothing -&gt; error $ &quot;Could not find .cabal file for path: &quot; ++ srcFP
+            Just dir -&gt; return $ dir &lt;/&gt; rel
+  where
+    findProjectDir x = do
+        let dir = takeDirectory x
+        if dir == x
+            then return Nothing
+            else do
+                contents &lt;- getDirectoryContents dir
+                if any isCabalFile contents
+                    then return (Just dir)
+                    else findProjectDir dir
+
+    isCabalFile fp = takeExtension fp == &quot;.cabal&quot;
+</span></pre></body></html>

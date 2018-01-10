@@ -1,0 +1,7 @@
+Configuring directory-server-0.1.0.0...
+Preprocessing library directory-server-0.1.0.0...
+[1 of 1] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Lib.o )
+
+src/Lib.hs:37:1: error:
+    Failed to load interface for ‘RestClient’
+    Use -v to see a list of the files searched for.

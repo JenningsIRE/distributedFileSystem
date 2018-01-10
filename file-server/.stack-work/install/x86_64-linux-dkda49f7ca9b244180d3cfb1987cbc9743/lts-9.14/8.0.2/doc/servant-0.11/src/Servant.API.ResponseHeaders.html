@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP                    #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE DataKinds              #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE DeriveFunctor          #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE FlexibleContexts       #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE FlexibleInstances      #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE FunctionalDependencies #-}</span><span>
+</span><a name="line-7"></a><span class="hs-pragma">{-# LANGUAGE GADTs                  #-}</span><span>
+</span><a name="line-8"></a><span class="hs-pragma">{-# LANGUAGE KindSignatures         #-}</span><span>
+</span><a name="line-9"></a><span class="hs-pragma">{-# LANGUAGE MultiParamTypeClasses  #-}</span><span>
+</span><a name="line-10"></a><span class="hs-pragma">{-# LANGUAGE PolyKinds              #-}</span><span>
+</span><a name="line-11"></a><span class="hs-pragma">{-# LANGUAGE ScopedTypeVariables    #-}</span><span>
+</span><a name="line-12"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies           #-}</span><span>
+</span><a name="line-13"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators          #-}</span><span>
+</span><a name="line-14"></a><span class="hs-pragma">{-# LANGUAGE UndecidableInstances   #-}</span><span>
+</span><a name="line-15"></a><span class="hs-pragma">{-# OPTIONS_HADDOCK not-home        #-}</span><span>
+</span><a name="line-16"></a><span>
+</span><a name="line-17"></a><span class="hs-cpp">#include &quot;overlapping-compat.h&quot;</span><span>
+</span><a name="line-18"></a><span class="hs-comment">-- | This module provides facilities for adding headers to a response.</span><span>
+</span><a name="line-19"></a><span class="hs-comment">--</span><span>
+</span><a name="line-20"></a><span class="hs-comment">-- &gt;&gt;&gt; let headerVal = addHeader &quot;some-url&quot; 5 :: Headers '[Header &quot;Location&quot; String] Int</span><span>
+</span><a name="line-21"></a><span class="hs-comment">--</span><span>
+</span><a name="line-22"></a><span class="hs-comment">-- The value is added to the header specified by the type (@Location@ in the</span><span>
+</span><a name="line-23"></a><span class="hs-comment">-- example above).</span><span>
+</span><a name="line-24"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">API</span><span class="hs-operator">.</span><span class="hs-identifier">ResponseHeaders</span><span>
+</span><a name="line-25"></a><span>    </span><span class="hs-special">(</span><span> </span><a href="Servant.API.ResponseHeaders.html#Headers"><span class="hs-identifier hs-type">Headers</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-26"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ResponseHeaders.html#AddHeader"><span class="hs-identifier hs-type">AddHeader</span></a><span>
+</span><a name="line-27"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ResponseHeaders.html#addHeader"><span class="hs-identifier hs-var">addHeader</span></a><span>
+</span><a name="line-28"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ResponseHeaders.html#noHeader"><span class="hs-identifier hs-var">noHeader</span></a><span>
+</span><a name="line-29"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ResponseHeaders.html#BuildHeadersTo"><span class="hs-identifier hs-type">BuildHeadersTo</span></a><span class="hs-special">(</span><a href="Servant.API.ResponseHeaders.html#buildHeadersTo"><span class="hs-identifier hs-var">buildHeadersTo</span></a><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ResponseHeaders.html#GetHeaders"><span class="hs-identifier hs-type">GetHeaders</span></a><span class="hs-special">(</span><a href="Servant.API.ResponseHeaders.html#getHeaders"><span class="hs-identifier hs-var">getHeaders</span></a><span class="hs-special">)</span><span>
+</span><a name="line-31"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ResponseHeaders.html#HeaderValMap"><span class="hs-identifier hs-type">HeaderValMap</span></a><span>
+</span><a name="line-32"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Servant.API.ResponseHeaders.html#HList"><span class="hs-identifier hs-type">HList</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-34"></a><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Char8</span><span>       </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">BS</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">pack</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">unlines</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">init</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">HttpApiData</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ToHttpApiData</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">toHeader</span><span class="hs-special">,</span><span>
+</span><a name="line-37"></a><span>                                             </span><span class="hs-identifier hs-type">FromHttpApiData</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">parseHeader</span><span class="hs-special">)</span><span>
+</span><a name="line-38"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">CaseInsensitive</span><span>        </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">CI</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Proxy</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">TypeLits</span><span>                </span><span class="hs-special">(</span><span class="hs-identifier hs-type">KnownSymbol</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">symbolVal</span><span class="hs-special">)</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">HTTP</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span class="hs-operator">.</span><span class="hs-identifier">Header</span><span>   </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">HTTP</span><span>
+</span><a name="line-42"></a><span>
+</span><a name="line-43"></a><span class="hs-keyword">import</span><span>           </span><a href="Servant.API.Header.html"><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">API</span><span class="hs-operator">.</span><span class="hs-identifier">Header</span></a><span>          </span><span class="hs-special">(</span><a href="Servant.API.Header.html#Header"><span class="hs-identifier hs-type">Header</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Prelude</span><span>                     </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-45"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Prelude</span><span class="hs-operator">.</span><span class="hs-identifier">Compat</span><span>
+</span><a name="line-46"></a><span>
+</span><a name="line-47"></a><span class="hs-comment">-- | Response Header objects. You should never need to construct one directly.</span><span>
+</span><a name="line-48"></a><span class="hs-comment">-- Instead, use 'addOptionalHeader'.</span><span>
+</span><a name="line-49"></a><span class="hs-keyword">data</span><span> </span><a name="Headers"><a href="Servant.API.ResponseHeaders.html#Headers"><span class="hs-identifier">Headers</span></a></a><span> </span><a name="local-6989586621679045780"><a href="#local-6989586621679045780"><span class="hs-identifier">ls</span></a></a><span> </span><a name="local-6989586621679045781"><a href="#local-6989586621679045781"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="Headers"><a href="Servant.API.ResponseHeaders.html#Headers"><span class="hs-identifier">Headers</span></a></a><span> </span><span class="hs-special">{</span><span> </span><a name="getResponse"><a href="Servant.API.ResponseHeaders.html#getResponse"><span class="hs-identifier">getResponse</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679045781"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-50"></a><span>                            </span><span class="hs-comment">-- ^ The underlying value of a 'Headers'</span><span>
+</span><a name="line-51"></a><span>                            </span><span class="hs-special">,</span><span> </span><a name="getHeadersHList"><a href="Servant.API.ResponseHeaders.html#getHeadersHList"><span class="hs-identifier">getHeadersHList</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="Servant.API.ResponseHeaders.html#HList"><span class="hs-identifier hs-type">HList</span></a><span> </span><a href="#local-6989586621679045780"><span class="hs-identifier hs-type">ls</span></a><span>
+</span><a name="line-52"></a><span>                            </span><span class="hs-comment">-- ^ HList of headers.</span><span>
+</span><a name="line-53"></a><span>                            </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Functor</span><span class="hs-special">)</span><span>
+</span><a name="line-54"></a><span>
+</span><a name="line-55"></a><span class="hs-keyword">data</span><span> </span><a name="HList"><a href="Servant.API.ResponseHeaders.html#HList"><span class="hs-identifier">HList</span></a></a><span> </span><a name="local-6989586621679045776"><a href="#local-6989586621679045776"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-56"></a><span>    </span><a name="HNil"><a href="Servant.API.ResponseHeaders.html#HNil"><span class="hs-identifier">HNil</span></a></a><span>  </span><span class="hs-glyph">::</span><span> </span><a href="Servant.API.ResponseHeaders.html#HList"><span class="hs-identifier hs-type">HList</span></a><span> </span><span class="hs-char">'[]
+    HCons :: Header h x -&gt; HList xs -&gt; HList (Header h x ': xs)
+
+type family HeaderValMap (f :: * -&gt; *) (xs :: [*]) where
+    HeaderValMap f '[]                = '[]
+    HeaderValMap f (Header h x ': xs) = Header h (f x) ': (HeaderValMap f xs)
+
+
+class BuildHeadersTo hs where
+    buildHeadersTo :: [HTTP.Header] -&gt; HList hs
+    -- ^ Note: if there are multiple occurences of a header in the argument,
+    -- the values are interspersed with commas before deserialization (see
+    -- &lt;http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2 RFC2616 Sec 4.2&gt;)
+
+instance OVERLAPPING_ BuildHeadersTo '[] where
+    buildHeadersTo _ = HNil
+
+instance OVERLAPPABLE_ ( FromHttpApiData v, BuildHeadersTo xs, KnownSymbol h )
+         =&gt; BuildHeadersTo ((Header h v) ': xs) where
+    buildHeadersTo headers =
+      let wantedHeader = CI.mk . pack $ symbolVal (Proxy :: Proxy h)
+          matching = snd &lt;$&gt; filter (\(h, _) -&gt; h == wantedHeader) headers
+      in case matching of
+        [] -&gt; MissingHeader `HCons` buildHeadersTo headers
+        xs -&gt; case parseHeader (BS.init $ BS.unlines xs) of
+          Left _err -&gt; UndecodableHeader (BS.init $ BS.unlines xs)
+             `HCons` buildHeadersTo headers
+          Right h   -&gt; Header h `HCons` buildHeadersTo headers
+
+-- * Getting
+
+class GetHeaders ls where
+    getHeaders :: ls -&gt; [HTTP.Header]
+
+instance OVERLAPPING_ GetHeaders (HList '[]) where
+    getHeaders _ = []
+
+instance OVERLAPPABLE_ ( KnownSymbol h, ToHttpApiData x, GetHeaders (HList xs) )
+         =&gt; GetHeaders (HList (Header h x ': xs)) where
+    getHeaders hdrs = case hdrs of
+        Header val `HCons` rest -&gt; (headerName , toHeader val):getHeaders rest
+        UndecodableHeader h `HCons` rest -&gt; (headerName,  h)  :getHeaders rest
+        MissingHeader `HCons` rest -&gt; getHeaders rest
+      where headerName = CI.mk . pack $ symbolVal (Proxy :: Proxy h)
+
+instance OVERLAPPING_ GetHeaders (Headers '[] a) where
+    getHeaders _ = []
+
+instance OVERLAPPABLE_ ( KnownSymbol h, GetHeaders (HList rest), ToHttpApiData v )
+         =&gt; GetHeaders (Headers (Header h v ': rest) a) where
+    getHeaders hs = getHeaders $ getHeadersHList hs
+
+-- * Adding
+
+-- We need all these fundeps to save type inference
+class AddHeader h v orig new
+    | h v orig -&gt; new, new -&gt; h, new -&gt; v, new -&gt; orig where
+  addOptionalHeader :: Header h v -&gt; orig -&gt; new  -- ^ N.B.: The same header can't be added multiple times
+
+
+instance OVERLAPPING_ ( KnownSymbol h, ToHttpApiData v )
+         =&gt; AddHeader h v (Headers (fst ': rest)  a) (Headers (Header h v  ': fst ': rest) a) where
+    addOptionalHeader hdr (Headers resp heads) = Headers resp (HCons hdr heads)
+
+instance OVERLAPPABLE_ ( KnownSymbol h, ToHttpApiData v
+                       , new ~ (Headers '[Header h v] a) )
+         =&gt; AddHeader h v a new where
+    addOptionalHeader hdr resp = Headers resp (HCons hdr HNil)
+
+-- | @addHeader@ adds a header to a response. Note that it changes the type of
+-- the value in the following ways:
+--
+--   1. A simple value is wrapped in &quot;Headers '[hdr]&quot;:
+--
+-- &gt;&gt;&gt; let example1 = addHeader 5 &quot;hi&quot; :: Headers '[Header &quot;someheader&quot; Int] String;
+-- &gt;&gt;&gt; getHeaders example1
+-- [(&quot;someheader&quot;,&quot;5&quot;)]
+--
+--   2. A value that already has a header has its new header *prepended* to the
+--   existing list:
+--
+-- &gt;&gt;&gt; let example1 = addHeader 5 &quot;hi&quot; :: Headers '[Header &quot;someheader&quot; Int] String;
+-- &gt;&gt;&gt; let example2 = addHeader True example1 :: Headers '[Header &quot;1st&quot; Bool, Header &quot;someheader&quot; Int] String
+-- &gt;&gt;&gt; getHeaders example2
+-- [(&quot;1st&quot;,&quot;true&quot;),(&quot;someheader&quot;,&quot;5&quot;)]
+--
+-- Note that while in your handlers type annotations are not required, since
+-- the type can be inferred from the API type, in other cases you may find
+-- yourself needing to add annotations.
+addHeader :: AddHeader h v orig new =&gt; v -&gt; orig -&gt; new
+addHeader = addOptionalHeader . Header
+
+-- | Deliberately do not add a header to a value.
+--
+-- &gt;&gt;&gt; let example1 = noHeader &quot;hi&quot; :: Headers '[Header &quot;someheader&quot; Int] String
+-- &gt;&gt;&gt; getHeaders example1
+-- []
+noHeader :: AddHeader h v orig new =&gt; orig -&gt; new
+noHeader = addOptionalHeader MissingHeader
+
+-- $setup
+-- &gt;&gt;&gt; import Servant.API
+-- &gt;&gt;&gt; import Data.Aeson
+-- &gt;&gt;&gt; import Data.Text
+-- &gt;&gt;&gt; data Book
+-- &gt;&gt;&gt; instance ToJSON Book where { toJSON = undefined }
+</span></pre></body></html>

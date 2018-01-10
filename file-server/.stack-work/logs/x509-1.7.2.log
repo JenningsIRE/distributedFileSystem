@@ -1,20 +1,20 @@
 Configuring x509-1.7.2...
 Building x509-1.7.2...
 Preprocessing library x509-1.7.2...
-[ 1 of 14] Compiling Data.X509.OID    ( Data/X509/OID.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/OID.o )
+[ 1 of 14] Compiling Data.X509.OID    ( Data/X509/OID.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/OID.o )
 
 Data/X509/OID.hs:15:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
-[ 2 of 14] Compiling Data.X509.Internal ( Data/X509/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/Internal.o )
-[ 3 of 14] Compiling Data.X509.ExtensionRaw ( Data/X509/ExtensionRaw.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/ExtensionRaw.o )
+[ 2 of 14] Compiling Data.X509.Internal ( Data/X509/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/Internal.o )
+[ 3 of 14] Compiling Data.X509.ExtensionRaw ( Data/X509/ExtensionRaw.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/ExtensionRaw.o )
 
 Data/X509/ExtensionRaw.hs:17:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
-[ 4 of 14] Compiling Data.X509.DistinguishedName ( Data/X509/DistinguishedName.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/DistinguishedName.o )
+[ 4 of 14] Compiling Data.X509.DistinguishedName ( Data/X509/DistinguishedName.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/DistinguishedName.o )
 
 Data/X509/DistinguishedName.hs:18:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
@@ -25,26 +25,92 @@ Data/X509/DistinguishedName.hs:19:1: warning: [-Wunused-imports]
     The import of ‘Data.Monoid’ is redundant
       except perhaps to import instances from ‘Data.Monoid’
     To import instances alone, use: import Data.Monoid()
-[ 5 of 14] Compiling Data.X509.Ext    ( Data/X509/Ext.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/Ext.o )
+[ 5 of 14] Compiling Data.X509.Ext    ( Data/X509/Ext.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/Ext.o )
 
 Data/X509/Ext.hs:46:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
-[ 6 of 14] Compiling Data.X509.AlgorithmIdentifier ( Data/X509/AlgorithmIdentifier.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/AlgorithmIdentifier.o )
-[ 7 of 14] Compiling Data.X509.CRL    ( Data/X509/CRL.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/CRL.o )
+[ 6 of 14] Compiling Data.X509.AlgorithmIdentifier ( Data/X509/AlgorithmIdentifier.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/AlgorithmIdentifier.o )
+[ 7 of 14] Compiling Data.X509.CRL    ( Data/X509/CRL.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/CRL.o )
 
 Data/X509/CRL.hs:19:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
-[ 8 of 14] Compiling Data.X509.PublicKey ( Data/X509/PublicKey.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/PublicKey.o )
-[ 9 of 14] Compiling Data.X509.Cert   ( Data/X509/Cert.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/Cert.o )
-[10 of 14] Compiling Data.X509.PrivateKey ( Data/X509/PrivateKey.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/PrivateKey.o )
-[11 of 14] Compiling Data.X509.EC     ( Data/X509/EC.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/EC.o )
-[12 of 14] Compiling Data.X509.Signed ( Data/X509/Signed.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/Signed.o )
-[13 of 14] Compiling Data.X509.CertificateChain ( Data/X509/CertificateChain.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509/CertificateChain.o )
-[14 of 14] Compiling Data.X509        ( Data/X509.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/X509.o )
+[ 8 of 14] Compiling Data.X509.PublicKey ( Data/X509/PublicKey.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/PublicKey.o )
+[ 9 of 14] Compiling Data.X509.Cert   ( Data/X509/Cert.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/Cert.o )
+[10 of 14] Compiling Data.X509.PrivateKey ( Data/X509/PrivateKey.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/PrivateKey.o )
+[11 of 14] Compiling Data.X509.EC     ( Data/X509/EC.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/EC.o )
+[12 of 14] Compiling Data.X509.Signed ( Data/X509/Signed.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/Signed.o )
+[13 of 14] Compiling Data.X509.CertificateChain ( Data/X509/CertificateChain.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509/CertificateChain.o )
+[14 of 14] Compiling Data.X509        ( Data/X509.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/X509.o )
+Running Haddock for x509-1.7.2...
+Preprocessing library x509-1.7.2...
+
+Data/X509/OID.hs:15:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+Data/X509/ExtensionRaw.hs:17:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+Data/X509/DistinguishedName.hs:18:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+Data/X509/DistinguishedName.hs:19:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+
+Data/X509/Ext.hs:46:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+Data/X509/CRL.hs:19:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+Haddock coverage:
+  20% (  1 /  5) in 'Data.X509.OID'
+  Missing documentation for:
+    OIDTable (Data/X509/OID.hs:20)
+    lookupByOID (Data/X509/OID.hs:22)
+    lookupOID (Data/X509/OID.hs:25)
+    curvesOIDTable (Data/X509/OID.hs:28)
+  71% (  5 /  7) in 'Data.X509.Internal'
+  Missing documentation for:
+    ErrT (Data/X509/Internal.hs:25)
+    runErrT (Data/X509/Internal.hs:23)
+  60% (  3 /  5) in 'Data.X509.ExtensionRaw'
+  Missing documentation for:
+    tryExtRawASN1 (Data/X509/ExtensionRaw.hs:31)
+    extRawASN1 (Data/X509/ExtensionRaw.hs:37)
+ 100% (  6 /  6) in 'Data.X509.DistinguishedName'
+  95% ( 20 / 21) in 'Data.X509.Ext'
+  Missing documentation for:
+    ExtNetscapeComment (Data/X509/Ext.hs:341)
+ 100% (  4 /  4) in 'Data.X509.AlgorithmIdentifier'
+ 100% (  3 /  3) in 'Data.X509.CRL'
+ 100% (  5 /  5) in 'Data.X509.PublicKey'
+ 100% (  2 /  2) in 'Data.X509.Cert'
+ 100% (  4 /  4) in 'Data.X509.PrivateKey'
+ 100% (  7 /  7) in 'Data.X509.EC'
+ 100% ( 15 / 15) in 'Data.X509.Signed'
+ 100% (  6 /  6) in 'Data.X509.CertificateChain'
+  96% ( 67 / 70) in 'Data.X509'
+  Missing documentation for:
+    ExtNetscapeComment (Data/X509/Ext.hs:341)
+    tryExtRawASN1 (Data/X509/ExtensionRaw.hs:31)
+    extRawASN1 (Data/X509/ExtensionRaw.hs:37)
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/x509/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/x509-1.7.2-JsJc1Ngdo8J9qzfnm691HQ
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/x509-1.7.2-8lYhXtmPjWvDmSIwzG2uv8
 Registering x509-1.7.2...

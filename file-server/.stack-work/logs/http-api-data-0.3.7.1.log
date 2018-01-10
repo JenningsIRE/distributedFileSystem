@@ -1,13 +1,13 @@
-[1 of 2] Compiling Main             ( /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/http-api-data-0.3.7.1/Setup.lhs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/http-api-data-0.3.7.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/Main.o )
-[2 of 2] Compiling StackSetupShim   ( /Users/Sam/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/http-api-data-0.3.7.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/StackSetupShim.o )
-Linking /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack32217/http-api-data-0.3.7.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/setup ...
+[1 of 2] Compiling Main             ( /tmp/stack9/http-api-data-0.3.7.1/Setup.lhs, /tmp/stack9/http-api-data-0.3.7.1/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/Main.o )
+[2 of 2] Compiling StackSetupShim   ( /Users/Sam/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /tmp/stack9/http-api-data-0.3.7.1/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/StackSetupShim.o )
+Linking /tmp/stack9/http-api-data-0.3.7.1/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/setup ...
 Configuring http-api-data-0.3.7.1...
 Building http-api-data-0.3.7.1...
 Preprocessing library http-api-data-0.3.7.1...
-[1 of 4] Compiling Web.Internal.HttpApiData ( src/Web/Internal/HttpApiData.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Web/Internal/HttpApiData.o )
-[2 of 4] Compiling Web.Internal.FormUrlEncoded ( src/Web/Internal/FormUrlEncoded.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Web/Internal/FormUrlEncoded.o )
-[3 of 4] Compiling Web.HttpApiData  ( src/Web/HttpApiData.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Web/HttpApiData.o )
-[4 of 4] Compiling Web.FormUrlEncoded ( src/Web/FormUrlEncoded.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Web/FormUrlEncoded.o )
+[1 of 4] Compiling Web.Internal.HttpApiData ( src/Web/Internal/HttpApiData.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Web/Internal/HttpApiData.o )
+[2 of 4] Compiling Web.Internal.FormUrlEncoded ( src/Web/Internal/FormUrlEncoded.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Web/Internal/FormUrlEncoded.o )
+[3 of 4] Compiling Web.HttpApiData  ( src/Web/HttpApiData.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Web/HttpApiData.o )
+[4 of 4] Compiling Web.FormUrlEncoded ( src/Web/FormUrlEncoded.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Web/FormUrlEncoded.o )
 Running Haddock for http-api-data-0.3.7.1...
 Preprocessing library http-api-data-0.3.7.1...
 Haddock coverage:
@@ -177,7 +177,7 @@ Haddock coverage:
  100% ( 32 / 32) in 'Web.HttpApiData'
  100% ( 29 / 29) in 'Web.FormUrlEncoded'
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/http-api-data/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/http-api-data/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/http-api-data-0.3.7.1-AT41KDpP9ayH63FPNXWrvF
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/http-api-data-0.3.7.1-7LZm4QEdTlo28kmdV4Dnus
 Registering http-api-data-0.3.7.1...

@@ -3,6 +3,26 @@ Preprocessing library file-server-api-0.1.0.0...
 [1 of 3] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Lib.o )
 [2 of 3] Compiling API              ( src/API.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/API.o )
 [3 of 3] Compiling ClientAPI        ( src/ClientAPI.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/ClientAPI.o )
+Running Haddock for file-server-api-0.1.0.0...
+Preprocessing library file-server-api-0.1.0.0...
+Warning: The documentation for the following packages are not installed. No
+links will be generated to these packages: bytestring-builder-0.10.8.1.0
+Haddock coverage:
+   0% (  0 /  2) in 'Lib'
+  Missing documentation for:
+    Module header
+    someFunc (src/Lib.hs:5)
+  50% (  2 /  4) in 'API'
+  Missing documentation for:
+    Module header
+    Message (src/API.hs:27)
+  25% (  1 /  4) in 'ClientAPI'
+  Missing documentation for:
+    Module header
+    restAPI (src/ClientAPI.hs:16)
+    getFile (src/ClientAPI.hs:23)
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/file-server-api/index.html
 Installing library in
-/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/file-server-api-0.1.0.0-DiYSVvtwNpBGYuYsFhp03t
+/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/file-server-api-0.1.0.0-FogueR1zkvE6hesF4r0hNv
 Registering file-server-api-0.1.0.0...

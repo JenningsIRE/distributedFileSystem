@@ -4,5 +4,5 @@ Preprocessing library file-server-api-0.1.0.0...
 [2 of 3] Compiling API              ( src/API.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/API.o )
 [3 of 3] Compiling ClientAPI        ( src/ClientAPI.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/ClientAPI.o )
 Installing library in
-/Users/Sam/distributedFileSystem/client/.stack-work/install/x86_64-osx/lts-8.24/8.0.2/lib/x86_64-osx-ghc-8.0.2/file-server-api-0.1.0.0-D4RCc03EDECGCIzEVQ2rsE
+/Users/Sam/distributedFileSystem/client/.stack-work/install/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/file-server-api-0.1.0.0-KaBL5t5x2QT85Zf0jOG9nN
 Registering file-server-api-0.1.0.0...

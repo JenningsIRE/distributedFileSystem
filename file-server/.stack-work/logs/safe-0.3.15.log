@@ -1,11 +1,11 @@
 Configuring safe-0.3.15...
 Building safe-0.3.15...
 Preprocessing library safe-0.3.15...
-[1 of 5] Compiling Safe.Partial     ( Safe/Partial.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Safe/Partial.o )
-[2 of 5] Compiling Safe.Util        ( Safe/Util.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Safe/Util.o )
-[3 of 5] Compiling Safe.Foldable    ( Safe/Foldable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Safe/Foldable.o )
-[4 of 5] Compiling Safe.Exact       ( Safe/Exact.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Safe/Exact.o )
-[5 of 5] Compiling Safe             ( Safe.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Safe.o )
+[1 of 5] Compiling Safe.Partial     ( Safe/Partial.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Safe/Partial.o )
+[2 of 5] Compiling Safe.Util        ( Safe/Util.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Safe/Util.o )
+[3 of 5] Compiling Safe.Foldable    ( Safe/Foldable.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Safe/Foldable.o )
+[4 of 5] Compiling Safe.Exact       ( Safe/Exact.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Safe/Exact.o )
+[5 of 5] Compiling Safe             ( Safe.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Safe.o )
 Running Haddock for safe-0.3.15...
 Preprocessing library safe-0.3.15...
 Haddock coverage:
@@ -137,7 +137,7 @@ Haddock coverage:
     predNote (Safe.hs:331)
     predSafe (Safe.hs:334)
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/safe/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/safe/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/safe-0.3.15-2Yd45VWFfdcKqKyispOifY
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/safe-0.3.15-2Yd45VWFfdcKqKyispOifY
 Registering safe-0.3.15...

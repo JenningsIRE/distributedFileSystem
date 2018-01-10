@@ -1,24 +1,173 @@
 Configuring http-client-0.5.7.1...
 Building http-client-0.5.7.1...
 Preprocessing library http-client-0.5.7.1...
-[ 1 of 18] Compiling Network.PublicSuffixList.Types ( publicsuffixlist/Network/PublicSuffixList/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/PublicSuffixList/Types.o )
-[ 2 of 18] Compiling Network.PublicSuffixList.Serialize ( publicsuffixlist/Network/PublicSuffixList/Serialize.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/PublicSuffixList/Serialize.o )
-[ 3 of 18] Compiling Network.PublicSuffixList.DataStructure ( publicsuffixlist/Network/PublicSuffixList/DataStructure.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/PublicSuffixList/DataStructure.o )
-[ 4 of 18] Compiling Network.PublicSuffixList.Lookup ( publicsuffixlist/Network/PublicSuffixList/Lookup.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/PublicSuffixList/Lookup.o )
-[ 5 of 18] Compiling Network.HTTP.Client.Util ( Network/HTTP/Client/Util.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Util.o )
-[ 6 of 18] Compiling Network.HTTP.Client.Types ( Network/HTTP/Client/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Types.o )
-[ 7 of 18] Compiling Network.HTTP.Client.Cookies ( Network/HTTP/Client/Cookies.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Cookies.o )
-[ 8 of 18] Compiling Network.HTTP.Client.Connection ( Network/HTTP/Client/Connection.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Connection.o )
-[ 9 of 18] Compiling Network.HTTP.Client.Headers ( Network/HTTP/Client/Headers.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Headers.o )
-[10 of 18] Compiling Network.HTTP.Client.Body ( Network/HTTP/Client/Body.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Body.o )
-[11 of 18] Compiling Network.HTTP.Client.Request ( Network/HTTP/Client/Request.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Request.o )
-[12 of 18] Compiling Network.HTTP.Proxy ( Network/HTTP/Proxy.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Proxy.o )
-[13 of 18] Compiling Network.HTTP.Client.Manager ( Network/HTTP/Client/Manager.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Manager.o )
-[14 of 18] Compiling Network.HTTP.Client.Response ( Network/HTTP/Client/Response.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Response.o )
-[15 of 18] Compiling Network.HTTP.Client.Core ( Network/HTTP/Client/Core.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Core.o )
-[16 of 18] Compiling Network.HTTP.Client.Internal ( Network/HTTP/Client/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/Internal.o )
-[17 of 18] Compiling Network.HTTP.Client ( Network/HTTP/Client.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client.o )
-[18 of 18] Compiling Network.HTTP.Client.MultipartFormData ( Network/HTTP/Client/MultipartFormData.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/HTTP/Client/MultipartFormData.o )
+[ 1 of 18] Compiling Network.PublicSuffixList.Types ( publicsuffixlist/Network/PublicSuffixList/Types.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/PublicSuffixList/Types.o )
+[ 2 of 18] Compiling Network.PublicSuffixList.Serialize ( publicsuffixlist/Network/PublicSuffixList/Serialize.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/PublicSuffixList/Serialize.o )
+[ 3 of 18] Compiling Network.PublicSuffixList.DataStructure ( publicsuffixlist/Network/PublicSuffixList/DataStructure.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/PublicSuffixList/DataStructure.o )
+[ 4 of 18] Compiling Network.PublicSuffixList.Lookup ( publicsuffixlist/Network/PublicSuffixList/Lookup.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/PublicSuffixList/Lookup.o )
+[ 5 of 18] Compiling Network.HTTP.Client.Util ( Network/HTTP/Client/Util.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Util.o )
+[ 6 of 18] Compiling Network.HTTP.Client.Types ( Network/HTTP/Client/Types.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Types.o )
+[ 7 of 18] Compiling Network.HTTP.Client.Cookies ( Network/HTTP/Client/Cookies.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Cookies.o )
+[ 8 of 18] Compiling Network.HTTP.Client.Connection ( Network/HTTP/Client/Connection.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Connection.o )
+[ 9 of 18] Compiling Network.HTTP.Client.Headers ( Network/HTTP/Client/Headers.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Headers.o )
+[10 of 18] Compiling Network.HTTP.Client.Body ( Network/HTTP/Client/Body.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Body.o )
+[11 of 18] Compiling Network.HTTP.Client.Request ( Network/HTTP/Client/Request.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Request.o )
+[12 of 18] Compiling Network.HTTP.Proxy ( Network/HTTP/Proxy.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Proxy.o )
+[13 of 18] Compiling Network.HTTP.Client.Manager ( Network/HTTP/Client/Manager.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Manager.o )
+[14 of 18] Compiling Network.HTTP.Client.Response ( Network/HTTP/Client/Response.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Response.o )
+[15 of 18] Compiling Network.HTTP.Client.Core ( Network/HTTP/Client/Core.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Core.o )
+[16 of 18] Compiling Network.HTTP.Client.Internal ( Network/HTTP/Client/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/Internal.o )
+[17 of 18] Compiling Network.HTTP.Client ( Network/HTTP/Client.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client.o )
+[18 of 18] Compiling Network.HTTP.Client.MultipartFormData ( Network/HTTP/Client/MultipartFormData.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/HTTP/Client/MultipartFormData.o )
+Running Haddock for http-client-0.5.7.1...
+Preprocessing library http-client-0.5.7.1...
+Haddock coverage:
+  25% (  1 /  4) in 'Network.PublicSuffixList.Types'
+  Missing documentation for:
+    Tree (publicsuffixlist/Network/PublicSuffixList/Types.hs:11)
+    def (publicsuffixlist/Network/PublicSuffixList/Types.hs:14)
+    DataStructure (publicsuffixlist/Network/PublicSuffixList/Types.hs:17)
+   0% (  0 /  3) in 'Network.PublicSuffixList.Serialize'
+  Missing documentation for:
+    Module header
+    getDataStructure (publicsuffixlist/Network/PublicSuffixList/Serialize.hs:40)
+    putDataStructure (publicsuffixlist/Network/PublicSuffixList/Serialize.hs:59)
+  50% (  1 /  2) in 'Network.PublicSuffixList.DataStructure'
+  Missing documentation for:
+    Module header
+  80% (  4 /  5) in 'Network.PublicSuffixList.Lookup'
+  Missing documentation for:
+    Module header
+   0% (  0 /  2) in 'Network.HTTP.Client.Util'
+  Missing documentation for:
+    Module header
+    readDec (Network/HTTP/Client/Util.hs:14)
+  50% ( 16 / 32) in 'Network.HTTP.Client.Types'
+  Missing documentation for:
+    Module header
+    Connection (Network/HTTP/Client/Types.hs:74)
+    StatusHeaders (Network/HTTP/Client/Types.hs:88)
+    HttpExceptionContent (Network/HTTP/Client/Types.hs:126)
+    unHttpExceptionContentWrapper (Network/HTTP/Client/Types.hs:98)
+    throwHttp (Network/HTTP/Client/Types.hs:103)
+    toHttpException (Network/HTTP/Client/Types.hs:106)
+    Cookie (Network/HTTP/Client/Types.hs:247)
+    CookieJar (Network/HTTP/Client/Types.hs:262)
+    ConnReuse (Network/HTTP/Client/Types.hs:574)
+    ConnRelease (Network/HTTP/Client/Types.hs:577)
+    ManagedConn (Network/HTTP/Client/Types.hs:579)
+    ResponseClose (Network/HTTP/Client/Types.hs:616)
+    HasHttpManager (Network/HTTP/Client/Types.hs:741)
+    ConnsMap (Network/HTTP/Client/Types.hs:746)
+    NonEmptyList (Network/HTTP/Client/Types.hs:750)
+  73% ( 11 / 15) in 'Network.HTTP.Client.Cookies'
+  Missing documentation for:
+    createCookieJar (Network/HTTP/Client/Cookies.hs:88)
+    destroyCookieJar (Network/HTTP/Client/Cookies.hs:91)
+    removeExistingCookieFromCookieJar (Network/HTTP/Client/Cookies.hs:98)
+    isIpAddress (Network/HTTP/Client/Cookies.hs:38)
+  44% (  4 /  9) in 'Network.HTTP.Client.Connection'
+  Missing documentation for:
+    Module header
+    connectionReadLine (Network/HTTP/Client/Connection.hs:27)
+    connectionReadLineWith (Network/HTTP/Client/Connection.hs:39)
+    openSocketConnection (Network/HTTP/Client/Connection.hs:134)
+    openSocketConnectionSize (Network/HTTP/Client/Connection.hs:141)
+   0% (  0 /  2) in 'Network.HTTP.Client.Headers'
+  Missing documentation for:
+    Module header
+    parseStatusHeaders (Network/HTTP/Client/Headers.hs:25)
+  27% (  3 / 11) in 'Network.HTTP.Client.Body'
+  Missing documentation for:
+    Module header
+    makeChunkedReader (Network/HTTP/Client/Body.hs:145)
+    makeLengthReader (Network/HTTP/Client/Body.hs:122)
+    makeGzipReader (Network/HTTP/Client/Body.hs:83)
+    makeUnlimitedReader (Network/HTTP/Client/Body.hs:114)
+    brEmpty (Network/HTTP/Client/Body.hs:53)
+    constBodyReader (Network/HTTP/Client/Body.hs:56)
+    brAddCleanup (Network/HTTP/Client/Body.hs:64)
+  86% ( 19 / 22) in 'Network.HTTP.Client.Request'
+  Missing documentation for:
+    Module header
+    needsGunzip (Network/HTTP/Client/Request.hs:323)
+    requestBuilder (Network/HTTP/Client/Request.hs:331)
+   0% (  0 /  7) in 'Network.HTTP.Proxy'
+  Missing documentation for:
+    Module header
+    ProxyProtocol (Network/HTTP/Proxy.hs:96)
+    EnvHelper (Network/HTTP/Proxy.hs:110)
+    systemProxyHelper (Network/HTTP/Proxy.hs:119)
+    envHelper (Network/HTTP/Proxy.hs:336)
+    httpProtocol (Network/HTTP/Proxy.hs:106)
+    ProxySettings (Network/HTTP/Proxy.hs:102)
+  88% ( 14 / 16) in 'Network.HTTP.Client.Manager'
+  Missing documentation for:
+    Module header
+    getConn (Network/HTTP/Client/Manager.hs:383)
+  50% (  2 /  4) in 'Network.HTTP.Client.Response'
+  Missing documentation for:
+    Module header
+    getResponse (Network/HTTP/Client/Response.hs:81)
+  91% ( 10 / 11) in 'Network.HTTP.Client.Core'
+  Missing documentation for:
+    Module header
+  71% ( 89 /125) in 'Network.HTTP.Client.Internal'
+  Missing documentation for:
+    makeChunkedReader (Network/HTTP/Client/Body.hs:145)
+    makeLengthReader (Network/HTTP/Client/Body.hs:122)
+    makeGzipReader (Network/HTTP/Client/Body.hs:83)
+    makeUnlimitedReader (Network/HTTP/Client/Body.hs:114)
+    brEmpty (Network/HTTP/Client/Body.hs:53)
+    constBodyReader (Network/HTTP/Client/Body.hs:56)
+    brAddCleanup (Network/HTTP/Client/Body.hs:64)
+    connectionReadLine (Network/HTTP/Client/Connection.hs:27)
+    connectionReadLineWith (Network/HTTP/Client/Connection.hs:39)
+    openSocketConnection (Network/HTTP/Client/Connection.hs:134)
+    openSocketConnectionSize (Network/HTTP/Client/Connection.hs:141)
+    createCookieJar (Network/HTTP/Client/Cookies.hs:88)
+    destroyCookieJar (Network/HTTP/Client/Cookies.hs:91)
+    removeExistingCookieFromCookieJar (Network/HTTP/Client/Cookies.hs:98)
+    isIpAddress (Network/HTTP/Client/Cookies.hs:38)
+    parseStatusHeaders (Network/HTTP/Client/Headers.hs:25)
+    needsGunzip (Network/HTTP/Client/Request.hs:323)
+    requestBuilder (Network/HTTP/Client/Request.hs:331)
+    getResponse (Network/HTTP/Client/Response.hs:81)
+    getConn (Network/HTTP/Client/Manager.hs:383)
+    Connection (Network/HTTP/Client/Types.hs:74)
+    StatusHeaders (Network/HTTP/Client/Types.hs:88)
+    HttpExceptionContent (Network/HTTP/Client/Types.hs:126)
+    unHttpExceptionContentWrapper (Network/HTTP/Client/Types.hs:98)
+    throwHttp (Network/HTTP/Client/Types.hs:103)
+    toHttpException (Network/HTTP/Client/Types.hs:106)
+    Cookie (Network/HTTP/Client/Types.hs:247)
+    CookieJar (Network/HTTP/Client/Types.hs:262)
+    ConnReuse (Network/HTTP/Client/Types.hs:574)
+    ConnRelease (Network/HTTP/Client/Types.hs:577)
+    ManagedConn (Network/HTTP/Client/Types.hs:579)
+    ResponseClose (Network/HTTP/Client/Types.hs:616)
+    HasHttpManager (Network/HTTP/Client/Types.hs:741)
+    ConnsMap (Network/HTTP/Client/Types.hs:746)
+    NonEmptyList (Network/HTTP/Client/Types.hs:750)
+    readDec (Network/HTTP/Client/Util.hs:14)
+  94% (118 /126) in 'Network.HTTP.Client'
+  Missing documentation for:
+    HasHttpManager (Network/HTTP/Client/Types.hs:741)
+    HttpExceptionContent (Network/HTTP/Client/Types.hs:126)
+    Cookie (Network/HTTP/Client/Types.hs:247)
+    CookieJar (Network/HTTP/Client/Types.hs:262)
+    createCookieJar (Network/HTTP/Client/Cookies.hs:88)
+    destroyCookieJar (Network/HTTP/Client/Cookies.hs:91)
+    removeExistingCookieFromCookieJar (Network/HTTP/Client/Cookies.hs:98)
+    isIpAddress (Network/HTTP/Client/Cookies.hs:38)
+  93% ( 25 / 27) in 'Network.HTTP.Client.MultipartFormData'
+  Missing documentation for:
+    webkitBoundaryPure (Network/HTTP/Client/MultipartFormData.hs:246)
+    renderPart (Network/HTTP/Client/MultipartFormData.hs:211)
+Warning: Network.HTTP.Client.Internal: could not find link destinations for:
+    HttpExceptionContentWrapper
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/http-client/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/http-client-0.5.7.1-GhXzb62NbAiFdm8s5DUHNy
 Registering http-client-0.5.7.1...

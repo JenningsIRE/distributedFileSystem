@@ -1,8 +1,8 @@
 Configuring resourcet-1.1.9...
 Building resourcet-1.1.9...
 Preprocessing library resourcet-1.1.9...
-[1 of 4] Compiling Data.Acquire.Internal ( Data/Acquire/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Acquire/Internal.o )
-[2 of 4] Compiling Control.Monad.Trans.Resource.Internal ( Control/Monad/Trans/Resource/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Control/Monad/Trans/Resource/Internal.o )
+[1 of 4] Compiling Data.Acquire.Internal ( Data/Acquire/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Acquire/Internal.o )
+[2 of 4] Compiling Control.Monad.Trans.Resource.Internal ( Control/Monad/Trans/Resource/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Control/Monad/Trans/Resource/Internal.o )
 
 Control/Monad/Trans/Resource/Internal.hs:50:1: warning: [-Wdeprecations]
     Module ‘Control.Monad.Trans.Error’ is deprecated:
@@ -20,7 +20,7 @@ Control/Monad/Trans/Resource/Internal.hs:297:56: warning: [-Wdeprecations]
     In the use of type constructor or class ‘ErrorT’
     (imported from Control.Monad.Trans.Error):
     Deprecated: "Use Control.Monad.Trans.Except instead"
-[3 of 4] Compiling Control.Monad.Trans.Resource ( Control/Monad/Trans/Resource.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Control/Monad/Trans/Resource.o )
+[3 of 4] Compiling Control.Monad.Trans.Resource ( Control/Monad/Trans/Resource.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Control/Monad/Trans/Resource.o )
 
 Control/Monad/Trans/Resource.hs:55:7: warning: [-Wdodgy-exports]
     The export item ‘ExceptionT(..)’ suggests that
@@ -37,7 +37,7 @@ Control/Monad/Trans/Resource.hs:74:1: warning: [-Wunused-imports]
 
 Control/Monad/Trans/Resource.hs:207:1: warning: [-Wunused-top-binds]
     Defined but not used: ‘finally’
-[4 of 4] Compiling Data.Acquire     ( Data/Acquire.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Acquire.o )
+[4 of 4] Compiling Data.Acquire     ( Data/Acquire.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Acquire.o )
 
 Data/Acquire.hs:16:1: warning: [-Wunused-imports]
     The import of ‘Control.Monad.Trans.Resource’ is redundant
@@ -152,7 +152,7 @@ Warning: Control.Monad.Trans.Resource.Internal: could not find link destinations
 Warning: Control.Monad.Trans.Resource: could not find link destinations for:
     ~
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/resourcet/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/resourcet/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/resourcet-1.1.9-L2BUQrxWZMwDiwhcuyPuNi
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/resourcet-1.1.9-5guAP5VhcNFGFxB9kV3eNr
 Registering resourcet-1.1.9...

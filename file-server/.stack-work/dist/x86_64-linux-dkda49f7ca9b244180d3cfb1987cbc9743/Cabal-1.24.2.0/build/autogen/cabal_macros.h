@@ -126,20 +126,6 @@
   (major1) == 0 && (major2) <  5 || \
   (major1) == 0 && (major2) == 5 && (minor) <= 2)
 
-/* package use-haskell-0.1.0.0 */
-#define VERSION_use_haskell "0.1.0.0"
-#define MIN_VERSION_use_haskell(major1,major2,minor) (\
-  (major1) <  0 || \
-  (major1) == 0 && (major2) <  1 || \
-  (major1) == 0 && (major2) == 1 && (minor) <= 0)
-
-/* package use-haskell-api-0.1.0.0 */
-#define VERSION_use_haskell_api "0.1.0.0"
-#define MIN_VERSION_use_haskell_api(major1,major2,minor) (\
-  (major1) <  0 || \
-  (major1) == 0 && (major2) <  1 || \
-  (major1) == 0 && (major2) == 1 && (minor) <= 0)
-
 /* package wai-3.2.1.1 */
 #define VERSION_wai "3.2.1.1"
 #define MIN_VERSION_wai(major1,major2,minor) (\
@@ -266,7 +252,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "file-server-0.1.0.0-7zuSfQ0qSh3N5ITplvwBV"
+#define CURRENT_COMPONENT_ID "file-server-0.1.0.0-Emx4pPr6lfgIswPVIcfeuA"
 
-#define CURRENT_PACKAGE_KEY "file-server-0.1.0.0-7zuSfQ0qSh3N5ITplvwBV"
+#define CURRENT_PACKAGE_KEY "file-server-0.1.0.0-Emx4pPr6lfgIswPVIcfeuA"
 

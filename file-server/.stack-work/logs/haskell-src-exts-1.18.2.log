@@ -19,5 +19,5 @@ Preprocessing library haskell-src-exts-1.18.2...
 [16 of 17] Compiling Language.Haskell.Exts.Build ( src/Language/Haskell/Exts/Build.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Language/Haskell/Exts/Build.o )
 [17 of 17] Compiling Language.Haskell.Exts ( src/Language/Haskell/Exts.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Language/Haskell/Exts.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/haskell-src-exts-1.18.2-Kjop5wIioOPX4MdOWk71u
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/haskell-src-exts-1.18.2-HCeEdXhFGFTKRNAWLxQQy0
 Registering haskell-src-exts-1.18.2...

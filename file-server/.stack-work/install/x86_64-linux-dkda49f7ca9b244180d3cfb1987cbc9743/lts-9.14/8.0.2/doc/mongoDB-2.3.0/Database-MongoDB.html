@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Database.MongoDB</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_Database-MongoDB.html");};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="src/Database.MongoDB.html">Source</a></li><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption">mongoDB-2.3.0: Driver (client) for MongoDB, a free, scalable, fast, document
+DBMS</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>None</td></tr><tr><th>Language</th><td>Haskell2010</td></tr></table><p class="caption">Database.MongoDB</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Client interface to MongoDB database management system.</p><p>Simple example below. </p><pre>{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ExtendedDefaultRules #-}
+
+import Database.MongoDB
+import Control.Monad.Trans (liftIO)
+
+main :: IO ()
+main = do
+   pipe &lt;- connect (host &quot;127.0.0.1&quot;)
+   e &lt;- access pipe master &quot;baseball&quot; run
+   close pipe
+   print e
+
+run :: Action IO ()
+run = do
+   clearTeams
+   insertTeams
+   allTeams &gt;&gt;= printDocs &quot;All Teams&quot;
+   nationalLeagueTeams &gt;&gt;= printDocs &quot;National League Teams&quot;
+   newYorkTeams &gt;&gt;= printDocs &quot;New York Teams&quot;
+
+clearTeams :: Action IO ()
+clearTeams = delete (select [] &quot;team&quot;)
+
+insertTeams :: Action IO [Value]
+insertTeams = insertMany &quot;team&quot; [
+   [&quot;name&quot; =: &quot;Yankees&quot;, &quot;home&quot; =: [&quot;city&quot; =: &quot;New York&quot;, &quot;state&quot; =: &quot;NY&quot;], &quot;league&quot; =: &quot;American&quot;],
+   [&quot;name&quot; =: &quot;Mets&quot;, &quot;home&quot; =: [&quot;city&quot; =: &quot;New York&quot;, &quot;state&quot; =: &quot;NY&quot;], &quot;league&quot; =: &quot;National&quot;],
+   [&quot;name&quot; =: &quot;Phillies&quot;, &quot;home&quot; =: [&quot;city&quot; =: &quot;Philadelphia&quot;, &quot;state&quot; =: &quot;PA&quot;], &quot;league&quot; =: &quot;National&quot;],
+   [&quot;name&quot; =: &quot;Red Sox&quot;, &quot;home&quot; =: [&quot;city&quot; =: &quot;Boston&quot;, &quot;state&quot; =: &quot;MA&quot;], &quot;league&quot; =: &quot;American&quot;] ]
+
+allTeams :: Action IO [Document]
+allTeams = rest =&lt;&lt; find (select [] &quot;team&quot;) {sort = [&quot;home.city&quot; =: 1]}
+
+nationalLeagueTeams :: Action IO [Document]
+nationalLeagueTeams = rest =&lt;&lt; find (select [&quot;league&quot; =: &quot;National&quot;] &quot;team&quot;)
+
+newYorkTeams :: Action IO [Document]
+newYorkTeams = rest =&lt;&lt; find (select [&quot;home.state&quot; =: &quot;NY&quot;] &quot;team&quot;) {project = [&quot;name&quot; =: 1, &quot;league&quot; =: 1]}
+
+printDocs :: String -&gt; [Document] -&gt; Action IO ()
+printDocs title docs = liftIO $ putStrLn title &gt;&gt; mapM_ (print . exclude [&quot;_id&quot;]) docs
+
+</pre></div></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src">module <a href="../bson-0.3.2.3/Data-Bson.html">Data.Bson</a></p></div><div class="top"><p class="src">module <a href="Database-MongoDB-Connection.html">Database.MongoDB.Connection</a></p></div><div class="top"><p class="src">module <a href="Database-MongoDB-Query.html">Database.MongoDB.Query</a></p></div><div class="top"><p class="src">module <a href="Database-MongoDB-Admin.html">Database.MongoDB.Admin</a></p></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.17.3</p></div></body></html>

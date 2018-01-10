@@ -48,15 +48,11 @@ packages:
   - location:
       git: https://github.com/Palmik/bson-generic.git
       commit: e078def65d0dee1ea7e3205f445e47d5937851f3
+    extra-dep: true
   - location:
-      git: https://esjmb@bitbucket.org/esjmb/use-haskell-api.git
-      commit: 9a48929
-  - location:
-          git: https://github.com/JenningsIRE/file-server-api.git
-          commit: 2c76e4f
-  - location:
-      git: https://esjmb@bitbucket.org/esjmb/use-haskell.git
-      commit: 47f9dc0
+      git: https://github.com/JenningsIRE/file-server-api.git
+      commit: 2c76e4f
+    extra-dep: true
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
 extra-deps: []

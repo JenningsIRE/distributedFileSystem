@@ -43,6 +43,141 @@ src/Data/HashTable/ST/Cuckoo.hs:500:16: warning: [-Wunused-matches]
     Defined but not used: ‘ht’
 [11 of 12] Compiling Data.HashTable.ST.Linear ( src/Data/HashTable/ST/Linear.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/HashTable/ST/Linear.o )
 [12 of 12] Compiling Data.HashTable.IO ( src/Data/HashTable/IO.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/HashTable/IO.o )
+Running Haddock for hashtables-1.2.2.1...
+Preprocessing library hashtables-1.2.2.1...
+
+src/Data/HashTable/Internal/Linear/Bucket.hs:338:21: warning: [-Wunused-matches]
+    Defined but not used: ‘sz’
+
+src/Data/HashTable/Internal/Linear/Bucket.hs:350:19: warning: [-Wunused-matches]
+    Defined but not used: ‘v’
+
+src/Data/HashTable/Internal/Linear/Bucket.hs:353:19: warning: [-Wunused-matches]
+    Defined but not used: ‘v’
+
+src/Data/HashTable/ST/Cuckoo.hs:420:22: warning: [-Wunused-matches]
+    Defined but not used: ‘hashCode’
+
+src/Data/HashTable/ST/Cuckoo.hs:423:15: warning: [-Wunused-matches]
+    Defined but not used: ‘v’
+
+src/Data/HashTable/ST/Cuckoo.hs:426:15: warning: [-Wunused-matches]
+    Defined but not used: ‘v’
+
+src/Data/HashTable/ST/Cuckoo.hs:473:26: warning: [-Wunused-matches]
+    Defined but not used: ‘k'’
+
+src/Data/HashTable/ST/Cuckoo.hs:473:30: warning: [-Wunused-matches]
+    Defined but not used: ‘v'’
+
+src/Data/HashTable/ST/Cuckoo.hs:485:16: warning: [-Wunused-matches]
+    Defined but not used: ‘ht’
+
+src/Data/HashTable/ST/Cuckoo.hs:500:16: warning: [-Wunused-matches]
+    Defined but not used: ‘ht’
+Haddock coverage:
+   0% (  0 / 10) in 'Data.HashTable.Internal.UnsafeTricks'
+  Missing documentation for:
+    Module header
+    Key (src/Data/HashTable/Internal/UnsafeTricks.hs:38)
+    toKey (src/Data/HashTable/Internal/UnsafeTricks.hs:57)
+    fromKey (src/Data/HashTable/Internal/UnsafeTricks.hs:58)
+    emptyRecord (src/Data/HashTable/Internal/UnsafeTricks.hs:50)
+    deletedRecord (src/Data/HashTable/Internal/UnsafeTricks.hs:51)
+    keyIsEmpty (src/Data/HashTable/Internal/UnsafeTricks.hs:52)
+    keyIsDeleted (src/Data/HashTable/Internal/UnsafeTricks.hs:53)
+    writeDeletedElement (src/Data/HashTable/Internal/UnsafeTricks.hs:55)
+    makeEmptyVector (src/Data/HashTable/Internal/UnsafeTricks.hs:54)
+   0% (  0 / 12) in 'Data.HashTable.Internal.IntArray'
+  Missing documentation for:
+    Module header
+    IntArray (src/Data/HashTable/Internal/IntArray.hs:47)
+    Elem (src/Data/HashTable/Internal/IntArray.hs:48)
+    elemMask (src/Data/HashTable/Internal/IntArray.hs:68)
+    primWordToElem (src/Data/HashTable/Internal/IntArray.hs:52)
+    elemToInt (src/Data/HashTable/Internal/IntArray.hs:57)
+    elemToInt# (src/Data/HashTable/Internal/IntArray.hs:63)
+    newArray (src/Data/HashTable/Internal/IntArray.hs:84)
+    readArray (src/Data/HashTable/Internal/IntArray.hs:93)
+    writeArray (src/Data/HashTable/Internal/IntArray.hs:100)
+    length (src/Data/HashTable/Internal/IntArray.hs:107)
+    toPtr (src/Data/HashTable/Internal/IntArray.hs:112)
+   6% (  1 / 18) in 'Data.HashTable.Internal.Utils'
+  Missing documentation for:
+    Module header
+    whichBucket (src/Data/HashTable/Internal/Utils.hs:71)
+    nextBestPrime (src/Data/HashTable/Internal/Utils.hs:238)
+    bumpSize (src/Data/HashTable/Internal/Utils.hs:247)
+    shiftL (src/Data/HashTable/Internal/Utils.hs:252)
+    shiftRL (src/Data/HashTable/Internal/Utils.hs:253)
+    iShiftL (src/Data/HashTable/Internal/Utils.hs:254)
+    iShiftRL (src/Data/HashTable/Internal/Utils.hs:255)
+    nextHighestPowerOf2 (src/Data/HashTable/Internal/Utils.hs:286)
+    log2 (src/Data/HashTable/Internal/Utils.hs:291)
+    highestBitMask (src/Data/HashTable/Internal/Utils.hs:300)
+    wordSize (src/Data/HashTable/Internal/Utils.hs:43)
+    cacheLineSize (src/Data/HashTable/Internal/Utils.hs:47)
+    numElemsInCacheLine (src/Data/HashTable/Internal/Utils.hs:51)
+    cacheLineIntBits (src/Data/HashTable/Internal/Utils.hs:65)
+    forceSameType (src/Data/HashTable/Internal/Utils.hs:310)
+    unsafeIOToST
+   0% (  0 /  5) in 'Data.HashTable.Internal.CheapPseudoRandomBitStream'
+  Missing documentation for:
+    Module header
+    BitStream (src/Data/HashTable/Internal/CheapPseudoRandomBitStream.hs:77)
+    newBitStream (src/Data/HashTable/Internal/CheapPseudoRandomBitStream.hs:85)
+    getNextBit (src/Data/HashTable/Internal/CheapPseudoRandomBitStream.hs:94)
+    getNBits (src/Data/HashTable/Internal/CheapPseudoRandomBitStream.hs:99)
+  47% (  7 / 15) in 'Data.HashTable.Internal.CacheLine'
+  Missing documentation for:
+    Module header
+    forwardSearch2 (src/Data/HashTable/Internal/CacheLine.hs:92)
+    forwardSearch3 (src/Data/HashTable/Internal/CacheLine.hs:100)
+    isCacheLineAligned (src/Data/HashTable/Internal/CacheLine.hs:148)
+    advanceByCacheLineSize (src/Data/HashTable/Internal/CacheLine.hs:133)
+    prefetchRead (src/Data/HashTable/Internal/CacheLine.hs:50)
+    prefetchWrite (src/Data/HashTable/Internal/CacheLine.hs:51)
+    maskw# (src/Data/HashTable/Internal/CacheLine.hs:203)
+  20% (  1 /  5) in 'Data.HashTable.Internal.Array'
+  Missing documentation for:
+    Module header
+    newArray (src/Data/HashTable/Internal/Array.hs:36)
+    readArray (src/Data/HashTable/Internal/Array.hs:39)
+    writeArray (src/Data/HashTable/Internal/Array.hs:42)
+   0% (  0 / 21) in 'Data.HashTable.Internal.Linear.Bucket'
+  Missing documentation for:
+    Module header
+    Bucket (src/Data/HashTable/Internal/Linear/Bucket.hs:48)
+    newBucketArray (src/Data/HashTable/Internal/Linear/Bucket.hs:64)
+    newBucketSize (src/Data/HashTable/Internal/Linear/Bucket.hs:96)
+    emptyWithSize (src/Data/HashTable/Internal/Linear/Bucket.hs:86)
+    growBucketTo (src/Data/HashTable/Internal/Linear/Bucket.hs:129)
+    snoc (src/Data/HashTable/Internal/Linear/Bucket.hs:151)
+    size (src/Data/HashTable/Internal/Linear/Bucket.hs:210)
+    lookup (src/Data/HashTable/Internal/Linear/Bucket.hs:217)
+    lookupIndex (src/Data/HashTable/Internal/Linear/Bucket.hs:237)
+    elemAt (src/Data/HashTable/Internal/Linear/Bucket.hs:254)
+    delete (src/Data/HashTable/Internal/Linear/Bucket.hs:295)
+    mutate (src/Data/HashTable/Internal/Linear/Bucket.hs:324)
+    toList (src/Data/HashTable/Internal/Linear/Bucket.hs:269)
+    fromList (src/Data/HashTable/Internal/Linear/Bucket.hs:287)
+    mapM_ (src/Data/HashTable/Internal/Linear/Bucket.hs:371)
+    foldM (src/Data/HashTable/Internal/Linear/Bucket.hs:393)
+    expandBucketArray (src/Data/HashTable/Internal/Linear/Bucket.hs:121)
+    expandArray (src/Data/HashTable/Internal/Linear/Bucket.hs:101)
+    nelemsAndOverheadInWords (src/Data/HashTable/Internal/Linear/Bucket.hs:68)
+    bucketSplitSize (src/Data/HashTable/Internal/Linear/Bucket.hs:59)
+ 100% (  5 /  5) in 'Data.HashTable.Class'
+ 100% ( 11 / 11) in 'Data.HashTable.ST.Basic'
+  92% ( 11 / 12) in 'Data.HashTable.ST.Cuckoo'
+  Missing documentation for:
+    mutate (src/Data/HashTable/ST/Cuckoo.hs:172)
+  91% ( 10 / 11) in 'Data.HashTable.ST.Linear'
+  Missing documentation for:
+    mutate (src/Data/HashTable/ST/Linear.hs:226)
+ 100% ( 19 / 19) in 'Data.HashTable.IO'
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/hashtables/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/hashtables-1.2.2.1-9cxVj3Rv4gl9EXt1N3YUJV
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/hashtables-1.2.2.1-8ZZsWOK5GJcKDrdhqBflxy
 Registering hashtables-1.2.2.1...

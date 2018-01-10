@@ -1,14 +1,34 @@
 Configuring x509-system-1.6.6...
 Building x509-system-1.6.6...
 Preprocessing library x509-system-1.6.6...
-[1 of 3] Compiling System.X509.Unix ( System/X509/Unix.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/X509/Unix.o )
-[2 of 3] Compiling System.X509.MacOS ( System/X509/MacOS.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/X509/MacOS.o )
+[1 of 3] Compiling System.X509.Unix ( System/X509/Unix.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/System/X509/Unix.o )
+[2 of 3] Compiling System.X509.MacOS ( System/X509/MacOS.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/System/X509/MacOS.o )
 
 System/X509/MacOS.hs:8:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
-[3 of 3] Compiling System.X509      ( System/X509.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/X509.o )
+[3 of 3] Compiling System.X509      ( System/X509.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/System/X509.o )
+Running Haddock for x509-system-1.6.6...
+Preprocessing library x509-system-1.6.6...
+
+System/X509/MacOS.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+Haddock coverage:
+  50% (  1 /  2) in 'System.X509.Unix'
+  Missing documentation for:
+    getSystemCertificateStore (System/X509/Unix.hs:39)
+   0% (  0 /  2) in 'System.X509.MacOS'
+  Missing documentation for:
+    Module header
+    getSystemCertificateStore (System/X509/MacOS.hs:28)
+  50% (  1 /  2) in 'System.X509'
+  Missing documentation for:
+    getSystemCertificateStore (System/X509/Unix.hs:39)
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/x509-system/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/x509-system-1.6.6-IrLZEnpD40W5sxIEM0zexM
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/x509-system-1.6.6-8OoMwSdPa7793xB2LGPmMm
 Registering x509-system-1.6.6...

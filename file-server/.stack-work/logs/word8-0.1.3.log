@@ -1,8 +1,8 @@
 Configuring word8-0.1.3...
 Building word8-0.1.3...
 Preprocessing library word8-0.1.3...
-[1 of 2] Compiling Data.Word8       ( Data/Word8.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Word8.o )
-[2 of 2] Compiling Data.Char8       ( Data/Char8.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Char8.o )
+[1 of 2] Compiling Data.Word8       ( Data/Word8.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Word8.o )
+[2 of 2] Compiling Data.Char8       ( Data/Char8.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Char8.o )
 Running Haddock for word8-0.1.3...
 Preprocessing library word8-0.1.3...
 Haddock coverage:
@@ -172,7 +172,7 @@ Haddock coverage:
 Warning: Data.Word8: could not find link destinations for:
     unsafeIndex unsafeRangeSize
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/word8/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/word8/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/word8-0.1.3-9o1uWQQ6KysJq8GGsVHHit
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/word8-0.1.3-9o1uWQQ6KysJq8GGsVHHit
 Registering word8-0.1.3...

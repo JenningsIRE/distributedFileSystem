@@ -1,9 +1,9 @@
 Configuring uuid-types-1.0.3...
 Building uuid-types-1.0.3...
 Preprocessing library uuid-types-1.0.3...
-[1 of 3] Compiling Data.UUID.Types.Internal.Builder ( Data/UUID/Types/Internal/Builder.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/UUID/Types/Internal/Builder.o )
-[2 of 3] Compiling Data.UUID.Types.Internal ( Data/UUID/Types/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/UUID/Types/Internal.o )
-[3 of 3] Compiling Data.UUID.Types  ( Data/UUID/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/UUID/Types.o )
+[1 of 3] Compiling Data.UUID.Types.Internal.Builder ( Data/UUID/Types/Internal/Builder.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/UUID/Types/Internal/Builder.o )
+[2 of 3] Compiling Data.UUID.Types.Internal ( Data/UUID/Types/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/UUID/Types/Internal.o )
+[3 of 3] Compiling Data.UUID.Types  ( Data/UUID/Types.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/UUID/Types.o )
 Running Haddock for uuid-types-1.0.3...
 Preprocessing library uuid-types-1.0.3...
 Haddock coverage:
@@ -21,7 +21,7 @@ Haddock coverage:
     unpack (Data/UUID/Types/Internal.hs:127)
  100% ( 16 / 16) in 'Data.UUID.Types'
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/uuid-types/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/uuid-types/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/uuid-types-1.0.3-HQOuja9trySCcuflACyDTJ
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/uuid-types-1.0.3-EMVN1ZuG81M1iPeSxCq10I
 Registering uuid-types-1.0.3...

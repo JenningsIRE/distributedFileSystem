@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/bin"
-libdir     = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/file-server-0.1.0.0-7zuSfQ0qSh3N5ITplvwBV"
+libdir     = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/file-server-0.1.0.0-Emx4pPr6lfgIswPVIcfeuA"
 dynlibdir  = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2"
 datadir    = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/share/x86_64-linux-ghc-8.0.2/file-server-0.1.0.0"
 libexecdir = "/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/libexec"

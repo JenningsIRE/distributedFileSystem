@@ -12,5 +12,5 @@ Preprocessing library process-extras-0.7.2...
 [ 9 of 10] Compiling System.Process.ListLike ( src/System/Process/ListLike.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/System/Process/ListLike.o )
 [10 of 10] Compiling System.Process.Run ( src/System/Process/Run.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/System/Process/Run.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/process-extras-0.7.2-GpWxPquzMMHCMKJ4NzttRV
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/process-extras-0.7.2-3SGbZAO2oI5IDhsL0mWbS4
 Registering process-extras-0.7.2...

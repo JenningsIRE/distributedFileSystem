@@ -23,5 +23,5 @@ Preprocessing library uniplate-1.6.12...
 [20 of 21] Compiling Data.Generics.PlateDirect ( Data/Generics/PlateDirect.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Generics/PlateDirect.o )
 [21 of 21] Compiling Data.Generics.PlateTypeable ( Data/Generics/PlateTypeable.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Generics/PlateTypeable.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/uniplate-1.6.12-4PyZX21trQJ5lfk0CDvC7U
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/uniplate-1.6.12-1a0su3Nn5obA7Xr0wweq9e
 Registering uniplate-1.6.12...

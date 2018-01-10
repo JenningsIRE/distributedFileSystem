@@ -1,0 +1,36 @@
+Configuring data-binary-ieee754-0.4.4...
+Building data-binary-ieee754-0.4.4...
+Preprocessing library data-binary-ieee754-0.4.4...
+[1 of 1] Compiling Data.Binary.IEEE754 ( lib/Data/Binary/IEEE754.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Binary/IEEE754.o )
+
+lib/Data/Binary/IEEE754.hs:12:1: warning: [-Wtabs]
+    Tab character found here, and in 70 further locations.
+    Please use spaces instead.
+Running Haddock for data-binary-ieee754-0.4.4...
+Preprocessing library data-binary-ieee754-0.4.4...
+
+lib/Data/Binary/IEEE754.hs:12:1: warning: [-Wtabs]
+    Tab character found here, and in 70 further locations.
+    Please use spaces instead.
+Haddock coverage:
+  22% (  4 / 18) in 'Data.Binary.IEEE754'
+  Missing documentation for:
+    getFloat16be (lib/Data/Binary/IEEE754.hs:34)
+    getFloat16le (lib/Data/Binary/IEEE754.hs:37)
+    getFloat32be (lib/Data/Binary/IEEE754.hs:40)
+    getFloat32le (lib/Data/Binary/IEEE754.hs:43)
+    getFloat64be (lib/Data/Binary/IEEE754.hs:46)
+    getFloat64le (lib/Data/Binary/IEEE754.hs:49)
+    putFloat32be (lib/Data/Binary/IEEE754.hs:52)
+    putFloat32le (lib/Data/Binary/IEEE754.hs:55)
+    putFloat64be (lib/Data/Binary/IEEE754.hs:58)
+    putFloat64le (lib/Data/Binary/IEEE754.hs:61)
+    floatToWord (lib/Data/Binary/IEEE754.hs:64)
+    wordToFloat (lib/Data/Binary/IEEE754.hs:67)
+    doubleToWord (lib/Data/Binary/IEEE754.hs:70)
+    wordToDouble (lib/Data/Binary/IEEE754.hs:73)
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/data-binary-ieee754/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/data-binary-ieee754-0.4.4-7iiF2mP1jcB6tVSPgIyBOi
+Registering data-binary-ieee754-0.4.4...

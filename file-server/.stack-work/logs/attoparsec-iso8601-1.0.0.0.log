@@ -1,8 +1,8 @@
 Configuring attoparsec-iso8601-1.0.0.0...
 Building attoparsec-iso8601-1.0.0.0...
 Preprocessing library attoparsec-iso8601-1.0.0.0...
-[1 of 2] Compiling Data.Attoparsec.Time.Internal ( Data/Attoparsec/Time/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Attoparsec/Time/Internal.o )
-[2 of 2] Compiling Data.Attoparsec.Time ( Data/Attoparsec/Time.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Attoparsec/Time.o )
+[1 of 2] Compiling Data.Attoparsec.Time.Internal ( Data/Attoparsec/Time/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Attoparsec/Time/Internal.o )
+[2 of 2] Compiling Data.Attoparsec.Time ( Data/Attoparsec/Time.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Attoparsec/Time.o )
 Running Haddock for attoparsec-iso8601-1.0.0.0...
 Preprocessing library attoparsec-iso8601-1.0.0.0...
 Haddock coverage:
@@ -14,7 +14,7 @@ Haddock coverage:
     toTimeOfDay64 (Data/Attoparsec/Time/Internal.hs:60)
  100% (  7 /  7) in 'Data.Attoparsec.Time'
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/attoparsec-iso8601/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/attoparsec-iso8601/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/attoparsec-iso8601-1.0.0.0-CiauZZhskHA6jYy7CqE2mZ
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/attoparsec-iso8601-1.0.0.0-22P49Wi4a27CHm1Z1tvbXd
 Registering attoparsec-iso8601-1.0.0.0...

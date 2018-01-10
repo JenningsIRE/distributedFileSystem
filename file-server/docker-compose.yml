@@ -8,7 +8,7 @@ file-server:
     - LOG_LEVEL=DEBUG
     # - https_proxy=http://www-proxy.scss.tcd.ie:8080
     # - http_proxy=http://www-proxy.scss.tcd.ie:8080
-  command: /usr/local/bin/use-haskell-exe
+  command: /usr/local/bin/file-server-exe
   ports:
     - "8080:8080"
   links:

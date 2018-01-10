@@ -1,10 +1,10 @@
 Configuring wai-logger-2.3.0...
 Building wai-logger-2.3.0...
 Preprocessing library wai-logger-2.3.0...
-[1 of 4] Compiling Network.Wai.Logger.IP ( Network/Wai/Logger/IP.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger/IP.o )
-[2 of 4] Compiling Network.Wai.Logger.IORef ( Network/Wai/Logger/IORef.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger/IORef.o )
-[3 of 4] Compiling Network.Wai.Logger.Apache ( Network/Wai/Logger/Apache.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger/Apache.o )
-[4 of 4] Compiling Network.Wai.Logger ( Network/Wai/Logger.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Logger.o )
+[1 of 4] Compiling Network.Wai.Logger.IP ( Network/Wai/Logger/IP.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/Wai/Logger/IP.o )
+[2 of 4] Compiling Network.Wai.Logger.IORef ( Network/Wai/Logger/IORef.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/Wai/Logger/IORef.o )
+[3 of 4] Compiling Network.Wai.Logger.Apache ( Network/Wai/Logger/Apache.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/Wai/Logger/Apache.o )
+[4 of 4] Compiling Network.Wai.Logger ( Network/Wai/Logger.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/Wai/Logger.o )
 Running Haddock for wai-logger-2.3.0...
 Preprocessing library wai-logger-2.3.0...
 Warning: The documentation for the following packages are not installed. No
@@ -25,7 +25,7 @@ Haddock coverage:
 Warning: Network.Wai.Logger: could not find link destinations for:
     NumericAddress
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/wai-logger/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/wai-logger/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/wai-logger-2.3.0-G2LMsBpHwLV49tDfVWxzX4
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/wai-logger-2.3.0-GOBoSO1IKKdAEqR1cftvXH
 Registering wai-logger-2.3.0...

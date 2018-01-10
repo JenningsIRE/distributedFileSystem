@@ -35,8 +35,6 @@ library
                     , bson
                     , mtl
                     , http-client
-                    , use-haskell
-                    , use-haskell-api
                     , file-server-api
   default-language:    Haskell2010
 

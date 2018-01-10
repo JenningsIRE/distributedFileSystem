@@ -1,8 +1,8 @@
 Configuring wai-3.2.1.1...
 Building wai-3.2.1.1...
 Preprocessing library wai-3.2.1.1...
-[1 of 2] Compiling Network.Wai.Internal ( Network/Wai/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai/Internal.o )
-[2 of 2] Compiling Network.Wai      ( Network/Wai.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Network/Wai.o )
+[1 of 2] Compiling Network.Wai.Internal ( Network/Wai/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/Wai/Internal.o )
+[2 of 2] Compiling Network.Wai      ( Network/Wai.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Network/Wai.o )
 Running Haddock for wai-3.2.1.1...
 Preprocessing library wai-3.2.1.1...
 Warning: The documentation for the following packages are not installed. No
@@ -16,7 +16,7 @@ Haddock coverage:
   Missing documentation for:
     Response (Network/Wai/Internal.hs:119)
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/wai/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/wai/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/wai-3.2.1.1-GYhAFGd1F2uKjCUZVPyC2C
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/wai-3.2.1.1-KS5eGKrRWBaALspiEUMkem
 Registering wai-3.2.1.1...

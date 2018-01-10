@@ -1,6 +1,6 @@
-[1 of 2] Compiling Main             ( /tmp/stack10/servant-0.11/Setup.lhs, /tmp/stack10/servant-0.11/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/Main.o )
-[2 of 2] Compiling StackSetupShim   ( /Users/Sam/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /tmp/stack10/servant-0.11/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/StackSetupShim.o )
-Linking /tmp/stack10/servant-0.11/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/setup ...
+[1 of 2] Compiling Main             ( /tmp/stack9/servant-0.11/Setup.lhs, /tmp/stack9/servant-0.11/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/Main.o )
+[2 of 2] Compiling StackSetupShim   ( /Users/Sam/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /tmp/stack9/servant-0.11/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/StackSetupShim.o )
+Linking /tmp/stack9/servant-0.11/.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/setup/setup ...
 Configuring servant-0.11...
 Building servant-0.11...
 Preprocessing library servant-0.11...
@@ -27,6 +27,128 @@ Preprocessing library servant-0.11...
 [21 of 23] Compiling Servant.API      ( src/Servant/API.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/API.o )
 [22 of 23] Compiling Servant.API.Internal.Test.ComprehensiveAPI ( src/Servant/API/Internal/Test/ComprehensiveAPI.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/API/Internal/Test/ComprehensiveAPI.o )
 [23 of 23] Compiling Servant.Utils.Enter ( src/Servant/Utils/Enter.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Servant/Utils/Enter.o )
+Running Haddock for servant-0.11...
+Preprocessing library servant-0.11...
+Haddock coverage:
+  50% (  1 /  2) in 'Servant.API.WithNamedContext'
+  Missing documentation for:
+    Module header
+  77% ( 37 / 48) in 'Servant.API.Verbs'
+  Missing documentation for:
+    Module header
+    ReflectMethod (src/Servant/API/Verbs.hs:152)
+     (src/Servant/API/Verbs.hs:155)
+     (src/Servant/API/Verbs.hs:158)
+     (src/Servant/API/Verbs.hs:161)
+     (src/Servant/API/Verbs.hs:164)
+     (src/Servant/API/Verbs.hs:167)
+     (src/Servant/API/Verbs.hs:170)
+     (src/Servant/API/Verbs.hs:173)
+     (src/Servant/API/Verbs.hs:176)
+     (src/Servant/API/Verbs.hs:179)
+  67% (  2 /  3) in 'Servant.API.Vault'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Servant.API.Sub'
+  Missing documentation for:
+    Module header
+  67% (  2 /  3) in 'Servant.API.ReqBody'
+  Missing documentation for:
+    Module header
+  67% (  2 /  3) in 'Servant.API.RemoteHost'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Servant.API.Raw'
+  Missing documentation for:
+    Module header
+  75% (  3 /  4) in 'Servant.API.QueryParam'
+  Missing documentation for:
+    Module header
+  67% (  2 /  3) in 'Servant.API.IsSecure'
+  Missing documentation for:
+    Module header
+  67% (  2 /  3) in 'Servant.API.HttpVersion'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Servant.API.Header'
+  Missing documentation for:
+    Module header
+  44% (  4 /  9) in 'Servant.API.ResponseHeaders'
+  Missing documentation for:
+    AddHeader (src/Servant/API/ResponseHeaders.hs:111)
+    BuildHeadersTo (src/Servant/API/ResponseHeaders.hs:64)
+    GetHeaders (src/Servant/API/ResponseHeaders.hs:87)
+    HeaderValMap (src/Servant/API/ResponseHeaders.hs:59)
+    HList (src/Servant/API/ResponseHeaders.hs:55)
+  50% (  1 /  2) in 'Servant.API.Experimental.Auth'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Servant.API.Empty'
+  Missing documentation for:
+    Module header
+  48% ( 10 / 21) in 'Servant.API.ContentTypes'
+  Missing documentation for:
+    JSON (src/Servant/API/ContentTypes.hs:106)
+    PlainText (src/Servant/API/ContentTypes.hs:107)
+    FormUrlEncoded (src/Servant/API/ContentTypes.hs:108)
+    OctetStream (src/Servant/API/ContentTypes.hs:109)
+    AcceptHeader (src/Servant/API/ContentTypes.hs:153)
+    AllCTRender (src/Servant/API/ContentTypes.hs:176)
+    AllCTUnrender (src/Servant/API/ContentTypes.hs:232)
+    AllMime (src/Servant/API/ContentTypes.hs:251)
+    AllMimeRender (src/Servant/API/ContentTypes.hs:269)
+    AllMimeUnrender (src/Servant/API/ContentTypes.hs:309)
+    canHandleAcceptH (src/Servant/API/ContentTypes.hs:263)
+  67% (  2 /  3) in 'Servant.API.Capture'
+  Missing documentation for:
+    Module header
+  67% (  2 /  3) in 'Servant.API.BasicAuth'
+  Missing documentation for:
+    Module header
+  50% (  1 /  2) in 'Servant.API.Alternative'
+  Missing documentation for:
+    Module header
+  92% ( 22 / 24) in 'Servant.API.TypeLevel'
+  Missing documentation for:
+    IsSubList (src/Servant/API/TypeLevel.hs:197)
+    ElemGo (src/Servant/API/TypeLevel.hs:213)
+  88% ( 14 / 16) in 'Servant.Utils.Links'
+  Missing documentation for:
+    linkSegments (src/Servant/Utils/Links.hs:131)
+    linkQueryParams (src/Servant/Utils/Links.hs:134)
+  98% ( 47 / 48) in 'Servant.API'
+  Missing documentation for:
+    Module header
+  17% (  1 /  6) in 'Servant.API.Internal.Test.ComprehensiveAPI'
+  Missing documentation for:
+    GET (src/Servant/API/Internal/Test/ComprehensiveAPI.hs:13)
+    ComprehensiveAPI (src/Servant/API/Internal/Test/ComprehensiveAPI.hs:15)
+    comprehensiveAPI (src/Servant/API/Internal/Test/ComprehensiveAPI.hs:19)
+    ComprehensiveAPIWithoutRaw (src/Servant/API/Internal/Test/ComprehensiveAPI.hs:22)
+    comprehensiveAPIWithoutRaw (src/Servant/API/Internal/Test/ComprehensiveAPI.hs:43)
+  57% ( 12 / 21) in 'Servant.Utils.Enter'
+  Missing documentation for:
+    Module header
+    Enter (src/Servant/Utils/Enter.hs:37)
+     (src/Servant/Utils/Enter.hs:47)
+     (src/Servant/Utils/Enter.hs:56)
+     (src/Servant/Utils/Enter.hs:66)
+     (src/Servant/Utils/Enter.hs:73)
+    runReaderTNat (src/Servant/Utils/Enter.hs:84)
+    evalStateTLNat (src/Servant/Utils/Enter.hs:87)
+    evalStateTSNat (src/Servant/Utils/Enter.hs:90)
+Warning: Servant.API.Verbs: could not find link destinations for:
+    unsafeIndex unsafeRangeSize
+Warning: Servant.API.Header: could not find link destinations for:
+    addOptionalHeader
+Warning: Servant.API.ResponseHeaders: could not find link destinations for:
+    addOptionalHeader ~
+Warning: Servant.API.Alternative: could not find link destinations for:
+    ~
+Warning: Servant.Utils.Enter: could not find link destinations for:
+    ~
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/servant/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/servant-0.11-5n0Jq59NGG63K7rfpU5Dxs
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/servant-0.11-AAmog9yfywlGy1xOOOZCoR
 Registering servant-0.11...

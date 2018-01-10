@@ -1,0 +1,715 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE ConstraintKinds            #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE CPP                        #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE DataKinds                  #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE DefaultSignatures          #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE DeriveGeneric              #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE FlexibleContexts           #-}</span><span>
+</span><a name="line-7"></a><span class="hs-pragma">{-# LANGUAGE FlexibleInstances          #-}</span><span>
+</span><a name="line-8"></a><span class="hs-pragma">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span><span>
+</span><a name="line-9"></a><span class="hs-pragma">{-# LANGUAGE KindSignatures             #-}</span><span>
+</span><a name="line-10"></a><span class="hs-pragma">{-# LANGUAGE MultiParamTypeClasses      #-}</span><span>
+</span><a name="line-11"></a><span class="hs-pragma">{-# LANGUAGE OverloadedStrings          #-}</span><span>
+</span><a name="line-12"></a><span class="hs-pragma">{-# LANGUAGE PolyKinds                  #-}</span><span>
+</span><a name="line-13"></a><span class="hs-pragma">{-# LANGUAGE ScopedTypeVariables        #-}</span><span>
+</span><a name="line-14"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies               #-}</span><span>
+</span><a name="line-15"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators              #-}</span><span>
+</span><a name="line-16"></a><span class="hs-pragma">{-# LANGUAGE UndecidableInstances       #-}</span><span>
+</span><a name="line-17"></a><span class="hs-cpp">#include &quot;overlapping-compat.h&quot;</span><span>
+</span><a name="line-18"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">Internal</span><span class="hs-operator">.</span><span class="hs-identifier">FormUrlEncoded</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-19"></a><span>
+</span><a name="line-20"></a><span class="hs-cpp">#if __GLASGOW_HASKELL__ &lt; 710</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Applicative</span><span>
+</span><a name="line-22"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Traversable</span><span>
+</span><a name="line-23"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-24"></a><span>
+</span><a name="line-25"></a><span>
+</span><a name="line-26"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Arrow</span><span>              </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-var">***</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-27"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span>              </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-var">&lt;=&lt;</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-28"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Builder</span><span>    </span><span class="hs-special">(</span><span class="hs-identifier hs-var">toLazyByteString</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">shortByteString</span><span class="hs-special">)</span><span>
+</span><a name="line-29"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span>       </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">BSL</span><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span class="hs-operator">.</span><span class="hs-identifier">Char8</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">BSL8</span><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Foldable</span><span>              </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">F</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Hashable</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Hashable</span><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">HashMap</span><span class="hs-operator">.</span><span class="hs-identifier">Strict</span><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HashMap</span><span class="hs-special">)</span><span>
+</span><a name="line-34"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">HashMap</span><span class="hs-operator">.</span><span class="hs-identifier">Strict</span><span>        </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">HashMap</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Int</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">IntMap</span><span>                </span><span class="hs-special">(</span><span class="hs-identifier hs-type">IntMap</span><span class="hs-special">)</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">IntMap</span><span>                </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">IntMap</span><span>
+</span><a name="line-38"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">List</span><span>                  </span><span class="hs-special">(</span><span class="hs-identifier hs-var">intersperse</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Map</span><span>                   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Map</span><span class="hs-special">)</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Map</span><span>                   </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Map</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Monoid</span><span>
+</span><a name="line-42"></a><span>
+</span><a name="line-43"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span>                  </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Text</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span>                  </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Text</span><span>
+</span><a name="line-45"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span>             </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Lazy</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Encoding</span><span>         </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Text</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Encoding</span><span class="hs-operator">.</span><span class="hs-identifier">Error</span><span>   </span><span class="hs-special">(</span><span class="hs-identifier hs-var">lenientDecode</span><span class="hs-special">)</span><span>
+</span><a name="line-48"></a><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Time</span><span>
+</span><a name="line-50"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Proxy</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Word</span><span>
+</span><a name="line-52"></a><span>
+</span><a name="line-53"></a><span class="hs-cpp">#if MIN_VERSION_base(4,8,0)</span><span>
+</span><a name="line-54"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Void</span><span>
+</span><a name="line-55"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Numeric</span><span class="hs-operator">.</span><span class="hs-identifier">Natural</span><span>
+</span><a name="line-56"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-57"></a><span>
+</span><a name="line-58"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">Exts</span><span>                   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">IsList</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Constraint</span><span class="hs-special">)</span><span>
+</span><a name="line-59"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">Generics</span><span>
+</span><a name="line-60"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">TypeLits</span><span>
+</span><a name="line-61"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">URI</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-var">urlEncodeQuery</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">urlDecodeQuery</span><span class="hs-special">)</span><span>
+</span><a name="line-62"></a><span>
+</span><a name="line-63"></a><span class="hs-keyword">import</span><span> </span><a href="Web.Internal.HttpApiData.html"><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">Internal</span><span class="hs-operator">.</span><span class="hs-identifier">HttpApiData</span></a><span>
+</span><a name="line-64"></a><span>
+</span><a name="line-65"></a><span class="hs-comment">-- $setup</span><span>
+</span><a name="line-66"></a><span class="hs-comment">-- &gt;&gt;&gt; :set -XDeriveGeneric</span><span>
+</span><a name="line-67"></a><span class="hs-comment">-- &gt;&gt;&gt; :set -XOverloadedLists</span><span>
+</span><a name="line-68"></a><span class="hs-comment">-- &gt;&gt;&gt; :set -XOverloadedStrings</span><span>
+</span><a name="line-69"></a><span class="hs-comment">-- &gt;&gt;&gt; :set -XFlexibleContexts</span><span>
+</span><a name="line-70"></a><span class="hs-comment">-- &gt;&gt;&gt; :set -XScopedTypeVariables</span><span>
+</span><a name="line-71"></a><span class="hs-comment">-- &gt;&gt;&gt; :set -XTypeFamilies</span><span>
+</span><a name="line-72"></a><span class="hs-comment">-- &gt;&gt;&gt; import Data.Char (toLower)</span><span>
+</span><a name="line-73"></a><span class="hs-comment">--</span><span>
+</span><a name="line-74"></a><span class="hs-comment">-- &gt;&gt;&gt; data Person = Person { name :: String, age :: Int } deriving (Show, Generic)</span><span>
+</span><a name="line-75"></a><span class="hs-comment">-- &gt;&gt;&gt; instance ToForm Person</span><span>
+</span><a name="line-76"></a><span class="hs-comment">-- &gt;&gt;&gt; instance FromForm Person</span><span>
+</span><a name="line-77"></a><span class="hs-comment">--</span><span>
+</span><a name="line-78"></a><span class="hs-comment">-- &gt;&gt;&gt; data Post = Post { title :: String, subtitle :: Maybe String, comments :: [String]} deriving (Generic, Show)</span><span>
+</span><a name="line-79"></a><span class="hs-comment">-- &gt;&gt;&gt; instance ToForm Post</span><span>
+</span><a name="line-80"></a><span class="hs-comment">-- &gt;&gt;&gt; instance FromForm Post</span><span>
+</span><a name="line-81"></a><span class="hs-comment">--</span><span>
+</span><a name="line-82"></a><span class="hs-comment">-- &gt;&gt;&gt; data Project = Project { projectName :: String, projectSize :: Int } deriving (Generic, Show)</span><span>
+</span><a name="line-83"></a><span class="hs-comment">-- &gt;&gt;&gt; let myOptions = FormOptions { fieldLabelModifier = map toLower . drop (length (&quot;project&quot; :: String)) }</span><span>
+</span><a name="line-84"></a><span class="hs-comment">-- &gt;&gt;&gt; instance ToForm Project where toForm = genericToForm myOptions</span><span>
+</span><a name="line-85"></a><span class="hs-comment">-- &gt;&gt;&gt; instance FromForm Project where fromForm = genericFromForm myOptions</span><span>
+</span><a name="line-86"></a><span>
+</span><a name="line-87"></a><span class="hs-comment">-- | Typeclass for types that can be used as keys in a 'Form'-like container (like 'Map').</span><span>
+</span><a name="line-88"></a><span class="hs-keyword">class</span><span> </span><a name="ToFormKey"><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier">ToFormKey</span></a></a><span> </span><a name="local-6989586621679086322"><a href="#local-6989586621679086322"><span class="hs-identifier">k</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-89"></a><span>  </span><span class="hs-comment">-- | Render a key for a 'Form'.</span><span>
+</span><a name="line-90"></a><span>  </span><span class="hs-identifier">toFormKey</span><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679086322"><span class="hs-identifier hs-type">k</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Text</span><span>
+</span><a name="line-91"></a><span>
+</span><a name="line-92"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>       </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-93"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Char</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-94"></a><span>
+</span><a name="line-95"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Bool</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-96"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Ordering</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-97"></a><span>
+</span><a name="line-98"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Double</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-99"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Float</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-100"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int</span><span>      </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-101"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int8</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-102"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int16</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-103"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int32</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-104"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int64</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-105"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Integer</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-106"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-107"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word8</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-108"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word16</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-109"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word32</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-110"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word64</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-111"></a><span>
+</span><a name="line-112"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Day</span><span>              </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-113"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">LocalTime</span><span>        </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-114"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">ZonedTime</span><span>        </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-115"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">UTCTime</span><span>          </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-116"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">NominalDiffTime</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-117"></a><span>
+</span><a name="line-118"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">String</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-119"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Text</span><span>       </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-120"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Lazy</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Text</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-121"></a><span>
+</span><a name="line-122"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">All</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-123"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Any</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-124"></a><span>
+</span><a name="line-125"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><a href="#local-6989586621679089084"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Dual</span><span> </span><a href="#local-6989586621679089084"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier hs-var">toFormKey</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier">getDual</span><span>
+</span><a name="line-126"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><a href="#local-6989586621679089083"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Sum</span><span> </span><a href="#local-6989586621679089083"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier hs-var">toFormKey</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier">getSum</span><span>
+</span><a name="line-127"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><a href="#local-6989586621679089082"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Product</span><span> </span><a href="#local-6989586621679089082"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier hs-var">toFormKey</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier">getProduct</span><span>
+</span><a name="line-128"></a><span>
+</span><a name="line-129"></a><span class="hs-cpp">#if MIN_VERSION_base(4,8,0)</span><span>
+</span><a name="line-130"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Void</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-131"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><span class="hs-identifier hs-type">Natural</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861197"><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier">toFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span>
+</span><a name="line-132"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-133"></a><span>
+</span><a name="line-134"></a><span class="hs-comment">-- | Typeclass for types that can be parsed from keys of a 'Form'. This is the reverse of 'ToFormKey'.</span><span>
+</span><a name="line-135"></a><span class="hs-keyword">class</span><span> </span><a name="FromFormKey"><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier">FromFormKey</span></a></a><span> </span><a name="local-6989586621679086321"><a href="#local-6989586621679086321"><span class="hs-identifier">k</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-136"></a><span>  </span><span class="hs-comment">-- | Parse a key of a 'Form'.</span><span>
+</span><a name="line-137"></a><span>  </span><span class="hs-identifier">parseFormKey</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Text</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Either</span><span> </span><span class="hs-identifier hs-type">Text</span><span> </span><a href="#local-6989586621679086321"><span class="hs-identifier hs-type">k</span></a><span>
+</span><a name="line-138"></a><span>
+</span><a name="line-139"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>       </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-140"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Char</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-141"></a><span>
+</span><a name="line-142"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Bool</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-143"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Ordering</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-144"></a><span>
+</span><a name="line-145"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Double</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-146"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Float</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-147"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int</span><span>      </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-148"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int8</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-149"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int16</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-150"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int32</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-151"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Int64</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-152"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Integer</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-153"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-154"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word8</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-155"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word16</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-156"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word32</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-157"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Word64</span><span>   </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-158"></a><span>
+</span><a name="line-159"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Day</span><span>              </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-160"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">LocalTime</span><span>        </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-161"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">ZonedTime</span><span>        </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-162"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">UTCTime</span><span>          </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-163"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">NominalDiffTime</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-164"></a><span>
+</span><a name="line-165"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">String</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-166"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Text</span><span>       </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-167"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Lazy</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Text</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-168"></a><span>
+</span><a name="line-169"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">All</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-170"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Any</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-171"></a><span>
+</span><a name="line-172"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><a href="#local-6989586621679089081"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Dual</span><span> </span><a href="#local-6989586621679089081"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>    </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">fmap</span><span> </span><span class="hs-identifier hs-var">Dual</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier hs-var">parseFormKey</span></a><span>
+</span><a name="line-173"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><a href="#local-6989586621679089080"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Sum</span><span> </span><a href="#local-6989586621679089080"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">fmap</span><span> </span><span class="hs-identifier hs-var">Sum</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier hs-var">parseFormKey</span></a><span>
+</span><a name="line-174"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><a href="#local-6989586621679089079"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Product</span><span> </span><a href="#local-6989586621679089079"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">fmap</span><span> </span><span class="hs-identifier hs-var">Product</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier hs-var">parseFormKey</span></a><span>
+</span><a name="line-175"></a><span>
+</span><a name="line-176"></a><span class="hs-cpp">#if MIN_VERSION_base(4,8,0)</span><span>
+</span><a name="line-177"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Void</span><span>     </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-178"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#FromFormKey"><span class="hs-identifier hs-type">FromFormKey</span></a><span> </span><span class="hs-identifier hs-type">Natural</span><span>  </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861195"><a href="Web.Internal.FormUrlEncoded.html#parseFormKey"><span class="hs-identifier">parseFormKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.HttpApiData.html#parseQueryParam"><span class="hs-identifier hs-var">parseQueryParam</span></a><span>
+</span><a name="line-179"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-180"></a><span>
+</span><a name="line-181"></a><span class="hs-comment">-- | The contents of a form, not yet URL-encoded.</span><span>
+</span><a name="line-182"></a><span class="hs-comment">--</span><span>
+</span><a name="line-183"></a><span class="hs-comment">-- 'Form' can be URL-encoded with 'urlEncodeForm' and URL-decoded with 'urlDecodeForm'.</span><span>
+</span><a name="line-184"></a><span class="hs-keyword">newtype</span><span> </span><a name="Form"><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier">Form</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="Form"><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier">Form</span></a></a><span> </span><span class="hs-special">{</span><span> </span><a name="unForm"><a href="Web.Internal.FormUrlEncoded.html#unForm"><span class="hs-identifier">unForm</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">HashMap</span><span> </span><span class="hs-identifier hs-type">Text</span><span> </span><span class="hs-special">[</span><span class="hs-identifier hs-type">Text</span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>
+</span><a name="line-185"></a><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Eq</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Read</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Monoid</span><span class="hs-special">)</span><span>
+</span><a name="line-186"></a><span>
+</span><a name="line-187"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">Show</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-type">Form</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-188"></a><span>  </span><a name="local-8214565720323791134"><span class="hs-identifier">showsPrec</span></a><span> </span><a name="local-6989586621679089077"><a href="#local-6989586621679089077"><span class="hs-identifier">d</span></a></a><span> </span><a name="local-6989586621679089078"><a href="#local-6989586621679089078"><span class="hs-identifier">form</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">showParen</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679089077"><span class="hs-identifier hs-var">d</span></a><span> </span><span class="hs-operator hs-var">&gt;</span><span> </span><span class="hs-number">10</span><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">$</span><span>
+</span><a name="line-189"></a><span>    </span><span class="hs-identifier hs-var">showString</span><span> </span><span class="hs-string">&quot;fromList &quot;</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">shows</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">toList</span><span> </span><a href="#local-6989586621679089078"><span class="hs-identifier hs-var">form</span></a><span class="hs-special">)</span><span>
+</span><a name="line-190"></a><span>
+</span><a name="line-191"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">IsList</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-type">Form</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-192"></a><span>  </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">Item</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-type">Form</span></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Text</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Text</span><span class="hs-special">)</span><span>
+</span><a name="line-193"></a><span>  </span><a name="local-3458764513820541127"><span class="hs-identifier">fromList</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-var">Form</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">HashMap</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">fromListWith</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">flip</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">&lt;&gt;</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">fmap</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span class="hs-special">(</span><a name="local-6989586621679089073"><a href="#local-6989586621679089073"><span class="hs-identifier">k</span></a></a><span class="hs-special">,</span><span> </span><a name="local-6989586621679089074"><a href="#local-6989586621679089074"><span class="hs-identifier">v</span></a></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679089073"><span class="hs-identifier hs-var">k</span></a><span class="hs-special">,</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679089074"><span class="hs-identifier hs-var">v</span></a><span class="hs-special">]</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-194"></a><span>  </span><a name="local-3458764513820541429"><span class="hs-identifier">toList</span></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">concatMap</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span class="hs-special">(</span><a name="local-6989586621679089075"><a href="#local-6989586621679089075"><span class="hs-identifier">k</span></a></a><span class="hs-special">,</span><span> </span><a name="local-6989586621679089076"><a href="#local-6989586621679089076"><span class="hs-identifier">vs</span></a></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">map</span><span> </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-special">,</span><span class="hs-special">)</span><span> </span><a href="#local-6989586621679089075"><span class="hs-identifier hs-var">k</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679089076"><span class="hs-identifier hs-var">vs</span></a><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">HashMap</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">toList</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier">unForm</span><span>
+</span><a name="line-195"></a><span>
+</span><a name="line-196"></a><span class="hs-comment">-- | Convert a value into 'Form'.</span><span>
+</span><a name="line-197"></a><span class="hs-comment">--</span><span>
+</span><a name="line-198"></a><span class="hs-comment">-- An example type and instance:</span><span>
+</span><a name="line-199"></a><span class="hs-comment">--</span><span>
+</span><a name="line-200"></a><span class="hs-comment">-- @</span><span>
+</span><a name="line-201"></a><span class="hs-comment">-- {-\# LANGUAGE OverloadedLists \#-}</span><span>
+</span><a name="line-202"></a><span class="hs-comment">--</span><span>
+</span><a name="line-203"></a><span class="hs-comment">-- data Person = Person</span><span>
+</span><a name="line-204"></a><span class="hs-comment">--   { name :: String</span><span>
+</span><a name="line-205"></a><span class="hs-comment">--   , age  :: Int }</span><span>
+</span><a name="line-206"></a><span class="hs-comment">--</span><span>
+</span><a name="line-207"></a><span class="hs-comment">-- instance 'ToForm' Person where</span><span>
+</span><a name="line-208"></a><span class="hs-comment">--   'toForm' person =</span><span>
+</span><a name="line-209"></a><span class="hs-comment">--     [ (\&quot;name\&quot;, 'toQueryParam' (name person))</span><span>
+</span><a name="line-210"></a><span class="hs-comment">--     , (\&quot;age\&quot;, 'toQueryParam' (age person)) ]</span><span>
+</span><a name="line-211"></a><span class="hs-comment">-- @</span><span>
+</span><a name="line-212"></a><span class="hs-comment">--</span><span>
+</span><a name="line-213"></a><span class="hs-comment">-- Instead of manually writing @'ToForm'@ instances you can</span><span>
+</span><a name="line-214"></a><span class="hs-comment">-- use a default generic implementation of @'toForm'@.</span><span>
+</span><a name="line-215"></a><span class="hs-comment">--</span><span>
+</span><a name="line-216"></a><span class="hs-comment">-- To do that, simply add @deriving 'Generic'@ clause to your datatype</span><span>
+</span><a name="line-217"></a><span class="hs-comment">-- and declare a 'ToForm' instance for your datatype without</span><span>
+</span><a name="line-218"></a><span class="hs-comment">-- giving definition for 'toForm'.</span><span>
+</span><a name="line-219"></a><span class="hs-comment">--</span><span>
+</span><a name="line-220"></a><span class="hs-comment">-- For instance, the previous example can be simplified into this:</span><span>
+</span><a name="line-221"></a><span class="hs-comment">--</span><span>
+</span><a name="line-222"></a><span class="hs-comment">-- @</span><span>
+</span><a name="line-223"></a><span class="hs-comment">-- data Person = Person</span><span>
+</span><a name="line-224"></a><span class="hs-comment">--   { name :: String</span><span>
+</span><a name="line-225"></a><span class="hs-comment">--   , age  :: Int</span><span>
+</span><a name="line-226"></a><span class="hs-comment">--   } deriving ('Generic')</span><span>
+</span><a name="line-227"></a><span class="hs-comment">--</span><span>
+</span><a name="line-228"></a><span class="hs-comment">-- instance 'ToForm' Person</span><span>
+</span><a name="line-229"></a><span class="hs-comment">-- @</span><span>
+</span><a name="line-230"></a><span class="hs-comment">--</span><span>
+</span><a name="line-231"></a><span class="hs-comment">-- The default implementation of 'toForm' is 'genericToForm'.</span><span>
+</span><a name="line-232"></a><span class="hs-keyword">class</span><span> </span><a name="ToForm"><a href="Web.Internal.FormUrlEncoded.html#ToForm"><span class="hs-identifier">ToForm</span></a></a><span> </span><a name="local-6989586621679086320"><a href="#local-6989586621679086320"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-233"></a><span>  </span><span class="hs-comment">-- | Convert a value into 'Form'.</span><span>
+</span><a name="line-234"></a><span>  </span><span class="hs-identifier">toForm</span><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679086320"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-type">Form</span></a><span>
+</span><a name="line-235"></a><span>  </span><span class="hs-keyword">default</span><span> </span><span class="hs-identifier">toForm</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Generic</span><span> </span><a href="#local-6989586621679086320"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">,</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#GToForm"><span class="hs-identifier hs-type">GToForm</span></a><span> </span><a href="#local-6989586621679086320"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Rep</span><span> </span><a href="#local-6989586621679086320"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="#local-6989586621679086320"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-type">Form</span></a><span>
+</span><a name="line-236"></a><span>  </span><a name="local-8214565720323861190"><a href="Web.Internal.FormUrlEncoded.html#toForm"><span class="hs-identifier">toForm</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#genericToForm"><span class="hs-identifier hs-var">genericToForm</span></a><span> </span><a href="Web.Internal.FormUrlEncoded.html#defaultFormOptions"><span class="hs-identifier hs-var">defaultFormOptions</span></a><span>
+</span><a name="line-237"></a><span>
+</span><a name="line-238"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToForm"><span class="hs-identifier hs-type">ToForm</span></a><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-type">Form</span></a><span> </span><span class="hs-keyword">where</span><span> </span><a name="local-8214565720323861190"><a href="Web.Internal.FormUrlEncoded.html#toForm"><span class="hs-identifier">toForm</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">id</span><span>
+</span><a name="line-239"></a><span>
+</span><a name="line-240"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><a href="#local-6989586621679089071"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">,</span><span> </span><a href="Web.Internal.HttpApiData.html#ToHttpApiData"><span class="hs-identifier hs-type">ToHttpApiData</span></a><span> </span><a href="#local-6989586621679089072"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToForm"><span class="hs-identifier hs-type">ToForm</span></a><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><a href="#local-6989586621679089071"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">,</span><span> </span><a href="#local-6989586621679089072"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-241"></a><span>  </span><a name="local-8214565720323861190"><a href="Web.Internal.FormUrlEncoded.html#toForm"><span class="hs-identifier">toForm</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">fromList</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">map</span><span> </span><span class="hs-special">(</span><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier hs-var">toFormKey</span></a><span> </span><span class="hs-operator hs-var">***</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span class="hs-special">)</span><span>
+</span><a name="line-242"></a><span>
+</span><a name="line-243"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><a href="#local-6989586621679089069"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">,</span><span> </span><a href="Web.Internal.HttpApiData.html#ToHttpApiData"><span class="hs-identifier hs-type">ToHttpApiData</span></a><span> </span><a href="#local-6989586621679089070"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToForm"><span class="hs-identifier hs-type">ToForm</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Map</span><span> </span><a href="#local-6989586621679089069"><span class="hs-identifier hs-type">k</span></a><span> </span><span class="hs-special">[</span><a href="#local-6989586621679089070"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-244"></a><span>  </span><a name="local-8214565720323861190"><a href="Web.Internal.FormUrlEncoded.html#toForm"><span class="hs-identifier">toForm</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#fromEntriesByKey"><span class="hs-identifier hs-var">fromEntriesByKey</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">Map</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">toList</span><span>
+</span><a name="line-245"></a><span>
+</span><a name="line-246"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><a href="#local-6989586621679089067"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">,</span><span> </span><a href="Web.Internal.HttpApiData.html#ToHttpApiData"><span class="hs-identifier hs-type">ToHttpApiData</span></a><span> </span><a href="#local-6989586621679089068"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToForm"><span class="hs-identifier hs-type">ToForm</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HashMap</span><span> </span><a href="#local-6989586621679089067"><span class="hs-identifier hs-type">k</span></a><span> </span><span class="hs-special">[</span><a href="#local-6989586621679089068"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-247"></a><span>  </span><a name="local-8214565720323861190"><a href="Web.Internal.FormUrlEncoded.html#toForm"><span class="hs-identifier">toForm</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#fromEntriesByKey"><span class="hs-identifier hs-var">fromEntriesByKey</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">HashMap</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">toList</span><span>
+</span><a name="line-248"></a><span>
+</span><a name="line-249"></a><span class="hs-keyword">instance</span><span> </span><a href="Web.Internal.HttpApiData.html#ToHttpApiData"><span class="hs-identifier hs-type">ToHttpApiData</span></a><span> </span><a href="#local-6989586621679089066"><span class="hs-identifier hs-type">v</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#ToForm"><span class="hs-identifier hs-type">ToForm</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">IntMap</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679089066"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-250"></a><span>  </span><a name="local-8214565720323861190"><a href="Web.Internal.FormUrlEncoded.html#toForm"><span class="hs-identifier">toForm</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#fromEntriesByKey"><span class="hs-identifier hs-var">fromEntriesByKey</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">IntMap</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">toList</span><span>
+</span><a name="line-251"></a><span>
+</span><a name="line-252"></a><span class="hs-comment">-- | Convert a list of entries groupped by key into a 'Form'.</span><span>
+</span><a name="line-253"></a><span class="hs-comment">--</span><span>
+</span><a name="line-254"></a><span class="hs-comment">-- &gt;&gt;&gt; fromEntriesByKey [(&quot;name&quot;,[&quot;Nick&quot;]),(&quot;color&quot;,[&quot;red&quot;,&quot;blue&quot;])]</span><span>
+</span><a name="line-255"></a><span class="hs-comment">-- fromList [(&quot;color&quot;,&quot;red&quot;),(&quot;color&quot;,&quot;blue&quot;),(&quot;name&quot;,&quot;Nick&quot;)]</span><span>
+</span><a name="line-256"></a><span class="hs-identifier">fromEntriesByKey</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><a href="Web.Internal.FormUrlEncoded.html#ToFormKey"><span class="hs-identifier hs-type">ToFormKey</span></a><span> </span><a href="#local-6989586621679086520"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">,</span><span> </span><a href="Web.Internal.HttpApiData.html#ToHttpApiData"><span class="hs-identifier hs-type">ToHttpApiData</span></a><span> </span><a href="#local-6989586621679086521"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><a href="#local-6989586621679086520"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">,</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679086521"><span class="hs-identifier hs-type">v</span></a><span class="hs-special">]</span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-type">Form</span></a><span>
+</span><a name="line-257"></a><a name="fromEntriesByKey"><a href="Web.Internal.FormUrlEncoded.html#fromEntriesByKey"><span class="hs-identifier">fromEntriesByKey</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Web.Internal.FormUrlEncoded.html#Form"><span class="hs-identifier hs-var">Form</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">HashMap</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">fromListWith</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">&lt;&gt;</span><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">map</span><span> </span><span class="hs-special">(</span><a href="Web.Internal.FormUrlEncoded.html#toFormKey"><span class="hs-identifier hs-var">toFormKey</span></a><span> </span><span class="hs-operator hs-var">***</span><span> </span><span class="hs-identifier hs-var">map</span><span> </span><a href="Web.Internal.HttpApiData.html#toQueryParam"><span class="hs-identifier hs-var">toQueryParam</span></a><span class="hs-special">)</span><span>
+</span><a name="line-258"></a><span>
+</span><a name="line-259"></a><span class="hs-keyword">data</span><span> </span><a name="Proxy3"><a href="Web.Internal.FormUrlEncoded.html#Proxy3"><span class="hs-identifier">Proxy3</span></a></a><span> </span><a name="local-6989586621679086317"><a href="#local-6989586621679086317"><span class="hs-identifier">a</span></a></a><span> </span><a name="local-6989586621679086318"><a href="#local-6989586621679086318"><span class="hs-identifier">b</span></a></a><span> </span><a name="local-6989586621679086319"><a href="#local-6989586621679086319"><span class="hs-identifier">c</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="Proxy3"><a href="Web.Internal.FormUrlEncoded.html#Proxy3"><span class="hs-identifier">Proxy3</span></a></a><span>
+</span><a name="line-260"></a><span>
+</span><a name="line-261"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span> </span><a name="NotSupported"><a href="Web.Internal.FormUrlEncoded.html#NotSupported"><span class="hs-identifier">NotSupported</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679086310"><a href="#local-6989586621679086310"><span class="hs-identifier">cls</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679086309"><span class="hs-identifier hs-type">k1</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679086312"><a href="#local-6989586621679086312"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679086311"><span class="hs-identifier hs-type">k2</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679086313"><a href="#local-6989586621679086313"><span class="hs-identifier">reason</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Symbol</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Constraint</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-262"></a><span class="hs-cpp">#if __GLASGOW_HASKELL__ &lt; 800</span><span>
+</span><a name="line-263"></a><span>  </span><span class="hs-comment">-- this is just a placeholder case for older GHCs to not freak out on an empty closed type family</span><span>
+</span><a name="line-264"></a><span>  </span><span class="hs-identifier">NotSupported</span><span> </span><span class="hs-identifier">cls</span><span> </span><span class="hs-identifier">a</span><span> </span><span class="hs-string">&quot;this type family is actually empty&quot;</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-265"></a><span class="hs-cpp">#else</span><span>
+</span><a name="line-266"></a><span>  </span><span class="hs-identifier">NotSupported</span><span> </span><a href="#local-6989586621679086314"><span class="hs-identifier hs-type">cls</span></a><span> </span><a href="#local-6989586621679086315"><span class="hs-identifier hs-type">a</span></a><span> </span><a href="#local-6989586621679086316"><span class="hs-identifier hs-type">reason</span></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">TypeError</span><span>
+</span><a name="line-267"></a><span>    </span><span class="hs-special">(</span><span> </span><span class="hs-char">'Text &quot;Cannot derive a Generic-based &quot; ':&lt;&gt;: 'ShowType cls ':&lt;&gt;: 'Text &quot; instance for &quot; ':&lt;&gt;: 'ShowType a ':&lt;&gt;: 'Text &quot;.&quot; ':$$:
+      'ShowType a ':&lt;&gt;: 'Text &quot; &quot; ':&lt;&gt;: 'Text reason ':&lt;&gt;: 'Text &quot;,&quot; ':$$:
+      'Text &quot;but Generic-based &quot; ':&lt;&gt;: 'ShowType cls ':&lt;&gt;: 'Text &quot; instances can be derived only for records&quot; ':$$:
+      'Text &quot;(i.e. product types with named fields).&quot; )
+#endif
+
+-- | A 'Generic'-based implementation of 'toForm'.
+-- This is used as a default implementation in 'ToForm'.
+--
+-- Note that this only works for records (i.e. product data types with named fields):
+--
+-- @
+-- data Person = Person
+--   { name :: String
+--   , age  :: Int
+--   } deriving ('Generic')
+-- @
+--
+-- In this implementation each field's value gets encoded using `toQueryParam`.
+-- Two field types are exceptions:
+--
+--    - for values of type @'Maybe' a@ an entry is added to the 'Form' only when it is @'Just' x@
+--      and the encoded value is @'toQueryParam' x@; 'Nothing' values are omitted from the 'Form';
+--
+--    - for values of type @[a]@ (except @['Char']@) an entry is added for every item in the list;
+--      if the list is empty no entries are added to the 'Form';
+--
+-- Here's an example:
+--
+-- @
+-- data Post = Post
+--   { title    :: String
+--   , subtitle :: Maybe String
+--   , comments :: [String]
+--   } deriving ('Generic', 'Show')
+--
+-- instance 'ToForm' Post
+-- @
+--
+-- &gt;&gt;&gt; urlEncodeAsForm Post { title = &quot;Test&quot;, subtitle = Nothing, comments = [&quot;Nice post!&quot;, &quot;+1&quot;] }
+-- &quot;comments=Nice%20post%21&amp;comments=%2B1&amp;title=Test&quot;
+genericToForm :: forall a. (Generic a, GToForm a (Rep a)) =&gt; FormOptions -&gt; a -&gt; Form
+genericToForm opts = gToForm (Proxy :: Proxy a) opts . from
+
+class GToForm t (f :: * -&gt; *) where
+  gToForm :: Proxy t -&gt; FormOptions -&gt; f x -&gt; Form
+
+instance (GToForm t f, GToForm t g) =&gt; GToForm t (f :*: g) where
+  gToForm p opts (a :*: b) = gToForm p opts a &lt;&gt; gToForm p opts b
+
+instance (GToForm t f) =&gt; GToForm t (M1 D x f) where
+  gToForm p opts (M1 a) = gToForm p opts a
+
+instance (GToForm t f) =&gt; GToForm t (M1 C x f) where
+  gToForm p opts (M1 a) = gToForm p opts a
+
+instance OVERLAPPABLE_ (Selector s, ToHttpApiData c) =&gt; GToForm t (M1 S s (K1 i c)) where
+  gToForm _ opts (M1 (K1 c)) = fromList [(key, toQueryParam c)]
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance (Selector s, ToHttpApiData c) =&gt; GToForm t (M1 S s (K1 i (Maybe c))) where
+  gToForm _ opts (M1 (K1 c)) =
+    case c of
+      Nothing -&gt; mempty
+      Just x  -&gt; fromList [(key, toQueryParam x)]
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance (Selector s, ToHttpApiData c) =&gt; GToForm t (M1 S s (K1 i [c])) where
+  gToForm _ opts (M1 (K1 cs)) = fromList (map (\c -&gt; (key, toQueryParam c)) cs)
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance OVERLAPPING_ (Selector s) =&gt; GToForm t (M1 S s (K1 i String)) where
+  gToForm _ opts (M1 (K1 c)) = fromList [(key, toQueryParam c)]
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance NotSupported ToForm t &quot;is a sum type&quot; =&gt; GToForm t (f :+: g) where gToForm = error &quot;impossible&quot;
+
+-- | Parse 'Form' into a value.
+--
+-- An example type and instance:
+--
+-- @
+-- data Person = Person
+--   { name :: String
+--   , age  :: Int }
+--
+-- instance 'FromForm' Person where
+--   'fromForm' f = Person
+--     '&lt;$&gt;' 'parseUnique' &quot;name&quot; f
+--     '&lt;*&gt;' 'parseUnique' &quot;age&quot;  f
+-- @
+--
+-- Instead of manually writing @'FromForm'@ instances you can
+-- use a default generic implementation of @'fromForm'@.
+--
+-- To do that, simply add @deriving 'Generic'@ clause to your datatype
+-- and declare a 'FromForm' instance for your datatype without
+-- giving definition for 'fromForm'.
+--
+-- For instance, the previous example can be simplified into this:
+--
+-- @
+-- data Person = Person
+--   { name :: String
+--   , age  :: Int
+--   } deriving ('Generic')
+--
+-- instance 'FromForm' Person
+-- @
+--
+-- The default implementation of 'fromForm' is 'genericFromForm'.
+-- It only works for records and it will use 'parseQueryParam' for each field's value.
+class FromForm a where
+  -- | Parse 'Form' into a value.
+  fromForm :: Form -&gt; Either Text a
+  default fromForm :: (Generic a, GFromForm a (Rep a)) =&gt; Form -&gt; Either Text a
+  fromForm = genericFromForm defaultFormOptions
+
+instance FromForm Form where fromForm = pure
+
+instance (FromFormKey k, FromHttpApiData v) =&gt; FromForm [(k, v)] where
+  fromForm = fmap (concatMap (\(k, vs) -&gt; map ((,) k) vs)) . toEntriesByKey
+
+instance (Ord k, FromFormKey k, FromHttpApiData v) =&gt; FromForm (Map k [v]) where
+  fromForm = fmap (Map.fromListWith (&lt;&gt;)) . toEntriesByKey
+
+instance (Eq k, Hashable k, FromFormKey k, FromHttpApiData v) =&gt; FromForm (HashMap k [v]) where
+  fromForm = fmap (HashMap.fromListWith (&lt;&gt;)) . toEntriesByKey
+
+instance FromHttpApiData v =&gt; FromForm (IntMap [v]) where
+  fromForm = fmap (IntMap.fromListWith (&lt;&gt;)) . toEntriesByKey
+
+-- | Parse a 'Form' into a list of entries groupped by key.
+--
+-- &gt;&gt;&gt; toEntriesByKey [(&quot;name&quot;, &quot;Nick&quot;), (&quot;color&quot;, &quot;red&quot;), (&quot;color&quot;, &quot;white&quot;)] :: Either Text [(Text, [Text])]
+-- Right [(&quot;color&quot;,[&quot;red&quot;,&quot;white&quot;]),(&quot;name&quot;,[&quot;Nick&quot;])]
+toEntriesByKey :: (FromFormKey k, FromHttpApiData v) =&gt; Form -&gt; Either Text [(k, [v])]
+toEntriesByKey = traverse parseGroup . HashMap.toList . unForm
+  where
+    parseGroup (k, vs) = (,) &lt;$&gt; parseFormKey k &lt;*&gt; traverse parseQueryParam vs
+
+-- | A 'Generic'-based implementation of 'fromForm'.
+-- This is used as a default implementation in 'FromForm'.
+--
+-- Note that this only works for records (i.e. product data types with named fields):
+--
+-- @
+-- data Person = Person
+--   { name :: String
+--   , age  :: Int
+--   } deriving ('Generic')
+-- @
+--
+-- In this implementation each field's value gets decoded using `parseQueryParam`.
+-- Two field types are exceptions:
+--
+--    - for values of type @'Maybe' a@ an entry is parsed if present in the 'Form'
+--      and the is decoded with 'parseQueryParam'; if no entry is present result is 'Nothing';
+--
+--    - for values of type @[a]@ (except @['Char']@) all entries are parsed to produce a list of parsed values;
+--
+-- Here's an example:
+--
+-- @
+-- data Post = Post
+--   { title    :: String
+--   , subtitle :: Maybe String
+--   , comments :: [String]
+--   } deriving ('Generic', 'Show')
+--
+-- instance 'FromForm' Post
+-- @
+--
+-- &gt;&gt;&gt; urlDecodeAsForm &quot;comments=Nice%20post%21&amp;comments=%2B1&amp;title=Test&quot; :: Either Text Post
+-- Right (Post {title = &quot;Test&quot;, subtitle = Nothing, comments = [&quot;Nice post!&quot;,&quot;+1&quot;]})
+genericFromForm :: forall a. (Generic a, GFromForm a (Rep a)) =&gt; FormOptions -&gt; Form -&gt; Either Text a
+genericFromForm opts f = to &lt;$&gt; gFromForm (Proxy :: Proxy a) opts f
+
+class GFromForm t (f :: * -&gt; *) where
+  gFromForm :: Proxy t -&gt; FormOptions -&gt; Form -&gt; Either Text (f x)
+
+instance (GFromForm t f, GFromForm t g) =&gt; GFromForm t (f :*: g) where
+  gFromForm p opts f = (:*:) &lt;$&gt; gFromForm p opts f &lt;*&gt; gFromForm p opts f
+
+instance GFromForm t f =&gt; GFromForm t (M1 D x f) where
+  gFromForm p opts f = M1 &lt;$&gt; gFromForm p opts f
+
+instance GFromForm t f =&gt; GFromForm t (M1 C x f) where
+  gFromForm p opts f = M1 &lt;$&gt; gFromForm p opts f
+
+instance OVERLAPPABLE_ (Selector s, FromHttpApiData c) =&gt; GFromForm t (M1 S s (K1 i c)) where
+  gFromForm _ opts form = M1 . K1 &lt;$&gt; parseUnique key form
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance (Selector s, FromHttpApiData c) =&gt; GFromForm t (M1 S s (K1 i (Maybe c))) where
+  gFromForm _ opts form = M1 . K1 &lt;$&gt; parseMaybe key form
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance (Selector s, FromHttpApiData c) =&gt; GFromForm t (M1 S s (K1 i [c])) where
+  gFromForm _ opts form = M1 . K1 &lt;$&gt; parseAll key form
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance OVERLAPPING_ (Selector s) =&gt; GFromForm t (M1 S s (K1 i String)) where
+  gFromForm _ opts form = M1 . K1 &lt;$&gt; parseUnique key form
+    where
+      key = Text.pack $ fieldLabelModifier opts $ selName (Proxy3 :: Proxy3 s g p)
+
+instance NotSupported FromForm t &quot;is a sum type&quot; =&gt; GFromForm t (f :+: g) where gFromForm = error &quot;impossible&quot;
+
+-- | Encode a 'Form' to an @application/x-www-form-urlencoded@ 'BSL.ByteString'.
+--
+-- Key-value pairs get encoded to @key=value@ and separated by @&amp;@:
+--
+-- &gt;&gt;&gt; urlEncodeForm [(&quot;name&quot;, &quot;Julian&quot;), (&quot;lastname&quot;, &quot;Arni&quot;)]
+-- &quot;lastname=Arni&amp;name=Julian&quot;
+--
+-- Keys with empty values get encoded to just @key@ (without the @=@ sign):
+--
+-- &gt;&gt;&gt; urlEncodeForm [(&quot;is_test&quot;, &quot;&quot;)]
+-- &quot;is_test&quot;
+--
+-- Empty keys are allowed too:
+--
+-- &gt;&gt;&gt; urlEncodeForm [(&quot;&quot;, &quot;foobar&quot;)]
+-- &quot;=foobar&quot;
+--
+-- However, if not key and value are empty, the key-value pair is ignored.
+-- (This prevents @'urlDecodeForm' . 'urlEncodeForm'@ from being a true isomorphism).
+--
+-- &gt;&gt;&gt; urlEncodeForm [(&quot;&quot;, &quot;&quot;)]
+-- &quot;&quot;
+--
+-- Everything is escaped with @'escapeURIString' 'isUnreserved'@:
+--
+-- &gt;&gt;&gt; urlEncodeForm [(&quot;fullname&quot;, &quot;Andres L&#246;h&quot;)]
+-- &quot;fullname=Andres%20L%C3%B6h&quot;
+urlEncodeForm :: Form -&gt; BSL.ByteString
+urlEncodeForm = toLazyByteString . mconcat . intersperse (shortByteString &quot;&amp;&quot;) . map encodePair . toList
+  where
+    escape = urlEncodeQuery . Text.encodeUtf8
+
+    encodePair (k, &quot;&quot;) = escape k
+    encodePair (k, v) = escape k &lt;&gt; shortByteString &quot;=&quot; &lt;&gt; escape v
+
+
+-- | Decode an @application/x-www-form-urlencoded@ 'BSL.ByteString' to a 'Form'.
+--
+-- Key-value pairs get decoded normally:
+--
+-- &gt;&gt;&gt; urlDecodeForm &quot;name=Greg&amp;lastname=Weber&quot;
+-- Right (fromList [(&quot;lastname&quot;,&quot;Weber&quot;),(&quot;name&quot;,&quot;Greg&quot;)])
+--
+-- Keys with no values get decoded to pairs with empty values.
+--
+-- &gt;&gt;&gt; urlDecodeForm &quot;is_test&quot;
+-- Right (fromList [(&quot;is_test&quot;,&quot;&quot;)])
+--
+-- Empty keys are allowed:
+--
+-- &gt;&gt;&gt; urlDecodeForm &quot;=foobar&quot;
+-- Right (fromList [(&quot;&quot;,&quot;foobar&quot;)])
+--
+-- The empty string gets decoded into an empty 'Form':
+--
+-- &gt;&gt;&gt; urlDecodeForm &quot;&quot;
+-- Right (fromList [])
+--
+-- Everything is un-escaped with 'unEscapeString':
+--
+-- &gt;&gt;&gt; urlDecodeForm &quot;fullname=Andres%20L%C3%B6h&quot;
+-- Right (fromList [(&quot;fullname&quot;,&quot;Andres L\246h&quot;)])
+--
+-- Improperly formed strings result in an error:
+--
+-- &gt;&gt;&gt; urlDecodeForm &quot;this=has=too=many=equals&quot;
+-- Left &quot;not a valid pair: this=has=too=many=equals&quot;
+urlDecodeForm :: BSL.ByteString -&gt; Either Text Form
+urlDecodeForm bs = toForm &lt;$&gt; traverse parsePair pairs
+  where
+    pairs = map (BSL8.split '=') (BSL8.split '&amp;' bs)
+
+    unescape = Text.decodeUtf8With lenientDecode . urlDecodeQuery . BSL.toStrict
+
+    parsePair p =
+      case map unescape p of
+        [k, v] -&gt; return (k, v)
+        [k]    -&gt; return (k, &quot;&quot;)
+        xs     -&gt; Left $ &quot;not a valid pair: &quot; &lt;&gt; Text.intercalate &quot;=&quot; xs
+
+-- | This is a convenience function for decoding a
+-- @application/x-www-form-urlencoded@ 'BSL.ByteString' directly to a datatype
+-- that has an instance of 'FromForm'.
+--
+-- This is effectively @'fromForm' '&lt;=&lt;' 'urlDecodeForm'@.
+--
+-- &gt;&gt;&gt; urlDecodeAsForm &quot;name=Dennis&amp;age=22&quot; :: Either Text Person
+-- Right (Person {name = &quot;Dennis&quot;, age = 22})
+urlDecodeAsForm :: FromForm a =&gt; BSL.ByteString -&gt; Either Text a
+urlDecodeAsForm = fromForm &lt;=&lt; urlDecodeForm
+
+-- | This is a convenience function for encoding a datatype that has instance
+-- of 'ToForm' directly to a @application/x-www-form-urlencoded@
+-- 'BSL.ByteString'.
+--
+-- This is effectively @'urlEncodeForm' . 'toForm'@.
+--
+-- &gt;&gt;&gt; urlEncodeAsForm Person {name = &quot;Dennis&quot;, age = 22}
+-- &quot;age=22&amp;name=Dennis&quot;
+urlEncodeAsForm :: ToForm a =&gt; a -&gt; BSL.ByteString
+urlEncodeAsForm = urlEncodeForm . toForm
+
+-- | Find all values corresponding to a given key in a 'Form'.
+--
+-- &gt;&gt;&gt; lookupAll &quot;name&quot; []
+-- []
+-- &gt;&gt;&gt; lookupAll &quot;name&quot; [(&quot;name&quot;, &quot;Oleg&quot;)]
+-- [&quot;Oleg&quot;]
+-- &gt;&gt;&gt; lookupAll &quot;name&quot; [(&quot;name&quot;, &quot;Oleg&quot;), (&quot;name&quot;, &quot;David&quot;)]
+-- [&quot;Oleg&quot;,&quot;David&quot;]
+lookupAll :: Text -&gt; Form -&gt; [Text]
+lookupAll key = F.concat . HashMap.lookup key . unForm
+
+-- | Lookup an optional value for a key.
+-- Fail if there is more than one value.
+--
+-- &gt;&gt;&gt; lookupMaybe &quot;name&quot; []
+-- Right Nothing
+-- &gt;&gt;&gt; lookupMaybe &quot;name&quot; [(&quot;name&quot;, &quot;Oleg&quot;)]
+-- Right (Just &quot;Oleg&quot;)
+-- &gt;&gt;&gt; lookupMaybe &quot;name&quot; [(&quot;name&quot;, &quot;Oleg&quot;), (&quot;name&quot;, &quot;David&quot;)]
+-- Left &quot;Duplicate key \&quot;name\&quot;&quot;
+lookupMaybe :: Text -&gt; Form -&gt; Either Text (Maybe Text)
+lookupMaybe key form =
+  case lookupAll key form of
+    []  -&gt; pure Nothing
+    [v] -&gt; pure (Just v)
+    _   -&gt; Left $ &quot;Duplicate key &quot; &lt;&gt; Text.pack (show key)
+
+-- | Lookup a unique value for a key.
+-- Fail if there is zero or more than one value.
+--
+-- &gt;&gt;&gt; lookupUnique &quot;name&quot; []
+-- Left &quot;Could not find key \&quot;name\&quot;&quot;
+-- &gt;&gt;&gt; lookupUnique &quot;name&quot; [(&quot;name&quot;, &quot;Oleg&quot;)]
+-- Right &quot;Oleg&quot;
+-- &gt;&gt;&gt; lookupUnique &quot;name&quot; [(&quot;name&quot;, &quot;Oleg&quot;), (&quot;name&quot;, &quot;David&quot;)]
+-- Left &quot;Duplicate key \&quot;name\&quot;&quot;
+lookupUnique :: Text -&gt; Form -&gt; Either Text Text
+lookupUnique key form = do
+  mv &lt;- lookupMaybe key form
+  case mv of
+    Just v  -&gt; pure v
+    Nothing -&gt; Left $ &quot;Could not find key &quot; &lt;&gt; Text.pack (show key)
+
+-- | Lookup all values for a given key in a 'Form' and parse them with 'parseQueryParams'.
+--
+-- &gt;&gt;&gt; parseAll &quot;age&quot; [] :: Either Text [Word8]
+-- Right []
+-- &gt;&gt;&gt; parseAll &quot;age&quot; [(&quot;age&quot;, &quot;8&quot;), (&quot;age&quot;, &quot;seven&quot;)] :: Either Text [Word8]
+-- Left &quot;could not parse: `seven' (input does not start with a digit)&quot;
+-- &gt;&gt;&gt; parseAll &quot;age&quot; [(&quot;age&quot;, &quot;8&quot;), (&quot;age&quot;, &quot;777&quot;)] :: Either Text [Word8]
+-- Left &quot;out of bounds: `777' (should be between 0 and 255)&quot;
+-- &gt;&gt;&gt; parseAll &quot;age&quot; [(&quot;age&quot;, &quot;12&quot;), (&quot;age&quot;, &quot;25&quot;)] :: Either Text [Word8]
+-- Right [12,25]
+parseAll :: FromHttpApiData v =&gt; Text -&gt; Form -&gt; Either Text [v]
+parseAll key = parseQueryParams . lookupAll key
+
+-- | Lookup an optional value for a given key and parse it with 'parseQueryParam'.
+-- Fail if there is more than one value for the key.
+--
+-- &gt;&gt;&gt; parseMaybe &quot;age&quot; [] :: Either Text (Maybe Word8)
+-- Right Nothing
+-- &gt;&gt;&gt; parseMaybe &quot;age&quot; [(&quot;age&quot;, &quot;12&quot;), (&quot;age&quot;, &quot;25&quot;)] :: Either Text (Maybe Word8)
+-- Left &quot;Duplicate key \&quot;age\&quot;&quot;
+-- &gt;&gt;&gt; parseMaybe &quot;age&quot; [(&quot;age&quot;, &quot;seven&quot;)] :: Either Text (Maybe Word8)
+-- Left &quot;could not parse: `seven' (input does not start with a digit)&quot;
+-- &gt;&gt;&gt; parseMaybe &quot;age&quot; [(&quot;age&quot;, &quot;777&quot;)] :: Either Text (Maybe Word8)
+-- Left &quot;out of bounds: `777' (should be between 0 and 255)&quot;
+-- &gt;&gt;&gt; parseMaybe &quot;age&quot; [(&quot;age&quot;, &quot;7&quot;)] :: Either Text (Maybe Word8)
+-- Right (Just 7)
+parseMaybe :: FromHttpApiData v =&gt; Text -&gt; Form -&gt; Either Text (Maybe v)
+parseMaybe key = parseQueryParams &lt;=&lt; lookupMaybe key
+
+-- | Lookup a unique value for a given key and parse it with 'parseQueryParam'.
+-- Fail if there is zero or more than one value for the key.
+--
+-- &gt;&gt;&gt; parseUnique &quot;age&quot; [] :: Either Text Word8
+-- Left &quot;Could not find key \&quot;age\&quot;&quot;
+-- &gt;&gt;&gt; parseUnique &quot;age&quot; [(&quot;age&quot;, &quot;12&quot;), (&quot;age&quot;, &quot;25&quot;)] :: Either Text Word8
+-- Left &quot;Duplicate key \&quot;age\&quot;&quot;
+-- &gt;&gt;&gt; parseUnique &quot;age&quot; [(&quot;age&quot;, &quot;seven&quot;)] :: Either Text Word8
+-- Left &quot;could not parse: `seven' (input does not start with a digit)&quot;
+-- &gt;&gt;&gt; parseUnique &quot;age&quot; [(&quot;age&quot;, &quot;777&quot;)] :: Either Text Word8
+-- Left &quot;out of bounds: `777' (should be between 0 and 255)&quot;
+-- &gt;&gt;&gt; parseUnique &quot;age&quot; [(&quot;age&quot;, &quot;7&quot;)] :: Either Text Word8
+-- Right 7
+parseUnique :: FromHttpApiData v =&gt; Text -&gt; Form -&gt; Either Text v
+parseUnique key form = lookupUnique key form &gt;&gt;= parseQueryParam
+
+-- | 'Generic'-based deriving options for 'ToForm' and 'FromForm'.
+--
+-- A common use case for non-default 'FormOptions'
+-- is to strip a prefix off of field labels:
+--
+-- @
+-- data Project = Project
+--   { projectName :: String
+--   , projectSize :: Int
+--   } deriving ('Generic', 'Show')
+--
+-- myOptions :: 'FormOptions'
+-- myOptions = 'FormOptions'
+--  { 'fieldLabelModifier' = 'map' 'toLower' . 'drop' ('length' \&quot;project\&quot;) }
+--
+-- instance 'ToForm' Project where
+--   'toForm' = 'genericToForm' myOptions
+--
+-- instance 'FromForm' Project where
+--   'fromForm' = 'genericFromForm' myOptions
+-- @
+--
+-- &gt;&gt;&gt; urlEncodeAsForm Project { projectName = &quot;http-api-data&quot;, projectSize = 172 }
+-- &quot;size=172&amp;name=http-api-data&quot;
+-- &gt;&gt;&gt; urlDecodeAsForm &quot;name=http-api-data&amp;size=172&quot; :: Either Text Project
+-- Right (Project {projectName = &quot;http-api-data&quot;, projectSize = 172})
+data FormOptions = FormOptions
+  { -- | Function applied to field labels. Handy for removing common record prefixes for example.
+    fieldLabelModifier :: String -&gt; String
+  }
+
+-- | Default encoding 'FormOptions'.
+--
+-- @
+-- 'FormOptions'
+-- { 'fieldLabelModifier' = id
+-- }
+-- @
+defaultFormOptions :: FormOptions
+defaultFormOptions = FormOptions
+  { fieldLabelModifier = id
+  }
+</span></pre></body></html>

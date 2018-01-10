@@ -64,5 +64,5 @@ src/Text/Parse.hs:4:15: warning: [-Wtabs]
     Tab character found here, and in 12 further locations.
     Please use spaces instead.
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/polyparse-1.12-BapHIRM1V0RCWq9k34bBBB
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/polyparse-1.12-1g9YINDtiZ52DA01abyVyO
 Registering polyparse-1.12...

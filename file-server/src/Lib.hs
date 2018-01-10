@@ -34,7 +34,6 @@ import           Network.HTTP.Client          (defaultManagerSettings,
 import           Network.Wai
 import           Network.Wai.Handler.Warp
 import           Network.Wai.Logger
-import           RestClient
 import           Servant
 import qualified Servant.API                  as SC
 import qualified Servant.Client               as SC
@@ -45,18 +44,6 @@ import           System.Log.Handler.Simple
 import           System.Log.Handler.Syslog
 import           System.Log.Logger
 import           API
---import           Lib
-
--- data Message = Message { name    :: String
---                        , message :: String
---                        } deriving (Generic, FromJSON, ToBSON, FromBSON)
-
--- deriving instance FromBSON String  -- we need these as BSON does not provide
--- deriving instance ToBSON   String
-
-
--- data ResponseData = ResponseData { response :: String
---                                  } deriving (Generic, ToJSON, FromJSON,FromBSON)
 
 startApp :: IO ()
 startApp = withLogging $ \ aplogger -> do

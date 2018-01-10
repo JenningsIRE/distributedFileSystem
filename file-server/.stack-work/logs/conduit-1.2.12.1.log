@@ -1,0 +1,275 @@
+Configuring conduit-1.2.12.1...
+Building conduit-1.2.12.1...
+Preprocessing library conduit-1.2.12.1...
+[1 of 8] Compiling Data.Conduit.Internal.Pipe ( Data/Conduit/Internal/Pipe.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit/Internal/Pipe.o )
+
+Data/Conduit/Internal/Pipe.hs:228:11: warning: [-Winline-rule-shadowing]
+    Rule "conduit: CI.await >>= maybe" may never fire
+      because ‘maybe’ might inline first
+    Probable fix: add an INLINE[n] or NOINLINE[n] pragma for ‘maybe’
+
+Data/Conduit/Internal/Pipe.hs:237:11: warning: [-Winline-rule-shadowing]
+    Rule "conduit: awaitE >>= either" may never fire
+      because ‘either’ might inline first
+    Probable fix: add an INLINE[n] or NOINLINE[n] pragma for ‘either’
+
+Data/Conduit/Internal/Pipe.hs:279:5: warning: [-Winline-rule-shadowing]
+    Rule "lift m >>= CI.yield" may never fire
+      because ‘lift’ might inline first
+    Probable fix: add an INLINE[n] or NOINLINE[n] pragma for ‘lift’
+
+Data/Conduit/Internal/Pipe.hs:640:11: warning: [-Winline-rule-shadowing]
+    Rule "conduit: Pipe: lift x >>= f" may never fire
+      because ‘lift’ might inline first
+    Probable fix: add an INLINE[n] or NOINLINE[n] pragma for ‘lift’
+
+Data/Conduit/Internal/Pipe.hs:641:11: warning: [-Winline-rule-shadowing]
+    Rule "conduit: Pipe: lift x >> f" may never fire
+      because ‘lift’ might inline first
+    Probable fix: add an INLINE[n] or NOINLINE[n] pragma for ‘lift’
+[2 of 8] Compiling Data.Conduit.Internal.Conduit ( Data/Conduit/Internal/Conduit.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit/Internal/Conduit.o )
+
+Data/Conduit/Internal/Conduit.hs:89:1: warning: [-Wdodgy-imports]
+    Module ‘Prelude’ does not export ‘catch’
+
+Data/Conduit/Internal/Conduit.hs:873:11: warning: [-Winline-rule-shadowing]
+    Rule "conduit: await >>= maybe" may never fire
+      because ‘maybe’ might inline first
+    Probable fix: add an INLINE[n] or NOINLINE[n] pragma for ‘maybe’
+[3 of 8] Compiling Data.Conduit.Internal.Fusion ( Data/Conduit/Internal/Fusion.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit/Internal/Fusion.o )
+[4 of 8] Compiling Data.Conduit.Internal.List.Stream ( Data/Conduit/Internal/List/Stream.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit/Internal/List/Stream.o )
+[5 of 8] Compiling Data.Conduit.Internal ( Data/Conduit/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit/Internal.o )
+[6 of 8] Compiling Data.Conduit     ( Data/Conduit.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit.o )
+[7 of 8] Compiling Data.Conduit.Lift ( Data/Conduit/Lift.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit/Lift.o )
+
+Data/Conduit/Lift.hs:84:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Trans.Error’ is deprecated:
+      Use Control.Monad.Trans.Except instead
+
+Data/Conduit/Lift.hs:188:26: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:188:56: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:190:29: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:193:12: warning: [-Wdeprecations]
+    In the use of data constructor ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:199:16: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:200:20: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:205:25: warning: [-Wdeprecations]
+    In the use of ‘runErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:210:56: warning: [-Wdeprecations]
+    In the use of ‘runErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:219:16: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:220:20: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:221:29: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:222:23: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:227:32: warning: [-Wdeprecations]
+    In the use of ‘runErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+[8 of 8] Compiling Data.Conduit.List ( Data/Conduit/List.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Conduit/List.o )
+Running Haddock for conduit-1.2.12.1...
+Preprocessing library conduit-1.2.12.1...
+
+Data/Conduit/Internal/Conduit.hs:89:1: warning: [-Wdodgy-imports]
+    Module ‘Prelude’ does not export ‘catch’
+
+Data/Conduit/Lift.hs:84:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Trans.Error’ is deprecated:
+      Use Control.Monad.Trans.Except instead
+
+Data/Conduit/Lift.hs:188:26: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:188:56: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:190:29: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:193:12: warning: [-Wdeprecations]
+    In the use of data constructor ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:199:16: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:200:20: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:205:25: warning: [-Wdeprecations]
+    In the use of ‘runErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:210:56: warning: [-Wdeprecations]
+    In the use of ‘runErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:219:16: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:220:20: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:221:29: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:222:23: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘ErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Data/Conduit/Lift.hs:227:32: warning: [-Wdeprecations]
+    In the use of ‘runErrorT’
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+Haddock coverage:
+  91% ( 32 / 35) in 'Data.Conduit.Internal.Pipe'
+  Missing documentation for:
+    Module header
+    yieldM (Data/Conduit/Internal/Pipe.hs:261)
+    enumFromTo (Data/Conduit/Internal/Pipe.hs:510)
+  95% ( 71 / 75) in 'Data.Conduit.Internal.Conduit'
+  Missing documentation for:
+    Module header
+    sourceToPipe (Data/Conduit/Internal/Conduit.hs:342)
+    sinkToPipe (Data/Conduit/Internal/Conduit.hs:352)
+    conduitToPipe (Data/Conduit/Internal/Conduit.hs:362)
+  19% (  3 / 16) in 'Data.Conduit.Internal.Fusion'
+  Missing documentation for:
+    Module header
+    Stream (Data/Conduit/Internal/Fusion.hs:37)
+    ConduitWithStream (Data/Conduit/Internal/Fusion.hs:41)
+    StreamConduitM (Data/Conduit/Internal/Fusion.hs:45)
+    StreamConduit (Data/Conduit/Internal/Fusion.hs:47)
+    StreamSource (Data/Conduit/Internal/Fusion.hs:49)
+    StreamProducer (Data/Conduit/Internal/Fusion.hs:51)
+    StreamSink (Data/Conduit/Internal/Fusion.hs:53)
+    StreamConsumer (Data/Conduit/Internal/Fusion.hs:55)
+    streamConduit (Data/Conduit/Internal/Fusion.hs:174)
+    streamSource (Data/Conduit/Internal/Fusion.hs:180)
+    streamSourcePure (Data/Conduit/Internal/Fusion.hs:198)
+    unstream (Data/Conduit/Internal/Fusion.hs:57)
+   0% (  0 / 41) in 'Data.Conduit.Internal.List.Stream'
+  Missing documentation for:
+    Module header
+    unfoldS (Data/Conduit/Internal/List/Stream.hs:13)
+    unfoldEitherS (Data/Conduit/Internal/List/Stream.hs:26)
+    unfoldMS (Data/Conduit/Internal/List/Stream.hs:39)
+    unfoldEitherMS (Data/Conduit/Internal/List/Stream.hs:53)
+    sourceListS (Data/Conduit/Internal/List/Stream.hs:66)
+    enumFromToS (Data/Conduit/Internal/List/Stream.hs:74)
+    enumFromToS_int (Data/Conduit/Internal/List/Stream.hs:86)
+    iterateS (Data/Conduit/Internal/List/Stream.hs:100)
+    replicateS (Data/Conduit/Internal/List/Stream.hs:109)
+    replicateMS (Data/Conduit/Internal/List/Stream.hs:118)
+    foldS (Data/Conduit/Internal/List/Stream.hs:127)
+    foldMS (Data/Conduit/Internal/List/Stream.hs:139)
+    mapM_S (Data/Conduit/Internal/List/Stream.hs:153)
+    dropS (Data/Conduit/Internal/List/Stream.hs:167)
+    takeS (Data/Conduit/Internal/List/Stream.hs:182)
+    headS (Data/Conduit/Internal/List/Stream.hs:197)
+    mapS (Data/Conduit/Internal/List/Stream.hs:209)
+    mapMS (Data/Conduit/Internal/List/Stream.hs:221)
+    iterMS (Data/Conduit/Internal/List/Stream.hs:233)
+    mapMaybeS (Data/Conduit/Internal/List/Stream.hs:245)
+    mapMaybeMS (Data/Conduit/Internal/List/Stream.hs:260)
+    catMaybesS (Data/Conduit/Internal/List/Stream.hs:276)
+    concatS (Data/Conduit/Internal/List/Stream.hs:289)
+    concatMapS (Data/Conduit/Internal/List/Stream.hs:302)
+    concatMapMS (Data/Conduit/Internal/List/Stream.hs:315)
+    concatMapAccumS (Data/Conduit/Internal/List/Stream.hs:330)
+    mapAccumS (Data/Conduit/Internal/List/Stream.hs:345)
+    mapAccumMS (Data/Conduit/Internal/List/Stream.hs:359)
+    concatMapAccumMS (Data/Conduit/Internal/List/Stream.hs:373)
+    mapFoldableS (Data/Conduit/Internal/List/Stream.hs:388)
+    mapFoldableMS (Data/Conduit/Internal/List/Stream.hs:401)
+    consumeS (Data/Conduit/Internal/List/Stream.hs:416)
+    groupByS (Data/Conduit/Internal/List/Stream.hs:428)
+    groupOn1S (Data/Conduit/Internal/List/Stream.hs:432)
+    GroupByState (Data/Conduit/Internal/List/Stream.hs:436)
+    groupBy1S (Data/Conduit/Internal/List/Stream.hs:441)
+    isolateS (Data/Conduit/Internal/List/Stream.hs:462)
+    filterS (Data/Conduit/Internal/List/Stream.hs:475)
+    sinkNullS (Data/Conduit/Internal/List/Stream.hs:488)
+    sourceNullS (Data/Conduit/Internal/List/Stream.hs:500)
+  95% (107 /113) in 'Data.Conduit.Internal'
+  Missing documentation for:
+    Module header
+    yieldM (Data/Conduit/Internal/Pipe.hs:261)
+    enumFromTo (Data/Conduit/Internal/Pipe.hs:510)
+    sourceToPipe (Data/Conduit/Internal/Conduit.hs:342)
+    sinkToPipe (Data/Conduit/Internal/Conduit.hs:352)
+    conduitToPipe (Data/Conduit/Internal/Conduit.hs:362)
+ 100% ( 80 / 80) in 'Data.Conduit'
+  98% ( 47 / 48) in 'Data.Conduit.Lift'
+  Missing documentation for:
+    distribute (Data/Conduit/Lift.hs:125)
+ 100% ( 55 / 55) in 'Data.Conduit.List'
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/conduit/index.html
+Installing library in
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/conduit-1.2.12.1-Faqe7iX3B6gCoLG5NCUN82
+Registering conduit-1.2.12.1...

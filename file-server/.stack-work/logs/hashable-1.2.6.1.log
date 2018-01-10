@@ -1,15 +1,15 @@
 Configuring hashable-1.2.6.1...
 Building hashable-1.2.6.1...
 Preprocessing library hashable-1.2.6.1...
-[1 of 4] Compiling Data.Hashable.Class ( Data/Hashable/Class.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable/Class.o )
-[2 of 4] Compiling Data.Hashable.Generic ( Data/Hashable/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable/Generic.o )
+[1 of 4] Compiling Data.Hashable.Class ( Data/Hashable/Class.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Hashable/Class.o )
+[2 of 4] Compiling Data.Hashable.Generic ( Data/Hashable/Generic.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Hashable/Generic.o )
 
 Data/Hashable/Generic.hs:21:1: warning: [-Wunused-imports]
     The import of ‘Data.Bits’ is redundant
       except perhaps to import instances from ‘Data.Bits’
     To import instances alone, use: import Data.Bits()
-[3 of 4] Compiling Data.Hashable.Lifted ( Data/Hashable/Lifted.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable/Lifted.o )
-[4 of 4] Compiling Data.Hashable    ( Data/Hashable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Hashable.o )
+[3 of 4] Compiling Data.Hashable.Lifted ( Data/Hashable/Lifted.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Hashable/Lifted.o )
+[4 of 4] Compiling Data.Hashable    ( Data/Hashable.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/Hashable.o )
 Running Haddock for hashable-1.2.6.1...
 Preprocessing library hashable-1.2.6.1...
 
@@ -36,7 +36,7 @@ Warning: Data.Hashable.Lifted: could not find link destinations for:
 Warning: Data.Hashable: could not find link destinations for:
     GHashable Zero
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/hashable/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/hashable/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/hashable-1.2.6.1-2ZLNuHq395GGIHwEHuqZol
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/hashable-1.2.6.1-L8gWZbpSNJyGigbhccn1Eo
 Registering hashable-1.2.6.1...

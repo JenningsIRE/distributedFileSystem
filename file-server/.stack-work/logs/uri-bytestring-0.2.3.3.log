@@ -1,11 +1,11 @@
 Configuring uri-bytestring-0.2.3.3...
 Building uri-bytestring-0.2.3.3...
 Preprocessing library uri-bytestring-0.2.3.3...
-[1 of 5] Compiling URI.ByteString.Types ( src/URI/ByteString/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/Types.o )
-[2 of 5] Compiling URI.ByteString.Lens ( src/URI/ByteString/Lens.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/Lens.o )
-[3 of 5] Compiling URI.ByteString.Internal ( src/URI/ByteString/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/Internal.o )
-[4 of 5] Compiling URI.ByteString   ( src/URI/ByteString.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString.o )
-[5 of 5] Compiling URI.ByteString.QQ ( src/URI/ByteString/QQ.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/URI/ByteString/QQ.o )
+[1 of 5] Compiling URI.ByteString.Types ( src/URI/ByteString/Types.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/URI/ByteString/Types.o )
+[2 of 5] Compiling URI.ByteString.Lens ( src/URI/ByteString/Lens.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/URI/ByteString/Lens.o )
+[3 of 5] Compiling URI.ByteString.Internal ( src/URI/ByteString/Internal.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/URI/ByteString/Internal.o )
+[4 of 5] Compiling URI.ByteString   ( src/URI/ByteString.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/URI/ByteString.o )
+[5 of 5] Compiling URI.ByteString.QQ ( src/URI/ByteString/QQ.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/URI/ByteString/QQ.o )
 Running Haddock for uri-bytestring-0.2.3.3...
 Preprocessing library uri-bytestring-0.2.3.3...
 Haddock coverage:
@@ -132,7 +132,7 @@ Haddock coverage:
 Warning: URI.ByteString: could not find link destinations for:
     Lens'
 Documentation created:
-.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/uri-bytestring/index.html
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/uri-bytestring/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.14/8.0.2/lib/x86_64-osx-ghc-8.0.2/uri-bytestring-0.2.3.3-Hc1wKsF7VwW2mAD17PrIxh
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/uri-bytestring-0.2.3.3-5XeENjH03Sb8Z3zbBRZ38Q
 Registering uri-bytestring-0.2.3.3...

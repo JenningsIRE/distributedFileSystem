@@ -3,6 +3,29 @@ Preprocessing library use-haskell-api-0.1.0.0...
 [1 of 3] Compiling UseHaskellAPI    ( src/UseHaskellAPI.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/UseHaskellAPI.o )
 [2 of 3] Compiling UseHaskellAPIClient ( src/UseHaskellAPIClient.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/UseHaskellAPIClient.o )
 [3 of 3] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Lib.o )
+Running Haddock for use-haskell-api-0.1.0.0...
+Preprocessing library use-haskell-api-0.1.0.0...
+Warning: The documentation for the following packages are not installed. No
+links will be generated to these packages: bytestring-builder-0.10.8.1.0
+Haddock coverage:
+  50% (  2 /  4) in 'UseHaskellAPI'
+  Missing documentation for:
+    Module header
+    Message (src/UseHaskellAPI.hs:27)
+  14% (  1 /  7) in 'UseHaskellAPIClient'
+  Missing documentation for:
+    Module header
+    restAPI (src/UseHaskellAPIClient.hs:16)
+    getREADME (src/UseHaskellAPIClient.hs:23)
+    storeMessage (src/UseHaskellAPIClient.hs:24)
+    searchMessage (src/UseHaskellAPIClient.hs:25)
+    performRestCall (src/UseHaskellAPIClient.hs:26)
+   0% (  0 /  2) in 'Lib'
+  Missing documentation for:
+    Module header
+    someFunc (src/Lib.hs:5)
+Documentation created:
+.stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/doc/html/use-haskell-api/index.html
 Installing library in
-/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/use-haskell-api-0.1.0.0-22fGSi6VVfm8RVCPEtXtTD
+/Users/Sam/distributedFileSystem/file-server/.stack-work/install/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/use-haskell-api-0.1.0.0-KJyud7zsHV619EKt795CYm
 Registering use-haskell-api-0.1.0.0...

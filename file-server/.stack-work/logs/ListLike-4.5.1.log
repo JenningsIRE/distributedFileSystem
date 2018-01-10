@@ -23,5 +23,5 @@ Preprocessing library ListLike-4.5.1...
 [20 of 21] Compiling Data.ListLike.Instances ( src/Data/ListLike/Instances.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/ListLike/Instances.o )
 [21 of 21] Compiling Data.ListLike    ( src/Data/ListLike.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.2.0/build/Data/ListLike.o )
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/ListLike-4.5.1-JT9vOPxa6nQ3C7AGlE7SFG
+/Users/Sam/.stack/snapshots/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/lts-9.14/8.0.2/lib/x86_64-linux-ghc-8.0.2/ListLike-4.5.1-5lO78ko77sQClAYamcYEKa
 Registering ListLike-4.5.1...
