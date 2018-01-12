@@ -36,6 +36,8 @@ library
                      , mtl
                      , http-client
                      , file-server-api
+                     , process
+
   default-language:    Haskell2010
 
 executable directory-server-exe

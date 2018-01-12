@@ -51,7 +51,7 @@ packages:
    extra-dep: true
  - location:
      git: https://github.com/JenningsIRE/file-server-api.git
-     commit: 8979747
+     commit:   93ef146
    extra-dep: true
 
 # Dependency packages to be pulled from upstream that are not in the resolver

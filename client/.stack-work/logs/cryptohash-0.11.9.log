@@ -109,6 +109,43 @@ Crypto/Hash/Skein512.hs:54:11: warning: [-Winline-rule-shadowing]
 [19 of 21] Compiling Crypto.Hash      ( Crypto/Hash.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Crypto/Hash.o )
 [20 of 21] Compiling Crypto.MAC       ( Crypto/MAC.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Crypto/MAC.o )
 [21 of 21] Compiling Crypto.MAC.SHA3  ( Crypto/MAC/SHA3.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Crypto/MAC/SHA3.o )
+Running Haddock for cryptohash-0.11.9...
+Preprocessing library cryptohash-0.11.9...
+
+<no location info>: warning: [-Wtrustworthy-safe]
+    ‘Crypto.MAC.HMAC’ is marked as Trustworthy but has been inferred as safe!
+
+<no location info>: warning: [-Wtrustworthy-safe]
+    ‘Crypto.Hash.SHA512t’ is marked as Trustworthy but has been inferred as safe!
+Haddock coverage:
+ 100% (  2 /  2) in 'Crypto.MAC.HMAC'
+  83% (  5 /  6) in 'Crypto.Hash.Types'
+  Missing documentation for:
+    contextToByteString (Crypto/Hash/Types.hs:32)
+  50% (  2 /  4) in 'Crypto.Hash.Internal'
+  Missing documentation for:
+    digestToByteString (Crypto/Hash/Internal.hs:33)
+    digestToByteStringWitness (Crypto/Hash/Internal.hs:36)
+ 100% ( 10 / 10) in 'Crypto.Hash.MD2'
+ 100% ( 10 / 10) in 'Crypto.Hash.MD4'
+ 100% ( 10 / 10) in 'Crypto.Hash.MD5'
+ 100% ( 10 / 10) in 'Crypto.Hash.RIPEMD160'
+ 100% ( 10 / 10) in 'Crypto.Hash.SHA1'
+ 100% ( 10 / 10) in 'Crypto.Hash.SHA224'
+ 100% ( 10 / 10) in 'Crypto.Hash.SHA256'
+ 100% ( 10 / 10) in 'Crypto.Hash.SHA3'
+ 100% ( 10 / 10) in 'Crypto.Hash.SHA384'
+ 100% ( 11 / 11) in 'Crypto.Hash.SHA512'
+ 100% (  9 /  9) in 'Crypto.Hash.SHA512t'
+ 100% ( 10 / 10) in 'Crypto.Hash.Skein256'
+ 100% ( 10 / 10) in 'Crypto.Hash.Skein512'
+ 100% ( 10 / 10) in 'Crypto.Hash.Tiger'
+ 100% ( 10 / 10) in 'Crypto.Hash.Whirlpool'
+ 100% ( 40 / 40) in 'Crypto.Hash'
+ 100% ( 11 / 11) in 'Crypto.MAC'
+ 100% (  9 /  9) in 'Crypto.MAC.SHA3'
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/cryptohash/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/cryptohash-0.11.9-5dDfrhx2UhlI8lrNc4mH7Y
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/cryptohash-0.11.9-5dDfrhx2UhlI8lrNc4mH7Y
 Registering cryptohash-0.11.9...

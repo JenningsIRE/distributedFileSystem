@@ -1,6 +1,6 @@
-[1 of 2] Compiling Main             ( /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack75567/semigroupoids-5.2.1/Setup.lhs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack75567/semigroupoids-5.2.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/Main.o )
-[2 of 2] Compiling StackSetupShim   ( /Users/Sam/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack75567/semigroupoids-5.2.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/StackSetupShim.o )
-Linking /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack75567/semigroupoids-5.2.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/setup ...
+[1 of 2] Compiling Main             ( /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack23741/semigroupoids-5.2.1/Setup.lhs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack23741/semigroupoids-5.2.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/Main.o )
+[2 of 2] Compiling StackSetupShim   ( /Users/Sam/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack23741/semigroupoids-5.2.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/StackSetupShim.o )
+Linking /private/var/folders/py/gzb4ztjs0wz77n8jl710g8_h0000gn/T/stack23741/semigroupoids-5.2.1/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/setup ...
 Configuring semigroupoids-5.2.1...
 Building semigroupoids-5.2.1...
 Preprocessing library semigroupoids-5.2.1...
@@ -25,6 +25,89 @@ Preprocessing library semigroupoids-5.2.1...
 [19 of 21] Compiling Data.Semigroup.Bitraversable ( src/Data/Semigroup/Bitraversable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Semigroup/Bitraversable.o )
 [20 of 21] Compiling Data.Semigroup.Traversable ( src/Data/Semigroup/Traversable.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Semigroup/Traversable.o )
 [21 of 21] Compiling Data.Bifunctor.Apply ( src/Data/Bifunctor/Apply.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Bifunctor/Apply.o )
+Running Haddock for semigroupoids-5.2.1...
+Preprocessing library semigroupoids-5.2.1...
+Haddock coverage:
+ 100% (  1 /  1) in 'Data.Traversable.Instances'
+  33% (  1 /  3) in 'Data.Semigroup.Foldable.Class'
+  Missing documentation for:
+    Foldable1 (src/Data/Semigroup/Foldable/Class.hs:68)
+    Bifoldable1 (src/Data/Semigroup/Foldable/Class.hs:99)
+  75% (  3 /  4) in 'Data.Functor.Extend'
+  Missing documentation for:
+    Extend (src/Data/Functor/Extend.hs:54)
+  75% (  9 / 12) in 'Data.Functor.Bind.Class'
+  Missing documentation for:
+    apDefault (src/Data/Functor/Bind/Class.hs:452)
+    returning (src/Data/Functor/Bind/Class.hs:449)
+    Biapply (src/Data/Functor/Bind/Class.hs:608)
+ 100% ( 13 / 13) in 'Data.Functor.Apply'
+  75% ( 15 / 20) in 'Data.Functor.Bind'
+  Missing documentation for:
+    -<< (src/Data/Functor/Bind.hs:47)
+    -<- (src/Data/Functor/Bind.hs:53)
+    ->- (src/Data/Functor/Bind.hs:50)
+    apDefault (src/Data/Functor/Bind/Class.hs:452)
+    returning (src/Data/Functor/Bind/Class.hs:449)
+ 100% (  2 /  2) in 'Data.Functor.Bind.Trans'
+  50% (  2 /  4) in 'Data.Semigroupoid'
+  Missing documentation for:
+    WrappedCategory (src/Data/Semigroupoid.hs:74)
+    Semi (src/Data/Semigroupoid.hs:83)
+  50% (  1 /  2) in 'Data.Semigroupoid.Dual'
+  Missing documentation for:
+    Dual (src/Data/Semigroupoid/Dual.hs:23)
+ 100% (  2 /  2) in 'Data.Groupoid'
+  50% (  1 /  2) in 'Data.Isomorphism'
+  Missing documentation for:
+    Iso (src/Data/Isomorphism.hs:25)
+  20% (  1 /  5) in 'Data.Semigroupoid.Ob'
+  Missing documentation for:
+    Ob (src/Data/Semigroupoid/Ob.hs:30)
+     (src/Data/Semigroupoid/Ob.hs:33)
+     (src/Data/Semigroupoid/Ob.hs:37)
+     (src/Data/Semigroupoid/Ob.hs:41)
+  33% (  2 /  6) in 'Data.Semigroup.Bifoldable'
+  Missing documentation for:
+    Bifoldable1 (src/Data/Semigroup/Foldable/Class.hs:99)
+    bitraverse1_ (src/Data/Semigroup/Bifoldable.hs:39)
+    bifor1_ (src/Data/Semigroup/Bifoldable.hs:43)
+    bisequenceA1_ (src/Data/Semigroup/Bifoldable.hs:51)
+ 100% (  3 /  3) in 'Data.Functor.Alt'
+ 100% (  3 /  3) in 'Data.Functor.Plus'
+  50% (  1 /  2) in 'Data.Semigroupoid.Static'
+  Missing documentation for:
+    Static (src/Data/Semigroupoid/Static.hs:42)
+  55% (  6 / 11) in 'Data.Semigroup.Foldable'
+  Missing documentation for:
+    Foldable1 (src/Data/Semigroup/Foldable/Class.hs:68)
+    traverse1_ (src/Data/Semigroup/Foldable.hs:76)
+    for1_ (src/Data/Semigroup/Foldable.hs:80)
+    sequenceA1_ (src/Data/Semigroup/Foldable.hs:84)
+    asum1 (src/Data/Semigroup/Foldable.hs:102)
+  33% (  1 /  3) in 'Data.Semigroup.Traversable.Class'
+  Missing documentation for:
+    Bitraversable1 (src/Data/Semigroup/Traversable/Class.hs:64)
+    Traversable1 (src/Data/Semigroup/Traversable/Class.hs:148)
+  33% (  1 /  3) in 'Data.Semigroup.Bitraversable'
+  Missing documentation for:
+    Bitraversable1 (src/Data/Semigroup/Traversable/Class.hs:64)
+    bifoldMap1Default (src/Data/Semigroup/Bitraversable.hs:21)
+  33% (  1 /  3) in 'Data.Semigroup.Traversable'
+  Missing documentation for:
+    Traversable1 (src/Data/Semigroup/Traversable/Class.hs:148)
+    foldMap1Default (src/Data/Semigroup/Traversable.hs:20)
+  62% (  5 /  8) in 'Data.Bifunctor.Apply'
+  Missing documentation for:
+    Biapply (src/Data/Functor/Bind/Class.hs:608)
+    <<$>>
+    <<..>> (src/Data/Bifunctor/Apply.hs:27)
+Warning: Data.Functor.Apply: could not find link destinations for:
+    Id Digit Node Elem FingerTree StateL StateR StateL StateR State
+Warning: Data.Functor.Bind: could not find link destinations for:
+    Id Digit Node Elem FingerTree StateL StateR StateL StateR State
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/semigroupoids/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/semigroupoids-5.2.1-Db8txM8kTsI6Y49CY6g5Jn
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/semigroupoids-5.2.1-Db8txM8kTsI6Y49CY6g5Jn
 Registering semigroupoids-5.2.1...

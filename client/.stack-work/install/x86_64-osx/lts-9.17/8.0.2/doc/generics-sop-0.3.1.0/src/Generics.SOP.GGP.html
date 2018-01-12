@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE PolyKinds, UndecidableInstances #-}</span><span>
+</span><a name="line-2"></a><span class="hs-cpp">#if __GLASGOW_HASKELL__ &gt;= 780</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# OPTIONS_GHC -fno-warn-unticked-promoted-constructors #-}</span><span>
+</span><a name="line-4"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-5"></a><span class="hs-comment">-- | Derive @generics-sop@ boilerplate instances from GHC's 'GHC.Generic'.</span><span>
+</span><a name="line-6"></a><span class="hs-comment">--</span><span>
+</span><a name="line-7"></a><span class="hs-comment">-- The technique being used here is described in the following paper:</span><span>
+</span><a name="line-8"></a><span class="hs-comment">--</span><span>
+</span><a name="line-9"></a><span class="hs-comment">--   * Jos&#233; Pedro Magalh&#227;es and Andres L&#246;h.</span><span>
+</span><a name="line-10"></a><span class="hs-comment">--     &lt;http://www.andres-loeh.de/GenericGenericProgramming Generic Generic Programming&gt;.</span><span>
+</span><a name="line-11"></a><span class="hs-comment">--     Practical Aspects of Declarative Languages (PADL) 2014.</span><span>
+</span><a name="line-12"></a><span class="hs-comment">--</span><span>
+</span><a name="line-13"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">GGP</span><span>
+</span><a name="line-14"></a><span>  </span><span class="hs-special">(</span><span> </span><a href="Generics.SOP.GGP.html#GCode"><span class="hs-identifier hs-type">GCode</span></a><span>
+</span><a name="line-15"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.GGP.html#GFrom"><span class="hs-identifier hs-type">GFrom</span></a><span>
+</span><a name="line-16"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.GGP.html#GTo"><span class="hs-identifier hs-type">GTo</span></a><span>
+</span><a name="line-17"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.GGP.html#GDatatypeInfo"><span class="hs-identifier hs-type">GDatatypeInfo</span></a><span>
+</span><a name="line-18"></a><span class="hs-cpp">#if MIN_VERSION_base(4,9,0)</span><span>
+</span><a name="line-19"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.GGP.html#GDatatypeInfoOf"><span class="hs-identifier hs-type">GDatatypeInfoOf</span></a><span>
+</span><a name="line-20"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-21"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.GGP.html#gfrom"><span class="hs-identifier hs-var">gfrom</span></a><span>
+</span><a name="line-22"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.GGP.html#gto"><span class="hs-identifier hs-var">gto</span></a><span>
+</span><a name="line-23"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.GGP.html#gdatatypeInfo"><span class="hs-identifier hs-var">gdatatypeInfo</span></a><span>
+</span><a name="line-24"></a><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-25"></a><span>
+</span><a name="line-26"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Proxy</span><span>
+</span><a name="line-27"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">Generics</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">GHC</span><span>
+</span><a name="line-28"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.NP.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">NP</span></a><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SOP</span><span>
+</span><a name="line-29"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.NS.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">NS</span></a><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SOP</span><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.BasicFunctors.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">BasicFunctors</span></a><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SOP</span><span>
+</span><a name="line-31"></a><span class="hs-cpp">#if !(MIN_VERSION_base(4,9,0))</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Constraint</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SOP</span><span>
+</span><a name="line-33"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-34"></a><span class="hs-cpp">#if MIN_VERSION_base(4,9,0)</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><a href="Generics.SOP.Type.Metadata.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Type</span><span class="hs-operator">.</span><span class="hs-identifier">Metadata</span></a><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">T</span><span>
+</span><a name="line-36"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Metadata.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Metadata</span></a><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SOP</span><span>
+</span><a name="line-38"></a><span class="hs-cpp">#if !(MIN_VERSION_base(4,9,0))</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Sing</span><span>
+</span><a name="line-40"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-41"></a><span>
+</span><a name="line-42"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span> </span><a name="ToSingleCode"><a href="Generics.SOP.GGP.html#ToSingleCode"><span class="hs-identifier">ToSingleCode</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679160828"><a href="#local-6989586621679160828"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span>
+</span><a name="line-43"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">instance</span><span> </span><a href="Generics.SOP.GGP.html#ToSingleCode"><span class="hs-identifier hs-type">ToSingleCode</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">K1</span><span> </span><a href="#local-6989586621679160964"><span class="hs-identifier hs-type">_i</span></a><span> </span><a href="#local-6989586621679160965"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><a href="#local-6989586621679160965"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-44"></a><span>
+</span><a name="line-45"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span> </span><a name="ToProductCode"><a href="Generics.SOP.GGP.html#ToProductCode"><span class="hs-identifier">ToProductCode</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679160826"><a href="#local-6989586621679160826"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679160827"><a href="#local-6989586621679160827"><span class="hs-identifier">xs</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-operator hs-type">*</span><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-operator hs-type">*</span><span class="hs-special">]</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">instance</span><span> </span><a href="Generics.SOP.GGP.html#ToProductCode"><span class="hs-identifier hs-type">ToProductCode</span></a><span> </span><span class="hs-special">(</span><a href="#local-6989586621679160961"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:*:</span><span> </span><a href="#local-6989586621679160962"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span>   </span><a href="#local-6989586621679160963"><span class="hs-identifier hs-type">xs</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Generics.SOP.GGP.html#ToProductCode"><span class="hs-identifier hs-type">ToProductCode</span></a><span> </span><a href="#local-6989586621679160961"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-special">(</span><a href="Generics.SOP.GGP.html#ToProductCode"><span class="hs-identifier hs-type">ToProductCode</span></a><span> </span><a href="#local-6989586621679160962"><span class="hs-identifier hs-type">b</span></a><span> </span><a href="#local-6989586621679160963"><span class="hs-identifier hs-type">xs</span></a><span class="hs-special">)</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">instance</span><span> </span><a href="Generics.SOP.GGP.html#ToProductCode"><span class="hs-identifier hs-type">ToProductCode</span></a><span> </span><span class="hs-identifier hs-type">U1</span><span>          </span><a href="#local-6989586621679160960"><span class="hs-identifier hs-type">xs</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="#local-6989586621679160960"><span class="hs-identifier hs-type">xs</span></a><span>
+</span><a name="line-48"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">instance</span><span> </span><a href="Generics.SOP.GGP.html#ToProductCode"><span class="hs-identifier hs-type">ToProductCode</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">M1</span><span> </span><span class="hs-identifier hs-type">S</span><span> </span><a href="#local-6989586621679160957"><span class="hs-identifier hs-type">_c</span></a><span> </span><a href="#local-6989586621679160958"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679160959"><span class="hs-identifier hs-type">xs</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Generics.SOP.GGP.html#ToSingleCode"><span class="hs-identifier hs-type">ToSingleCode</span></a><span> </span><a href="#local-6989586621679160958"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-char">': xs
+
+type family ToSumCode (a :: * -&gt; *) (xs :: [[*]]) :: [[*]]
+type instance ToSumCode (a :+: b)   xs = ToSumCode a (ToSumCode b xs)
+type instance ToSumCode V1          xs = xs
+type instance ToSumCode (M1 D _c a) xs = ToSumCode a xs
+type instance ToSumCode (M1 C _c a) xs = ToProductCode a '[] ': xs
+
+#if MIN_VERSION_base(4,9,0)
+data InfoProxy (c :: Meta) (f :: * -&gt; *) (x :: *) = InfoProxy
+#else
+data InfoProxy (c :: *) (f :: * -&gt; *) (x :: *) = InfoProxy
+#endif
+
+#if !(MIN_VERSION_base(4,9,0))
+class GDatatypeInfo' (a :: * -&gt; *) where
+  gDatatypeInfo' :: proxy a -&gt; DatatypeInfo (ToSumCode a '[])
+
+#if !(MIN_VERSION_base(4,7,0))
+
+-- | 'isNewtype' does not exist in &quot;GHC.Generics&quot; before GHC-7.8.
+--
+-- The only safe assumption to make is that it always returns 'False'.
+--
+isNewtype :: Datatype d =&gt; t d (f :: * -&gt; *) a -&gt; Bool
+isNewtype _ = False
+
+#endif
+
+instance (All SListI (ToSumCode a '[]), Datatype c, GConstructorInfos a) =&gt; GDatatypeInfo' (M1 D c a) where
+  gDatatypeInfo' _ =
+    let adt = ADT     (GHC.moduleName p) (GHC.datatypeName p)
+        ci  = gConstructorInfos (Proxy :: Proxy a) Nil
+    in if isNewtype p
+       then case isNewtypeShape ci of
+              NewYes c -&gt; Newtype (GHC.moduleName p) (GHC.datatypeName p) c
+              NewNo    -&gt; adt ci -- should not happen
+       else adt ci
+    where
+     p :: InfoProxy c a x
+     p = InfoProxy
+
+data IsNewtypeShape (xss :: [[*]]) where
+  NewYes :: ConstructorInfo '[x] -&gt; IsNewtypeShape '[ '[x] ]
+  NewNo  :: IsNewtypeShape xss
+
+isNewtypeShape :: All SListI xss =&gt; NP ConstructorInfo xss -&gt; IsNewtypeShape xss
+isNewtypeShape (x :* Nil) = go shape x
+  where
+    go :: Shape xs -&gt; ConstructorInfo xs -&gt; IsNewtypeShape '[ xs ]
+    go (ShapeCons ShapeNil) c   = NewYes c
+    go _                    _   = NewNo
+isNewtypeShape _          = NewNo
+
+class GConstructorInfos (a :: * -&gt; *) where
+  gConstructorInfos :: proxy a -&gt; NP ConstructorInfo xss -&gt; NP ConstructorInfo (ToSumCode a xss)
+
+instance (GConstructorInfos a, GConstructorInfos b) =&gt; GConstructorInfos (a :+: b) where
+  gConstructorInfos _ xss = gConstructorInfos (Proxy :: Proxy a) (gConstructorInfos (Proxy :: Proxy b) xss)
+
+instance GConstructorInfos GHC.V1 where
+  gConstructorInfos _ xss = xss
+
+instance (Constructor c, GFieldInfos a, SListI (ToProductCode a '[])) =&gt; GConstructorInfos (M1 C c a) where
+  gConstructorInfos _ xss
+    | conIsRecord p = Record (conName p) (gFieldInfos (Proxy :: Proxy a) Nil) :* xss
+    | otherwise     = case conFixity p of
+        Prefix        -&gt; Constructor (conName p) :* xss
+        GHC.Infix a f -&gt; case (shape :: Shape (ToProductCode a '[])) of
+          ShapeCons (ShapeCons ShapeNil) -&gt; SOP.Infix (conName p) a f :* xss
+          _                              -&gt; Constructor (conName p) :* xss -- should not happen
+    where
+      p :: InfoProxy c a x
+      p = InfoProxy
+#endif
+
+#if MIN_VERSION_base(4,9,0)
+type family ToInfo (a :: * -&gt; *) :: SOP.T.DatatypeInfo
+type instance ToInfo (M1 D (MetaData n m p False) a) =
+  SOP.T.ADT m n (ToSumInfo a '[])
+type instance ToInfo (M1 D (MetaData n m p True) a) =
+  SOP.T.Newtype m n (ToSingleConstructorInfo a)
+
+type family ToSumInfo (a :: * -&gt; *) (xs :: [SOP.T.ConstructorInfo]) :: [SOP.T.ConstructorInfo]
+type instance ToSumInfo (a :+: b)  xs = ToSumInfo a (ToSumInfo b xs)
+type instance ToSumInfo V1         xs = xs
+type instance ToSumInfo (M1 C c a) xs = ToSingleConstructorInfo (M1 C c a) ': xs
+
+type family ToSingleConstructorInfo (a :: * -&gt; *) :: SOP.T.ConstructorInfo
+type instance ToSingleConstructorInfo (M1 C (MetaCons n PrefixI False) a) =
+  SOP.T.Constructor n
+type instance ToSingleConstructorInfo (M1 C (MetaCons n (InfixI assoc fix) False) a) =
+  SOP.T.Infix n assoc fix
+type instance ToSingleConstructorInfo (M1 C (MetaCons n f True) a) =
+  SOP.T.Record n (ToProductInfo a '[])
+
+type family ToProductInfo (a :: * -&gt; *) (xs :: [SOP.T.FieldInfo]) :: [SOP.T.FieldInfo]
+type instance ToProductInfo (a :*: b)  xs = ToProductInfo a (ToProductInfo b xs)
+type instance ToProductInfo U1         xs = xs
+type instance ToProductInfo (M1 S c a) xs = ToSingleInfo (M1 S c a) ': xs
+
+type family ToSingleInfo (a :: * -&gt; *) :: SOP.T.FieldInfo
+type instance ToSingleInfo (M1 S (MetaSel (Just n) _su _ss _ds) a) = 'SOP.T.FieldInfo n
+#endif
+
+class GFieldInfos (a :: * -&gt; *) where
+  gFieldInfos :: proxy a -&gt; NP FieldInfo xs -&gt; NP FieldInfo (ToProductCode a xs)
+
+instance (GFieldInfos a, GFieldInfos b) =&gt; GFieldInfos (a :*: b) where
+  gFieldInfos _ xs = gFieldInfos (Proxy :: Proxy a) (gFieldInfos (Proxy :: Proxy b) xs)
+
+instance GFieldInfos U1 where
+  gFieldInfos _ xs = xs
+
+instance (Selector c) =&gt; GFieldInfos (M1 S c a) where
+  gFieldInfos _ xs = FieldInfo (selName p) :* xs
+    where
+      p :: InfoProxy c a x
+      p = InfoProxy
+
+class GSingleFrom (a :: * -&gt; *) where
+  gSingleFrom :: a x -&gt; ToSingleCode a
+
+instance GSingleFrom (K1 i a) where
+  gSingleFrom (K1 a) = a
+
+class GProductFrom (a :: * -&gt; *) where
+  gProductFrom :: a x -&gt; NP I xs -&gt; NP I (ToProductCode a xs)
+
+instance (GProductFrom a, GProductFrom b) =&gt; GProductFrom (a :*: b) where
+  gProductFrom (a :*: b) xs = gProductFrom a (gProductFrom b xs)
+
+instance GProductFrom U1 where
+  gProductFrom U1 xs = xs
+
+instance GSingleFrom a =&gt; GProductFrom (M1 S c a) where
+  gProductFrom (M1 a) xs = I (gSingleFrom a) :* xs
+
+class GSingleTo (a :: * -&gt; *) where
+  gSingleTo :: ToSingleCode a -&gt; a x
+
+instance GSingleTo (K1 i a) where
+  gSingleTo a = K1 a
+
+class GProductTo (a :: * -&gt; *) where
+  gProductTo :: NP I (ToProductCode a xs) -&gt; (a x -&gt; NP I xs -&gt; r) -&gt; r
+
+instance (GProductTo a, GProductTo b) =&gt; GProductTo (a :*: b) where
+  gProductTo xs k = gProductTo xs (\ a ys -&gt; gProductTo ys (\ b zs -&gt; k (a :*: b) zs))
+
+instance GSingleTo a =&gt; GProductTo (M1 S c a) where
+  gProductTo (SOP.I a :* xs) k = k (M1 (gSingleTo a)) xs
+#if __GLASGOW_HASKELL__ &lt; 800
+  gProductTo _               _ = error &quot;inaccessible&quot;
+#endif
+
+instance GProductTo U1 where
+  gProductTo xs k = k U1 xs
+
+-- This can most certainly be simplified
+class GSumFrom (a :: * -&gt; *) where
+  gSumFrom :: a x -&gt; SOP I xss -&gt; SOP I (ToSumCode a xss)
+  gSumSkip :: proxy a -&gt; SOP I xss -&gt; SOP I (ToSumCode a xss)
+
+instance (GSumFrom a, GSumFrom b) =&gt; GSumFrom (a :+: b) where
+  gSumFrom (L1 a) xss = gSumFrom a (gSumSkip (Proxy :: Proxy b) xss)
+  gSumFrom (R1 b) xss = gSumSkip (Proxy :: Proxy a) (gSumFrom b xss)
+
+  gSumSkip _ xss = gSumSkip (Proxy :: Proxy a) (gSumSkip (Proxy :: Proxy b) xss)
+
+instance (GSumFrom a) =&gt; GSumFrom (M1 D c a) where
+  gSumFrom (M1 a) xss = gSumFrom a xss
+  gSumSkip _      xss = gSumSkip (Proxy :: Proxy a) xss
+
+instance (GProductFrom a) =&gt; GSumFrom (M1 C c a) where
+  gSumFrom (M1 a) _    = SOP (Z (gProductFrom a Nil))
+  gSumSkip _ (SOP xss) = SOP (S xss)
+
+class GSumTo (a :: * -&gt; *) where
+  gSumTo :: SOP I (ToSumCode a xss) -&gt; (a x -&gt; r) -&gt; (SOP I xss -&gt; r) -&gt; r
+
+instance (GSumTo a, GSumTo b) =&gt; GSumTo (a :+: b) where
+  gSumTo xss s k = gSumTo xss (s . L1) (\ r -&gt; gSumTo r (s . R1) k)
+
+instance (GProductTo a) =&gt; GSumTo (M1 C c a) where
+  gSumTo (SOP (Z xs)) s _ = s (M1 (gProductTo xs ((\ x Nil -&gt; x) :: a x -&gt; NP I '[] -&gt; a x)))
+  gSumTo (SOP (S xs)) _ k = k (SOP xs)
+
+instance (GSumTo a) =&gt; GSumTo (M1 D c a) where
+  gSumTo xss s k = gSumTo xss (s . M1) k
+
+-- | Compute the SOP code of a datatype.
+--
+-- This requires that 'GHC.Rep' is defined, which in turn requires that
+-- the type has a 'GHC.Generic' (from module &quot;GHC.Generics&quot;) instance.
+--
+-- This is the default definition for 'Generics.SOP.Code'.
+-- For more info, see 'Generics.SOP.Generic'.
+--
+type GCode (a :: *) = ToSumCode (GHC.Rep a) '[]
+
+-- | Constraint for the class that computes 'gfrom'.
+type GFrom a = GSumFrom (GHC.Rep a)
+
+-- | Constraint for the class that computes 'gto'.
+type GTo a = GSumTo (GHC.Rep a)
+
+-- | Constraint for the class that computes 'gdatatypeInfo'.
+#if MIN_VERSION_base(4,9,0)
+type GDatatypeInfo a = SOP.T.DemoteDatatypeInfo (GDatatypeInfoOf a) (GCode a)
+#else
+type GDatatypeInfo a = GDatatypeInfo' (GHC.Rep a)
+#endif
+
+#if MIN_VERSION_base(4,9,0)
+-- | Compute the datatype info of a datatype.
+--
+-- @since 0.3.0.0
+--
+type GDatatypeInfoOf (a :: *) = ToInfo (GHC.Rep a)
+#endif
+
+-- | An automatically computed version of 'Generics.SOP.from'.
+--
+-- This requires that the type being converted has a
+-- 'GHC.Generic' (from module &quot;GHC.Generics&quot;) instance.
+--
+-- This is the default definition for 'Generics.SOP.from'.
+-- For more info, see 'Generics.SOP.Generic'.
+--
+gfrom :: (GFrom a, GHC.Generic a) =&gt; a -&gt; SOP I (GCode a)
+gfrom x = gSumFrom (GHC.from x) (error &quot;gfrom: internal error&quot; :: SOP.SOP SOP.I '[])
+
+-- | An automatically computed version of 'Generics.SOP.to'.
+--
+-- This requires that the type being converted has a
+-- 'GHC.Generic' (from module &quot;GHC.Generics&quot;) instance.
+--
+-- This is the default definition for 'Generics.SOP.to'.
+-- For more info, see 'Generics.SOP.Generic'.
+--
+gto :: forall a. (GTo a, GHC.Generic a) =&gt; SOP I (GCode a) -&gt; a
+gto x = GHC.to (gSumTo x id ((\ _ -&gt; error &quot;inaccessible&quot;) :: SOP I '[] -&gt; (GHC.Rep a) x))
+
+-- | An automatically computed version of 'Generics.SOP.datatypeInfo'.
+--
+-- This requires that the type being converted has a
+-- 'GHC.Generic' (from module &quot;GHC.Generics&quot;) instance.
+--
+-- This is the default definition for 'Generics.SOP.datatypeInfo'.
+-- For more info, see 'Generics.SOP.HasDatatypeInfo'.
+--
+gdatatypeInfo :: forall proxy a. (GDatatypeInfo a) =&gt; proxy a -&gt; DatatypeInfo (GCode a)
+#if MIN_VERSION_base(4,9,0)
+gdatatypeInfo _ = SOP.T.demoteDatatypeInfo (Proxy :: Proxy (GDatatypeInfoOf a))
+#else
+gdatatypeInfo _ = gDatatypeInfo' (Proxy :: Proxy (GHC.Rep a))
+#endif
+
+</span></pre></body></html>

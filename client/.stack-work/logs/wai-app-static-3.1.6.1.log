@@ -36,8 +36,64 @@ WaiAppStatic/CmdLine.hs:96:5: warning: [-Wname-shadowing]
 Preprocessing executable 'warp' for wai-app-static-3.1.6.1...
 [1 of 1] Compiling Main             ( app/warp-static.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/warp/warp-tmp/Main.o )
 Linking .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/warp/warp ...
+Running Haddock for wai-app-static-3.1.6.1...
+Preprocessing library wai-app-static-3.1.6.1...
+Warning: The documentation for the following packages are not installed. No
+links will be generated to these packages: bytestring-builder-0.10.8.1.0
+
+WaiAppStatic/Listing.hs:67:34: warning: [-Wname-shadowing]
+    This binding for ‘pieces’ shadows the existing binding
+      bound at WaiAppStatic/Listing.hs:27:16
+
+WaiAppStatic/Listing.hs:120:24: warning: [-Wunused-local-binds]
+    Defined but not used: ‘isFile’
+
+WaiAppStatic/Storage/Embedded/TH.hs:10:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+Network/Wai/Application/Static.hs:246:13: warning: [-Wunused-local-binds]
+    Defined but not used: ‘filesize’
+
+WaiAppStatic/CmdLine.hs:42:1: warning: [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      option' :: Mod OptionFields Int -> Parser Int
+
+WaiAppStatic/CmdLine.hs:96:5: warning: [-Wname-shadowing]
+    This binding for ‘args’ shadows the existing binding
+      defined at WaiAppStatic/CmdLine.hs:48:1
+Haddock coverage:
+  89% ( 16 / 18) in 'WaiAppStatic.Types'
+  Missing documentation for:
+    Module header
+    fromPiece (WaiAppStatic/Types.hs:39)
+  33% (  2 /  6) in 'Util'
+  Missing documentation for:
+    Module header
+    replace (Util.hs:17)
+    remove (Util.hs:22)
+    dropLastIfNull (Util.hs:41)
+  50% (  1 /  2) in 'WaiAppStatic.Listing'
+  Missing documentation for:
+    Module header
+ 100% (  7 /  7) in 'WaiAppStatic.Storage.Filesystem'
+ 100% (  3 /  3) in 'WaiAppStatic.Storage.Embedded.Runtime'
+  75% (  3 /  4) in 'WaiAppStatic.Storage.Embedded.TH'
+  Missing documentation for:
+    Module header
+  86% (  6 /  7) in 'WaiAppStatic.Storage.Embedded'
+  Missing documentation for:
+    Module header
+ 100% ( 19 / 19) in 'Network.Wai.Application.Static'
+  67% (  2 /  3) in 'WaiAppStatic.CmdLine'
+  Missing documentation for:
+    Args (WaiAppStatic/CmdLine.hs:30)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/wai-app-static/index.html
+Preprocessing executable 'warp' for wai-app-static-3.1.6.1...
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/wai-app-static-3.1.6.1-7lzPCIcKJr41gr3SLmdLji
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/wai-app-static-3.1.6.1-7lzPCIcKJr41gr3SLmdLji
 Installing executable(s) in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/bin
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/bin
 Registering wai-app-static-3.1.6.1...

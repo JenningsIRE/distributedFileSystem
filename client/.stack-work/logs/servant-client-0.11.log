@@ -7,6 +7,54 @@ Preprocessing library servant-client-0.11...
 [4 of 6] Compiling Servant.Client.Experimental.Auth ( src/Servant/Client/Experimental/Auth.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Client/Experimental/Auth.o )
 [5 of 6] Compiling Servant.Client   ( src/Servant/Client.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Client.o )
 [6 of 6] Compiling Servant.Client.Generic ( src/Servant/Client/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Servant/Client/Generic.o )
+Running Haddock for servant-client-0.11...
+Preprocessing library servant-client-0.11...
+Haddock coverage:
+  50% (  4 /  8) in 'Servant.Common.BaseUrl'
+  Missing documentation for:
+    Module header
+    InvalidBaseUrlException (src/Servant/Common/BaseUrl.hs:56)
+    parseBaseUrl (src/Servant/Common/BaseUrl.hs:59)
+    showBaseUrl (src/Servant/Common/BaseUrl.hs:43)
+  22% (  6 / 27) in 'Servant.Common.Req'
+  Missing documentation for:
+    Module header
+    ServantError (src/Servant/Common/Req.hs:50)
+     (src/Servant/Common/Req.hs:75)
+     (src/Servant/Common/Req.hs:88)
+    UrlReq (src/Servant/Common/Req.hs:90)
+     (src/Servant/Common/Req.hs:92)
+    Req (src/Servant/Common/Req.hs:97)
+    defReq (src/Servant/Common/Req.hs:105)
+    appendToPath (src/Servant/Common/Req.hs:108)
+    appendToQueryString (src/Servant/Common/Req.hs:112)
+    addHeader (src/Servant/Common/Req.hs:120)
+    reqToRequest (src/Servant/Common/Req.hs:151)
+    displayHttpRequest (src/Servant/Common/Req.hs:197)
+    ClientEnv (src/Servant/Common/Req.hs:200)
+     (src/Servant/Common/Req.hs:217)
+     (src/Servant/Common/Req.hs:220)
+    runClientM (src/Servant/Common/Req.hs:233)
+    performRequest (src/Servant/Common/Req.hs:237)
+    performRequestCT (src/Servant/Common/Req.hs:266)
+    performRequestNoBody (src/Servant/Common/Req.hs:277)
+    catchConnectionError (src/Servant/Common/Req.hs:282)
+ 100% (  2 /  2) in 'Servant.Common.BasicAuth'
+ 100% (  4 /  4) in 'Servant.Client.Experimental.Auth'
+  75% (  9 / 12) in 'Servant.Client'
+  Missing documentation for:
+    runClientM (src/Servant/Common/Req.hs:233)
+    ClientEnv (src/Servant/Common/Req.hs:200)
+    ServantError (src/Servant/Common/Req.hs:50)
+  75% (  3 /  4) in 'Servant.Client.Generic'
+  Missing documentation for:
+    Module header
+Warning: Servant.Client: could not find link destinations for:
+    ~
+Warning: Servant.Client.Generic: could not find link destinations for:
+    ~ GClientList GClientLikeL ClientList GClientLikeP
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/servant-client/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/servant-client-0.11-5IX98jL2AfeLFFt59hCp4y
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/servant-client-0.11-5IX98jL2AfeLFFt59hCp4y
 Registering servant-client-0.11...

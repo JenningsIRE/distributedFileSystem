@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2018-01-09 21:50:26.9487286 UTC
+2018-01-12 19:15:55.781665532 UTC
 
-interface file-server-0.1.0.0-Emx4pPr6lfgIswPVIcfeuA:Lib 8002
-  interface hash: 6428829f3f7e7345f93c7d5e2202e969
-  ABI hash: 6708d4f710890d8d5644f7a30dfb107b
-  export-list hash: 1cec6c27b18484c2c82cbc48787d16d9
-  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+interface file-server-0.1.0.0-FkZJv9BaxLyFM3ByImMIti:Lib 8002
+  interface hash: d529a72e681ba71136af3116150ab055
+  ABI hash: bb692754a9c33e0ed24cee4472e1e76c
+  export-list hash: 930a82c25f78c7d0371e518cb655960e
+  orphan hash: eb7f1dc875a1c44234e2885db3eb9369
   flag hash: 0754154c270d298c3ca7e910a2166ad2
   sig of: Nothing
   used TH splices: False
@@ -84,6 +84,7 @@ package dependencies: MonadRandom-0.5.1@MonadRandom-0.5.1-EcpvpD35v121j9vVe9NicO
                       parsec-3.1.11@parsec-3.1.11-BcVC9xpxwQeKyT7YIwOSgo
                       pretty-1.1.3.3@pretty-1.1.3.3
                       primitive-0.6.2.0@primitive-0.6.2.0-4578caNkWQ54Gt1mxLF2Yh
+                      process-1.4.3.0@process-1.4.3.0
                       psqueues-0.2.4.0@psqueues-0.2.4.0-7YUUrKoGZl4mCdsWIXice
                       random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
                       random-shuffle-0.0.4@random-shuffle-0.0.4-JFmQTl3zqkdFNclmky3PKS
@@ -243,6 +244,7 @@ import  -/  aeson-1.1.2.0@aeson-1.1.2.0-2HIxw5u66wJDp9yJeX4tQb:Data.Aeson.TH 71f
 import  -/  base-4.9.1.0:Control.Concurrent 2ee6a0a58489520b9a96d8fef10380fa
 import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
 import  -/  base-4.9.1.0:Control.Monad.IO.Class 1a4384f66ee999caf5366398edb6ca7b
+import  -/  base-4.9.1.0:Data.Either 20b09ef8d0a5b74fdec011c40c1587f5
 import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
 import  -/  base-4.9.1.0:Data.List 07ae2acca6538aa0800bd0a993ac6ac1
 import  -/  base-4.9.1.0:Data.Maybe d876c4ffe4b3c43755a781e8ad860d88
@@ -252,11 +254,14 @@ import  -/  base-4.9.1.0:GHC.Generics 1dbec2bc7dd1c5bd8c89ed857eaed19b
 import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  base-4.9.1.0:System.Environment 08cb808e8e6a7821e6f8cfa76a977431
+import  -/  base-4.9.1.0:System.IO e4a64a8e3dce8616da54f0ee7104f7db
 import  -/  base-4.9.1.0:Text.Read 75c59863e882ebaec4532e9465e2ee9b
 import  -/  bson-0.3.2.3@bson-0.3.2.3-3ZEBXnlNC064CNaZGmO87d:Data.Bson 240add8189e333912ec8ae04aa959e23
 import  -/  bson-generic-0.0.8@bson-generic-0.0.8-UahgL4NhSiFFoG7wIqFOK:Data.Bson.Generic 3d3baf0e1dad6738122ccbd80231a6c0
 import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Lazy 710f3c92800106372d9fdf1463052e70
-import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-FogueR1zkvE6hesF4r0hNv:API 3f1fff73e84b760cf5d77d64d6ce7253
+import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-FogueR1zkvE6hesF4r0hNv:API 3e77980b2fcf410739814e4a9e963414
+import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-FogueR1zkvE6hesF4r0hNv:ClientAPI 6ec671db2374e7788ceb3a3c803f8a4a
+import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-FogueR1zkvE6hesF4r0hNv:ServerAPI 0afa2d6bf006823516f77cbe1f82e65b
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 import  -/  hslogger-1.2.10@hslogger-1.2.10-H89Xd1yg7GEK1gmqGqeuWo:System.Log 74cd856b0c1e029e2971de7e8b238b27
 import  -/  hslogger-1.2.10@hslogger-1.2.10-H89Xd1yg7GEK1gmqGqeuWo:System.Log.Formatter 7bde6f4e8e4c61d1e6125651215bba0e
@@ -265,15 +270,19 @@ import  -/  hslogger-1.2.10@hslogger-1.2.10-H89Xd1yg7GEK1gmqGqeuWo:System.Log.Ha
 import  -/  hslogger-1.2.10@hslogger-1.2.10-H89Xd1yg7GEK1gmqGqeuWo:System.Log.Handler.Syslog 967a51db01ad39ff86218280a235d535
 import  -/  hslogger-1.2.10@hslogger-1.2.10-H89Xd1yg7GEK1gmqGqeuWo:System.Log.Logger 14c2ae72047792049540bbc1475578cb
 import  -/  http-client-0.5.7.1@http-client-0.5.7.1-GhXzb62NbAiFdm8s5DUHNy:Network.HTTP.Client 45126bdc06725276a07aefd4834ec89e
+import  -/  http-client-0.5.7.1@http-client-0.5.7.1-GhXzb62NbAiFdm8s5DUHNy:Network.HTTP.Client.Manager d48dad390aa4dd1ed8b16ea4ccd0ea3c
 import  -/  integer-gmp-1.0.0.1:GHC.Integer.Type 318df275d77dcdb18e0006d8d7870c2a
 import  -/  mongoDB-2.3.0@mongoDB-2.3.0-9itsAAkwM0MvUeu9Oip67:Database.MongoDB ea38ee804de22533f62b5b386ff59fd7
 import  -/  mongoDB-2.3.0@mongoDB-2.3.0-9itsAAkwM0MvUeu9Oip67:Database.MongoDB.Connection 524e3184a838d36ff2a45fc6e3facf03
 import  -/  mongoDB-2.3.0@mongoDB-2.3.0-9itsAAkwM0MvUeu9Oip67:Database.MongoDB.Internal.Protocol 7469941c25931f5d5a3c8931f30a57ed
 import  -/  mongoDB-2.3.0@mongoDB-2.3.0-9itsAAkwM0MvUeu9Oip67:Database.MongoDB.Query 012831d881d1105ac669206018418967
+import  -/  process-1.4.3.0@process-1.4.3.0:System.Process 1ee59b956b7cad68338d3f6ab3e772ed
 import  -/  resourcet-1.1.9@resourcet-1.1.9-5guAP5VhcNFGFxB9kV3eNr:Control.Monad.Trans.Resource a1778adb6fd5b60b017894c5371c9a65
 import  -/  servant-0.11@servant-0.11-AAmog9yfywlGy1xOOOZCoR:Servant.API 3d3c1c58d5300e9ca5b1735c261d05c0
 import  -/  servant-0.11@servant-0.11-AAmog9yfywlGy1xOOOZCoR:Servant.API.Alternative 205f7eb8af6646bdec79fe77fb2295de
 import  -/  servant-client-0.11@servant-client-0.11-Gnrgymv8WmQ3uuqJgb15rH:Servant.Client 3135cb98967ab57f33cce6bc3a903b3e
+import  -/  servant-client-0.11@servant-client-0.11-Gnrgymv8WmQ3uuqJgb15rH:Servant.Common.BaseUrl 06045844779b5b8adcdd297a5f973474
+import  -/  servant-client-0.11@servant-client-0.11-Gnrgymv8WmQ3uuqJgb15rH:Servant.Common.Req 640e0d42943f5e503b509bb9d64bd9a9
 import  -/  servant-server-0.11.0.1@servant-server-0.11.0.1-Ic9CjIvD6B6EcoUh16amhj:Servant eda0bf39f64e8643f9fcdb9fa7bc6d08
 import  -/  servant-server-0.11.0.1@servant-server-0.11.0.1-Ic9CjIvD6B6EcoUh16amhj:Servant.Server eb70be088f00d7f19d68d96d2cc19ed4
 import  -/  servant-server-0.11.0.1@servant-server-0.11.0.1-Ic9CjIvD6B6EcoUh16amhj:Servant.Server.Internal 67e5590327a0b1dd2feed7f55f68ca48
@@ -291,10 +300,418 @@ import  -/  wai-logger-2.3.0@wai-logger-2.3.0-GOBoSO1IKKdAEqR1cftvXH:Network.Wai
 import  -/  warp-3.2.13@warp-3.2.13-9qE8cNALlXh6ksTZHuqlNj:Network.Wai.Handler.Warp 5e968e74993b503abba6ca153baad154
 import  -/  warp-3.2.13@warp-3.2.13-9qE8cNALlXh6ksTZHuqlNj:Network.Wai.Handler.Warp.Run c1d41b3528433b509e7425e2f6932e73
 import  -/  warp-3.2.13@warp-3.2.13-9qE8cNALlXh6ksTZHuqlNj:Network.Wai.Handler.Warp.Settings 2877410152255b647560321d81c4fe71
-41ff00ccd78ba51789d0ac71bc615fe6
+f1c9f7f38726f9ea44fd22392528f62b
+  $s$fAllCTRender:a ::
+    Servant.API.ContentTypes.AllCTRender
+      '[Servant.API.ContentTypes.JSON] [API.Message]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ '[Servant.API.ContentTypes.JSON]
+                  @ [API.Message]
+                  (Servant.API.ContentTypes.$fAllCTRender:a_$cp1AllCTRender
+                     @ Servant.API.ContentTypes.JSON
+                     @ '[]
+                     @ [API.Message]
+                     Servant.API.ContentTypes.$fAcceptTYPEJSON
+                     Servant.API.ContentTypes.$fAllCTRender[]()_$callMime
+                       `cast`
+                     (Sym (Servant.API.ContentTypes.N:AllMime[0] <'[]>_N))
+                     Lib.$s$fAllCTRender:a_$dAllMimeRender)
+                  (Servant.API.ContentTypes.$fAllCTRender:a_$chandleAcceptH
+                     @ Servant.API.ContentTypes.JSON
+                     @ '[]
+                     @ [API.Message]
+                     Servant.API.ContentTypes.$fAcceptTYPEJSON
+                     Servant.API.ContentTypes.$fAllCTRender[]()_$callMime
+                       `cast`
+                     (Sym (Servant.API.ContentTypes.N:AllMime[0] <'[]>_N))
+                     Lib.$s$fAllCTRender:a_$dAllMimeRender) -}
+a8dde1d4ce3e27fc70488d792cf421f5
+  $s$fAllCTRender:a1 ::
+    Data.Proxy.Proxy Servant.API.ContentTypes.JSON
+    -> [API.Message] -> Data.ByteString.Lazy.Internal.ByteString
+  {- Arity: 2, Strictness: <L,A><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (ds :: Data.Proxy.Proxy Servant.API.ContentTypes.JSON)
+                   (eta :: [API.Message]) ->
+                 Data.ByteString.Builder.toLazyByteString
+                   (Data.Aeson.Types.ToJSON.toEncodingList
+                      @ API.Message
+                      API.$fToJSONMessage
+                      eta)
+                     `cast`
+                   (Data.Aeson.Encoding.Internal.N:Encoding'[0]
+                        <Data.Aeson.Types.Internal.Value>_P)) -}
+13f511fcacd04ea24784824004848c4f
+  $s$fAllCTRender:a2 ::
+    Servant.API.ContentTypes.AllCTRender
+      '[Servant.API.ContentTypes.JSON] GHC.Types.Bool
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ '[Servant.API.ContentTypes.JSON]
+                  @ GHC.Types.Bool
+                  (Servant.API.ContentTypes.$fAllCTRender:a_$cp1AllCTRender
+                     @ Servant.API.ContentTypes.JSON
+                     @ '[]
+                     @ GHC.Types.Bool
+                     Servant.API.ContentTypes.$fAcceptTYPEJSON
+                     Servant.API.ContentTypes.$fAllCTRender[]()_$callMime
+                       `cast`
+                     (Sym (Servant.API.ContentTypes.N:AllMime[0] <'[]>_N))
+                     Lib.$s$fAllCTRender:a_$dAllMimeRender1)
+                  (Servant.API.ContentTypes.$fAllCTRender:a_$chandleAcceptH
+                     @ Servant.API.ContentTypes.JSON
+                     @ '[]
+                     @ GHC.Types.Bool
+                     Servant.API.ContentTypes.$fAcceptTYPEJSON
+                     Servant.API.ContentTypes.$fAllCTRender[]()_$callMime
+                       `cast`
+                     (Sym (Servant.API.ContentTypes.N:AllMime[0] <'[]>_N))
+                     Lib.$s$fAllCTRender:a_$dAllMimeRender1) -}
+87755411f39b545dbaba062b5ffd7b2f
+  $s$fAllCTRender:a_$dAllMimeRender ::
+    Servant.API.ContentTypes.AllMimeRender
+      '[Servant.API.ContentTypes.JSON] [API.Message]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Lib.$s$fAllCTRender:a_$s$fAllMimeRender:a0 -}
+09fa6cc85eba0fcc8de66fb9b36deeff
+  $s$fAllCTRender:a_$dAllMimeRender1 ::
+    Servant.API.ContentTypes.AllMimeRender
+      '[Servant.API.ContentTypes.JSON] GHC.Types.Bool
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Lib.$s$fAllCTRender:a_$s$fAllMimeRender:a1 -}
+e53d9a850f90224aa363f17ca8c137d4
+  $s$fAllCTRender:a_$dMimeRender ::
+    Servant.API.ContentTypes.MimeRender
+      Servant.API.ContentTypes.JSON [API.Message]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa -}
+9d2ddda3baa737a42d0a83af2d507a0b
+  $s$fAllCTRender:a_$dMimeRender1 ::
+    Servant.API.ContentTypes.MimeRender
+      Servant.API.ContentTypes.JSON GHC.Types.Bool
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa1 -}
+6b76ef4f5c1d212b4980d84da43a93d2
+  $s$fAllCTRender:a_$s$fAllMimeRender:a0 ::
+    Servant.API.ContentTypes.AllMimeRender
+      '[Servant.API.ContentTypes.JSON] [API.Message]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ '[Servant.API.ContentTypes.JSON]
+                  @ [API.Message]
+                  (Servant.API.ContentTypes.$fAllMimeRender:a0_$cp1AllMimeRender
+                     @ Servant.API.ContentTypes.JSON
+                     @ [API.Message]
+                     Lib.$s$fAllCTRender:a_$dMimeRender)
+                  (Servant.API.ContentTypes.$fAllMimeRender:a0_$callMimeRender
+                     @ Servant.API.ContentTypes.JSON
+                     @ [API.Message]
+                     Lib.$s$fAllCTRender:a_$dMimeRender) -}
+0b0fb7454f5b148b5094ee09827e35d5
+  $s$fAllCTRender:a_$s$fAllMimeRender:a1 ::
+    Servant.API.ContentTypes.AllMimeRender
+      '[Servant.API.ContentTypes.JSON] GHC.Types.Bool
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ '[Servant.API.ContentTypes.JSON]
+                  @ GHC.Types.Bool
+                  (Servant.API.ContentTypes.$fAllMimeRender:a0_$cp1AllMimeRender
+                     @ Servant.API.ContentTypes.JSON
+                     @ GHC.Types.Bool
+                     Lib.$s$fAllCTRender:a_$dMimeRender1)
+                  (Servant.API.ContentTypes.$fAllMimeRender:a0_$callMimeRender
+                     @ Servant.API.ContentTypes.JSON
+                     @ GHC.Types.Bool
+                     Lib.$s$fAllCTRender:a_$dMimeRender1) -}
+4fa599b6db45702e8781c2c68280feef
+  $s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa ::
+    Servant.API.ContentTypes.MimeRender
+      Servant.API.ContentTypes.JSON [API.Message]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ *
+                  @ Servant.API.ContentTypes.JSON
+                  @ [API.Message]
+                  Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cp1MimeRender
+                  Lib.$s$fAllCTRender:a1 -}
+e513e19ad3d457abce1150c47914953b
+  $s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa1 ::
+    Servant.API.ContentTypes.MimeRender
+      Servant.API.ContentTypes.JSON GHC.Types.Bool
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ *
+                  @ Servant.API.ContentTypes.JSON
+                  @ GHC.Types.Bool
+                  Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cp1MimeRender
+                  Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cmimeRender -}
+963b882d1fb926642c56ca138ea9785e
+  $s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cmimeRender ::
+    Data.Proxy.Proxy Servant.API.ContentTypes.JSON
+    -> GHC.Types.Bool -> Data.ByteString.Lazy.Internal.ByteString
+  {- Arity: 2, Strictness: <L,A><L,U>,
+     Unfolding: InlineRule (1, True, True)
+                (\ (ds :: Data.Proxy.Proxy Servant.API.ContentTypes.JSON)
+                   (eta :: GHC.Types.Bool) ->
+                 Lib.$s$fAllCTRender:a_$sencode eta) -}
+b04387e25d3dd922fdbdd1be60925089
+  $s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cp1MimeRender ::
+    Servant.API.ContentTypes.Accept Servant.API.ContentTypes.JSON
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Servant.API.ContentTypes.$fAcceptTYPEJSON -}
+3d612946f17e666589aad76dded0c981
+  $s$fAllCTRender:a_$sencode ::
+    GHC.Types.Bool -> Data.ByteString.Lazy.Internal.ByteString
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (eta :: GHC.Types.Bool) ->
+                 Data.ByteString.Builder.toLazyByteString
+                   (Data.Aeson.Encoding.Internal.bool eta)
+                     `cast`
+                   (Data.Aeson.Encoding.Internal.N:Encoding'[0]
+                        <Data.Aeson.Types.Internal.Value>_P)) -}
+d712ee9f39f725df71dd6b555b25bb8b
+  $s$fAllCTUnrenderctypsa ::
+    Servant.API.ContentTypes.AllCTUnrender
+      '[Servant.API.ContentTypes.JSON] API.Message
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ '[Servant.API.ContentTypes.JSON]
+                  @ API.Message
+                  (Servant.API.ContentTypes.$fAllCTUnrenderctypsa_$ccanHandleCTypeH
+                     @ '[Servant.API.ContentTypes.JSON]
+                     @ API.Message
+                     Lib.$s$fAllCTUnrenderctypsa_$dAllMimeUnrender)
+                  Lib.$s$fAllCTUnrenderctypsa_$s$fAllCTUnrenderctypsa_$chandleCTypeH -}
+10872fa9b69ab00eb4e434e2f3db7e91
+  $s$fAllCTUnrenderctypsa_$dAllMimeUnrender ::
+    Servant.API.ContentTypes.AllMimeUnrender
+      '[Servant.API.ContentTypes.JSON] API.Message
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Lib.$s$fAllCTUnrenderctypsa_$s$fAllMimeUnrender:a -}
+1237b8da22b851308af8c3178171864b
+  $s$fAllCTUnrenderctypsa_$dMimeUnrender ::
+    Servant.API.ContentTypes.MimeUnrender
+      Servant.API.ContentTypes.JSON API.Message
+  {- Unfolding: (Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa
+                   @ API.Message
+                   API.$fFromJSONMessage) -}
+fd30a5e642ebaded80db011299743a1e
+  $s$fAllCTUnrenderctypsa_$s$fAllCTUnrenderctypsa_$chandleCTypeH ::
+    Data.Proxy.Proxy '[Servant.API.ContentTypes.JSON]
+    -> Data.ByteString.Lazy.Internal.ByteString
+    -> Data.ByteString.Lazy.Internal.ByteString
+    -> GHC.Base.Maybe (Data.Either.Either GHC.Base.String API.Message)
+  {- Arity: 3, Strictness: <L,U><L,1*U><L,U>,
+     Unfolding: InlineRule (3, True, False)
+                (\ (p :: Data.Proxy.Proxy '[Servant.API.ContentTypes.JSON])
+                   (ctypeH :: Data.ByteString.Lazy.Internal.ByteString)
+                   (body :: Data.ByteString.Lazy.Internal.ByteString) ->
+                 case Servant.API.ContentTypes.$fAllCTUnrenderctypsa_$ccanHandleCTypeH
+                        @ '[Servant.API.ContentTypes.JSON]
+                        @ API.Message
+                        Lib.$s$fAllCTUnrenderctypsa_$dAllMimeUnrender
+                        p
+                        ctypeH of wild {
+                   GHC.Base.Nothing
+                   -> GHC.Base.Nothing
+                        @ (Data.Either.Either GHC.Base.String API.Message)
+                   GHC.Base.Just x
+                   -> GHC.Base.Just
+                        @ (Data.Either.Either GHC.Base.String API.Message)
+                        (x body) }) -}
+84c259eae23d9f5f58f9c4527ece6c6a
+  $s$fAllCTUnrenderctypsa_$s$fAllMimeUnrender:a ::
+    Servant.API.ContentTypes.AllMimeUnrender
+      '[Servant.API.ContentTypes.JSON] API.Message
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ '[Servant.API.ContentTypes.JSON]
+                  @ API.Message
+                  (Servant.API.ContentTypes.$fAllMimeUnrender:a_$cp1AllMimeUnrender
+                     @ Servant.API.ContentTypes.JSON
+                     @ API.Message
+                     @ '[]
+                     Lib.$s$fAllCTUnrenderctypsa_$dMimeUnrender
+                     (Servant.API.ContentTypes.$fAllMimeUnrender[]a @ API.Message))
+                  (Servant.API.ContentTypes.$fAllMimeUnrender:a_$callMimeUnrender
+                     @ Servant.API.ContentTypes.JSON
+                     @ API.Message
+                     @ '[]
+                     Lib.$s$fAllCTUnrenderctypsa_$dMimeUnrender
+                     (Servant.API.ContentTypes.$fAllMimeUnrender[]a @ API.Message)) -}
+730925cbd474a22ada1c908a60a99df9
+  $sserve3 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (200) -}
+9bb5c678e4d9f050c655566b8c09529e
+  $sserve4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "name"#) -}
+942da78d2ed64538714ecd75b8bf9f76
+  $sserve5 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Text.Internal.Text #)
+  {- Arity: 1,
+     Unfolding: (\ (s1 :: GHC.Prim.State#
+                            GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.Prim.newByteArray#
+                        @ GHC.Prim.RealWorld
+                        10#
+                        s1 of ds1 { (#,#) ipv ipv1 ->
+                 Servant.Server.Internal.$wouter ipv1 4# Lib.$sserve6 0# ipv }) -}
+c456e5b0cb7b75beebd4b1387c7fdb1f
+  $sserve6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "getFile"#) -}
+62ef86cdf4e869b245ca932707349d5b
+  $sserve8 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Text.Internal.Text #)
+  {- Arity: 1,
+     Unfolding: (\ (s1 :: GHC.Prim.State#
+                            GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.Prim.newByteArray#
+                        @ GHC.Prim.RealWorld
+                        10#
+                        s1 of ds1 { (#,#) ipv ipv1 ->
+                 Servant.Server.Internal.$wouter ipv1 4# Lib.$sserve9 0# ipv }) -}
+a6159b53119eb5f07852007464c83872
+  $sserve9 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "postFile"#) -}
+07f441015202a461146a94ad18c681f8
   $trModule :: GHC.Types.Module
-7a9fc050e6571911518d3a7fb4ef9bd0
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module Lib.$trModule2 Lib.$trModule1) -}
+0c7a05f75d6d64a87b1994bf4129b40a
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Lib"#) -}
+437e9a5db677596cf26a7d56543e7933
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "file-server-0.1.0.0-FkZJv9BaxLyFM3ByImMIti"#) -}
+10bde39372ec817673156d9b0b0a2d8e
   startApp :: GHC.Types.IO ()
+  {- Arity: 1,
+     Unfolding: InlineRule (0, True, True)
+                Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
+68cf16a2356482b7e03fd3d445bed959
+  startApp1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Network.Wai.Logger.withStdoutLogger1
+                   @ ()
+                   Lib.startApp2
+                     `cast`
+                   (<Network.Wai.Logger.ApacheLogger>_R
+                    ->_R Sym (GHC.Types.N:IO[0] <()>_R))) -}
+299577d75f2ddf5a9b45fbdee2b2a315
+  startApp2 ::
+    Network.Wai.Logger.ApacheLogger
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 2, Strictness: <L,U><S,U> -}
+"SPEC/Lib $fAllCTRender:a @ JSON @ '[] @ Bool" [ALWAYS] forall ($dAllMimeRender :: Servant.API.ContentTypes.AllMimeRender
+                                                                                     '[Servant.API.ContentTypes.JSON]
+                                                                                     GHC.Types.Bool)
+                                                               ($dAllMime :: Servant.API.ContentTypes.AllMime
+                                                                               '[])
+                                                               ($dAccept :: Servant.API.ContentTypes.Accept
+                                                                              Servant.API.ContentTypes.JSON)
+  Servant.API.ContentTypes.$fAllCTRender:a @ Servant.API.ContentTypes.JSON
+                                           @ '[]
+                                           @ GHC.Types.Bool
+                                           $dAccept
+                                           $dAllMime
+                                           $dAllMimeRender
+  = Lib.$s$fAllCTRender:a2
+"SPEC/Lib $fAllCTRender:a @ JSON @ '[] @ [Message]" [ALWAYS] forall ($dAllMimeRender :: Servant.API.ContentTypes.AllMimeRender
+                                                                                          '[Servant.API.ContentTypes.JSON]
+                                                                                          [API.Message])
+                                                                    ($dAllMime :: Servant.API.ContentTypes.AllMime
+                                                                                    '[])
+                                                                    ($dAccept :: Servant.API.ContentTypes.Accept
+                                                                                   Servant.API.ContentTypes.JSON)
+  Servant.API.ContentTypes.$fAllCTRender:a @ Servant.API.ContentTypes.JSON
+                                           @ '[]
+                                           @ [API.Message]
+                                           $dAccept
+                                           $dAllMime
+                                           $dAllMimeRender
+  = Lib.$s$fAllCTRender:a
+"SPEC/Lib $fAllCTUnrenderctypsa @ '[JSON] @ Message" [ALWAYS] forall ($dAllMimeUnrender :: Servant.API.ContentTypes.AllMimeUnrender
+                                                                                             '[Servant.API.ContentTypes.JSON]
+                                                                                             API.Message)
+  Servant.API.ContentTypes.$fAllCTUnrenderctypsa @ '[Servant.API.ContentTypes.JSON]
+                                                 @ API.Message
+                                                 $dAllMimeUnrender
+  = Lib.$s$fAllCTUnrenderctypsa
+"SPEC/Lib $fAllCTUnrenderctypsa_$chandleCTypeH @ '[JSON] @ Message" [ALWAYS] forall ($dAllMimeUnrender :: Servant.API.ContentTypes.AllMimeUnrender
+                                                                                                            '[Servant.API.ContentTypes.JSON]
+                                                                                                            API.Message)
+  Servant.API.ContentTypes.$fAllCTUnrenderctypsa_$chandleCTypeH @ '[Servant.API.ContentTypes.JSON]
+                                                                @ API.Message
+                                                                $dAllMimeUnrender
+  = Lib.$s$fAllCTUnrenderctypsa_$s$fAllCTUnrenderctypsa_$chandleCTypeH
+"SPEC/Lib $fAllMimeRender:a0 @ JSON @ Bool" [ALWAYS] forall ($dMimeRender :: Servant.API.ContentTypes.MimeRender
+                                                                               Servant.API.ContentTypes.JSON
+                                                                               GHC.Types.Bool)
+  Servant.API.ContentTypes.$fAllMimeRender:a0 @ Servant.API.ContentTypes.JSON
+                                              @ GHC.Types.Bool
+                                              $dMimeRender
+  = Lib.$s$fAllCTRender:a_$s$fAllMimeRender:a1
+"SPEC/Lib $fAllMimeRender:a0 @ JSON @ [Message]" [ALWAYS] forall ($dMimeRender :: Servant.API.ContentTypes.MimeRender
+                                                                                    Servant.API.ContentTypes.JSON
+                                                                                    [API.Message])
+  Servant.API.ContentTypes.$fAllMimeRender:a0 @ Servant.API.ContentTypes.JSON
+                                              @ [API.Message]
+                                              $dMimeRender
+  = Lib.$s$fAllCTRender:a_$s$fAllMimeRender:a0
+"SPEC/Lib $fAllMimeUnrender:a @ JSON @ Message @ '[]" [ALWAYS] forall ($dAllMimeUnrender :: Servant.API.ContentTypes.AllMimeUnrender
+                                                                                              '[]
+                                                                                              API.Message)
+                                                                      ($dMimeUnrender :: Servant.API.ContentTypes.MimeUnrender
+                                                                                           Servant.API.ContentTypes.JSON
+                                                                                           API.Message)
+  Servant.API.ContentTypes.$fAllMimeUnrender:a @ Servant.API.ContentTypes.JSON
+                                               @ API.Message
+                                               @ '[]
+                                               $dMimeUnrender
+                                               $dAllMimeUnrender
+  = Lib.$s$fAllCTUnrenderctypsa_$s$fAllMimeUnrender:a
+"SPEC/Lib $fMimeRenderTYPEJSONa @ Bool" [ALWAYS] forall ($dToJSON :: Data.Aeson.Types.ToJSON.ToJSON
+                                                                       GHC.Types.Bool)
+  Servant.API.ContentTypes.$fMimeRenderTYPEJSONa @ GHC.Types.Bool
+                                                 $dToJSON
+  = Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa1
+"SPEC/Lib $fMimeRenderTYPEJSONa @ [Message]" [ALWAYS] forall ($dToJSON :: Data.Aeson.Types.ToJSON.ToJSON
+                                                                            [API.Message])
+  Servant.API.ContentTypes.$fMimeRenderTYPEJSONa @ [API.Message]
+                                                 $dToJSON
+  = Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa
+"SPEC/Lib $fMimeRenderTYPEJSONa_$cmimeRender @ Bool" [ALWAYS] forall ($dToJSON :: Data.Aeson.Types.ToJSON.ToJSON
+                                                                                    GHC.Types.Bool)
+  Servant.API.ContentTypes.$fMimeRenderTYPEJSONa_$cmimeRender @ GHC.Types.Bool
+                                                              $dToJSON
+  = Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cmimeRender
+"SPEC/Lib $fMimeRenderTYPEJSONa_$cp1MimeRender @ [Message]" [ALWAYS] forall ($dToJSON :: Data.Aeson.Types.ToJSON.ToJSON
+                                                                                           [API.Message])
+  Servant.API.ContentTypes.$fMimeRenderTYPEJSONa_$cp1MimeRender @ [API.Message]
+                                                                $dToJSON
+  = Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cp1MimeRender
+"SPEC/Lib encode @ Bool" [ALWAYS] forall ($dToJSON :: Data.Aeson.Types.ToJSON.ToJSON
+                                                        GHC.Types.Bool)
+  Data.Aeson.encode @ GHC.Types.Bool $dToJSON
+  = Lib.$s$fAllCTRender:a_$sencode
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

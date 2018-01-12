@@ -3,6 +3,33 @@ Building bson-0.3.2.3...
 Preprocessing library bson-0.3.2.3...
 [1 of 2] Compiling Data.Bson        ( Data/Bson.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Bson.o )
 [2 of 2] Compiling Data.Bson.Binary ( Data/Bson/Binary.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Bson/Binary.o )
+Running Haddock for bson-0.3.2.3...
+Preprocessing library bson-0.3.2.3...
+Haddock coverage:
+  79% ( 31 / 39) in 'Data.Bson'
+  Missing documentation for:
+    Binary (Data/Bson.hs:393)
+    Function (Data/Bson.hs:395)
+    UUID (Data/Bson.hs:397)
+    MD5 (Data/Bson.hs:399)
+    UserDefined (Data/Bson.hs:401)
+    Symbol (Data/Bson.hs:415)
+    MongoStamp (Data/Bson.hs:419)
+    MinMaxKey (Data/Bson.hs:423)
+   9% (  1 / 11) in 'Data.Bson.Binary'
+  Missing documentation for:
+    putDocument (Data/Bson/Binary.hs:155)
+    getDocument (Data/Bson/Binary.hs:161)
+    putDouble (Data/Bson/Binary.hs:119)
+    getDouble (Data/Bson/Binary.hs:120)
+    putInt32 (Data/Bson/Binary.hs:122)
+    getInt32 (Data/Bson/Binary.hs:125)
+    putInt64 (Data/Bson/Binary.hs:128)
+    getInt64 (Data/Bson/Binary.hs:131)
+    putCString (Data/Bson/Binary.hs:134)
+    getCString (Data/Bson/Binary.hs:139)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/bson/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/bson-0.3.2.3-Iehu4r10AM7DJbw1eJ6rnI
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/bson-0.3.2.3-Iehu4r10AM7DJbw1eJ6rnI
 Registering bson-0.3.2.3...

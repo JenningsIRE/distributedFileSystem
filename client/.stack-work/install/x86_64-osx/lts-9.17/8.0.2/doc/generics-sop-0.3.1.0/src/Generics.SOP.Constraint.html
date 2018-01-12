@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE PolyKinds, UndecidableInstances #-}</span><span>
+</span><a name="line-2"></a><span class="hs-cpp">#if __GLASGOW_HASKELL__ &lt; 710</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE OverlappingInstances #-}</span><span>
+</span><a name="line-4"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-5"></a><span class="hs-cpp">#if __GLASGOW_HASKELL__ &gt;= 800</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE UndecidableSuperClasses #-}</span><span>
+</span><a name="line-7"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-8"></a><span class="hs-pragma">{-# OPTIONS_GHC -fno-warn-orphans -fno-warn-deprecations #-}</span><span>
+</span><a name="line-9"></a><span class="hs-comment">-- | Constraints for indexed datatypes.</span><span>
+</span><a name="line-10"></a><span class="hs-comment">--</span><span>
+</span><a name="line-11"></a><span class="hs-comment">-- This module contains code that helps to specify that all</span><span>
+</span><a name="line-12"></a><span class="hs-comment">-- elements of an indexed structure must satisfy a particular</span><span>
+</span><a name="line-13"></a><span class="hs-comment">-- constraint.</span><span>
+</span><a name="line-14"></a><span class="hs-comment">--</span><span>
+</span><a name="line-15"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Constraint</span><span>
+</span><a name="line-16"></a><span>  </span><span class="hs-special">(</span><span> </span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Constraint</span><span>
+</span><a name="line-17"></a><span>  </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Constraint</span><span>
+</span><a name="line-18"></a><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-19"></a><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Coerce</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">Exts</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Constraint</span><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span>
+</span><a name="line-23"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Sing.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Sing</span></a><span>
+</span><a name="line-24"></a><span>
+</span><a name="line-25"></a><span class="hs-comment">-- | Require a constraint for every element of a list.</span><span>
+</span><a name="line-26"></a><span class="hs-comment">--</span><span>
+</span><a name="line-27"></a><span class="hs-comment">-- If you have a datatype that is indexed over a type-level</span><span>
+</span><a name="line-28"></a><span class="hs-comment">-- list, then you can use 'All' to indicate that all elements</span><span>
+</span><a name="line-29"></a><span class="hs-comment">-- of that type-level list must satisfy a given constraint.</span><span>
+</span><a name="line-30"></a><span class="hs-comment">--</span><span>
+</span><a name="line-31"></a><span class="hs-comment">-- /Example:/ The constraint</span><span>
+</span><a name="line-32"></a><span class="hs-comment">--</span><span>
+</span><a name="line-33"></a><span class="hs-comment">-- &gt; All Eq '[ Int, Bool, Char ]</span><span>
+</span><a name="line-34"></a><span class="hs-comment">--</span><span>
+</span><a name="line-35"></a><span class="hs-comment">-- is equivalent to the constraint</span><span>
+</span><a name="line-36"></a><span class="hs-comment">--</span><span>
+</span><a name="line-37"></a><span class="hs-comment">-- &gt; (Eq Int, Eq Bool, Eq Char)</span><span>
+</span><a name="line-38"></a><span class="hs-comment">--</span><span>
+</span><a name="line-39"></a><span class="hs-comment">-- /Example:/ A type signature such as</span><span>
+</span><a name="line-40"></a><span class="hs-comment">--</span><span>
+</span><a name="line-41"></a><span class="hs-comment">-- &gt; f :: All Eq xs =&gt; NP I xs -&gt; ...</span><span>
+</span><a name="line-42"></a><span class="hs-comment">--</span><span>
+</span><a name="line-43"></a><span class="hs-comment">-- means that 'f' can assume that all elements of the n-ary</span><span>
+</span><a name="line-44"></a><span class="hs-comment">-- product satisfy 'Eq'.</span><span>
+</span><a name="line-45"></a><span class="hs-comment">--</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">class</span><span> </span><span class="hs-special">(</span><a href="Generics.SOP.Constraint.html#AllF"><span class="hs-identifier hs-type">AllF</span></a><span> </span><a href="#local-6989586621679038822"><span class="hs-identifier hs-type">f</span></a><span> </span><a href="#local-6989586621679038823"><span class="hs-identifier hs-type">xs</span></a><span class="hs-special">,</span><span> </span><a href="Generics.SOP.Sing.html#SListI"><span class="hs-identifier hs-type">SListI</span></a><span> </span><a href="#local-6989586621679038823"><span class="hs-identifier hs-type">xs</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a name="All"><a href="Generics.SOP.Constraint.html#All"><span class="hs-identifier">All</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679038822"><a href="#local-6989586621679038822"><span class="hs-identifier">f</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679038821"><span class="hs-identifier hs-type">k</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Constraint</span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679038823"><a href="#local-6989586621679038823"><span class="hs-identifier">xs</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679038821"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">]</span><span class="hs-special">)</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><a href="Generics.SOP.Constraint.html#AllF"><span class="hs-identifier hs-type">AllF</span></a><span> </span><a href="#local-6989586621679038847"><span class="hs-identifier hs-type">f</span></a><span> </span><a href="#local-6989586621679038848"><span class="hs-identifier hs-type">xs</span></a><span class="hs-special">,</span><span> </span><a href="Generics.SOP.Sing.html#SListI"><span class="hs-identifier hs-type">SListI</span></a><span> </span><a href="#local-6989586621679038848"><span class="hs-identifier hs-type">xs</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Generics.SOP.Constraint.html#All"><span class="hs-identifier hs-type">All</span></a><span> </span><a href="#local-6989586621679038847"><span class="hs-identifier hs-type">f</span></a><span> </span><a href="#local-6989586621679038848"><span class="hs-identifier hs-type">xs</span></a><span>
+</span><a name="line-48"></a><span>
+</span><a name="line-49"></a><span class="hs-comment">-- | Type family used to implement 'All'.</span><span>
+</span><a name="line-50"></a><span class="hs-comment">--</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span>
+</span><a name="line-52"></a><span>  </span><a name="AllF"><a href="Generics.SOP.Constraint.html#AllF"><span class="hs-identifier">AllF</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679038815"><a href="#local-6989586621679038815"><span class="hs-identifier">c</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679038814"><span class="hs-identifier hs-type">k</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Constraint</span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679038816"><a href="#local-6989586621679038816"><span class="hs-identifier">xs</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679038814"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Constraint</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-53"></a><span>  </span><span class="hs-identifier">AllF</span><span> </span><a href="#local-6989586621679038817"><span class="hs-identifier hs-type">_c</span></a><span> </span><span class="hs-char">'[]       = ()
+  AllF  c (x ': xs) = (c x, All c xs)
+
+-- | Require a singleton for every inner list in a list of lists.
+type SListI2 = All SListI
+
+-- | Require a constraint for every element of a list of lists.
+--
+-- If you have a datatype that is indexed over a type-level
+-- list of lists, then you can use 'All2' to indicate that all
+-- elements of the innert lists must satisfy a given constraint.
+--
+-- /Example:/ The constraint
+--
+-- &gt; All2 Eq '[ '[ Int ], '[ Bool, Char ] ]
+--
+-- is equivalent to the constraint
+--
+-- &gt; (Eq Int, Eq Bool, Eq Char)
+--
+-- /Example:/ A type signature such as
+--
+-- &gt; f :: All2 Eq xss =&gt; SOP I xs -&gt; ...
+--
+-- means that 'f' can assume that all elements of the sum
+-- of product satisfy 'Eq'.
+--
+class (AllF (All f) xss, SListI xss) =&gt; All2 f xss
+instance (AllF (All f) xss, SListI xss) =&gt; All2 f xss
+--
+-- NOTE:
+--
+-- The definition
+--
+-- type All2 f = All (All f)
+--
+-- is more direct, but has the unfortunate disadvantage the
+-- it triggers GHC's superclass cycle check when used in a
+-- class context.
+
+-- | Require a constraint for pointwise for every pair of
+-- elements from two lists.
+--
+-- /Example:/ The constraint
+--
+-- &gt; All (~) '[ Int, Bool, Char ] '[ a, b, c ]
+--
+-- is equivalent to the constraint
+--
+-- &gt; (Int ~ a, Bool ~ b, Char ~ c)
+--
+-- @since 0.3.1.0
+--
+class
+  ( SListI xs, SListI ys
+  , SameShapeAs xs ys, SameShapeAs ys xs
+  , AllZipF c xs ys
+  ) =&gt; AllZip (c :: a -&gt; b -&gt; Constraint) (xs :: [a]) (ys :: [b])
+instance
+  ( SListI xs, SListI ys
+  , SameShapeAs xs ys, SameShapeAs ys xs
+  , AllZipF c xs ys
+  ) =&gt; AllZip c xs ys
+
+-- | Type family used to implement 'AllZip'.
+--
+-- @since 0.3.1.0
+--
+type family
+  AllZipF (c :: a -&gt; b -&gt; Constraint) (xs :: [a]) (ys :: [b])
+    :: Constraint where
+  AllZipF _c '[]      '[]        = ()
+  AllZipF  c (x ': xs) (y ': ys) = (c x y, AllZip c xs ys)
+
+-- | Type family that forces a type-level list to be of the same
+-- shape as the given type-level list.
+--
+-- The main use of this constraint is to help type inference to
+-- learn something about otherwise unknown type-level lists.
+--
+-- @since 0.3.1.0
+--
+type family
+  SameShapeAs (xs :: [a]) (ys :: [b]) :: Constraint where
+  SameShapeAs '[]       ys = (ys ~ '[])
+  SameShapeAs (x ': xs) ys =
+    (ys ~ (Head ys ': Tail ys), SameShapeAs xs (Tail ys))
+
+-- | Utility function to compute the head of a type-level list.
+--
+-- @since 0.3.1.0
+--
+type family Head (xs :: [a]) :: a where
+  Head (x ': xs) = x
+
+-- | Utility function to compute the tail of a type-level list.
+--
+-- @since 0.3.1.0
+--
+type family Tail (xs :: [a]) :: [a] where
+  Tail (x ': xs) = xs
+
+-- | The constraint @LiftedCoercible f g x y@ is equivalent
+-- to @Coercible (f x) (g y)@.
+--
+-- @since 0.3.1.0
+--
+class Coercible (f x) (g y) =&gt; LiftedCoercible f g x y
+instance Coercible (f x) (g y) =&gt; LiftedCoercible f g x y
+
+-- | Require a constraint for pointwise for every pair of
+-- elements from two lists of lists.
+--
+--
+class (AllZipF (AllZip f) xss yss, SListI xss, SListI yss, SameShapeAs xss yss, SameShapeAs yss xss) =&gt; AllZip2 f xss yss
+instance (AllZipF (AllZip f) xss yss, SListI xss, SListI yss, SameShapeAs xss yss, SameShapeAs yss xss) =&gt; AllZip2 f xss yss
+
+-- | Composition of constraints.
+--
+-- Note that the result of the composition must be a constraint,
+-- and therefore, in @f ':.' g@, the kind of @f@ is @k -&gt; 'Constraint'@.
+-- The kind of @g@, however, is @l -&gt; k@ and can thus be an normal
+-- type constructor.
+--
+-- A typical use case is in connection with 'All' on an 'NP' or an
+-- 'NS'. For example, in order to denote that all elements on an
+-- @'NP' f xs@ satisfy 'Show', we can say @'All' ('Show' :. f) xs@.
+--
+-- @since 0.2
+--
+class (f (g x)) =&gt; (f `Compose` g) x
+instance (f (g x)) =&gt; (f `Compose` g) x
+infixr 9 `Compose`
+
+-- | Pairing of constraints.
+--
+-- @since 0.2
+--
+class (f x, g x) =&gt; (f `And` g) x
+instance (f x, g x) =&gt; (f `And` g) x
+infixl 7 `And`
+
+-- | A constraint that can always be satisfied.
+--
+-- @since 0.2
+--
+class Top x
+instance Top x
+
+-- | A generalization of 'All' and 'All2'.
+--
+-- The family 'AllN' expands to 'All' or 'All2' depending on whether
+-- the argument is indexed by a list or a list of lists.
+--
+type family AllN (h :: (k -&gt; *) -&gt; (l -&gt; *)) (c :: k -&gt; Constraint) :: l -&gt; Constraint
+
+-- | A generalization of 'AllZip' and 'AllZip2'.
+--
+-- The family 'AllZipN' expands to 'AllZip' or 'AllZip2' depending on
+-- whther the argument is indexed by a list or a list of lists.
+--
+type family AllZipN (h :: (k -&gt; *) -&gt; (l -&gt; *)) (c :: k1 -&gt; k2 -&gt; Constraint) :: l1 -&gt; l2 -&gt; Constraint
+
+-- | A generalization of 'SListI'.
+--
+-- The family 'SListIN' expands to 'SListI' or 'SListI2' depending
+-- on whether the argument is indexed by a list or a list of lists.
+--
+type family SListIN (h :: (k -&gt; *) -&gt; (l -&gt; *)) :: l -&gt; Constraint
+
+instance
+#if __GLASGOW_HASKELL__ &gt;= 710
+  {-# OVERLAPPABLE #-}
+#endif
+  SListI xs =&gt; SingI (xs :: [k]) where
+  sing = sList
+
+instance
+#if __GLASGOW_HASKELL__ &gt;= 710
+  {-# OVERLAPPING #-}
+#endif
+  (All SListI xss, SListI xss) =&gt; SingI (xss :: [[k]]) where
+  sing = sList
+</span></pre></body></html>

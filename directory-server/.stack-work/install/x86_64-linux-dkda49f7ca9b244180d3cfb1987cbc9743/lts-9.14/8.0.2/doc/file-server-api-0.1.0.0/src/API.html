@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE DataKinds            #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE DeriveAnyClass       #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE DeriveGeneric        #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE FlexibleInstances    #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE OverloadedStrings    #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE StandaloneDeriving   #-}</span><span>
+</span><a name="line-7"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators        #-}</span><span>
+</span><a name="line-8"></a><span class="hs-pragma">{-# LANGUAGE TypeSynonymInstances #-}</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-11"></a><span>
+</span><a name="line-12"></a><span>
+</span><a name="line-13"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span class="hs-operator">.</span><span class="hs-identifier">TH</span><span>
+</span><a name="line-15"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Bson</span><span class="hs-operator">.</span><span class="hs-identifier">Generic</span><span>
+</span><a name="line-16"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">Generics</span><span>
+</span><a name="line-17"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Servant</span><span>
+</span><a name="line-18"></a><span>
+</span><a name="line-19"></a><span>
+</span><a name="line-20"></a><span class="hs-comment">-- Note that in this version of the project, I have moved the REST API into a shared library called use-haskell-api</span><span>
+</span><a name="line-21"></a><span class="hs-comment">-- This library is imported here in order that the HackageAPI type is available to create the REST service of that</span><span>
+</span><a name="line-22"></a><span class="hs-comment">-- type. Note that there is no advantage in doing this if you are only building a servant REST service, but if you are</span><span>
+</span><a name="line-23"></a><span class="hs-comment">-- creating a corresponding REST client, then following this architectural pattern simplifies development considerably.</span><span>
+</span><a name="line-24"></a><span>
+</span><a name="line-25"></a><span class="hs-comment">-- The relevant code is thus commented out here and the use-haskell-api library content is used instead</span><span>
+</span><a name="line-26"></a><span>
+</span><a name="line-27"></a><span class="hs-keyword">data</span><span> </span><a name="Message"><a href="API.html#Message"><span class="hs-identifier">Message</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="Message"><a href="API.html#Message"><span class="hs-identifier">Message</span></a></a><span> </span><span class="hs-special">{</span><span> </span><a name="name"><a href="API.html#name"><span class="hs-identifier">name</span></a></a><span>    </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-28"></a><span>                       </span><span class="hs-special">,</span><span> </span><a name="message"><a href="API.html#message"><span class="hs-identifier">message</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-29"></a><span>                       </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">FromJSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ToJSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ToBSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">FromBSON</span><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span>
+</span><a name="line-31"></a><span class="hs-keyword">data</span><span> </span><a name="DirectoryResponse"><a href="API.html#DirectoryResponse"><span class="hs-identifier">DirectoryResponse</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="DirectoryResponse"><a href="API.html#DirectoryResponse"><span class="hs-identifier">DirectoryResponse</span></a></a><span> </span><span class="hs-special">{</span><span> </span><a name="fileName"><a href="API.html#fileName"><span class="hs-identifier">fileName</span></a></a><span>    </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-32"></a><span>                                           </span><span class="hs-special">,</span><span> </span><a name="ip"><a href="API.html#ip"><span class="hs-identifier">ip</span></a></a><span>          </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-33"></a><span>                                           </span><span class="hs-special">,</span><span> </span><a name="port"><a href="API.html#port"><span class="hs-identifier">port</span></a></a><span>        </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-34"></a><span>                                           </span><span class="hs-special">,</span><span> </span><a name="timestamp"><a href="API.html#timestamp"><span class="hs-identifier">timestamp</span></a></a><span>   </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-35"></a><span>                                           </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">FromJSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ToJSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ToBSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">FromBSON</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span>
+</span><a name="line-37"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">FromBSON</span><span> </span><span class="hs-identifier hs-type">String</span><span>  </span><span class="hs-comment">-- we need these as BSON does not provide</span><span>
+</span><a name="line-38"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">ToBSON</span><span>   </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-39"></a><span>
+</span><a name="line-40"></a><span class="hs-comment">-- | We will also define a simple data type for returning data from a REST call, again with nothing special or</span><span>
+</span><a name="line-41"></a><span class="hs-comment">-- particular in the response, but instead merely as a demonstration.</span><span>
+</span><a name="line-42"></a><span>
+</span><a name="line-43"></a><span class="hs-keyword">data</span><span> </span><a name="ResponseData"><a href="API.html#ResponseData"><span class="hs-identifier">ResponseData</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="ResponseData"><a href="API.html#ResponseData"><span class="hs-identifier">ResponseData</span></a></a><span> </span><span class="hs-special">{</span><span> </span><a name="response"><a href="API.html#response"><span class="hs-identifier">response</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-44"></a><span>                                 </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ToJSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">FromJSON</span><span class="hs-special">,</span><span class="hs-identifier hs-type">FromBSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Show</span><span class="hs-special">)</span><span>
+</span><a name="line-45"></a><span>
+</span><a name="line-46"></a><span class="hs-comment">-- | Next we will define the API for the REST service. This is defined as a 'type' using a special syntax from the</span><span>
+</span><a name="line-47"></a><span class="hs-comment">-- Servant Library. A REST endpoint is defined by chaining together a series of elements in the format `A :&gt; B :&gt; C`. A</span><span>
+</span><a name="line-48"></a><span class="hs-comment">-- set of rest endpoints are chained in the format `X :&lt;|&gt; Y :&lt;|&gt; Z`. We define a set of endpoints to demonstrate</span><span>
+</span><a name="line-49"></a><span class="hs-comment">-- functionality as described int he README.md file below.</span><span>
+</span><a name="line-50"></a><span class="hs-comment">--</span><span>
+</span><a name="line-51"></a><span class="hs-comment">-- Note in the API below that we can mix GET and Post methods. The type of call is determined by the last element in the</span><span>
+</span><a name="line-52"></a><span class="hs-comment">-- :&gt; chain. If the method is Get, then the set of QueryParams determine the attributes of the Get call. If the method</span><span>
+</span><a name="line-53"></a><span class="hs-comment">-- is Post, then there will be a single ReqBody element that defines the type being transmitted. The return type for</span><span>
+</span><a name="line-54"></a><span class="hs-comment">-- each method is noted in the last element in the :&gt; chain.</span><span>
+</span><a name="line-55"></a><span>
+</span><a name="line-56"></a><span class="hs-keyword">type</span><span> </span><a name="FileAPI"><a href="API.html#FileAPI"><span class="hs-identifier">FileAPI</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;postFile&quot;</span><span>               </span><span class="hs-operator">:&gt;</span><span> </span><span class="hs-identifier hs-type">ReqBody</span><span> </span><span class="hs-char">'[JSON] Message  :&gt; Post '[JSON] Bool
+           :&lt;|&gt; &quot;getFile&quot;              :&gt; QueryParam &quot;name&quot; String :&gt; Get '[JSON] [Message]
+
+type DirectoryAPI = &quot;postDirectory&quot;               :&gt; ReqBody '[JSON] Message  :&gt; Post '[JSON] [Message]
+                :&lt;|&gt; &quot;getDirectory&quot;              :&gt; QueryParam &quot;name&quot; String :&gt; Get '[JSON] [Message]
+
+type InterServerAPI = &quot;addServer&quot;         :&gt; ReqBody '[JSON] Message :&gt; Post '[JSON] Bool
+
+type LockAPI = &quot;lockFile&quot;               :&gt; ReqBody '[JSON] Message  :&gt; Post '[JSON] Bool
+           :&lt;|&gt; &quot;unlockFile&quot;               :&gt; ReqBody '[JSON] Message  :&gt; Post '[JSON] Bool</span></pre></body></html>

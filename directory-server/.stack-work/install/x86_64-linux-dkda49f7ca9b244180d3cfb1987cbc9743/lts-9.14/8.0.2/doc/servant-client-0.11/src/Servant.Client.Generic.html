@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE DataKinds #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE DefaultSignatures #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE FlexibleContexts #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE FlexibleInstances #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE MultiParamTypeClasses #-}</span><span>
+</span><a name="line-7"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+</span><a name="line-8"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators #-}</span><span>
+</span><a name="line-9"></a><span class="hs-pragma">{-# LANGUAGE UndecidableInstances #-}</span><span>
+</span><a name="line-10"></a><span>
+</span><a name="line-11"></a><span class="hs-cpp">#include &quot;overlapping-compat.h&quot;</span><span>
+</span><a name="line-12"></a><span>
+</span><a name="line-13"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">Client</span><span class="hs-operator">.</span><span class="hs-identifier">Generic</span><span>
+</span><a name="line-14"></a><span>  </span><span class="hs-special">(</span><span> </span><a href="Servant.Client.Generic.html#ClientLike"><span class="hs-identifier hs-type">ClientLike</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Servant.Client.Generic.html#genericMkClientL"><span class="hs-identifier hs-var">genericMkClientL</span></a><span>
+</span><a name="line-16"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Servant.Client.Generic.html#genericMkClientP"><span class="hs-identifier hs-var">genericMkClientP</span></a><span>
+</span><a name="line-17"></a><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-18"></a><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span>   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Code</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">I</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">NP</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">NS</span><span class="hs-special">(</span><span class="hs-identifier hs-var">Z</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SOP</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">to</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">API</span><span>    </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-type">:&lt;|&gt;</span><span class="hs-special">)</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span> </span><a href="Servant.Client.html"><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">Client</span></a><span> </span><span class="hs-special">(</span><a href="Servant.Common.Req.html#ClientM"><span class="hs-identifier hs-type">ClientM</span></a><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span>
+</span><a name="line-23"></a><span class="hs-comment">-- | This class allows us to match client structure with client functions</span><span>
+</span><a name="line-24"></a><span class="hs-comment">-- produced with 'client' without explicit pattern-matching.</span><span>
+</span><a name="line-25"></a><span class="hs-comment">--</span><span>
+</span><a name="line-26"></a><span class="hs-comment">-- The client structure needs a 'Generics.SOP.Generic' instance.</span><span>
+</span><a name="line-27"></a><span class="hs-comment">--</span><span>
+</span><a name="line-28"></a><span class="hs-comment">-- Example:</span><span>
+</span><a name="line-29"></a><span class="hs-comment">--</span><span>
+</span><a name="line-30"></a><span class="hs-comment">-- &gt; type API</span><span>
+</span><a name="line-31"></a><span class="hs-comment">-- &gt;     = &quot;foo&quot; :&gt; Capture &quot;x&quot; Int :&gt; Get '[JSON] Int</span><span>
+</span><a name="line-32"></a><span class="hs-comment">-- &gt;  :&lt;|&gt; &quot;bar&quot; :&gt; QueryParam &quot;a&quot; Char :&gt; QueryParam &quot;b&quot; String :&gt; Post '[JSON] [Int]</span><span>
+</span><a name="line-33"></a><span class="hs-comment">-- &gt;  :&lt;|&gt; Capture &quot;nested&quot; Int :&gt; NestedAPI</span><span>
+</span><a name="line-34"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-35"></a><span class="hs-comment">-- &gt; type NestedAPI</span><span>
+</span><a name="line-36"></a><span class="hs-comment">-- &gt;     = Get '[JSON] String</span><span>
+</span><a name="line-37"></a><span class="hs-comment">-- &gt;  :&lt;|&gt; &quot;baz&quot; :&gt; QueryParam &quot;c&quot; Char :&gt; Post '[JSON] ()</span><span>
+</span><a name="line-38"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-39"></a><span class="hs-comment">-- &gt; data APIClient = APIClient</span><span>
+</span><a name="line-40"></a><span class="hs-comment">-- &gt;   { getFoo         :: Int -&gt; ClientM Int</span><span>
+</span><a name="line-41"></a><span class="hs-comment">-- &gt;   , postBar        :: Maybe Char -&gt; Maybe String -&gt; ClientM [Int]</span><span>
+</span><a name="line-42"></a><span class="hs-comment">-- &gt;   , mkNestedClient :: Int -&gt; NestedClient</span><span>
+</span><a name="line-43"></a><span class="hs-comment">-- &gt;   } deriving GHC.Generic</span><span>
+</span><a name="line-44"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-45"></a><span class="hs-comment">-- &gt; instance Generics.SOP.Generic APIClient</span><span>
+</span><a name="line-46"></a><span class="hs-comment">-- &gt; instance (Client API ~ client) =&gt; ClientLike client APIClient</span><span>
+</span><a name="line-47"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-48"></a><span class="hs-comment">-- &gt; data NestedClient = NestedClient</span><span>
+</span><a name="line-49"></a><span class="hs-comment">-- &gt;  { getString :: ClientM String</span><span>
+</span><a name="line-50"></a><span class="hs-comment">-- &gt;  , postBaz   :: Maybe Char -&gt; ClientM ()</span><span>
+</span><a name="line-51"></a><span class="hs-comment">-- &gt;  } deriving GHC.Generic</span><span>
+</span><a name="line-52"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-53"></a><span class="hs-comment">-- &gt; instance Generics.SOP.Generic NestedClient</span><span>
+</span><a name="line-54"></a><span class="hs-comment">-- &gt; instance (Client NestedAPI ~ client) =&gt; ClientLike client NestedClient</span><span>
+</span><a name="line-55"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-56"></a><span class="hs-comment">-- &gt; mkAPIClient :: APIClient</span><span>
+</span><a name="line-57"></a><span class="hs-comment">-- &gt; mkAPIClient = mkClient (client (Proxy :: Proxy API))</span><span>
+</span><a name="line-58"></a><span class="hs-comment">--</span><span>
+</span><a name="line-59"></a><span class="hs-comment">-- By default, left-nested alternatives are expanded:</span><span>
+</span><a name="line-60"></a><span class="hs-comment">--</span><span>
+</span><a name="line-61"></a><span class="hs-comment">-- &gt; type API1</span><span>
+</span><a name="line-62"></a><span class="hs-comment">-- &gt;     = &quot;foo&quot; :&gt; Capture &quot;x&quot; Int :&gt; Get '[JSON] Int</span><span>
+</span><a name="line-63"></a><span class="hs-comment">-- &gt;  :&lt;|&gt; &quot;bar&quot; :&gt; QueryParam &quot;a&quot; Char :&gt; Post '[JSON] String</span><span>
+</span><a name="line-64"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-65"></a><span class="hs-comment">-- &gt; type API2</span><span>
+</span><a name="line-66"></a><span class="hs-comment">-- &gt;     = &quot;baz&quot; :&gt; QueryParam &quot;c&quot; Char :&gt; Post '[JSON] ()</span><span>
+</span><a name="line-67"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-68"></a><span class="hs-comment">-- &gt; type API = API1 :&lt;|&gt; API2</span><span>
+</span><a name="line-69"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-70"></a><span class="hs-comment">-- &gt; data APIClient = APIClient</span><span>
+</span><a name="line-71"></a><span class="hs-comment">-- &gt;   { getFoo  :: Int -&gt; ClientM Int</span><span>
+</span><a name="line-72"></a><span class="hs-comment">-- &gt;   , postBar :: Maybe Char -&gt; ClientM String</span><span>
+</span><a name="line-73"></a><span class="hs-comment">-- &gt;   , postBaz :: Maybe Char -&gt; ClientM ()</span><span>
+</span><a name="line-74"></a><span class="hs-comment">-- &gt;   } deriving GHC.Generic</span><span>
+</span><a name="line-75"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-76"></a><span class="hs-comment">-- &gt; instance Generics.SOP.Generic APIClient</span><span>
+</span><a name="line-77"></a><span class="hs-comment">-- &gt; instance (Client API ~ client) =&gt; ClientLike client APIClient</span><span>
+</span><a name="line-78"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-79"></a><span class="hs-comment">-- &gt; mkAPIClient :: APIClient</span><span>
+</span><a name="line-80"></a><span class="hs-comment">-- &gt; mkAPIClient = mkClient (client (Proxy :: Proxy API))</span><span>
+</span><a name="line-81"></a><span class="hs-comment">--</span><span>
+</span><a name="line-82"></a><span class="hs-comment">-- If you want to define client for @API1@ as a separate data structure,</span><span>
+</span><a name="line-83"></a><span class="hs-comment">-- you can use 'genericMkClientP':</span><span>
+</span><a name="line-84"></a><span class="hs-comment">--</span><span>
+</span><a name="line-85"></a><span class="hs-comment">-- &gt; data APIClient1 = APIClient1</span><span>
+</span><a name="line-86"></a><span class="hs-comment">-- &gt;   { getFoo  :: Int -&gt; ClientM Int</span><span>
+</span><a name="line-87"></a><span class="hs-comment">-- &gt;   , postBar :: Maybe Char -&gt; ClientM String</span><span>
+</span><a name="line-88"></a><span class="hs-comment">-- &gt;   } deriving GHC.Generic</span><span>
+</span><a name="line-89"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-90"></a><span class="hs-comment">-- &gt; instance Generics.SOP.Generic APIClient1</span><span>
+</span><a name="line-91"></a><span class="hs-comment">-- &gt; instance (Client API1 ~ client) =&gt; ClientLike client APIClient1</span><span>
+</span><a name="line-92"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-93"></a><span class="hs-comment">-- &gt; data APIClient = APIClient</span><span>
+</span><a name="line-94"></a><span class="hs-comment">-- &gt;   { mkAPIClient1 :: APIClient1</span><span>
+</span><a name="line-95"></a><span class="hs-comment">-- &gt;   , postBaz      :: Maybe Char -&gt; ClientM ()</span><span>
+</span><a name="line-96"></a><span class="hs-comment">-- &gt;   } deriving GHC.Generic</span><span>
+</span><a name="line-97"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-98"></a><span class="hs-comment">-- &gt; instance Generics.SOP.Generic APIClient</span><span>
+</span><a name="line-99"></a><span class="hs-comment">-- &gt; instance (Client API ~ client) =&gt; ClientLike client APIClient where</span><span>
+</span><a name="line-100"></a><span class="hs-comment">-- &gt;   mkClient = genericMkClientP</span><span>
+</span><a name="line-101"></a><span class="hs-comment">-- &gt;</span><span>
+</span><a name="line-102"></a><span class="hs-comment">-- &gt; mkAPIClient :: APIClient</span><span>
+</span><a name="line-103"></a><span class="hs-comment">-- &gt; mkAPIClient = mkClient (client (Proxy :: Proxy API))</span><span>
+</span><a name="line-104"></a><span class="hs-keyword">class</span><span> </span><a name="ClientLike"><a href="Servant.Client.Generic.html#ClientLike"><span class="hs-identifier">ClientLike</span></a></a><span> </span><a name="local-6989586621679138260"><a href="#local-6989586621679138260"><span class="hs-identifier">client</span></a></a><span> </span><a name="local-6989586621679138261"><a href="#local-6989586621679138261"><span class="hs-identifier">custom</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-105"></a><span>  </span><span class="hs-identifier">mkClient</span><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679138260"><span class="hs-identifier hs-type">client</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679138261"><span class="hs-identifier hs-type">custom</span></a><span>
+</span><a name="line-106"></a><span>  </span><span class="hs-keyword">default</span><span> </span><span class="hs-identifier">mkClient</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Generic</span><span> </span><a href="#local-6989586621679138261"><span class="hs-identifier hs-type">custom</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Code</span><span> </span><a href="#local-6989586621679138261"><span class="hs-identifier hs-type">custom</span></a><span> </span><span class="hs-glyph">~</span><span> </span><span class="hs-char">'[xs], GClientList client '[], GClientLikeL (ClientList client '[]) xs)
+    =&gt; client -&gt; custom
+  mkClient = genericMkClientL
+
+instance ClientLike client custom
+      =&gt; ClientLike (a -&gt; client) (a -&gt; custom) where
+  mkClient c = mkClient . c
+
+instance ClientLike (ClientM a) (ClientM a) where
+  mkClient = id
+
+-- | Match client structure with client functions, regarding left-nested API clients
+-- as separate data structures.
+class GClientLikeP client xs where
+  gMkClientP :: client -&gt; NP I xs
+
+instance (GClientLikeP b (y ': xs), ClientLike a x)
+      =&gt; GClientLikeP (a :&lt;|&gt; b) (x ': y ': xs) where
+  gMkClientP (a :&lt;|&gt; b) = I (mkClient a) :* gMkClientP b
+
+instance ClientLike a x =&gt; GClientLikeP a '[x] where
+  gMkClientP a = I (mkClient a) :* Nil
+
+-- | Match client structure with client functions, expanding left-nested API clients
+-- in the same structure.
+class GClientLikeL (xs :: [*]) (ys :: [*]) where
+  gMkClientL :: NP I xs -&gt; NP I ys
+
+instance GClientLikeL '[] '[] where
+  gMkClientL Nil = Nil
+
+instance (ClientLike x y, GClientLikeL xs ys) =&gt; GClientLikeL (x ': xs) (y ': ys) where
+  gMkClientL (I x :* xs) = I (mkClient x) :* gMkClientL xs
+
+type family ClientList (client :: *) (acc :: [*]) :: [*] where
+  ClientList (a :&lt;|&gt; b) acc = ClientList a (ClientList b acc)
+  ClientList a acc = a ': acc
+
+class GClientList client (acc :: [*]) where
+  gClientList :: client -&gt; NP I acc -&gt; NP I (ClientList client acc)
+
+instance (GClientList b acc, GClientList a (ClientList b acc))
+  =&gt; GClientList (a :&lt;|&gt; b) acc where
+  gClientList (a :&lt;|&gt; b) acc = gClientList a (gClientList b acc)
+
+instance OVERLAPPABLE_ (ClientList client acc ~ (client ': acc))
+  =&gt; GClientList client acc where
+  gClientList c acc = I c :* acc
+
+-- | Generate client structure from client type, expanding left-nested API (done by default).
+genericMkClientL :: (Generic custom, Code custom ~ '[xs], GClientList client '[], GClientLikeL (ClientList client '[]) xs)
+  =&gt; client -&gt; custom
+genericMkClientL = to . SOP . Z . gMkClientL . flip gClientList Nil
+
+-- | Generate client structure from client type, regarding left-nested API clients as separate data structures.
+genericMkClientP :: (Generic custom, Code custom ~ '[xs], GClientLikeP client xs)
+  =&gt; client -&gt; custom
+genericMkClientP = to . SOP . Z . gMkClientP
+
+</span></pre></body></html>

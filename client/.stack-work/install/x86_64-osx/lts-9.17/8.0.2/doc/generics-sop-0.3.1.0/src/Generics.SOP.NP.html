@@ -1,0 +1,743 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE PolyKinds, StandaloneDeriving, UndecidableInstances #-}</span><span>
+</span><a name="line-2"></a><span class="hs-comment">-- | n-ary products (and products of products)</span><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">NP</span><span>
+</span><a name="line-4"></a><span>  </span><span class="hs-special">(</span><span> </span><span class="hs-comment">-- * Datatypes</span><span>
+</span><a name="line-5"></a><span>    </span><a href="Generics.SOP.NP.html#NP"><span class="hs-identifier hs-type">NP</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-6"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#POP"><span class="hs-identifier hs-type">POP</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-7"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#unPOP"><span class="hs-identifier hs-var">unPOP</span></a><span>
+</span><a name="line-8"></a><span>    </span><span class="hs-comment">-- * Constructing products</span><span>
+</span><a name="line-9"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#pure_NP"><span class="hs-identifier hs-var">pure_NP</span></a><span>
+</span><a name="line-10"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#pure_POP"><span class="hs-identifier hs-var">pure_POP</span></a><span>
+</span><a name="line-11"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cpure_NP"><span class="hs-identifier hs-var">cpure_NP</span></a><span>
+</span><a name="line-12"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cpure_POP"><span class="hs-identifier hs-var">cpure_POP</span></a><span>
+</span><a name="line-13"></a><span>    </span><span class="hs-comment">-- ** Construction from a list</span><span>
+</span><a name="line-14"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#fromList"><span class="hs-identifier hs-var">fromList</span></a><span>
+</span><a name="line-15"></a><span>    </span><span class="hs-comment">-- * Application</span><span>
+</span><a name="line-16"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#ap_NP"><span class="hs-identifier hs-var">ap_NP</span></a><span>
+</span><a name="line-17"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#ap_POP"><span class="hs-identifier hs-var">ap_POP</span></a><span>
+</span><a name="line-18"></a><span>    </span><span class="hs-comment">-- * Destructing products</span><span>
+</span><a name="line-19"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#hd"><span class="hs-identifier hs-var">hd</span></a><span>
+</span><a name="line-20"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#tl"><span class="hs-identifier hs-var">tl</span></a><span>
+</span><a name="line-21"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#Projection"><span class="hs-identifier hs-type">Projection</span></a><span>
+</span><a name="line-22"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#projections"><span class="hs-identifier hs-var">projections</span></a><span>
+</span><a name="line-23"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#shiftProjection"><span class="hs-identifier hs-var">shiftProjection</span></a><span>
+</span><a name="line-24"></a><span>    </span><span class="hs-comment">-- * Lifting / mapping</span><span>
+</span><a name="line-25"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#liftA_NP"><span class="hs-identifier hs-var">liftA_NP</span></a><span>
+</span><a name="line-26"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#liftA_POP"><span class="hs-identifier hs-var">liftA_POP</span></a><span>
+</span><a name="line-27"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#liftA2_NP"><span class="hs-identifier hs-var">liftA2_NP</span></a><span>
+</span><a name="line-28"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#liftA2_POP"><span class="hs-identifier hs-var">liftA2_POP</span></a><span>
+</span><a name="line-29"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#liftA3_NP"><span class="hs-identifier hs-var">liftA3_NP</span></a><span>
+</span><a name="line-30"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#liftA3_POP"><span class="hs-identifier hs-var">liftA3_POP</span></a><span>
+</span><a name="line-31"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#map_NP"><span class="hs-identifier hs-var">map_NP</span></a><span>
+</span><a name="line-32"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#map_POP"><span class="hs-identifier hs-var">map_POP</span></a><span>
+</span><a name="line-33"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#zipWith_NP"><span class="hs-identifier hs-var">zipWith_NP</span></a><span>
+</span><a name="line-34"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#zipWith_POP"><span class="hs-identifier hs-var">zipWith_POP</span></a><span>
+</span><a name="line-35"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#zipWith3_NP"><span class="hs-identifier hs-var">zipWith3_NP</span></a><span>
+</span><a name="line-36"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#zipWith3_POP"><span class="hs-identifier hs-var">zipWith3_POP</span></a><span>
+</span><a name="line-37"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cliftA_NP"><span class="hs-identifier hs-var">cliftA_NP</span></a><span>
+</span><a name="line-38"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cliftA_POP"><span class="hs-identifier hs-var">cliftA_POP</span></a><span>
+</span><a name="line-39"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cliftA2_NP"><span class="hs-identifier hs-var">cliftA2_NP</span></a><span>
+</span><a name="line-40"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cliftA2_POP"><span class="hs-identifier hs-var">cliftA2_POP</span></a><span>
+</span><a name="line-41"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cliftA3_NP"><span class="hs-identifier hs-var">cliftA3_NP</span></a><span>
+</span><a name="line-42"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cliftA3_POP"><span class="hs-identifier hs-var">cliftA3_POP</span></a><span>
+</span><a name="line-43"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cmap_NP"><span class="hs-identifier hs-var">cmap_NP</span></a><span>
+</span><a name="line-44"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cmap_POP"><span class="hs-identifier hs-var">cmap_POP</span></a><span>
+</span><a name="line-45"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#czipWith_NP"><span class="hs-identifier hs-var">czipWith_NP</span></a><span>
+</span><a name="line-46"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#czipWith_POP"><span class="hs-identifier hs-var">czipWith_POP</span></a><span>
+</span><a name="line-47"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#czipWith3_NP"><span class="hs-identifier hs-var">czipWith3_NP</span></a><span>
+</span><a name="line-48"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#czipWith3_POP"><span class="hs-identifier hs-var">czipWith3_POP</span></a><span>
+</span><a name="line-49"></a><span>    </span><span class="hs-comment">-- * Dealing with @'All' c@</span><span>
+</span><a name="line-50"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#hcliftA%27"><span class="hs-identifier hs-var">hcliftA'</span></a><span>
+</span><a name="line-51"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#hcliftA2%27"><span class="hs-identifier hs-var">hcliftA2'</span></a><span>
+</span><a name="line-52"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#hcliftA3%27"><span class="hs-identifier hs-var">hcliftA3'</span></a><span>
+</span><a name="line-53"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cliftA2%27_NP"><span class="hs-identifier hs-var">cliftA2'_NP</span></a><span>
+</span><a name="line-54"></a><span>    </span><span class="hs-comment">-- * Collapsing</span><span>
+</span><a name="line-55"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#collapse_NP"><span class="hs-identifier hs-var">collapse_NP</span></a><span>
+</span><a name="line-56"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#collapse_POP"><span class="hs-identifier hs-var">collapse_POP</span></a><span>
+</span><a name="line-57"></a><span>    </span><span class="hs-comment">-- * Sequencing</span><span>
+</span><a name="line-58"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#sequence%27_NP"><span class="hs-identifier hs-var">sequence'_NP</span></a><span>
+</span><a name="line-59"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#sequence%27_POP"><span class="hs-identifier hs-var">sequence'_POP</span></a><span>
+</span><a name="line-60"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#sequence_NP"><span class="hs-identifier hs-var">sequence_NP</span></a><span>
+</span><a name="line-61"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#sequence_POP"><span class="hs-identifier hs-var">sequence_POP</span></a><span>
+</span><a name="line-62"></a><span>    </span><span class="hs-comment">-- * Catamorphism and anamorphism</span><span>
+</span><a name="line-63"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cata_NP"><span class="hs-identifier hs-var">cata_NP</span></a><span>
+</span><a name="line-64"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#ccata_NP"><span class="hs-identifier hs-var">ccata_NP</span></a><span>
+</span><a name="line-65"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#ana_NP"><span class="hs-identifier hs-var">ana_NP</span></a><span>
+</span><a name="line-66"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#cana_NP"><span class="hs-identifier hs-var">cana_NP</span></a><span>
+</span><a name="line-67"></a><span>    </span><span class="hs-comment">-- * Transformation of index lists and coercions</span><span>
+</span><a name="line-68"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#trans_NP"><span class="hs-identifier hs-var">trans_NP</span></a><span>
+</span><a name="line-69"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#trans_POP"><span class="hs-identifier hs-var">trans_POP</span></a><span>
+</span><a name="line-70"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#coerce_NP"><span class="hs-identifier hs-var">coerce_NP</span></a><span>
+</span><a name="line-71"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#coerce_POP"><span class="hs-identifier hs-var">coerce_POP</span></a><span>
+</span><a name="line-72"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#fromI_NP"><span class="hs-identifier hs-var">fromI_NP</span></a><span>
+</span><a name="line-73"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#fromI_POP"><span class="hs-identifier hs-var">fromI_POP</span></a><span>
+</span><a name="line-74"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#toI_NP"><span class="hs-identifier hs-var">toI_NP</span></a><span>
+</span><a name="line-75"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NP.html#toI_POP"><span class="hs-identifier hs-var">toI_POP</span></a><span>
+</span><a name="line-76"></a><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-77"></a><span>
+</span><a name="line-78"></a><span class="hs-cpp">#if !(MIN_VERSION_base(4,8,0))</span><span>
+</span><a name="line-79"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Applicative</span><span>
+</span><a name="line-80"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-81"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Coerce</span><span>
+</span><a name="line-82"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Proxy</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Proxy</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-83"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Unsafe</span><span class="hs-operator">.</span><span class="hs-identifier">Coerce</span><span>
+</span><a name="line-84"></a><span>
+</span><a name="line-85"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">DeepSeq</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">NFData</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-86"></a><span>
+</span><a name="line-87"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.BasicFunctors.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">BasicFunctors</span></a><span>
+</span><a name="line-88"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Classes.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Classes</span></a><span>
+</span><a name="line-89"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Constraint.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Constraint</span></a><span>
+</span><a name="line-90"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Sing.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Sing</span></a><span>
+</span><a name="line-91"></a><span>
+</span><a name="line-92"></a><span class="hs-comment">-- | An n-ary product.</span><span>
+</span><a name="line-93"></a><span class="hs-comment">--</span><span>
+</span><a name="line-94"></a><span class="hs-comment">-- The product is parameterized by a type constructor @f@ and</span><span>
+</span><a name="line-95"></a><span class="hs-comment">-- indexed by a type-level list @xs@. The length of the list</span><span>
+</span><a name="line-96"></a><span class="hs-comment">-- determines the number of elements in the product, and if the</span><span>
+</span><a name="line-97"></a><span class="hs-comment">-- @i@-th element of the list is of type @x@, then the @i@-th</span><span>
+</span><a name="line-98"></a><span class="hs-comment">-- element of the product is of type @f x@.</span><span>
+</span><a name="line-99"></a><span class="hs-comment">--</span><span>
+</span><a name="line-100"></a><span class="hs-comment">-- The constructor names are chosen to resemble the names of the</span><span>
+</span><a name="line-101"></a><span class="hs-comment">-- list constructors.</span><span>
+</span><a name="line-102"></a><span class="hs-comment">--</span><span>
+</span><a name="line-103"></a><span class="hs-comment">-- Two common instantiations of @f@ are the identity functor 'I'</span><span>
+</span><a name="line-104"></a><span class="hs-comment">-- and the constant functor 'K'. For 'I', the product becomes a</span><span>
+</span><a name="line-105"></a><span class="hs-comment">-- heterogeneous list, where the type-level list describes the</span><span>
+</span><a name="line-106"></a><span class="hs-comment">-- types of its components. For @'K' a@, the product becomes a</span><span>
+</span><a name="line-107"></a><span class="hs-comment">-- homogeneous list, where the contents of the type-level list are</span><span>
+</span><a name="line-108"></a><span class="hs-comment">-- ignored, but its length still specifies the number of elements.</span><span>
+</span><a name="line-109"></a><span class="hs-comment">--</span><span>
+</span><a name="line-110"></a><span class="hs-comment">-- In the context of the SOP approach to generic programming, an</span><span>
+</span><a name="line-111"></a><span class="hs-comment">-- n-ary product describes the structure of the arguments of a</span><span>
+</span><a name="line-112"></a><span class="hs-comment">-- single data constructor.</span><span>
+</span><a name="line-113"></a><span class="hs-comment">--</span><span>
+</span><a name="line-114"></a><span class="hs-comment">-- /Examples:/</span><span>
+</span><a name="line-115"></a><span class="hs-comment">--</span><span>
+</span><a name="line-116"></a><span class="hs-comment">-- &gt; I 'x'    :* I True  :* Nil  ::  NP I       '[ Char, Bool ]</span><span>
+</span><a name="line-117"></a><span class="hs-comment">-- &gt; K 0      :* K 1     :* Nil  ::  NP (K Int) '[ Char, Bool ]</span><span>
+</span><a name="line-118"></a><span class="hs-comment">-- &gt; Just 'x' :* Nothing :* Nil  ::  NP Maybe   '[ Char, Bool ]</span><span>
+</span><a name="line-119"></a><span class="hs-comment">--</span><span>
+</span><a name="line-120"></a><span class="hs-keyword">data</span><span> </span><a name="NP"><a href="Generics.SOP.NP.html#NP"><span class="hs-identifier">NP</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679086779"><span class="hs-identifier hs-type">k</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679086779"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-121"></a><span>  </span><a name="Nil"><a href="Generics.SOP.NP.html#Nil"><span class="hs-identifier">Nil</span></a></a><span>  </span><span class="hs-glyph">::</span><span> </span><a href="Generics.SOP.NP.html#NP"><span class="hs-identifier hs-type">NP</span></a><span> </span><a href="#local-6989586621679086780"><span class="hs-identifier hs-type">f</span></a><span> </span><span class="hs-char">'[]
+  (:*) :: f x -&gt; NP f xs -&gt; NP f (x ': xs)
+
+infixr 5 :*
+
+deriving instance All (Show `Compose` f) xs =&gt; Show (NP f xs)
+deriving instance All (Eq   `Compose` f) xs =&gt; Eq   (NP f xs)
+deriving instance (All (Eq `Compose` f) xs, All (Ord `Compose` f) xs) =&gt; Ord (NP f xs)
+
+-- | @since 0.2.5.0
+instance All (NFData `Compose` f) xs =&gt; NFData (NP f xs) where
+    rnf Nil       = ()
+    rnf (x :* xs) = rnf x `seq` rnf xs
+
+-- | A product of products.
+--
+-- This is a 'newtype' for an 'NP' of an 'NP'. The elements of the
+-- inner products are applications of the parameter @f@. The type
+-- 'POP' is indexed by the list of lists that determines the lengths
+-- of both the outer and all the inner products, as well as the types
+-- of all the elements of the inner products.
+--
+-- A 'POP' is reminiscent of a two-dimensional table (but the inner
+-- lists can all be of different length). In the context of the SOP
+-- approach to generic programming, a 'POP' is useful to represent
+-- information that is available for all arguments of all constructors
+-- of a datatype.
+--
+newtype POP (f :: (k -&gt; *)) (xss :: [[k]]) = POP (NP (NP f) xss)
+
+deriving instance (Show (NP (NP f) xss)) =&gt; Show (POP f xss)
+deriving instance (Eq   (NP (NP f) xss)) =&gt; Eq   (POP f xss)
+deriving instance (Ord  (NP (NP f) xss)) =&gt; Ord  (POP f xss)
+
+-- | @since 0.2.5.0
+instance (NFData (NP (NP f) xss)) =&gt; NFData (POP f xss) where
+    rnf (POP xss) = rnf xss
+
+-- | Unwrap a product of products.
+unPOP :: POP f xss -&gt; NP (NP f) xss
+unPOP (POP xss) = xss
+
+type instance AllN NP  c = All  c
+type instance AllN POP c = All2 c
+
+type instance AllZipN NP  c = AllZip  c
+type instance AllZipN POP c = AllZip2 c
+
+type instance SListIN NP  = SListI
+type instance SListIN POP = SListI2
+
+-- * Constructing products
+
+-- | Specialization of 'hpure'.
+--
+-- The call @'pure_NP' x@ generates a product that contains 'x' in every
+-- element position.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; pure_NP [] :: NP [] '[Char, Bool]
+-- &quot;&quot; :* [] :* Nil
+-- &gt;&gt;&gt; pure_NP (K 0) :: NP (K Int) '[Double, Int, String]
+-- K 0 :* K 0 :* K 0 :* Nil
+--
+pure_NP :: forall f xs. SListI xs =&gt; (forall a. f a) -&gt; NP f xs
+pure_NP f = case sList :: SList xs of
+  SNil   -&gt; Nil
+  SCons  -&gt; f :* pure_NP f
+
+-- | Specialization of 'hpure'.
+--
+-- The call @'pure_POP' x@ generates a product of products that contains 'x'
+-- in every element position.
+--
+pure_POP :: All SListI xss =&gt; (forall a. f a) -&gt; POP f xss
+pure_POP f = POP (cpure_NP sListP (pure_NP f))
+
+sListP :: Proxy SListI
+sListP = Proxy
+
+-- | Specialization of 'hcpure'.
+--
+-- The call @'cpure_NP' p x@ generates a product that contains 'x' in every
+-- element position.
+--
+cpure_NP :: forall c xs proxy f. All c xs
+         =&gt; proxy c -&gt; (forall a. c a =&gt; f a) -&gt; NP f xs
+cpure_NP p f = case sList :: SList xs of
+  SNil   -&gt; Nil
+  SCons  -&gt; f :* cpure_NP p f
+
+-- | Specialization of 'hcpure'.
+--
+-- The call @'cpure_NP' p x@ generates a product of products that contains 'x'
+-- in every element position.
+--
+cpure_POP :: forall c xss proxy f. All2 c xss
+          =&gt; proxy c -&gt; (forall a. c a =&gt; f a) -&gt; POP f xss
+cpure_POP p f = POP (cpure_NP (allP p) (cpure_NP p f))
+
+allP :: proxy c -&gt; Proxy (All c)
+allP _ = Proxy
+
+instance HPure NP where
+  hpure  = pure_NP
+  hcpure = cpure_NP
+
+instance HPure POP where
+  hpure  = pure_POP
+  hcpure = cpure_POP
+
+-- ** Construction from a list
+
+-- | Construct a homogeneous n-ary product from a normal Haskell list.
+--
+-- Returns 'Nothing' if the length of the list does not exactly match the
+-- expected size of the product.
+--
+fromList :: SListI xs =&gt; [a] -&gt; Maybe (NP (K a) xs)
+fromList = go sList
+  where
+    go :: SList xs -&gt; [a] -&gt; Maybe (NP (K a) xs)
+    go SNil  []     = return Nil
+    go SCons (x:xs) = do ys &lt;- go sList xs ; return (K x :* ys)
+    go _     _      = Nothing
+
+-- * Application
+
+-- | Specialization of 'hap'.
+--
+-- Applies a product of (lifted) functions pointwise to a product of
+-- suitable arguments.
+--
+ap_NP :: NP (f -.-&gt; g) xs -&gt; NP f xs -&gt; NP g xs
+ap_NP Nil           Nil        = Nil
+ap_NP (Fn f :* fs)  (x :* xs)  = f x :* ap_NP fs xs
+#if __GLASGOW_HASKELL__ &lt; 800
+ap_NP _ _ = error &quot;inaccessible&quot;
+#endif
+
+-- | Specialization of 'hap'.
+--
+-- Applies a product of (lifted) functions pointwise to a product of
+-- suitable arguments.
+--
+ap_POP :: POP (f -.-&gt; g) xss -&gt; POP f xss -&gt; POP g xss
+ap_POP (POP fss') (POP xss') = POP (go fss' xss')
+  where
+    go :: NP (NP (f -.-&gt; g)) xss -&gt; NP (NP f) xss -&gt; NP (NP g) xss
+    go Nil         Nil         = Nil
+    go (fs :* fss) (xs :* xss) = ap_NP fs xs :* go fss xss
+#if __GLASGOW_HASKELL__ &lt; 800
+    go _           _           = error &quot;inaccessible&quot;
+#endif
+
+-- The definition of 'ap_POP' is a more direct variant of
+-- '_ap_POP_spec'. The direct definition has the advantage
+-- that it avoids the 'SListI' constraint.
+_ap_POP_spec :: SListI xss =&gt; POP (f -.-&gt; g) xss -&gt; POP  f xss -&gt; POP  g xss
+_ap_POP_spec (POP fs) (POP xs) = POP (liftA2_NP ap_NP fs xs)
+
+type instance Same NP  = NP
+type instance Same POP = POP
+
+type instance Prod NP  = NP
+type instance Prod POP = POP
+
+instance HAp NP  where hap = ap_NP
+instance HAp POP where hap = ap_POP
+
+-- * Destructing products
+
+-- | Obtain the head of an n-ary product.
+--
+-- @since 0.2.1.0
+--
+hd :: NP f (x ': xs) -&gt; f x
+hd (x :* _xs) = x
+
+-- | Obtain the tail of an n-ary product.
+--
+-- @since 0.2.1.0
+--
+tl :: NP f (x ': xs) -&gt; NP f xs
+tl (_x :* xs) = xs
+
+-- | The type of projections from an n-ary product.
+--
+type Projection (f :: k -&gt; *) (xs :: [k]) = K (NP f xs) -.-&gt; f
+
+-- | Compute all projections from an n-ary product.
+--
+-- Each element of the resulting product contains one of the projections.
+--
+projections :: forall xs f . SListI xs =&gt; NP (Projection f xs) xs
+projections = case sList :: SList xs of
+  SNil  -&gt; Nil
+  SCons -&gt; fn (hd . unK) :* liftA_NP shiftProjection projections
+
+shiftProjection :: Projection f xs a -&gt; Projection f (x ': xs) a
+shiftProjection (Fn f) = Fn $ f . K . tl . unK
+
+-- * Lifting / mapping
+
+-- | Specialization of 'hliftA'.
+liftA_NP  :: SListI     xs  =&gt; (forall a. f a -&gt; g a) -&gt; NP  f xs  -&gt; NP  g xs
+-- | Specialization of 'hliftA'.
+liftA_POP :: All SListI xss =&gt; (forall a. f a -&gt; g a) -&gt; POP f xss -&gt; POP g xss
+
+liftA_NP  = hliftA
+liftA_POP = hliftA
+
+-- | Specialization of 'hliftA2'.
+liftA2_NP  :: SListI     xs  =&gt; (forall a. f a -&gt; g a -&gt; h a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP   h xs
+-- | Specialization of 'hliftA2'.
+liftA2_POP :: All SListI xss =&gt; (forall a. f a -&gt; g a -&gt; h a) -&gt; POP f xss -&gt; POP g xss -&gt; POP  h xss
+
+liftA2_NP  = hliftA2
+liftA2_POP = hliftA2
+
+-- | Specialization of 'hliftA3'.
+liftA3_NP  :: SListI     xs  =&gt; (forall a. f a -&gt; g a -&gt; h a -&gt; i a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP  h xs  -&gt; NP  i xs
+-- | Specialization of 'hliftA3'.
+liftA3_POP :: All SListI xss =&gt; (forall a. f a -&gt; g a -&gt; h a -&gt; i a) -&gt; POP f xss -&gt; POP g xss -&gt; POP h xss -&gt; POP i xss
+
+liftA3_NP  = hliftA3
+liftA3_POP = hliftA3
+
+-- | Specialization of 'hmap', which is equivalent to 'hliftA'.
+map_NP  :: SListI     xs  =&gt; (forall a. f a -&gt; g a) -&gt; NP  f xs  -&gt; NP  g xs
+-- | Specialization of 'hmap', which is equivalent to 'hliftA'.
+map_POP :: All SListI xss =&gt; (forall a. f a -&gt; g a) -&gt; POP f xss -&gt; POP g xss
+
+map_NP  = hmap
+map_POP = hmap
+
+-- | Specialization of 'hzipWith', which is equivalent to 'hliftA2'.
+zipWith_NP  :: SListI     xs  =&gt; (forall a. f a -&gt; g a -&gt; h a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP   h xs
+-- | Specialization of 'hzipWith', which is equivalent to 'hliftA2'.
+zipWith_POP :: All SListI xss =&gt; (forall a. f a -&gt; g a -&gt; h a) -&gt; POP f xss -&gt; POP g xss -&gt; POP  h xss
+
+zipWith_NP  = hzipWith
+zipWith_POP = hzipWith
+
+-- | Specialization of 'hzipWith3', which is equivalent to 'hliftA3'.
+zipWith3_NP  :: SListI     xs  =&gt; (forall a. f a -&gt; g a -&gt; h a -&gt; i a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP  h xs  -&gt; NP  i xs
+-- | Specialization of 'hzipWith3', which is equivalent to 'hliftA3'.
+zipWith3_POP :: All SListI xss =&gt; (forall a. f a -&gt; g a -&gt; h a -&gt; i a) -&gt; POP f xss -&gt; POP g xss -&gt; POP h xss -&gt; POP i xss
+
+zipWith3_NP  = hzipWith3
+zipWith3_POP = hzipWith3
+
+-- | Specialization of 'hcliftA'.
+cliftA_NP  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; NP   f xs  -&gt; NP  g xs
+-- | Specialization of 'hcliftA'.
+cliftA_POP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; POP  f xss -&gt; POP g xss
+
+cliftA_NP  = hcliftA
+cliftA_POP = hcliftA
+
+-- | Specialization of 'hcliftA2'.
+cliftA2_NP  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP  h xs
+-- | Specialization of 'hcliftA2'.
+cliftA2_POP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a) -&gt; POP f xss -&gt; POP g xss -&gt; POP h xss
+
+cliftA2_NP  = hcliftA2
+cliftA2_POP = hcliftA2
+
+-- | Specialization of 'hcliftA3'.
+cliftA3_NP  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a -&gt; i a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP  h xs  -&gt; NP  i xs
+-- | Specialization of 'hcliftA3'.
+cliftA3_POP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a -&gt; i a) -&gt; POP f xss -&gt; POP g xss -&gt; POP h xss -&gt; POP i xss
+
+cliftA3_NP  = hcliftA3
+cliftA3_POP = hcliftA3
+
+-- | Specialization of 'hcmap', which is equivalent to 'hcliftA'.
+cmap_NP  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; NP   f xs  -&gt; NP  g xs
+-- | Specialization of 'hcmap', which is equivalent to 'hcliftA'.
+cmap_POP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; POP  f xss -&gt; POP g xss
+
+cmap_NP  = hcmap
+cmap_POP = hcmap
+
+-- | Specialization of 'hczipWith', which is equivalent to 'hcliftA2'.
+czipWith_NP  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP  h xs
+-- | Specialization of 'hczipWith', which is equivalent to 'hcliftA2'.
+czipWith_POP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a) -&gt; POP f xss -&gt; POP g xss -&gt; POP h xss
+
+czipWith_NP  = hczipWith
+czipWith_POP = hczipWith
+
+-- | Specialization of 'hczipWith3', which is equivalent to 'hcliftA3'.
+czipWith3_NP  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a -&gt; i a) -&gt; NP  f xs  -&gt; NP  g xs  -&gt; NP  h xs  -&gt; NP  i xs
+-- | Specialization of 'hczipWith3', which is equivalent to 'hcliftA3'.
+czipWith3_POP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a -&gt; i a) -&gt; POP f xss -&gt; POP g xss -&gt; POP h xss -&gt; POP i xss
+
+czipWith3_NP  = hczipWith3
+czipWith3_POP = hczipWith3
+
+-- * Dealing with @'All' c@
+
+-- | Lift a constrained function operating on a list-indexed structure
+-- to a function on a list-of-list-indexed structure.
+--
+-- This is a variant of 'hcliftA'.
+--
+-- /Specification:/
+--
+-- @
+-- 'hcliftA'' p f xs = 'hpure' ('fn_2' $ \\ 'AllDictC' -&gt; f) \` 'hap' \` 'allDict_NP' p \` 'hap' \` xs
+-- @
+--
+-- /Instances:/
+--
+-- @
+-- 'hcliftA'' :: 'All2' c xss =&gt; proxy c -&gt; (forall xs. 'All' c xs =&gt; f xs -&gt; f' xs) -&gt; 'NP' f xss -&gt; 'NP' f' xss
+-- 'hcliftA'' :: 'All2' c xss =&gt; proxy c -&gt; (forall xs. 'All' c xs =&gt; f xs -&gt; f' xs) -&gt; 'Generics.SOP.NS.NS' f xss -&gt; 'Generics.SOP.NS.NS' f' xss
+-- @
+--
+{-# DEPRECATED hcliftA' &quot;Use 'hcliftA' or 'hcmap' instead.&quot; #-}
+hcliftA'  :: (All2 c xss, Prod h ~ NP, HAp h) =&gt; proxy c -&gt; (forall xs. All c xs =&gt; f xs -&gt; f' xs)                                                       -&gt; h f   xss -&gt; h f'   xss
+
+-- | Like 'hcliftA'', but for binary functions.
+{-# DEPRECATED hcliftA2' &quot;Use 'hcliftA2' or 'hczipWith' instead.&quot; #-}
+hcliftA2' :: (All2 c xss, Prod h ~ NP, HAp h) =&gt; proxy c -&gt; (forall xs. All c xs =&gt; f xs -&gt; f' xs -&gt; f'' xs)            -&gt; Prod h f xss                  -&gt; h f'  xss -&gt; h f''  xss
+
+-- | Like 'hcliftA'', but for ternay functions.
+{-# DEPRECATED hcliftA3' &quot;Use 'hcliftA3' or 'hczipWith3' instead.&quot; #-}
+hcliftA3' :: (All2 c xss, Prod h ~ NP, HAp h) =&gt; proxy c -&gt; (forall xs. All c xs =&gt; f xs -&gt; f' xs -&gt; f'' xs -&gt; f''' xs) -&gt; Prod h f xss -&gt; Prod h f' xss -&gt; h f'' xss -&gt; h f''' xss
+
+hcliftA'  p = hcliftA  (allP p)
+hcliftA2' p = hcliftA2 (allP p)
+hcliftA3' p = hcliftA3 (allP p)
+
+-- | Specialization of 'hcliftA2''.
+{-# DEPRECATED cliftA2'_NP &quot;Use 'cliftA2_NP'  instead.&quot; #-}
+cliftA2'_NP :: All2 c xss =&gt; proxy c -&gt; (forall xs. All c xs =&gt; f xs -&gt; g xs -&gt; h xs) -&gt; NP f xss -&gt; NP g xss -&gt; NP h xss
+
+cliftA2'_NP = hcliftA2'
+
+-- * Collapsing
+
+-- | Specialization of 'hcollapse'.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; collapse_NP (K 1 :* K 2 :* K 3 :* Nil)
+-- [1,2,3]
+--
+collapse_NP  ::              NP  (K a) xs  -&gt;  [a]
+
+-- | Specialization of 'hcollapse'.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; collapse_POP (POP ((K 'a' :* Nil) :* (K 'b' :* K 'c' :* Nil) :* Nil) :: POP (K Char) '[ '[(a :: *)], '[b, c] ])
+-- [&quot;a&quot;, &quot;bc&quot;]
+--
+-- (The type signature is only necessary in this case to fix the kind of the type variables.)
+--
+collapse_POP :: SListI xss =&gt; POP (K a) xss -&gt; [[a]]
+
+collapse_NP Nil         = []
+collapse_NP (K x :* xs) = x : collapse_NP xs
+
+collapse_POP = collapse_NP . hliftA (K . collapse_NP) . unPOP
+
+type instance CollapseTo NP  a = [a]
+type instance CollapseTo POP a = [[a]]
+
+instance HCollapse NP  where hcollapse = collapse_NP
+instance HCollapse POP where hcollapse = collapse_POP
+
+-- * Sequencing
+
+-- | Specialization of 'hsequence''.
+sequence'_NP  ::             Applicative f  =&gt; NP  (f :.: g) xs  -&gt; f (NP  g xs)
+
+-- | Specialization of 'hsequence''.
+sequence'_POP :: (SListI xss, Applicative f) =&gt; POP (f :.: g) xss -&gt; f (POP g xss)
+
+sequence'_NP Nil         = pure Nil
+sequence'_NP (mx :* mxs) = (:*) &lt;$&gt; unComp mx &lt;*&gt; sequence'_NP mxs
+
+sequence'_POP = fmap POP . sequence'_NP . hliftA (Comp . sequence'_NP) . unPOP
+
+instance HSequence NP  where hsequence' = sequence'_NP
+instance HSequence POP where hsequence' = sequence'_POP
+
+-- | Specialization of 'hsequence'.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; sequence_NP (Just 1 :* Just 2 :* Nil)
+-- Just (I 1 :* I 2 :* Nil)
+--
+sequence_NP  :: (SListI xs,  Applicative f) =&gt; NP  f xs  -&gt; f (NP  I xs)
+
+-- | Specialization of 'hsequence'.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; sequence_POP (POP ((Just 1 :* Nil) :* (Just 2 :* Just 3 :* Nil) :* Nil))
+-- Just (POP ((I 1 :* Nil) :* ((I 2 :* (I 3 :* Nil)) :* Nil)))
+--
+sequence_POP :: (All SListI xss, Applicative f) =&gt; POP f xss -&gt; f (POP I xss)
+
+sequence_NP   = hsequence
+sequence_POP  = hsequence
+
+-- * Catamorphism and anamorphism
+
+-- | Catamorphism for 'NP'.
+--
+-- This is a suitable generalization of 'foldr'. It takes
+-- parameters on what to do for 'Nil' and ':*'. Since the
+-- input list is heterogeneous, the result is also indexed
+-- by a type-level list.
+--
+-- @since 0.2.3.0
+--
+cata_NP ::
+     forall r f xs .
+     r '[]
+  -&gt; (forall y ys . f y -&gt; r ys -&gt; r (y ': ys))
+  -&gt; NP f xs
+  -&gt; r xs
+cata_NP nil cons = go
+  where
+    go :: forall ys . NP f ys -&gt; r ys
+    go Nil       = nil
+    go (x :* xs) = cons x (go xs)
+
+-- | Constrained catamorphism for 'NP'.
+--
+-- The difference compared to 'cata_NP' is that the function
+-- for the cons-case can make use of the fact that the specified
+-- constraint holds for all the types in the signature of the
+-- product.
+--
+-- @since 0.2.3.0
+--
+ccata_NP ::
+     forall c proxy r f xs . (All c xs)
+  =&gt; proxy c
+  -&gt; r '[]
+  -&gt; (forall y ys . c y =&gt; f y -&gt; r ys -&gt; r (y ': ys))
+  -&gt; NP f xs
+  -&gt; r xs
+ccata_NP _ nil cons = go
+  where
+    go :: forall ys . (All c ys) =&gt; NP f ys -&gt; r ys
+    go Nil       = nil
+    go (x :* xs) = cons x (go xs)
+
+-- | Anamorphism for 'NP'.
+--
+-- In contrast to the anamorphism for normal lists, the
+-- generating function does not return an 'Either', but
+-- simply an element and a new seed value.
+--
+-- This is because the decision on whether to generate a
+-- 'Nil' or a ':*' is determined by the types.
+--
+-- @since 0.2.3.0
+--
+ana_NP ::
+     forall s f xs .
+     SListI xs
+  =&gt; (forall y ys . s (y ': ys) -&gt; (f y, s ys))
+  -&gt; s xs
+  -&gt; NP f xs
+ana_NP uncons = go sList
+  where
+    go :: forall ys . SList ys -&gt; s ys -&gt; NP f ys
+    go SNil  _ = Nil
+    go SCons s = case uncons s of
+      (x, s') -&gt; x :* go sList s'
+
+-- | Constrained anamorphism for 'NP'.
+--
+-- Compared to 'ana_NP', the generating function can
+-- make use of the specified constraint here for the
+-- elements that it generates.
+--
+-- @since 0.2.3.0
+--
+cana_NP ::
+     forall c proxy s f xs . (All c xs)
+  =&gt; proxy c
+  -&gt; (forall y ys . c y =&gt; s (y ': ys) -&gt; (f y, s ys))
+  -&gt; s xs
+  -&gt; NP f xs
+cana_NP _ uncons = go sList
+  where
+    go :: forall ys . (All c ys) =&gt; SList ys -&gt; s ys -&gt; NP f ys
+    go SNil  _ = Nil
+    go SCons s = case uncons s of
+      (x, s') -&gt; x :* go sList s'
+
+-- | Specialization of 'htrans'.
+--
+-- @since 0.3.1.0
+--
+trans_NP ::
+     AllZip c xs ys
+  =&gt; proxy c
+  -&gt; (forall x y . c x y =&gt; f x -&gt; g y)
+  -&gt; NP f xs -&gt; NP g ys
+trans_NP _ _t Nil       = Nil
+trans_NP p  t (x :* xs) = t x :* trans_NP p t xs
+
+-- | Specialization of 'htrans'.
+--
+-- @since 0.3.1.0
+--
+trans_POP ::
+     AllZip2 c xss yss
+  =&gt; proxy c
+  -&gt; (forall x y . c x y =&gt; f x -&gt; g y)
+  -&gt; POP f xss -&gt; POP g yss
+trans_POP p t =
+  POP . trans_NP (allZipP p) (trans_NP p t) . unPOP
+
+allZipP :: proxy c -&gt; Proxy (AllZip c)
+allZipP _ = Proxy
+
+-- | Specialization of 'hcoerce'.
+--
+-- @since 0.3.1.0
+--
+coerce_NP ::
+     forall f g xs ys .
+     AllZip (LiftedCoercible f g) xs ys
+  =&gt; NP f xs -&gt; NP g ys
+coerce_NP =
+  unsafeCoerce
+
+-- There is a bug in the way coerce works for higher-kinded
+-- type variables that seems to occur only in GHC 7.10.
+--
+-- Therefore, the safe versions of the coercion functions
+-- are excluded below. This is harmless because they're only
+-- present for documentation purposes and not exported.
+
+#if __GLASGOW_HASKELL__ &lt; 710 || __GLASGOW_HASKELL__ &gt;= 800
+_safe_coerce_NP ::
+     forall f g xs ys .
+     AllZip (LiftedCoercible f g) xs ys
+  =&gt; NP f xs -&gt; NP g ys
+_safe_coerce_NP =
+  trans_NP (Proxy :: Proxy (LiftedCoercible f g)) coerce
+#endif
+
+-- | Specialization of 'hcoerce'.
+--
+-- @since 0.3.1.0
+--
+coerce_POP ::
+     forall f g xss yss .
+     AllZip2 (LiftedCoercible f g) xss yss
+  =&gt; POP f xss -&gt; POP g yss
+coerce_POP =
+  unsafeCoerce
+
+#if __GLASGOW_HASKELL__ &lt; 710 || __GLASGOW_HASKELL__ &gt;= 800
+_safe_coerce_POP ::
+     forall f g xss yss .
+     AllZip2 (LiftedCoercible f g) xss yss
+  =&gt; POP f xss -&gt; POP g yss
+_safe_coerce_POP =
+  trans_POP (Proxy :: Proxy (LiftedCoercible f g)) coerce
+#endif
+
+-- | Specialization of 'hfromI'.
+--
+-- @since 0.3.1.0
+--
+fromI_NP ::
+     forall f xs ys .
+     AllZip (LiftedCoercible I f) xs ys
+  =&gt; NP I xs -&gt; NP f ys
+fromI_NP = hfromI
+
+-- | Specialization of 'htoI'.
+--
+-- @since 0.3.1.0
+--
+toI_NP ::
+     forall f xs ys .
+     AllZip (LiftedCoercible f I) xs ys
+  =&gt; NP f xs -&gt; NP I ys
+toI_NP = htoI
+
+-- | Specialization of 'hfromI'.
+--
+-- @since 0.3.1.0
+--
+fromI_POP ::
+     forall f xss yss .
+     AllZip2 (LiftedCoercible I f) xss yss
+  =&gt; POP I xss -&gt; POP f yss
+fromI_POP = hfromI
+
+-- | Specialization of 'htoI'.
+--
+-- @since 0.3.1.0
+--
+toI_POP ::
+     forall f xss yss .
+     AllZip2 (LiftedCoercible f I) xss yss
+  =&gt; POP f xss -&gt; POP I yss
+toI_POP = htoI
+
+instance HTrans NP NP where
+  htrans  = trans_NP
+  hcoerce = coerce_NP
+instance HTrans POP POP where
+  htrans  = trans_POP
+  hcoerce = coerce_POP
+</span></pre></body></html>

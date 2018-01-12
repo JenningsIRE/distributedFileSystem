@@ -44,44 +44,69 @@ import           System.Log.Handler.Simple
 import           System.Log.Handler.Syslog
 import           System.Log.Logger
 import           API
+import           ServerAPI
+
+import qualified Data.ByteString.Char8        as BS
+import           System.Process
+import           System.IO
 
 startApp :: IO ()
 startApp = withLogging $ \ aplogger -> do
   warnLog "Starting file-server."
 
-  let settings = setPort 8080 $ setLogger aplogger defaultSettings
+  let settings = setPort 8000 $ setLogger aplogger defaultSettings
   runSettings settings app
+
+type FullDirectoryAPI = "postDirectory"             :> ReqBody '[JSON] Message  :> Post '[JSON] [Message]
+                   :<|> "getDirectory"              :> QueryParam "name" String :> Get '[JSON] [Message]
+                   :<|> "addServer"                :> ReqBody '[JSON] Message :> Post '[JSON] Bool
 
 app :: Application
 app = serve api server
 
-api :: Proxy DirectoryAPI
+api :: Proxy FullDirectoryAPI
 api = Proxy
 
-server :: Server DirectoryAPI
+data ServerAddress = ServerAddress  { myName        :: String
+                      , ip            :: String
+                      , port          :: String
+                      }deriving (Show, Generic, ToJSON, FromJSON, ToBSON, FromBSON)
+
+
+findServer :: String -> IO [ServerAddress]
+findServer name = liftIO $ do
+  fileServer <- withMongoDbConnection $ find (select ["myName" =: name] "FS_INFO") >>= drainCursor
+  return (DL.take 1 $ catMaybes $ DL.map (\ b -> fromBSON b :: Maybe ServerAddress) fileServer)
+
+server :: Server FullDirectoryAPI
 server = postDirectory
     :<|> getDirectory
+    :<|> addServer
+  where
+    postDirectory :: Message -> Handler [Message]
+    postDirectory msg@(Message fileName dirName) = liftIO $ do
+      let filepath = dirName ++ fileName
+      serverAddress <- findServer dirName
+      case serverAddress of
+        [] -> return ([] :: [Message])
+        (info@(ServerAddress name ip port):_) -> return [Message ip port]
 
-postDirectory :: Message -> Handler Bool
-postDirectory msg@(Message key _) = liftIO $ do
-  warnLog $ "Storing message under key " ++ key ++ "."
+    addServer :: Message -> Handler Bool
+    addServer msg@(Message dirName port) = liftIO $ do
+      let ip = "localhost"
+      let newServer = ServerAddress dirName ip port
+      withMongoDbConnection $ upsert (select ["myName" =: dirName] "FS_INFO") $ toBSON newServer
+      return True
 
-  withMongoDbConnection $ upsert (select ["name" =: key] "MESSAGE_RECORD") $ toBSON msg
+    getDirectory :: Maybe String -> Handler [Message]
+    getDirectory (Just dirName) = liftIO $ do
+      serverAddress <- findServer dirName
+      case serverAddress of
+        [] -> return ([] :: [Message])
+        (info@(ServerAddress name ip port):_) -> return [Message ip port]
 
-  return True  -- as this is a simple demo I'm not checking anything
-
-getDirectory :: Maybe String -> Handler [Message]
-getDirectory (Just key) = liftIO $ do
-  warnLog $ "Searching for value for key: " ++ key
-
-  withMongoDbConnection $ do
-    docs <- find (select ["name" =: key] "MESSAGE_RECORD") >>= drainCursor
-    --warnLog $ "retrieved data: " ++ show docs
-    return $ catMaybes $ DL.map (\ b -> fromBSON b :: Maybe Message) docs
-
-getDirectory Nothing = liftIO $ do
-  warnLog  "No key for searching."
-  return  ([] :: [Message])
+    getDirectory Nothing = liftIO $ do
+      return  ([] :: [Message])
 
 -- | error stuff
 custom404Error msg = err404 { errBody = msg }

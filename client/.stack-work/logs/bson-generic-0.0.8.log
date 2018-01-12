@@ -3,7 +3,23 @@ Preprocessing library bson-generic-0.0.8...
 
 src/Data/Bson/Generic.hs:11:14: warning:
     -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
-[1 of 1] Compiling Data.Bson.Generic ( src/Data/Bson/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Bson/Generic.o )
+Running Haddock for bson-generic-0.0.8...
+Preprocessing library bson-generic-0.0.8...
+
+src/Data/Bson/Generic.hs:11:14: warning:
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+Haddock coverage:
+  17% (  1 /  6) in 'Data.Bson.Generic'
+  Missing documentation for:
+    ToBSON (src/Data/Bson/Generic.hs:132)
+    FromBSON (src/Data/Bson/Generic.hs:182)
+    ObjectKey (src/Data/Bson/Generic.hs:118)
+    keyLabel (src/Data/Bson/Generic.hs:110)
+    constructorLabel (src/Data/Bson/Generic.hs:113)
+Warning: Data.Bson.Generic: could not find link destinations for:
+    GConstructorCount GToBSON GFromBSON
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/bson-generic/index.html
 Installing library in
 /Users/Sam/distributedFileSystem/client/.stack-work/install/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/bson-generic-0.0.8-JZVOqBk1rL7HpOeD6vuRQ4
 Registering bson-generic-0.0.8...

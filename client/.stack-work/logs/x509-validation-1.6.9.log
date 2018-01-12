@@ -11,6 +11,25 @@ Data/X509/Validation.hs:34:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
+Running Haddock for x509-validation-1.6.9...
+Preprocessing library x509-validation-1.6.9...
+
+Data/X509/Validation.hs:34:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+Haddock coverage:
+  67% (  2 /  3) in 'Data.X509.Validation.Types'
+  Missing documentation for:
+    HostName (Data/X509/Validation/Types.hs:16)
+ 100% (  5 /  5) in 'Data.X509.Validation.Signature'
+ 100% (  3 /  3) in 'Data.X509.Validation.Fingerprint'
+ 100% (  9 /  9) in 'Data.X509.Validation.Cache'
+  97% ( 29 / 30) in 'Data.X509.Validation'
+  Missing documentation for:
+    HostName (Data/X509/Validation/Types.hs:16)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/x509-validation/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/x509-validation-1.6.9-GSweZAPK3XX8UFBWL4eSHw
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/x509-validation-1.6.9-GSweZAPK3XX8UFBWL4eSHw
 Registering x509-validation-1.6.9...

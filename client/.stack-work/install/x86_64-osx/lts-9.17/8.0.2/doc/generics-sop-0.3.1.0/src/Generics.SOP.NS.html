@@ -1,0 +1,730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE BangPatterns #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE PolyKinds #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE ScopedTypeVariables #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE StandaloneDeriving #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE UndecidableInstances #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# OPTIONS_GHC -fno-warn-deprecations #-}</span><span>
+</span><a name="line-7"></a><span class="hs-comment">-- | n-ary sums (and sums of products)</span><span>
+</span><a name="line-8"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">NS</span><span>
+</span><a name="line-9"></a><span>  </span><span class="hs-special">(</span><span> </span><span class="hs-comment">-- * Datatypes</span><span>
+</span><a name="line-10"></a><span>    </span><a href="Generics.SOP.NS.html#NS"><span class="hs-identifier hs-type">NS</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-11"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#SOP"><span class="hs-identifier hs-type">SOP</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-12"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#unSOP"><span class="hs-identifier hs-var">unSOP</span></a><span>
+</span><a name="line-13"></a><span>    </span><span class="hs-comment">-- * Constructing sums</span><span>
+</span><a name="line-14"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#Injection"><span class="hs-identifier hs-type">Injection</span></a><span>
+</span><a name="line-15"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#injections"><span class="hs-identifier hs-var">injections</span></a><span>
+</span><a name="line-16"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#shift"><span class="hs-identifier hs-var">shift</span></a><span>
+</span><a name="line-17"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#shiftInjection"><span class="hs-identifier hs-var">shiftInjection</span></a><span>
+</span><a name="line-18"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#apInjs_NP"><span class="hs-identifier hs-var">apInjs_NP</span></a><span>
+</span><a name="line-19"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#apInjs%27_NP"><span class="hs-identifier hs-var">apInjs'_NP</span></a><span>
+</span><a name="line-20"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#apInjs_POP"><span class="hs-identifier hs-var">apInjs_POP</span></a><span>
+</span><a name="line-21"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#apInjs%27_POP"><span class="hs-identifier hs-var">apInjs'_POP</span></a><span>
+</span><a name="line-22"></a><span>    </span><span class="hs-comment">-- * Destructing sums</span><span>
+</span><a name="line-23"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#unZ"><span class="hs-identifier hs-var">unZ</span></a><span>
+</span><a name="line-24"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#index_NS"><span class="hs-identifier hs-var">index_NS</span></a><span>
+</span><a name="line-25"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#index_SOP"><span class="hs-identifier hs-var">index_SOP</span></a><span>
+</span><a name="line-26"></a><span>    </span><span class="hs-comment">-- * Application</span><span>
+</span><a name="line-27"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#ap_NS"><span class="hs-identifier hs-var">ap_NS</span></a><span>
+</span><a name="line-28"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#ap_SOP"><span class="hs-identifier hs-var">ap_SOP</span></a><span>
+</span><a name="line-29"></a><span>    </span><span class="hs-comment">-- * Lifting / mapping</span><span>
+</span><a name="line-30"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#liftA_NS"><span class="hs-identifier hs-var">liftA_NS</span></a><span>
+</span><a name="line-31"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#liftA_SOP"><span class="hs-identifier hs-var">liftA_SOP</span></a><span>
+</span><a name="line-32"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#liftA2_NS"><span class="hs-identifier hs-var">liftA2_NS</span></a><span>
+</span><a name="line-33"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#liftA2_SOP"><span class="hs-identifier hs-var">liftA2_SOP</span></a><span>
+</span><a name="line-34"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cliftA_NS"><span class="hs-identifier hs-var">cliftA_NS</span></a><span>
+</span><a name="line-35"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cliftA_SOP"><span class="hs-identifier hs-var">cliftA_SOP</span></a><span>
+</span><a name="line-36"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cliftA2_NS"><span class="hs-identifier hs-var">cliftA2_NS</span></a><span>
+</span><a name="line-37"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cliftA2_SOP"><span class="hs-identifier hs-var">cliftA2_SOP</span></a><span>
+</span><a name="line-38"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#map_NS"><span class="hs-identifier hs-var">map_NS</span></a><span>
+</span><a name="line-39"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#map_SOP"><span class="hs-identifier hs-var">map_SOP</span></a><span>
+</span><a name="line-40"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cmap_NS"><span class="hs-identifier hs-var">cmap_NS</span></a><span>
+</span><a name="line-41"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cmap_SOP"><span class="hs-identifier hs-var">cmap_SOP</span></a><span>
+</span><a name="line-42"></a><span>    </span><span class="hs-comment">-- * Dealing with @'All' c@</span><span>
+</span><a name="line-43"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cliftA2%27_NS"><span class="hs-identifier hs-var">cliftA2'_NS</span></a><span>
+</span><a name="line-44"></a><span>    </span><span class="hs-comment">-- * Collapsing</span><span>
+</span><a name="line-45"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#collapse_NS"><span class="hs-identifier hs-var">collapse_NS</span></a><span>
+</span><a name="line-46"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#collapse_SOP"><span class="hs-identifier hs-var">collapse_SOP</span></a><span>
+</span><a name="line-47"></a><span>    </span><span class="hs-comment">-- * Sequencing</span><span>
+</span><a name="line-48"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#sequence%27_NS"><span class="hs-identifier hs-var">sequence'_NS</span></a><span>
+</span><a name="line-49"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#sequence%27_SOP"><span class="hs-identifier hs-var">sequence'_SOP</span></a><span>
+</span><a name="line-50"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#sequence_NS"><span class="hs-identifier hs-var">sequence_NS</span></a><span>
+</span><a name="line-51"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#sequence_SOP"><span class="hs-identifier hs-var">sequence_SOP</span></a><span>
+</span><a name="line-52"></a><span>    </span><span class="hs-comment">-- * Catamorphism and anamorphism</span><span>
+</span><a name="line-53"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cata_NS"><span class="hs-identifier hs-var">cata_NS</span></a><span>
+</span><a name="line-54"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#ccata_NS"><span class="hs-identifier hs-var">ccata_NS</span></a><span>
+</span><a name="line-55"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#ana_NS"><span class="hs-identifier hs-var">ana_NS</span></a><span>
+</span><a name="line-56"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cana_NS"><span class="hs-identifier hs-var">cana_NS</span></a><span>
+</span><a name="line-57"></a><span>    </span><span class="hs-comment">-- * Expanding sums to products</span><span>
+</span><a name="line-58"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#expand_NS"><span class="hs-identifier hs-var">expand_NS</span></a><span>
+</span><a name="line-59"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cexpand_NS"><span class="hs-identifier hs-var">cexpand_NS</span></a><span>
+</span><a name="line-60"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#expand_SOP"><span class="hs-identifier hs-var">expand_SOP</span></a><span>
+</span><a name="line-61"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#cexpand_SOP"><span class="hs-identifier hs-var">cexpand_SOP</span></a><span>
+</span><a name="line-62"></a><span>    </span><span class="hs-comment">-- * Transformation of index lists and coercions</span><span>
+</span><a name="line-63"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#trans_NS"><span class="hs-identifier hs-var">trans_NS</span></a><span>
+</span><a name="line-64"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#trans_SOP"><span class="hs-identifier hs-var">trans_SOP</span></a><span>
+</span><a name="line-65"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#coerce_NS"><span class="hs-identifier hs-var">coerce_NS</span></a><span>
+</span><a name="line-66"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#coerce_SOP"><span class="hs-identifier hs-var">coerce_SOP</span></a><span>
+</span><a name="line-67"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#fromI_NS"><span class="hs-identifier hs-var">fromI_NS</span></a><span>
+</span><a name="line-68"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#fromI_SOP"><span class="hs-identifier hs-var">fromI_SOP</span></a><span>
+</span><a name="line-69"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#toI_NS"><span class="hs-identifier hs-var">toI_NS</span></a><span>
+</span><a name="line-70"></a><span>  </span><span class="hs-special">,</span><span> </span><a href="Generics.SOP.NS.html#toI_SOP"><span class="hs-identifier hs-var">toI_SOP</span></a><span>
+</span><a name="line-71"></a><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-72"></a><span>
+</span><a name="line-73"></a><span class="hs-cpp">#if !(MIN_VERSION_base(4,8,0))</span><span>
+</span><a name="line-74"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Applicative</span><span>
+</span><a name="line-75"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-76"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Coerce</span><span>
+</span><a name="line-77"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Proxy</span><span>
+</span><a name="line-78"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Unsafe</span><span class="hs-operator">.</span><span class="hs-identifier">Coerce</span><span>
+</span><a name="line-79"></a><span>
+</span><a name="line-80"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">DeepSeq</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">NFData</span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-81"></a><span>
+</span><a name="line-82"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.BasicFunctors.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">BasicFunctors</span></a><span>
+</span><a name="line-83"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Classes.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Classes</span></a><span>
+</span><a name="line-84"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Constraint.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Constraint</span></a><span>
+</span><a name="line-85"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.NP.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">NP</span></a><span>
+</span><a name="line-86"></a><span class="hs-keyword">import</span><span> </span><a href="Generics.SOP.Sing.html"><span class="hs-identifier">Generics</span><span class="hs-operator">.</span><span class="hs-identifier">SOP</span><span class="hs-operator">.</span><span class="hs-identifier">Sing</span></a><span>
+</span><a name="line-87"></a><span>
+</span><a name="line-88"></a><span class="hs-comment">-- * Datatypes</span><span>
+</span><a name="line-89"></a><span>
+</span><a name="line-90"></a><span class="hs-comment">-- | An n-ary sum.</span><span>
+</span><a name="line-91"></a><span class="hs-comment">--</span><span>
+</span><a name="line-92"></a><span class="hs-comment">-- The sum is parameterized by a type constructor @f@ and</span><span>
+</span><a name="line-93"></a><span class="hs-comment">-- indexed by a type-level list @xs@. The length of the list</span><span>
+</span><a name="line-94"></a><span class="hs-comment">-- determines the number of choices in the sum and if the</span><span>
+</span><a name="line-95"></a><span class="hs-comment">-- @i@-th element of the list is of type @x@, then the @i@-th</span><span>
+</span><a name="line-96"></a><span class="hs-comment">-- choice of the sum is of type @f x@.</span><span>
+</span><a name="line-97"></a><span class="hs-comment">--</span><span>
+</span><a name="line-98"></a><span class="hs-comment">-- The constructor names are chosen to resemble Peano-style</span><span>
+</span><a name="line-99"></a><span class="hs-comment">-- natural numbers, i.e., 'Z' is for &quot;zero&quot;, and 'S' is for</span><span>
+</span><a name="line-100"></a><span class="hs-comment">-- &quot;successor&quot;. Chaining 'S' and 'Z' chooses the corresponding</span><span>
+</span><a name="line-101"></a><span class="hs-comment">-- component of the sum.</span><span>
+</span><a name="line-102"></a><span class="hs-comment">--</span><span>
+</span><a name="line-103"></a><span class="hs-comment">-- /Examples:/</span><span>
+</span><a name="line-104"></a><span class="hs-comment">--</span><span>
+</span><a name="line-105"></a><span class="hs-comment">-- &gt; Z         :: f x -&gt; NS f (x ': xs)</span><span>
+</span><a name="line-106"></a><span class="hs-comment">-- &gt; S . Z     :: f y -&gt; NS f (x ': y ': xs)</span><span>
+</span><a name="line-107"></a><span class="hs-comment">-- &gt; S . S . Z :: f z -&gt; NS f (x ': y ': z ': xs)</span><span>
+</span><a name="line-108"></a><span class="hs-comment">-- &gt; ...</span><span>
+</span><a name="line-109"></a><span class="hs-comment">--</span><span>
+</span><a name="line-110"></a><span class="hs-comment">-- Note that empty sums (indexed by an empty list) have no</span><span>
+</span><a name="line-111"></a><span class="hs-comment">-- non-bottom elements.</span><span>
+</span><a name="line-112"></a><span class="hs-comment">--</span><span>
+</span><a name="line-113"></a><span class="hs-comment">-- Two common instantiations of @f@ are the identity functor 'I'</span><span>
+</span><a name="line-114"></a><span class="hs-comment">-- and the constant functor 'K'. For 'I', the sum becomes a</span><span>
+</span><a name="line-115"></a><span class="hs-comment">-- direct generalization of the 'Either' type to arbitrarily many</span><span>
+</span><a name="line-116"></a><span class="hs-comment">-- choices. For @'K' a@, the result is a homogeneous choice type,</span><span>
+</span><a name="line-117"></a><span class="hs-comment">-- where the contents of the type-level list are ignored, but its</span><span>
+</span><a name="line-118"></a><span class="hs-comment">-- length specifies the number of options.</span><span>
+</span><a name="line-119"></a><span class="hs-comment">--</span><span>
+</span><a name="line-120"></a><span class="hs-comment">-- In the context of the SOP approach to generic programming, an</span><span>
+</span><a name="line-121"></a><span class="hs-comment">-- n-ary sum describes the top-level structure of a datatype,</span><span>
+</span><a name="line-122"></a><span class="hs-comment">-- which is a choice between all of its constructors.</span><span>
+</span><a name="line-123"></a><span class="hs-comment">--</span><span>
+</span><a name="line-124"></a><span class="hs-comment">-- /Examples:/</span><span>
+</span><a name="line-125"></a><span class="hs-comment">--</span><span>
+</span><a name="line-126"></a><span class="hs-comment">-- &gt; Z (I 'x')      :: NS I       '[ Char, Bool ]</span><span>
+</span><a name="line-127"></a><span class="hs-comment">-- &gt; S (Z (I True)) :: NS I       '[ Char, Bool ]</span><span>
+</span><a name="line-128"></a><span class="hs-comment">-- &gt; S (Z (K 1))    :: NS (K Int) '[ Char, Bool ]</span><span>
+</span><a name="line-129"></a><span class="hs-comment">--</span><span>
+</span><a name="line-130"></a><span class="hs-keyword">data</span><span> </span><a name="NS"><a href="Generics.SOP.NS.html#NS"><span class="hs-identifier">NS</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679137470"><span class="hs-identifier hs-type">k</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679137470"><span class="hs-identifier hs-type">k</span></a><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-131"></a><span>  </span><a name="Z"><a href="Generics.SOP.NS.html#Z"><span class="hs-identifier">Z</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679137471"><span class="hs-identifier hs-type">f</span></a><span> </span><a href="#local-6989586621679137472"><span class="hs-identifier hs-type">x</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Generics.SOP.NS.html#NS"><span class="hs-identifier hs-type">NS</span></a><span> </span><a href="#local-6989586621679137471"><span class="hs-identifier hs-type">f</span></a><span> </span><span class="hs-special">(</span><a href="#local-6989586621679137472"><span class="hs-identifier hs-type">x</span></a><span> </span><span class="hs-char">': xs)
+  S :: NS f xs -&gt; NS f (x ': xs)
+
+deriving instance All (Show `Compose` f) xs =&gt; Show (NS f xs)
+deriving instance All (Eq   `Compose` f) xs =&gt; Eq   (NS f xs)
+deriving instance (All (Eq `Compose` f) xs, All (Ord `Compose` f) xs) =&gt; Ord (NS f xs)
+
+-- | @since 0.2.5.0
+instance All (NFData `Compose` f) xs =&gt; NFData (NS f xs) where
+    rnf (Z x)  = rnf x
+    rnf (S xs) = rnf xs
+
+-- | Extract the payload from a unary sum.
+--
+-- For larger sums, this function would be partial, so it is only
+-- provided with a rather restrictive type.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; unZ (Z (I 'x'))
+-- I 'x'
+--
+-- @since 0.2.2.0
+--
+unZ :: NS f '[x] -&gt; f x
+unZ (Z x) = x
+unZ _     = error &quot;inaccessible&quot; -- needed even in GHC 8.0.1
+
+-- | Obtain the index from an n-ary sum.
+--
+-- An n-nary sum represents a choice between n different options.
+-- This function returns an integer between 0 and n - 1 indicating
+-- the option chosen by the given value.
+--
+-- /Examples:/
+--
+-- &gt;&gt;&gt; index_NS (S (S (Z (I False))))
+-- 2
+-- &gt;&gt;&gt; index_NS (Z (K ()))
+-- 0
+--
+-- @since 0.2.4.0
+--
+index_NS :: forall f xs . NS f xs -&gt; Int
+index_NS = go 0
+  where
+    go :: forall ys . Int -&gt; NS f ys -&gt; Int
+    go !acc (Z _) = acc
+    go !acc (S x) = go (acc + 1) x
+
+instance HIndex NS where
+  hindex = index_NS
+
+-- | A sum of products.
+--
+-- This is a 'newtype' for an 'NS' of an 'NP'. The elements of the
+-- (inner) products are applications of the parameter @f@. The type
+-- 'SOP' is indexed by the list of lists that determines the sizes
+-- of both the (outer) sum and all the (inner) products, as well as
+-- the types of all the elements of the inner products.
+--
+-- An @'SOP' 'I'@ reflects the structure of a normal Haskell datatype.
+-- The sum structure represents the choice between the different
+-- constructors, the product structure represents the arguments of
+-- each constructor.
+--
+newtype SOP (f :: (k -&gt; *)) (xss :: [[k]]) = SOP (NS (NP f) xss)
+
+deriving instance (Show (NS (NP f) xss)) =&gt; Show (SOP f xss)
+deriving instance (Eq   (NS (NP f) xss)) =&gt; Eq   (SOP f xss)
+deriving instance (Ord  (NS (NP f) xss)) =&gt; Ord  (SOP f xss)
+
+-- | @since 0.2.5.0
+instance (NFData (NS (NP f) xss)) =&gt; NFData (SOP f xss) where
+    rnf (SOP xss) = rnf xss
+
+-- | Unwrap a sum of products.
+unSOP :: SOP f xss -&gt; NS (NP f) xss
+unSOP (SOP xss) = xss
+
+-- | Obtain the index from an n-ary sum of products.
+--
+-- An n-nary sum represents a choice between n different options.
+-- This function returns an integer between 0 and n - 1 indicating
+-- the option chosen by the given value.
+--
+-- /Specification:/
+--
+-- @
+-- 'index_SOP' = 'index_NS' '.' 'unSOP'
+-- @
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; index_SOP (SOP (S (Z (I True :* I 'x' :* Nil))))
+-- 1
+--
+-- @since 0.2.4.0
+--
+index_SOP :: SOP f xs -&gt; Int
+index_SOP = index_NS . unSOP
+
+instance HIndex SOP where
+  hindex = index_SOP
+
+-- * Constructing sums
+
+-- | The type of injections into an n-ary sum.
+--
+-- If you expand the type synonyms and newtypes involved, you get
+--
+-- &gt; Injection f xs a = (f -.-&gt; K (NS f xs)) a ~= f a -&gt; K (NS f xs) a ~= f a -&gt; NS f xs
+--
+-- If we pick @a@ to be an element of @xs@, this indeed corresponds to an
+-- injection into the sum.
+--
+type Injection (f :: k -&gt; *) (xs :: [k]) = f -.-&gt; K (NS f xs)
+
+-- | Compute all injections into an n-ary sum.
+--
+-- Each element of the resulting product contains one of the injections.
+--
+injections :: forall xs f. SListI xs =&gt; NP (Injection f xs) xs
+injections = case sList :: SList xs of
+  SNil   -&gt; Nil
+  SCons  -&gt; fn (K . Z) :* liftA_NP shiftInjection injections
+
+-- | Shift an injection.
+--
+-- Given an injection, return an injection into a sum that is one component larger.
+--
+shiftInjection :: Injection f xs a -&gt; Injection f (x ': xs) a
+shiftInjection (Fn f) = Fn $ K . S . unK . f
+
+{-# DEPRECATED shift &quot;Use 'shiftInjection' instead.&quot; #-}
+-- | Shift an injection.
+--
+-- Given an injection, return an injection into a sum that is one component larger.
+--
+shift :: Injection f xs a -&gt; Injection f (x ': xs) a
+shift = shiftInjection
+
+-- | Apply injections to a product.
+--
+-- Given a product containing all possible choices, produce a
+-- list of sums by applying each injection to the appropriate
+-- element.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; apInjs_NP (I 'x' :* I True :* I 2 :* Nil)
+-- [Z (I 'x'), S (Z (I True)), S (S (Z (I 2)))]
+--
+apInjs_NP  :: SListI xs  =&gt; NP  f xs  -&gt; [NS  f xs]
+apInjs_NP  = hcollapse . apInjs'_NP
+
+-- | `apInjs_NP` without `hcollapse`.
+--
+-- &gt;&gt;&gt; apInjs'_NP (I 'x' :* I True :* I 2 :* Nil)
+-- K (Z (I 'x')) :* K (S (Z (I True))) :* K (S (S (Z (I 2)))) :* Nil
+--
+-- @since 0.2.5.0
+--
+apInjs'_NP :: SListI xs =&gt; NP f xs -&gt; NP (K (NS f xs)) xs
+apInjs'_NP = hap injections
+
+-- | Apply injections to a product of product.
+--
+-- This operates on the outer product only. Given a product
+-- containing all possible choices (that are products),
+-- produce a list of sums (of products) by applying each
+-- injection to the appropriate element.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; apInjs_POP (POP ((I 'x' :* Nil) :* (I True :* I 2 :* Nil) :* Nil))
+-- [SOP (Z (I 'x' :* Nil)),SOP (S (Z (I True :* (I 2 :* Nil))))]
+--
+apInjs_POP :: SListI xss =&gt; POP f xss -&gt; [SOP f xss]
+apInjs_POP = map SOP . apInjs_NP . unPOP
+
+-- | `apInjs_POP` without `hcollapse`.
+--
+-- /Example:/
+--
+-- &gt;&gt;&gt; apInjs'_POP (POP ((I 'x' :* Nil) :* (I True :* I 2 :* Nil) :* Nil))
+-- K (SOP (Z (I 'x' :* Nil))) :* K (SOP (S (Z (I True :* I 2 :* Nil)))) :* Nil
+--
+-- @since 0.2.5.0
+--
+apInjs'_POP :: SListI xss =&gt; POP f xss -&gt; NP (K (SOP f xss)) xss
+apInjs'_POP = hmap (K . SOP . unK) . hap injections . unPOP
+
+type instance UnProd NP  = NS
+type instance UnProd POP = SOP
+
+instance HApInjs NS where
+  hapInjs = apInjs_NP
+
+instance HApInjs SOP where
+  hapInjs = apInjs_POP
+
+-- * Application
+
+-- | Specialization of 'hap'.
+ap_NS :: NP (f -.-&gt; g) xs -&gt; NS f xs -&gt; NS g xs
+ap_NS (Fn f  :* _)   (Z x)   = Z (f x)
+ap_NS (_     :* fs)  (S xs)  = S (ap_NS fs xs)
+ap_NS _ _ = error &quot;inaccessible&quot;
+
+-- | Specialization of 'hap'.
+ap_SOP  :: POP (f -.-&gt; g) xss -&gt; SOP f xss -&gt; SOP g xss
+ap_SOP (POP fss') (SOP xss') = SOP (go fss' xss')
+  where
+    go :: NP (NP (f -.-&gt; g)) xss -&gt; NS (NP f) xss -&gt; NS (NP g) xss
+    go (fs :* _  ) (Z xs ) = Z (ap_NP fs  xs )
+    go (_  :* fss) (S xss) = S (go    fss xss)
+    go _           _       = error &quot;inaccessible&quot;
+
+-- The definition of 'ap_SOP' is a more direct variant of
+-- '_ap_SOP_spec'. The direct definition has the advantage
+-- that it avoids the 'SListI' constraint.
+_ap_SOP_spec :: SListI xss =&gt; POP (t -.-&gt; f) xss -&gt; SOP t xss -&gt; SOP f xss
+_ap_SOP_spec (POP fs) (SOP xs) = SOP (liftA2_NS ap_NP fs xs)
+
+type instance Same NS  = NS
+type instance Same SOP = SOP
+
+type instance Prod NS  = NP
+type instance Prod SOP = POP
+
+type instance SListIN NS  = SListI
+type instance SListIN SOP = SListI2
+
+instance HAp NS  where hap = ap_NS
+instance HAp SOP where hap = ap_SOP
+
+-- * Lifting / mapping
+
+-- | Specialization of 'hliftA'.
+liftA_NS  :: SListI     xs  =&gt; (forall a. f a -&gt; g a) -&gt; NS  f xs  -&gt; NS  g xs
+-- | Specialization of 'hliftA'.
+liftA_SOP :: All SListI xss =&gt; (forall a. f a -&gt; g a) -&gt; SOP f xss -&gt; SOP g xss
+
+liftA_NS  = hliftA
+liftA_SOP = hliftA
+
+-- | Specialization of 'hliftA2'.
+liftA2_NS  :: SListI     xs  =&gt; (forall a. f a -&gt; g a -&gt; h a) -&gt; NP  f xs  -&gt; NS  g xs  -&gt; NS   h xs
+-- | Specialization of 'hliftA2'.
+liftA2_SOP :: All SListI xss =&gt; (forall a. f a -&gt; g a -&gt; h a) -&gt; POP f xss -&gt; SOP g xss -&gt; SOP  h xss
+
+liftA2_NS  = hliftA2
+liftA2_SOP = hliftA2
+
+-- | Specialization of 'hmap', which is equivalent to 'hliftA'.
+map_NS  :: SListI     xs  =&gt; (forall a. f a -&gt; g a) -&gt; NS  f xs  -&gt; NS  g xs
+-- | Specialization of 'hmap', which is equivalent to 'hliftA'.
+map_SOP :: All SListI xss =&gt; (forall a. f a -&gt; g a) -&gt; SOP f xss -&gt; SOP g xss
+
+map_NS  = hmap
+map_SOP = hmap
+
+-- | Specialization of 'hcliftA'.
+cliftA_NS  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; NS   f xs  -&gt; NS  g xs
+-- | Specialization of 'hcliftA'.
+cliftA_SOP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; SOP  f xss -&gt; SOP g xss
+
+cliftA_NS  = hcliftA
+cliftA_SOP = hcliftA
+
+-- | Specialization of 'hcliftA2'.
+cliftA2_NS  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a) -&gt; NP  f xs  -&gt; NS  g xs  -&gt; NS  h xs
+-- | Specialization of 'hcliftA2'.
+cliftA2_SOP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a -&gt; h a) -&gt; POP f xss -&gt; SOP g xss -&gt; SOP h xss
+
+cliftA2_NS  = hcliftA2
+cliftA2_SOP = hcliftA2
+
+-- | Specialization of 'hcmap', which is equivalent to 'hcliftA'.
+cmap_NS  :: All  c xs  =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; NS   f xs  -&gt; NS  g xs
+-- | Specialization of 'hcmap', which is equivalent to 'hcliftA'.
+cmap_SOP :: All2 c xss =&gt; proxy c -&gt; (forall a. c a =&gt; f a -&gt; g a) -&gt; SOP  f xss -&gt; SOP g xss
+
+cmap_NS  = hcmap
+cmap_SOP = hcmap
+
+-- * Dealing with @'All' c@
+
+-- | Specialization of 'hcliftA2''.
+{-# DEPRECATED cliftA2'_NS &quot;Use 'cliftA2_NS' instead.&quot; #-}
+cliftA2'_NS :: All2 c xss =&gt; proxy c -&gt; (forall xs. All c xs =&gt; f xs -&gt; g xs -&gt; h xs) -&gt; NP f xss -&gt; NS g xss -&gt; NS h xss
+
+cliftA2'_NS = hcliftA2'
+
+-- * Collapsing
+
+-- | Specialization of 'hcollapse'.
+collapse_NS  ::               NS  (K a) xs  -&gt;   a
+-- | Specialization of 'hcollapse'.
+collapse_SOP :: SListI xss =&gt; SOP (K a) xss -&gt;  [a]
+
+collapse_NS (Z (K x)) = x
+collapse_NS (S xs)    = collapse_NS xs
+
+collapse_SOP = collapse_NS . hliftA (K . collapse_NP) . unSOP
+
+type instance CollapseTo NS  a =  a
+type instance CollapseTo SOP a = [a]
+
+instance HCollapse NS  where hcollapse = collapse_NS
+instance HCollapse SOP where hcollapse = collapse_SOP
+
+-- * Sequencing
+
+-- | Specialization of 'hsequence''.
+sequence'_NS  ::              Applicative f  =&gt; NS  (f :.: g) xs  -&gt; f (NS  g xs)
+
+-- | Specialization of 'hsequence''.
+sequence'_SOP :: (SListI xss, Applicative f) =&gt; SOP (f :.: g) xss -&gt; f (SOP g xss)
+
+sequence'_NS (Z mx)  = Z &lt;$&gt; unComp mx
+sequence'_NS (S mxs) = S &lt;$&gt; sequence'_NS mxs
+
+sequence'_SOP = fmap SOP . sequence'_NS . hliftA (Comp . sequence'_NP) . unSOP
+
+instance HSequence NS  where hsequence' = sequence'_NS
+instance HSequence SOP where hsequence' = sequence'_SOP
+
+-- | Specialization of 'hsequence'.
+sequence_NS  :: (SListI xs,  Applicative f) =&gt; NS  f xs  -&gt; f (NS  I xs)
+
+-- | Specialization of 'hsequence'.
+sequence_SOP :: (All SListI xss, Applicative f) =&gt; SOP f xss -&gt; f (SOP I xss)
+
+sequence_NS   = hsequence
+sequence_SOP  = hsequence
+
+-- * Catamorphism and anamorphism
+
+-- | Catamorphism for 'NS'.
+--
+-- Takes arguments determining what to do for 'Z'
+-- and what to do for 'S'. The result type is still
+-- indexed over the type-level lit.
+--
+-- @since 0.2.3.0
+--
+cata_NS ::
+     forall r f xs .
+     (forall y ys . f y -&gt; r (y ': ys))
+  -&gt; (forall y ys . r ys -&gt; r (y ': ys))
+  -&gt; NS f xs
+  -&gt; r xs
+cata_NS z s = go
+  where
+    go :: forall ys . NS f ys -&gt; r ys
+    go (Z x) = z x
+    go (S i) = s (go i)
+
+-- | Constrained catamorphism for 'NS'.
+--
+-- @since 0.2.3.0
+--
+ccata_NS ::
+     forall c proxy r f xs . (All c xs)
+  =&gt; proxy c
+  -&gt; (forall y ys . c y =&gt; f y -&gt; r (y ': ys))
+  -&gt; (forall y ys . c y =&gt; r ys -&gt; r (y ': ys))
+  -&gt; NS f xs
+  -&gt; r xs
+ccata_NS _ z s = go
+  where
+    go :: forall ys . (All c ys) =&gt; NS f ys -&gt; r ys
+    go (Z x) = z x
+    go (S i) = s (go i)
+
+-- | Anamorphism for 'NS'.
+--
+-- @since 0.2.3.0
+--
+ana_NS ::
+     forall s f xs . (SListI xs)
+  =&gt; (forall r . s '[] -&gt; r)
+  -&gt; (forall y ys . s (y ': ys) -&gt; Either (f y) (s ys))
+  -&gt; s xs
+  -&gt; NS f xs
+ana_NS refute decide = go sList
+  where
+    go :: forall ys . SList ys -&gt; s ys -&gt; NS f ys
+    go SNil  s = refute s
+    go SCons s = case decide s of
+      Left x   -&gt; Z x
+      Right s' -&gt; S (go sList s')
+
+-- | Constrained anamorphism for 'NS'.
+--
+-- @since 0.2.3.0
+--
+cana_NS :: forall c proxy s f xs .
+     (All c xs)
+  =&gt; proxy c
+  -&gt; (forall r . s '[] -&gt; r)
+  -&gt; (forall y ys . c y =&gt; s (y ': ys) -&gt; Either (f y) (s ys))
+  -&gt; s xs
+  -&gt; NS f xs
+cana_NS _ refute decide = go sList
+  where
+    go :: forall ys . (All c ys) =&gt; SList ys -&gt; s ys -&gt; NS f ys
+    go SNil  s = refute s
+    go SCons s = case decide s of
+      Left x   -&gt; Z x
+      Right s' -&gt; S (go sList s')
+
+-- * Expanding sums to products
+
+-- | Specialization of 'hexpand'.
+--
+-- @since 0.2.5.0
+--
+expand_NS :: forall f xs .
+     (SListI xs)
+  =&gt; (forall x . f x)
+  -&gt; NS f xs -&gt; NP f xs
+expand_NS d = go sList
+  where
+    go :: forall ys . SList ys -&gt; NS f ys -&gt; NP f ys
+    go SCons (Z x) = x :* hpure d
+    go SCons (S i) = d :* go sList i
+    go SNil  _     = error &quot;inaccessible&quot; -- still required in ghc-8.0.*
+
+-- | Specialization of 'hcexpand'.
+--
+-- @since 0.2.5.0
+--
+cexpand_NS :: forall c proxy f xs .
+     (All c xs)
+  =&gt; proxy c -&gt; (forall x . c x =&gt; f x)
+  -&gt; NS f xs -&gt; NP f xs
+cexpand_NS p d = go
+  where
+    go :: forall ys . All c ys =&gt; NS f ys -&gt; NP f ys
+    go (Z x) = x :* hcpure p d
+    go (S i) = d :* go i
+
+-- | Specialization of 'hexpand'.
+--
+-- @since 0.2.5.0
+--
+expand_SOP :: forall f xss .
+     (All SListI xss)
+  =&gt; (forall x . f x)
+  -&gt; SOP f xss -&gt; POP f xss
+expand_SOP d =
+  POP . cexpand_NS (Proxy :: Proxy SListI) (hpure d) . unSOP
+
+-- | Specialization of 'hcexpand'.
+--
+-- @since 0.2.5.0
+--
+cexpand_SOP :: forall c proxy f xss .
+     (All2 c xss)
+  =&gt; proxy c -&gt; (forall x . c x =&gt; f x)
+  -&gt; SOP f xss -&gt; POP f xss
+cexpand_SOP p d =
+  POP . cexpand_NS (allP p) (hcpure p d) . unSOP
+
+allP :: proxy c -&gt; Proxy (All c)
+allP _ = Proxy
+
+instance HExpand NS where
+  hexpand  = expand_NS
+  hcexpand = cexpand_NS
+
+instance HExpand SOP where
+  hexpand  = expand_SOP
+  hcexpand = cexpand_SOP
+
+-- | Specialization of 'htrans'.
+--
+-- @since 0.3.1.0
+--
+trans_NS ::
+     AllZip c xs ys
+  =&gt; proxy c
+  -&gt; (forall x y . c x y =&gt; f x -&gt; g y)
+  -&gt; NS f xs -&gt; NS g ys
+trans_NS _ t (Z x)      = Z (t x)
+trans_NS p t (S x)      = S (trans_NS p t x)
+
+-- | Specialization of 'htrans'.
+--
+-- @since 0.3.1.0
+--
+trans_SOP ::
+     AllZip2 c xss yss
+  =&gt; proxy c
+  -&gt; (forall x y . c x y =&gt; f x -&gt; g y)
+  -&gt; SOP f xss -&gt; SOP g yss
+trans_SOP p t =
+  SOP . trans_NS (allZipP p) (trans_NP p t) . unSOP
+
+allZipP :: proxy c -&gt; Proxy (AllZip c)
+allZipP _ = Proxy
+
+-- | Specialization of 'hcoerce'.
+--
+-- @since 0.3.1.0
+--
+coerce_NS ::
+     forall f g xs ys .
+     AllZip (LiftedCoercible f g) xs ys
+  =&gt; NS f xs -&gt; NS g ys
+coerce_NS =
+  unsafeCoerce
+
+-- There is a bug in the way coerce works for higher-kinded
+-- type variables that seems to occur only in GHC 7.10.
+--
+-- Therefore, the safe versions of the coercion functions
+-- are excluded below. This is harmless because they're only
+-- present for documentation purposes and not exported.
+
+#if __GLASGOW_HASKELL__ &lt; 710 || __GLASGOW_HASKELL__ &gt;= 800
+_safe_coerce_NS ::
+     forall f g xs ys .
+     AllZip (LiftedCoercible f g) xs ys
+  =&gt; NS f xs -&gt; NS g ys
+_safe_coerce_NS =
+  trans_NS (Proxy :: Proxy (LiftedCoercible f g)) coerce
+#endif
+
+-- | Specialization of 'hcoerce'.
+--
+-- @since 0.3.1.0
+--
+coerce_SOP ::
+     forall f g xss yss .
+     AllZip2 (LiftedCoercible f g) xss yss
+  =&gt; SOP f xss -&gt; SOP g yss
+coerce_SOP =
+  unsafeCoerce
+
+#if __GLASGOW_HASKELL__ &lt; 710 || __GLASGOW_HASKELL__ &gt;= 800
+_safe_coerce_SOP ::
+     forall f g xss yss .
+     AllZip2 (LiftedCoercible f g) xss yss
+  =&gt; SOP f xss -&gt; SOP g yss
+_safe_coerce_SOP =
+  trans_SOP (Proxy :: Proxy (LiftedCoercible f g)) coerce
+#endif
+
+-- | Specialization of 'hfromI'.
+--
+-- @since 0.3.1.0
+--
+fromI_NS ::
+     forall f xs ys .
+     AllZip (LiftedCoercible I f) xs ys
+  =&gt; NS I xs -&gt; NS f ys
+fromI_NS = hfromI
+
+-- | Specialization of 'htoI'.
+--
+-- @since 0.3.1.0
+--
+toI_NS ::
+     forall f xs ys .
+     AllZip (LiftedCoercible f I) xs ys
+  =&gt; NS f xs -&gt; NS I ys
+toI_NS = htoI
+
+-- | Specialization of 'hfromI'.
+--
+-- @since 0.3.1.0
+--
+fromI_SOP ::
+     forall f xss yss .
+     AllZip2 (LiftedCoercible I f) xss yss
+  =&gt; SOP I xss -&gt; SOP f yss
+fromI_SOP = hfromI
+
+-- | Specialization of 'htoI'.
+--
+-- @since 0.3.1.0
+--
+toI_SOP ::
+     forall f xss yss .
+     AllZip2 (LiftedCoercible f I) xss yss
+  =&gt; SOP f xss -&gt; SOP I yss
+toI_SOP = htoI
+
+instance HTrans NS NS where
+  htrans  = trans_NS
+  hcoerce = coerce_NS
+
+instance HTrans SOP SOP where
+  htrans  = trans_SOP
+  hcoerce = coerce_SOP
+</span></pre></body></html>

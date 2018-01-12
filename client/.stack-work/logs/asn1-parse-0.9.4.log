@@ -7,6 +7,19 @@ Data/ASN1/Parse.hs:30:1: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
+Running Haddock for asn1-parse-0.9.4...
+Preprocessing library asn1-parse-0.9.4...
+
+Data/ASN1/Parse.hs:30:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+Haddock coverage:
+  94% ( 15 / 16) in 'Data.ASN1.Parse'
+  Missing documentation for:
+    ParseASN1 (Data/ASN1/Parse.hs:34)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/asn1-parse/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/asn1-parse-0.9.4-9ug66l1mA7341K5DPj3fYu
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/asn1-parse-0.9.4-9ug66l1mA7341K5DPj3fYu
 Registering asn1-parse-0.9.4...

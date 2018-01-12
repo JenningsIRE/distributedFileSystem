@@ -77,6 +77,13 @@
   (major1) == 2 && (major2) <  2 || \
   (major1) == 2 && (major2) == 2 && (minor) <= 1)
 
+/* package process-1.4.3.0 */
+#define VERSION_process "1.4.3.0"
+#define MIN_VERSION_process(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  4 || \
+  (major1) == 1 && (major2) == 4 && (minor) <= 3)
+
 /* package resourcet-1.1.9 */
 #define VERSION_resourcet "1.1.9"
 #define MIN_VERSION_resourcet(major1,major2,minor) (\
@@ -252,7 +259,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "directory-server-0.1.0.0-9OVGCQB4iP8F4pw7PVZehB"
+#define CURRENT_COMPONENT_ID "directory-server-0.1.0.0-9tQHEPTmQrWKbiQ1wcODt1"
 
-#define CURRENT_PACKAGE_KEY "directory-server-0.1.0.0-9OVGCQB4iP8F4pw7PVZehB"
+#define CURRENT_PACKAGE_KEY "directory-server-0.1.0.0-9tQHEPTmQrWKbiQ1wcODt1"
 

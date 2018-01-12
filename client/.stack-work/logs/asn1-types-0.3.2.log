@@ -11,6 +11,23 @@ Data/ASN1/Types/String.hs:154:22: warning: [-Wname-shadowing]
 [4 of 6] Compiling Data.ASN1.BitArray ( Data/ASN1/BitArray.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/ASN1/BitArray.o )
 [5 of 6] Compiling Data.ASN1.Types  ( Data/ASN1/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/ASN1/Types.o )
 [6 of 6] Compiling Data.ASN1.Pretty ( Data/ASN1/Pretty.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/ASN1/Pretty.o )
+Running Haddock for asn1-types-0.3.2...
+Preprocessing library asn1-types-0.3.2...
+
+Data/ASN1/Types/String.hs:154:22: warning: [-Wname-shadowing]
+    This binding for ‘b’ shadows the existing binding
+      bound at Data/ASN1/Types/String.hs:151:13
+Haddock coverage:
+ 100% (  5 /  5) in 'Data.ASN1.Types.String'
+ 100% (  8 /  8) in 'Data.ASN1.Types.Lowlevel'
+ 100% (  5 /  5) in 'Data.ASN1.OID'
+ 100% ( 10 / 10) in 'Data.ASN1.BitArray'
+ 100% ( 13 / 13) in 'Data.ASN1.Types'
+  67% (  2 /  3) in 'Data.ASN1.Pretty'
+  Missing documentation for:
+    PrettyType (Data/ASN1/Pretty.hs:19)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/asn1-types/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/asn1-types-0.3.2-9nZ3MW2CIvzFvF0TD7ErB1
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/asn1-types-0.3.2-9nZ3MW2CIvzFvF0TD7ErB1
 Registering asn1-types-0.3.2...

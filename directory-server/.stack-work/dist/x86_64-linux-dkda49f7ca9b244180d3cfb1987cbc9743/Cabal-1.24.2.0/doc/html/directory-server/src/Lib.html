@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE DataKinds            #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE DeriveAnyClass       #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE DeriveGeneric        #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE FlexibleContexts     #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE FlexibleInstances    #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE OverloadedStrings    #-}</span><span>
+</span><a name="line-7"></a><span class="hs-pragma">{-# LANGUAGE StandaloneDeriving   #-}</span><span>
+</span><a name="line-8"></a><span class="hs-pragma">{-# LANGUAGE TemplateHaskell      #-}</span><span>
+</span><a name="line-9"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators        #-}</span><span>
+</span><a name="line-10"></a><span class="hs-pragma">{-# LANGUAGE TypeSynonymInstances #-}</span><span>
+</span><a name="line-11"></a><span>
+</span><a name="line-12"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Lib</span><span>
+</span><a name="line-13"></a><span>    </span><span class="hs-special">(</span><span> </span><a href="Lib.html#startApp"><span class="hs-identifier hs-var">startApp</span></a><span>
+</span><a name="line-14"></a><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Concurrent</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">forkIO</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">threadDelay</span><span class="hs-special">)</span><span>
+</span><a name="line-17"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span>                </span><span class="hs-special">(</span><span class="hs-identifier hs-var">when</span><span class="hs-special">)</span><span>
+</span><a name="line-18"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">IO</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">Trans</span><span class="hs-operator">.</span><span class="hs-identifier">Except</span><span>   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ExceptT</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">Trans</span><span class="hs-operator">.</span><span class="hs-identifier">Resource</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span>
+</span><a name="line-22"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span class="hs-operator">.</span><span class="hs-identifier">TH</span><span>
+</span><a name="line-23"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Bson</span><span class="hs-operator">.</span><span class="hs-identifier">Generic</span><span>
+</span><a name="line-24"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span>         </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">L</span><span>
+</span><a name="line-25"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">List</span><span>                    </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">DL</span><span>
+</span><a name="line-26"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Maybe</span><span>                   </span><span class="hs-special">(</span><span class="hs-identifier hs-var">catMaybes</span><span class="hs-special">)</span><span>
+</span><a name="line-27"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span>                    </span><span class="hs-special">(</span><span class="hs-identifier hs-var">pack</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">unpack</span><span class="hs-special">)</span><span>
+</span><a name="line-28"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Time</span><span class="hs-operator">.</span><span class="hs-identifier">Clock</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-type">UTCTime</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">getCurrentTime</span><span class="hs-special">)</span><span>
+</span><a name="line-29"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Time</span><span class="hs-operator">.</span><span class="hs-identifier">Format</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-var">defaultTimeLocale</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">formatTime</span><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Database</span><span class="hs-operator">.</span><span class="hs-identifier">MongoDB</span><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">GHC</span><span class="hs-operator">.</span><span class="hs-identifier">Generics</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">HTTP</span><span class="hs-operator">.</span><span class="hs-identifier">Client</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-var">defaultManagerSettings</span><span class="hs-special">,</span><span>
+</span><a name="line-33"></a><span>                                               </span><span class="hs-identifier hs-var">newManager</span><span class="hs-special">)</span><span>
+</span><a name="line-34"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">Wai</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">Wai</span><span class="hs-operator">.</span><span class="hs-identifier">Handler</span><span class="hs-operator">.</span><span class="hs-identifier">Warp</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">Wai</span><span class="hs-operator">.</span><span class="hs-identifier">Logger</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Servant</span><span>
+</span><a name="line-38"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">API</span><span>                  </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SC</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">Client</span><span>               </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SC</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Environment</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">getArgs</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">getProgName</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">lookupEnv</span><span class="hs-special">)</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Log</span><span class="hs-operator">.</span><span class="hs-identifier">Formatter</span><span>
+</span><a name="line-42"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Log</span><span class="hs-operator">.</span><span class="hs-identifier">Handler</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">setFormatter</span><span class="hs-special">)</span><span>
+</span><a name="line-43"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Log</span><span class="hs-operator">.</span><span class="hs-identifier">Handler</span><span class="hs-operator">.</span><span class="hs-identifier">Simple</span><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Log</span><span class="hs-operator">.</span><span class="hs-identifier">Handler</span><span class="hs-operator">.</span><span class="hs-identifier">Syslog</span><span>
+</span><a name="line-45"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Log</span><span class="hs-operator">.</span><span class="hs-identifier">Logger</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">API</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">ServerAPI</span><span>
+</span><a name="line-48"></a><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Char8</span><span>        </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">BS</span><span>
+</span><a name="line-50"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Process</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">IO</span><span>
+</span><a name="line-52"></a><span>
+</span><a name="line-53"></a><span class="hs-identifier">startApp</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-54"></a><a name="startApp"><a href="Lib.html#startApp"><span class="hs-identifier">startApp</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Lib.html#withLogging"><span class="hs-identifier hs-var">withLogging</span></a><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-glyph">\</span><span> </span><a name="local-6989586621679110263"><a href="#local-6989586621679110263"><span class="hs-identifier">aplogger</span></a></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-55"></a><span>  </span><a href="Lib.html#warnLog"><span class="hs-identifier hs-var">warnLog</span></a><span> </span><span class="hs-string">&quot;Starting file-server.&quot;</span><span>
+</span><a name="line-56"></a><span>
+</span><a name="line-57"></a><span>  </span><span class="hs-keyword">let</span><span> </span><a name="local-6989586621679110264"><a href="#local-6989586621679110264"><span class="hs-identifier">settings</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">setPort</span><span> </span><span class="hs-number">8000</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">setLogger</span><span> </span><a href="#local-6989586621679110263"><span class="hs-identifier hs-var">aplogger</span></a><span> </span><span class="hs-identifier hs-var">defaultSettings</span><span>
+</span><a name="line-58"></a><span>  </span><span class="hs-identifier hs-var">runSettings</span><span> </span><a href="#local-6989586621679110264"><span class="hs-identifier hs-var">settings</span></a><span> </span><a href="Lib.html#app"><span class="hs-identifier hs-var">app</span></a><span>
+</span><a name="line-59"></a><span>
+</span><a name="line-60"></a><span class="hs-keyword">type</span><span> </span><a name="FullDirectoryAPI"><a href="Lib.html#FullDirectoryAPI"><span class="hs-identifier">FullDirectoryAPI</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;postDirectory&quot;</span><span>             </span><span class="hs-operator">:&gt;</span><span> </span><span class="hs-identifier hs-type">ReqBody</span><span> </span><span class="hs-char">'[JSON] Message  :&gt; Post '[JSON] [Message]
+                   :&lt;|&gt; &quot;getDirectory&quot;              :&gt; QueryParam &quot;name&quot; String :&gt; Get '[JSON] [Message]
+                   :&lt;|&gt; &quot;registerFS&quot;                :&gt; ReqBody '[JSON] Message :&gt; Post '[JSON] Bool
+
+app :: Application
+app = serve api server
+
+api :: Proxy FullDirectoryAPI
+api = Proxy
+
+data FsInfo = FsInfo  { myName        :: String
+                      , ip            :: String
+                      , port          :: String
+                      }deriving (Show, Generic, ToJSON, FromJSON, ToBSON, FromBSON)
+
+
+-- | Retrieve directory service's record of registered file servers.
+getDirInfo :: String -&gt; IO [FsInfo]
+getDirInfo fDir = liftIO $ do
+  findFS &lt;- withMongoDbConnection $ find (select [&quot;myName&quot; =: fDir] &quot;FS_INFO&quot;) &gt;&gt;= drainCursor
+  return (DL.take 1 $ catMaybes $ DL.map (\ b -&gt; fromBSON b :: Maybe FsInfo) findFS)
+
+server :: Server FullDirectoryAPI
+server = postDirectory
+    :&lt;|&gt; getDirectory
+    :&lt;|&gt; registerFS
+  where
+    postDirectory :: Message -&gt; Handler [Message]
+    postDirectory msg@(Message fileName dirName) = liftIO $ do
+      let filepath = dirName ++ fileName
+      fs &lt;- getDirInfo dirName
+      case fs of
+        [] -&gt; return ([] :: [Message]) -- Can handle empty list on client side
+        (info@(FsInfo name ip port):_) -&gt; return [Message ip port]
+
+    -- | Register the contacting file server in the directory service.
+    registerFS :: Message -&gt; Handler Bool
+    registerFS msg@(Message dirName fsPort) = liftIO $ do
+      let fsIP = &quot;localhost&quot;
+      warnLog $ &quot;Registering file server associated with [&quot; ++ dirName ++ &quot;]&quot;
+      fs &lt;- getDirInfo dirName
+      let newEntry = FsInfo dirName fsIP fsPort
+      withMongoDbConnection $ upsert (select [&quot;myName&quot; =: dirName] &quot;FS_INFO&quot;) $ toBSON newEntry
+      return True
+
+    getDirectory :: Maybe String -&gt; Handler [Message]
+    getDirectory (Just dirName) = liftIO $ do
+      fs &lt;- getDirInfo dirName
+      case fs of
+        [] -&gt; return ([] :: [Message]) -- Can handle empty list on client side
+        (info@(FsInfo name ip port):_) -&gt; return [Message ip port]
+
+    getDirectory Nothing = liftIO $ do
+      warnLog  &quot;No key for searching.&quot;
+      return  ([] :: [Message])
+
+-- | error stuff
+custom404Error msg = err404 { errBody = msg }
+
+
+-- | Logging stuff
+iso8601 :: UTCTime -&gt; String
+iso8601 = formatTime defaultTimeLocale &quot;%FT%T%q%z&quot;
+
+-- global loggin functions
+debugLog, warnLog, errorLog :: String -&gt; IO ()
+debugLog = doLog debugM
+warnLog  = doLog warningM
+errorLog = doLog errorM
+noticeLog = doLog noticeM
+
+doLog f s = getProgName &gt;&gt;= \ p -&gt; do
+                t &lt;- getCurrentTime
+                f p $ (iso8601 t) ++ &quot; &quot; ++ s
+
+withLogging act = withStdoutLogger $ \aplogger -&gt; do
+
+  lname  &lt;- getProgName
+  llevel &lt;- logLevel
+  updateGlobalLogger lname
+                     (setLevel $ case llevel of
+                                  &quot;WARNING&quot; -&gt; WARNING
+                                  &quot;ERROR&quot;   -&gt; ERROR
+                                  _         -&gt; DEBUG)
+  act aplogger
+
+
+-- | Mongodb helpers...
+
+-- | helper to open connection to mongo database and run action
+-- generally run as follows:
+--        withMongoDbConnection $ do ...
+--
+withMongoDbConnection :: Action IO a -&gt; IO a
+withMongoDbConnection act  = do
+  ip &lt;- mongoDbIp
+  port &lt;- mongoDbPort
+  database &lt;- mongoDbDatabase
+  pipe &lt;- connect (host ip)
+  ret &lt;- runResourceT $ liftIO $ access pipe master (pack database) act
+  close pipe
+  return ret
+
+-- | helper method to ensure we force extraction of all results
+-- note how it is defined recursively - meaning that draincursor' calls itself.
+-- the purpose is to iterate through all documents returned if the connection is
+-- returning the documents in batch mode, meaning in batches of retruned results with more
+-- to come on each call. The function recurses until there are no results left, building an
+-- array of returned [Document]
+drainCursor :: Cursor -&gt; Action IO [Document]
+drainCursor cur = drainCursor' cur []
+  where
+    drainCursor' cur res  = do
+      batch &lt;- nextBatch cur
+      if null batch
+        then return res
+        else drainCursor' cur (res ++ batch)
+
+-- | Environment variable functions, that return the environment variable if set, or
+-- default values if not set.
+
+-- | The IP address of the mongoDB database that devnostics-rest uses to store and access data
+mongoDbIp :: IO String
+mongoDbIp = defEnv &quot;MONGODB_IP&quot; id &quot;database&quot; True
+
+-- | The port number of the mongoDB database that devnostics-rest uses to store and access data
+mongoDbPort :: IO Integer
+mongoDbPort = defEnv &quot;MONGODB_PORT&quot; read 27017 False -- 27017 is the default mongodb port
+
+-- | The name of the mongoDB database that devnostics-rest uses to store and access data
+mongoDbDatabase :: IO String
+mongoDbDatabase = defEnv &quot;MONGODB_DATABASE&quot; id &quot;USEHASKELLDB&quot; True
+
+-- | Determines log reporting level. Set to &quot;DEBUG&quot;, &quot;WARNING&quot; or &quot;ERROR&quot; as preferred. Loggin is
+-- provided by the hslogger library.
+logLevel :: IO String
+logLevel = defEnv &quot;LOG_LEVEL&quot; id &quot;DEBUG&quot; True
+
+
+-- | Helper function to simplify the setting of environment variables
+-- function that looks up environment variable and returns the result of running funtion fn over it
+-- or if the environment variable does not exist, returns the value def. The function will optionally log a
+-- warning based on Boolean tag
+defEnv :: Show a
+              =&gt; String        -- Environment Variable name
+              -&gt; (String -&gt; a)  -- function to process variable string (set as 'id' if not needed)
+              -&gt; a             -- default value to use if environment variable is not set
+              -&gt; Bool          -- True if we should warn if environment variable is not set
+              -&gt; IO a
+defEnv env fn def doWarn = lookupEnv env &gt;&gt;= \ e -&gt; case e of
+      Just s  -&gt; return $ fn s
+      Nothing -&gt; do
+        when doWarn (doLog warningM $ &quot;Environment variable: &quot; ++ env ++
+                                      &quot; is not set. Defaulting to &quot; ++ (show def))
+        return def
+
+
+
+
+
+
+</span></pre></body></html>

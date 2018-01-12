@@ -15,6 +15,70 @@ Preprocessing library generics-sop-0.3.1.0...
 [12 of 14] Compiling Generics.SOP.TH  ( src/Generics/SOP/TH.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Generics/SOP/TH.o )
 [13 of 14] Compiling Generics.SOP.Instances ( src/Generics/SOP/Instances.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Generics/SOP/Instances.o )
 [14 of 14] Compiling Generics.SOP     ( src/Generics/SOP.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Generics/SOP.o )
+Running Haddock for generics-sop-0.3.1.0...
+Preprocessing library generics-sop-0.3.1.0...
+Haddock coverage:
+ 100% ( 11 / 11) in 'Generics.SOP.Sing'
+  66% ( 19 / 29) in 'Generics.SOP.Constraint'
+  Missing documentation for:
+     (src/Generics/SOP/Constraint.hs:47)
+     (src/Generics/SOP/Constraint.hs:81)
+     (src/Generics/SOP/Constraint.hs:111)
+     (src/Generics/SOP/Constraint.hs:161)
+     (src/Generics/SOP/Constraint.hs:168)
+     (src/Generics/SOP/Constraint.hs:184)
+     (src/Generics/SOP/Constraint.hs:192)
+     (src/Generics/SOP/Constraint.hs:200)
+     (src/Generics/SOP/Constraint.hs:223)
+     (src/Generics/SOP/Constraint.hs:230)
+ 100% ( 21 / 21) in 'Generics.SOP.BasicFunctors'
+ 100% ( 45 / 45) in 'Generics.SOP.Classes'
+  99% ( 72 / 73) in 'Generics.SOP.NP'
+  Missing documentation for:
+    shiftProjection (src/Generics/SOP/NP.hs:321)
+ 100% ( 16 / 16) in 'Generics.SOP.Dict'
+ 100% ( 16 / 16) in 'Generics.SOP.Metadata'
+  57% ( 17 / 30) in 'Generics.SOP.Type.Metadata'
+  Missing documentation for:
+     (src/Generics/SOP/Type/Metadata.hs:143)
+     (src/Generics/SOP/Type/Metadata.hs:152)
+     (src/Generics/SOP/Type/Metadata.hs:174)
+     (src/Generics/SOP/Type/Metadata.hs:177)
+     (src/Generics/SOP/Type/Metadata.hs:196)
+     (src/Generics/SOP/Type/Metadata.hs:199)
+     (src/Generics/SOP/Type/Metadata.hs:208)
+     (src/Generics/SOP/Type/Metadata.hs:225)
+     (src/Generics/SOP/Type/Metadata.hs:228)
+     (src/Generics/SOP/Type/Metadata.hs:246)
+     (src/Generics/SOP/Type/Metadata.hs:262)
+     (src/Generics/SOP/Type/Metadata.hs:265)
+     (src/Generics/SOP/Type/Metadata.hs:268)
+ 100% ( 63 / 63) in 'Generics.SOP.NS'
+ 100% (  9 /  9) in 'Generics.SOP.GGP'
+ 100% (  8 /  8) in 'Generics.SOP.Universe'
+ 100% (  6 /  6) in 'Generics.SOP.TH'
+ 100% (  1 /  1) in 'Generics.SOP.Instances'
+  99% (138 /139) in 'Generics.SOP'
+  Missing documentation for:
+    shiftProjection (src/Generics/SOP/NP.hs:321)
+Warning: Generics.SOP.Constraint: could not find link destinations for:
+    ~
+Warning: Generics.SOP.Classes: could not find link destinations for:
+    ~
+Warning: Generics.SOP.NP: could not find link destinations for:
+    ~
+Warning: Generics.SOP.Metadata: could not find link destinations for:
+    unsafeIndex unsafeRangeSize SingI sing Sing SingKind fromSing DemoteRep D:R:SingAssociativitya0 SLeftAssociative SRightAssociative SNotAssociative
+Warning: Generics.SOP.Type.Metadata: could not find link destinations for:
+    unsafeIndex unsafeRangeSize SingI sing Sing SingKind fromSing DemoteRep D:R:SingAssociativitya0 SLeftAssociative SRightAssociative SNotAssociative
+Warning: Generics.SOP.GGP: could not find link destinations for:
+    ToSumCode GSumFrom GSumTo ToInfo
+Warning: Generics.SOP.Universe: could not find link destinations for:
+    ~
+Warning: Generics.SOP: could not find link destinations for:
+    ~ unsafeIndex unsafeRangeSize SingI sing Sing SingKind fromSing DemoteRep D:R:SingAssociativitya0 SLeftAssociative SRightAssociative SNotAssociative
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/generics-sop/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/generics-sop-0.3.1.0-EVU7jhdnxwRF3s3P6mpp3P
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/generics-sop-0.3.1.0-EVU7jhdnxwRF3s3P6mpp3P
 Registering generics-sop-0.3.1.0...

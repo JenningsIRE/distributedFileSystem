@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- |</span><span>
+</span><a name="line-2"></a><span class="hs-comment">-- Module         : Data.ByteString.Search.BoyerMoore</span><span>
+</span><a name="line-3"></a><span class="hs-comment">-- Copyright      : Daniel Fischer</span><span>
+</span><a name="line-4"></a><span class="hs-comment">--                  Chris Kuklewicz</span><span>
+</span><a name="line-5"></a><span class="hs-comment">-- Licence        : BSD3</span><span>
+</span><a name="line-6"></a><span class="hs-comment">-- Maintainer     : Daniel Fischer &lt;daniel.is.fischer@googlemail.com&gt;</span><span>
+</span><a name="line-7"></a><span class="hs-comment">-- Stability      : Provisional</span><span>
+</span><a name="line-8"></a><span class="hs-comment">-- Portability    : non-portable (BangPatterns)</span><span>
+</span><a name="line-9"></a><span class="hs-comment">--</span><span>
+</span><a name="line-10"></a><span class="hs-comment">-- Fast overlapping Boyer-Moore search of both strict and lazy</span><span>
+</span><a name="line-11"></a><span class="hs-comment">-- 'ByteString' values.</span><span>
+</span><a name="line-12"></a><span class="hs-comment">--</span><span>
+</span><a name="line-13"></a><span class="hs-comment">-- Descriptions of the algorithm can be found at</span><span>
+</span><a name="line-14"></a><span class="hs-comment">-- &lt;http://www-igm.univ-mlv.fr/~lecroq/string/node14.html#SECTION00140&gt;</span><span>
+</span><a name="line-15"></a><span class="hs-comment">-- and</span><span>
+</span><a name="line-16"></a><span class="hs-comment">-- &lt;http://en.wikipedia.org/wiki/Boyer-Moore_string_search_algorithm&gt;</span><span>
+</span><a name="line-17"></a><span class="hs-comment">--</span><span>
+</span><a name="line-18"></a><span class="hs-comment">-- Original authors: Daniel Fischer (daniel.is.fischer at googlemail.com) and</span><span>
+</span><a name="line-19"></a><span class="hs-comment">-- Chris Kuklewicz (haskell at list.mightyreason.com).</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Search</span><span class="hs-operator">.</span><span class="hs-identifier">BoyerMoore</span><span>
+</span><a name="line-21"></a><span>    </span><span class="hs-pragma">{-# DEPRECATED &quot;Use the new interface instead&quot; #-}</span><span> </span><span class="hs-special">(</span><span>
+</span><a name="line-22"></a><span>                                         </span><span class="hs-comment">-- * Overview</span><span>
+</span><a name="line-23"></a><span>                                         </span><span class="hs-comment">-- $overview</span><span>
+</span><a name="line-24"></a><span>
+</span><a name="line-25"></a><span>                                         </span><span class="hs-comment">-- ** Changes</span><span>
+</span><a name="line-26"></a><span>                                         </span><span class="hs-comment">-- $changes</span><span>
+</span><a name="line-27"></a><span>
+</span><a name="line-28"></a><span>                                         </span><span class="hs-comment">-- ** Deprecation</span><span>
+</span><a name="line-29"></a><span>                                         </span><span class="hs-comment">-- $deprecation</span><span>
+</span><a name="line-30"></a><span>
+</span><a name="line-31"></a><span>                                         </span><span class="hs-comment">-- ** Parameter and return types</span><span>
+</span><a name="line-32"></a><span>                                         </span><span class="hs-comment">-- $types</span><span>
+</span><a name="line-33"></a><span>
+</span><a name="line-34"></a><span>                                         </span><span class="hs-comment">-- ** Lazy ByteStrings</span><span>
+</span><a name="line-35"></a><span>                                         </span><span class="hs-comment">-- $lazy</span><span>
+</span><a name="line-36"></a><span>
+</span><a name="line-37"></a><span>                                         </span><span class="hs-comment">-- ** Performance</span><span>
+</span><a name="line-38"></a><span>                                         </span><span class="hs-comment">-- $performance</span><span>
+</span><a name="line-39"></a><span>
+</span><a name="line-40"></a><span>                                         </span><span class="hs-comment">-- ** Complexity</span><span>
+</span><a name="line-41"></a><span>                                         </span><span class="hs-comment">-- $complexity</span><span>
+</span><a name="line-42"></a><span>
+</span><a name="line-43"></a><span>                                         </span><span class="hs-comment">-- ** Partial application</span><span>
+</span><a name="line-44"></a><span>                                         </span><span class="hs-comment">-- $currying</span><span>
+</span><a name="line-45"></a><span>
+</span><a name="line-46"></a><span>                                         </span><span class="hs-comment">-- ** Integer overflow</span><span>
+</span><a name="line-47"></a><span>                                         </span><span class="hs-comment">-- $overflow</span><span>
+</span><a name="line-48"></a><span>
+</span><a name="line-49"></a><span>                                         </span><span class="hs-comment">-- * Functions</span><span>
+</span><a name="line-50"></a><span>                                           </span><a href="Data.ByteString.Lazy.Search.Internal.BoyerMoore.html#matchLL"><span class="hs-identifier hs-var">matchLL</span></a><span>
+</span><a name="line-51"></a><span>                                         </span><span class="hs-special">,</span><span> </span><a href="Data.ByteString.Search.Internal.BoyerMoore.html#matchLS"><span class="hs-identifier hs-var">matchLS</span></a><span>
+</span><a name="line-52"></a><span>                                         </span><span class="hs-special">,</span><span> </span><a href="Data.ByteString.Lazy.Search.Internal.BoyerMoore.html#matchSL"><span class="hs-identifier hs-var">matchSL</span></a><span>
+</span><a name="line-53"></a><span>                                         </span><span class="hs-special">,</span><span> </span><a href="Data.ByteString.Search.Internal.BoyerMoore.html#matchSS"><span class="hs-identifier hs-var">matchSS</span></a><span>
+</span><a name="line-54"></a><span>                                         </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-55"></a><span>
+</span><a name="line-56"></a><span class="hs-keyword">import</span><span> </span><a href="Data.ByteString.Search.Internal.BoyerMoore.html"><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Search</span><span class="hs-operator">.</span><span class="hs-identifier">Internal</span><span class="hs-operator">.</span><span class="hs-identifier">BoyerMoore</span></a><span>
+</span><a name="line-57"></a><span>            </span><span class="hs-special">(</span><a href="Data.ByteString.Search.Internal.BoyerMoore.html#matchLS"><span class="hs-identifier hs-var">matchLS</span></a><span class="hs-special">,</span><span> </span><a href="Data.ByteString.Search.Internal.BoyerMoore.html#matchSS"><span class="hs-identifier hs-var">matchSS</span></a><span class="hs-special">)</span><span>
+</span><a name="line-58"></a><span class="hs-keyword">import</span><span> </span><a href="Data.ByteString.Lazy.Search.Internal.BoyerMoore.html"><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span class="hs-operator">.</span><span class="hs-identifier">Search</span><span class="hs-operator">.</span><span class="hs-identifier">Internal</span><span class="hs-operator">.</span><span class="hs-identifier">BoyerMoore</span></a><span>
+</span><a name="line-59"></a><span>            </span><span class="hs-special">(</span><a href="Data.ByteString.Lazy.Search.Internal.BoyerMoore.html#matchLL"><span class="hs-identifier hs-var">matchLL</span></a><span class="hs-special">,</span><span> </span><a href="Data.ByteString.Lazy.Search.Internal.BoyerMoore.html#matchSL"><span class="hs-identifier hs-var">matchSL</span></a><span class="hs-special">)</span><span>
+</span><a name="line-60"></a><span>
+</span><a name="line-61"></a><span class="hs-comment">-- $overview</span><span>
+</span><a name="line-62"></a><span class="hs-comment">--</span><span>
+</span><a name="line-63"></a><span class="hs-comment">-- This module exists only for backwards compatibility. Nevertheless</span><span>
+</span><a name="line-64"></a><span class="hs-comment">-- there have been small changes in the behaviour of the functions.</span><span>
+</span><a name="line-65"></a><span class="hs-comment">-- The module exports four search functions: 'matchLL', 'matchLS',</span><span>
+</span><a name="line-66"></a><span class="hs-comment">-- 'matchSL', and 'matchSS'. All of them return the list of all</span><span>
+</span><a name="line-67"></a><span class="hs-comment">-- starting positions of possibly overlapping occurrences of a pattern</span><span>
+</span><a name="line-68"></a><span class="hs-comment">-- in a string.</span><span>
+</span><a name="line-69"></a><span>
+</span><a name="line-70"></a><span class="hs-comment">-- $changes</span><span>
+</span><a name="line-71"></a><span class="hs-comment">--</span><span>
+</span><a name="line-72"></a><span class="hs-comment">-- Formerly, all four functions returned an empty list when passed</span><span>
+</span><a name="line-73"></a><span class="hs-comment">-- an empty pattern. Now, in accordance with the functions from the other</span><span>
+</span><a name="line-74"></a><span class="hs-comment">-- modules, @matchXY \&quot;\&quot; target = [0 .. 'length' target]@.</span><span>
+</span><a name="line-75"></a><span>
+</span><a name="line-76"></a><span class="hs-comment">-- $deprecation</span><span>
+</span><a name="line-77"></a><span class="hs-comment">--</span><span>
+</span><a name="line-78"></a><span class="hs-comment">-- This module is /deprecated/. You should use the new interface provided</span><span>
+</span><a name="line-79"></a><span class="hs-comment">-- in &quot;Data.ByteString.Search&quot; resp. &quot;Data.ByteString.Lazy.Search&quot;.</span><span>
+</span><a name="line-80"></a><span>
+</span><a name="line-81"></a><span class="hs-comment">-- $types</span><span>
+</span><a name="line-82"></a><span class="hs-comment">--</span><span>
+</span><a name="line-83"></a><span class="hs-comment">-- The first parameter is always the pattern string.  The second</span><span>
+</span><a name="line-84"></a><span class="hs-comment">-- parameter is always the target string to be searched.  The returned</span><span>
+</span><a name="line-85"></a><span class="hs-comment">-- list contains the offsets of all /overlapping/ patterns.</span><span>
+</span><a name="line-86"></a><span class="hs-comment">--</span><span>
+</span><a name="line-87"></a><span class="hs-comment">-- A returned @Int@ or @Int64@ is an index into the target string</span><span>
+</span><a name="line-88"></a><span class="hs-comment">-- which is aligned to the head of the pattern string.  Strict targets</span><span>
+</span><a name="line-89"></a><span class="hs-comment">-- return @Int@ indices and lazy targets return @Int64@ indices.  All</span><span>
+</span><a name="line-90"></a><span class="hs-comment">-- returned lists are computed and returned in a lazy fashion.</span><span>
+</span><a name="line-91"></a><span>
+</span><a name="line-92"></a><span class="hs-comment">-- $lazy</span><span>
+</span><a name="line-93"></a><span class="hs-comment">--</span><span>
+</span><a name="line-94"></a><span class="hs-comment">-- 'matchLL' and 'matchLS' take lazy bytestrings as patterns.  For</span><span>
+</span><a name="line-95"></a><span class="hs-comment">-- performance, if the pattern is not a single strict chunk then all</span><span>
+</span><a name="line-96"></a><span class="hs-comment">-- the the pattern chunks will copied into a concatenated strict</span><span>
+</span><a name="line-97"></a><span class="hs-comment">-- bytestring.  This limits the patterns to a length of (maxBound ::</span><span>
+</span><a name="line-98"></a><span class="hs-comment">-- Int).</span><span>
+</span><a name="line-99"></a><span class="hs-comment">--</span><span>
+</span><a name="line-100"></a><span class="hs-comment">-- 'matchLL' and 'matchSL' take lazy bytestrings as targets.</span><span>
+</span><a name="line-101"></a><span class="hs-comment">-- These are written so that while they work they will not retain a</span><span>
+</span><a name="line-102"></a><span class="hs-comment">-- reference to all the earlier parts of the the lazy bytestring.</span><span>
+</span><a name="line-103"></a><span class="hs-comment">-- This means the garbage collector would be able to keep only a small</span><span>
+</span><a name="line-104"></a><span class="hs-comment">-- amount of the target string and free the rest.</span><span>
+</span><a name="line-105"></a><span>
+</span><a name="line-106"></a><span class="hs-comment">-- $currying</span><span>
+</span><a name="line-107"></a><span class="hs-comment">--</span><span>
+</span><a name="line-108"></a><span class="hs-comment">-- These functions can all be usefully partially applied.</span><span>
+</span><a name="line-109"></a><span class="hs-comment">-- Given only a pattern the partially applied version will compute</span><span>
+</span><a name="line-110"></a><span class="hs-comment">-- the supporting lookup tables only once, allowing for efficient re-use.</span><span>
+</span><a name="line-111"></a><span class="hs-comment">-- Similarly, the partially applied 'matchLL' and 'matchLS' will compute</span><span>
+</span><a name="line-112"></a><span class="hs-comment">-- the concatenated pattern only once.</span><span>
+</span><a name="line-113"></a><span>
+</span><a name="line-114"></a><span class="hs-comment">-- $performance</span><span>
+</span><a name="line-115"></a><span class="hs-comment">--</span><span>
+</span><a name="line-116"></a><span class="hs-comment">-- In general, the Boyer-Moore algorithm is the most efficient method to</span><span>
+</span><a name="line-117"></a><span class="hs-comment">-- search for a pattern inside a string. The advantage over other algorithms</span><span>
+</span><a name="line-118"></a><span class="hs-comment">-- (e.g. Na&amp;#239;ve, Knuth-Morris-Pratt, Horspool, Sunday) can be made</span><span>
+</span><a name="line-119"></a><span class="hs-comment">-- arbitrarily large for specially selected patterns and targets, but</span><span>
+</span><a name="line-120"></a><span class="hs-comment">-- usually, it's a factor of 2&amp;#8211;3 versus Knuth-Morris-Pratt and of</span><span>
+</span><a name="line-121"></a><span class="hs-comment">-- 6&amp;#8211;10 versus the na&amp;#239;ve algorithm. The Horspool and Sunday</span><span>
+</span><a name="line-122"></a><span class="hs-comment">-- algorithms, which are simplified variants of the Boyer-Moore algorithm,</span><span>
+</span><a name="line-123"></a><span class="hs-comment">-- typically have performance between Boyer-Moore and Knuth-Morris-Pratt,</span><span>
+</span><a name="line-124"></a><span class="hs-comment">-- mostly closer to Boyer-Moore. The advantage of the Boyer-moore variants</span><span>
+</span><a name="line-125"></a><span class="hs-comment">-- over other algorithms generally becomes larger for longer patterns. For</span><span>
+</span><a name="line-126"></a><span class="hs-comment">-- very short patterns (or patterns with a very short period), other</span><span>
+</span><a name="line-127"></a><span class="hs-comment">-- algorithms, e.g. &quot;Data.ByteString.Search.DFA&quot; can be faster (my</span><span>
+</span><a name="line-128"></a><span class="hs-comment">-- tests suggest that \&quot;very short\&quot; means two, maybe three bytes).</span><span>
+</span><a name="line-129"></a><span class="hs-comment">--</span><span>
+</span><a name="line-130"></a><span class="hs-comment">-- In general, searching in a strict 'S.ByteString' is slightly faster</span><span>
+</span><a name="line-131"></a><span class="hs-comment">-- than searching in a lazy 'L.ByteString', but for long targets the</span><span>
+</span><a name="line-132"></a><span class="hs-comment">-- smaller memory footprint of lazy 'L.ByteStrings' can make searching</span><span>
+</span><a name="line-133"></a><span class="hs-comment">-- those (sometimes much) faster. On the other hand, there are cases</span><span>
+</span><a name="line-134"></a><span class="hs-comment">-- where searching in a strict target is much faster, even for long targets.</span><span>
+</span><a name="line-135"></a><span class="hs-comment">--</span><span>
+</span><a name="line-136"></a><span class="hs-comment">-- On 32-bit systems, 'Int'-arithmetic is much faster than 'Int64'-arithmetic,</span><span>
+</span><a name="line-137"></a><span class="hs-comment">-- so when there are many matches, that can make a significant difference.</span><span>
+</span><a name="line-138"></a><span class="hs-comment">--</span><span>
+</span><a name="line-139"></a><span class="hs-comment">-- Also, the modification to ameliorate the case of periodic patterns</span><span>
+</span><a name="line-140"></a><span class="hs-comment">-- is defeated by chunk-boundaries, so long patterns with a short period</span><span>
+</span><a name="line-141"></a><span class="hs-comment">-- and many matches exhibit poor behaviour (consider using @indices@ from</span><span>
+</span><a name="line-142"></a><span class="hs-comment">-- &quot;Data.ByteString.Lazy.Search.DFA&quot; or &quot;Data.ByteString.Lazy.Search.KMP&quot;</span><span>
+</span><a name="line-143"></a><span class="hs-comment">-- in those cases, the former for medium-length patterns, the latter for</span><span>
+</span><a name="line-144"></a><span class="hs-comment">-- long patterns; only 'matchLL' and 'matchSL' suffer from</span><span>
+</span><a name="line-145"></a><span class="hs-comment">-- this problem, though).</span><span>
+</span><a name="line-146"></a><span>
+</span><a name="line-147"></a><span class="hs-comment">-- $complexity</span><span>
+</span><a name="line-148"></a><span class="hs-comment">--</span><span>
+</span><a name="line-149"></a><span class="hs-comment">-- Preprocessing the pattern string is O(@patternLength@).  The search</span><span>
+</span><a name="line-150"></a><span class="hs-comment">-- performance is O(@targetLength@\/@patternLength@) in the best case,</span><span>
+</span><a name="line-151"></a><span class="hs-comment">-- allowing it to go faster than a Knuth-Morris-Pratt algorithm.  With</span><span>
+</span><a name="line-152"></a><span class="hs-comment">-- a non-periodic pattern the worst case uses O(3\*@targetLength@)</span><span>
+</span><a name="line-153"></a><span class="hs-comment">-- comparisons.  The periodic pattern worst case is quadratic</span><span>
+</span><a name="line-154"></a><span class="hs-comment">-- O(@targetLength@\*@patternLength@) complexity for the original</span><span>
+</span><a name="line-155"></a><span class="hs-comment">-- Boyer-Moore algorithm.</span><span>
+</span><a name="line-156"></a><span class="hs-comment">--</span><span>
+</span><a name="line-157"></a><span class="hs-comment">-- The searching functions in this module contain a modification which</span><span>
+</span><a name="line-158"></a><span class="hs-comment">-- drastically improves the performance for periodic patterns.</span><span>
+</span><a name="line-159"></a><span class="hs-comment">-- I believe that for strict target strings, the worst case is now</span><span>
+</span><a name="line-160"></a><span class="hs-comment">-- /O/(@targetLength@) also for periodic patterns and for lazy target</span><span>
+</span><a name="line-161"></a><span class="hs-comment">-- strings, my semi-educated guess is</span><span>
+</span><a name="line-162"></a><span class="hs-comment">-- /O/(@targetLength@ * (1 + @patternLength@ \/ @chunkSize@)).</span><span>
+</span><a name="line-163"></a><span>
+</span><a name="line-164"></a><span class="hs-comment">-- $overflow</span><span>
+</span><a name="line-165"></a><span class="hs-comment">--</span><span>
+</span><a name="line-166"></a><span class="hs-comment">-- The current code uses @Int@ to keep track of the locations in the</span><span>
+</span><a name="line-167"></a><span class="hs-comment">-- target string.  If the length of the pattern plus the length of any</span><span>
+</span><a name="line-168"></a><span class="hs-comment">-- strict chunk of the target string is greater or equal to</span><span>
+</span><a name="line-169"></a><span class="hs-comment">-- @'maxBound'::Int@ then this will overflow causing an error.  We try</span><span>
+</span><a name="line-170"></a><span class="hs-comment">-- to detect this and call 'error' before a segfault occurs.</span><span>
+</span><a name="line-171"></a></pre></body></html>

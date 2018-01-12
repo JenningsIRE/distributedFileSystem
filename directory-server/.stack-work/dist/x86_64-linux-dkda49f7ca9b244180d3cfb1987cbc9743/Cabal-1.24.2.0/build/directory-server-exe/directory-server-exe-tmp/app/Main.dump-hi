@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2018-01-09 23:31:30.0729408 UTC
+2018-01-12 19:50:01.032995835 UTC
 
 interface main@main:Main 8002
-  interface hash: 314624c468cf773d61d5299b229524bf
-  ABI hash: c3cb2879549f10a825fbe3f415d063b0
-  export-list hash: f44b9c5ba4783a31af3af03385b8a12a
+  interface hash: 2f8451d85c1c86c3edef2065bb031b1a
+  ABI hash: df997faa87e4b76bc8cd2140b490b6fb
+  export-list hash: d0f11b12aff80b3943a336e03ae39ea7
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: eb4b122906d1b6a725f5d57fe2496d95
   sig of: Nothing
@@ -46,7 +46,7 @@ package dependencies: MonadRandom-0.5.1@MonadRandom-0.5.1-EcpvpD35v121j9vVe9NicO
                       data-binary-ieee754-0.4.4@data-binary-ieee754-0.4.4-7iiF2mP1jcB6tVSPgIyBOi
                       data-default-class-0.1.2.0@data-default-class-0.1.2.0-GsXqKN6o1X9jr0fF5qCVD
                       deepseq-1.4.2.0@deepseq-1.4.2.0 directory-1.3.0.0@directory-1.3.0.0
-                      directory-server-0.1.0.0@directory-server-0.1.0.0-9OVGCQB4iP8F4pw7PVZehB
+                      directory-server-0.1.0.0@directory-server-0.1.0.0-9tQHEPTmQrWKbiQ1wcODt1
                       distributive-0.5.3@distributive-0.5.3-BzdC7ZaASMl2Ol0Vw5IFtW
                       dlist-0.8.0.3@dlist-0.8.0.3-BHFBNaw8k6n9WiaUNzoXpk
                       easy-file-0.2.1@easy-file-0.2.1-rguMBNaECxLikt4CCDx0D
@@ -85,6 +85,7 @@ package dependencies: MonadRandom-0.5.1@MonadRandom-0.5.1-EcpvpD35v121j9vVe9NicO
                       parsec-3.1.11@parsec-3.1.11-BcVC9xpxwQeKyT7YIwOSgo
                       pretty-1.1.3.3@pretty-1.1.3.3
                       primitive-0.6.2.0@primitive-0.6.2.0-4578caNkWQ54Gt1mxLF2Yh
+                      process-1.4.3.0@process-1.4.3.0
                       psqueues-0.2.4.0@psqueues-0.2.4.0-7YUUrKoGZl4mCdsWIXice
                       random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
                       random-shuffle-0.0.4@random-shuffle-0.0.4-JFmQTl3zqkdFNclmky3PKS
@@ -192,6 +193,7 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-EcpvpD35v121j9vVe9N
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Sequence
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
+                         directory-server-0.1.0.0@directory-server-0.1.0.0-9tQHEPTmQrWKbiQ1wcODt1:Lib
                          dlist-0.8.0.3@dlist-0.8.0.3-BHFBNaw8k6n9WiaUNzoXpk:Data.DList
                          file-server-api-0.1.0.0@file-server-api-0.1.0.0-FogueR1zkvE6hesF4r0hNv:API
                          foundation-0.0.17@foundation-0.0.17-51BsN7DPytcIY3Vjpxz0LP:Foundation.Array.Bitmap
@@ -240,7 +242,7 @@ family instance modules: MonadRandom-0.5.1@MonadRandom-0.5.1-EcpvpD35v121j9vVe9N
                          vector-0.12.0.1@vector-0.12.0.1-7zL8jLrScgT5Hz1nfWEdZc:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-BfeUVhBVvrx1Nvtzv6OD9c:Codec.Compression.Zlib.Stream
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
-import  -/  directory-server-0.1.0.0@directory-server-0.1.0.0-9OVGCQB4iP8F4pw7PVZehB:Lib aa2673d905382424351ab8b0a52ca8b5
+import  -/  directory-server-0.1.0.0@directory-server-0.1.0.0-9tQHEPTmQrWKbiQ1wcODt1:Lib 8dbcb573c16a62f9ec61d00f99e6f83a
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module
@@ -254,12 +256,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-d8f20bfa0d451a3dd833ce88cc5e5fd2
+545c69b3c1767fa8f5134d8b59bafeaa
   main :: GHC.Types.IO ()
   {- Arity: 1,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-a999ff491c7a18fd676b854bb890dbb7
+68807709703a2fd3ae0000caa71fc315
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

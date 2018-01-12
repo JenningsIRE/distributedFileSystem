@@ -44,44 +44,61 @@ import           System.Log.Handler.Simple
 import           System.Log.Handler.Syslog
 import           System.Log.Logger
 import           API
+import           ServerAPI
+import           ClientAPI
+import qualified System.Process           as PR
+import           System.IO
 
-startApp :: IO ()
+startApp :: IO ()    -- set up wai logger for service to output apache style logging for rest calls
 startApp = withLogging $ \ aplogger -> do
-  warnLog "Starting file-server."
-
+  addSelf
   let settings = setPort 8080 $ setLogger aplogger defaultSettings
   runSettings settings app
 
-app :: Application
-app = serve api server
+app ::  Application
+app  = serve api server
 
-api :: Proxy API
+api :: Proxy FileAPI
 api = Proxy
 
-server :: Server API
+server :: Server FileAPI
 server = postFile
     :<|> getFile
+  where
+    postFile :: Message -> Handler Bool
+    postFile msg@(Message key _) = liftIO $ do
+      withMongoDbConnection $ upsert (select ["name" =: key] "MESSAGE_RECORD") $ toBSON msg
 
-postFile :: Message -> Handler Bool
-postFile msg@(Message key _) = liftIO $ do
-  warnLog $ "Storing message under key " ++ key ++ "."
+      return True
 
-  withMongoDbConnection $ upsert (select ["name" =: key] "MESSAGE_RECORD") $ toBSON msg
+    getFile :: Maybe String -> Handler [Message]
+    getFile (Just key) = liftIO $ do
+      withMongoDbConnection $ do
+        docs <- find (select ["name" =: key] "MESSAGE_RECORD") >>= drainCursor
+        return $ catMaybes $ DL.map (\ b -> fromBSON b :: Maybe Message) docs
 
-  return True  -- as this is a simple demo I'm not checking anything
+    getFile Nothing = liftIO $ do
+      warnLog  "No key for searching."
+      return  ([] :: [Message])
 
-getFile :: Maybe String -> Handler [Message]
-getFile (Just key) = liftIO $ do
-  warnLog $ "Searching for value for key: " ++ key
 
-  withMongoDbConnection $ do
-    docs <- find (select ["name" =: key] "MESSAGE_RECORD") >>= drainCursor
-    --warnLog $ "retrieved data: " ++ show docs
-    return $ catMaybes $ DL.map (\ b -> fromBSON b :: Maybe Message) docs
+env ::  IO SC.ClientEnv
+env = do
+  man <- newManager defaultManagerSettings
+  return (SC.ClientEnv man (SC.BaseUrl SC.Http "docker.for.mac.localhost" 8000 ""))
 
-getFile Nothing = liftIO $ do
-  warnLog  "No key for searching."
-  return  ([] :: [Message])
+doCall f = SC.runClientM f =<< env
+
+addSelf :: IO ()
+addSelf  = do
+  resp <- doCall (addServer (Message "server"  "8080"))
+  case resp of
+    Left _ -> warnLog "Something went wrong"
+    Right a -> do
+      case a of
+        True -> warnLog "Added"
+        otherwise -> warnLog "Not added"
+
 
 -- | error stuff
 custom404Error msg = err404 { errBody = msg }

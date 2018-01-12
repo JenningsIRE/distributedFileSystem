@@ -20,8 +20,6 @@ import qualified Servant.API                        as SC
 import qualified Servant.Client                     as SC
 import           System.Console.ANSI
 import           System.Environment
---import           UseHaskellAPI
---import           UseHaskellAPIClient
 import           API
 import           ClientAPI
 
@@ -48,28 +46,40 @@ instance PrintResponse Bool where
   resp True =  "Response is a boolean : Totally!"
   resp False = "Response is a boolean : Like No Way!"
 
-doCall f h p = reportExceptionOr (putStrLn . resp) (SC.runClientM f =<< env h p)
+doReportCall f h p = reportExceptionOr (putStrLn . resp) (SC.runClientM f =<< env h p)
 
-doPostFile :: String -> String -> Maybe String -> Maybe String -> IO ()
-doPostFile n m  = doCall $ postFile $ Message n m
+doCall f h p = SC.runClientM f =<< env h p
 
-doGetFile :: String -> Maybe String -> Maybe String -> IO ()
-doGetFile s  = doCall $ getFile $ Just s
+doPostDirectory :: String -> String -> Maybe String -> Maybe String -> IO ()
+doPostDirectory fileName dirName h dirPort = do
+  let filePath = dirName ++ fileName
+  address <- doCall (postDirectory $ Message fileName dirName) h dirPort
+  case address of
+    Left err -> putStrLn "Something went wrong"
+    Right resp -> case resp of
+        [] -> putStrLn $ "No such directory: " ++ dirName
+        [x@(Message fsIP fsPort)] -> do
+          contents <- readFile fileName
+          doReportCall (postFile $ Message filePath contents) (Just fsIP) (Just fsPort)
 
---doStoreMessage :: String -> String -> Maybe String -> Maybe String -> IO ()
---doStoreMessage n m  = doCall $ storeMessage $ Message n m
-
---doSearchMessage :: String -> Maybe String -> Maybe String -> IO ()
---doSearchMessage s  = doCall $ searchMessage $ Just s
-
+doGetDirectory :: String -> String -> Maybe String -> Maybe String -> IO ()
+doGetDirectory fileName dirName h dirPort = do
+  let filePath = dirName ++ fileName
+  address <- doCall (postDirectory $ Message fileName dirName) h dirPort
+  case address of
+    Left err -> putStrLn "Something went wrong"
+    Right response -> case response of
+        [] -> putStrLn $ "No such directory: " ++ dirName
+        [x@(Message fsIP fsPort)] -> do
+          file <- doCall (getFile (Just filePath)) (Just fsIP) (Just fsPort)
+          case file of
+            Left err -> putStrLn "error retrieving file..."
+            Right (Message _ text:_) -> writeFile "downloaded" text
 
 someFunc :: IO ()
 someFunc = do
-  doPostFile "1" "this is a test" (Just "localhost") (Just "8080")
-  doGetFile "1" (Just "localhost") (Just "8080")
-  --doStoreMessage "1" "this is a test" (Just "localhost") (Just "8080")
-  --doSearchMessage "1" (Just "localhost") (Just "8080")
-
+  doPostDirectory "test.txt" "server" (Just "localhost") (Just "8000")
+  doGetDirectory "test.txt" "server" (Just "localhost") (Just "8000")
 
 withInfo :: Parser a -> String -> ParserInfo a
 withInfo opts desc = info (helper <*> opts) $ progDesc desc

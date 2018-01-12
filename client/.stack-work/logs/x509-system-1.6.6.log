@@ -9,6 +9,26 @@ System/X509/MacOS.hs:8:1: warning: [-Wunused-imports]
       except perhaps to import instances from ‘Control.Applicative’
     To import instances alone, use: import Control.Applicative()
 [3 of 3] Compiling System.X509      ( System/X509.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/X509.o )
+Running Haddock for x509-system-1.6.6...
+Preprocessing library x509-system-1.6.6...
+
+System/X509/MacOS.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+Haddock coverage:
+  50% (  1 /  2) in 'System.X509.Unix'
+  Missing documentation for:
+    getSystemCertificateStore (System/X509/Unix.hs:39)
+   0% (  0 /  2) in 'System.X509.MacOS'
+  Missing documentation for:
+    Module header
+    getSystemCertificateStore (System/X509/MacOS.hs:28)
+  50% (  1 /  2) in 'System.X509'
+  Missing documentation for:
+    getSystemCertificateStore (System/X509/MacOS.hs:28)
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/x509-system/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/x509-system-1.6.6-FptixyyOcPGF3q6K51nVqQ
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/x509-system-1.6.6-FptixyyOcPGF3q6K51nVqQ
 Registering x509-system-1.6.6...

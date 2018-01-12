@@ -121,6 +121,229 @@ Preprocessing library cryptonite-0.23...
 [118 of 120] Compiling Crypto.Cipher.Blowfish ( Crypto/Cipher/Blowfish.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Crypto/Cipher/Blowfish.o )
 [119 of 120] Compiling Crypto.Cipher.AES.Primitive ( Crypto/Cipher/AES/Primitive.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Crypto/Cipher/AES/Primitive.o )
 [120 of 120] Compiling Crypto.Cipher.AES ( Crypto/Cipher/AES.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Crypto/Cipher/AES.o )
+Running Haddock for cryptonite-0.23...
+Preprocessing library cryptonite-0.23...
+Haddock coverage:
+   0% (  0 /  1) in 'Crypto.Tutorial'
+  Missing documentation for:
+    Module header
+ 100% (  2 /  2) in 'Crypto.Random.Entropy.Source'
+ 100% (  3 /  3) in 'Crypto.Random.Entropy.Unix'
+ 100% (  2 /  2) in 'Crypto.Random.Entropy.RDRand'
+ 100% (  4 /  4) in 'Crypto.Random.Entropy.Backend'
+ 100% (  5 /  5) in 'Crypto.Random.Entropy.Unsafe'
+ 100% (  3 /  3) in 'Crypto.PubKey.Internal'
+ 100% ( 14 / 14) in 'Crypto.Number.Compat'
+ 100% (  7 /  7) in 'Crypto.Number.Basic'
+ 100% (  7 /  7) in 'Crypto.Number.ModArithmetic'
+ 100% (  4 /  4) in 'Crypto.Number.Serialize.Internal'
+ 100% (  4 /  4) in 'Crypto.Internal.Words'
+ 100% (  2 /  2) in 'Crypto.Internal.Proxy'
+  33% (  2 /  6) in 'Crypto.Internal.Nat'
+  Missing documentation for:
+    Module header
+    IsDivisibleBy8 (Crypto/Internal/Nat.hs:140)
+    byteLen (Crypto/Internal/Nat.hs:16)
+    integralNatVal (Crypto/Internal/Nat.hs:19)
+ 100% (  2 /  2) in 'Crypto.Internal.DeepSeq'
+Warning: Crypto.Internal.Imports: Could not find documentation for exported module: X
+ 100% (  1 /  1) in 'Crypto.Internal.Imports'
+ 100% (  9 /  9) in 'Crypto.Number.F2m'
+ 100% ( 15 / 15) in 'Crypto.PubKey.ECC.Types'
+ 100% ( 11 / 11) in 'Crypto.PubKey.RSA.Types'
+ 100% (  6 /  6) in 'Crypto.Internal.CompatPrim'
+ 100% (  4 /  4) in 'Crypto.Internal.Compat'
+ 100% ( 17 / 17) in 'Crypto.Internal.WordArray'
+ 100% (  4 /  4) in 'Crypto.Internal.ByteArray'
+ 100% (  5 /  5) in 'Crypto.Number.Serialize'
+ 100% (  5 /  5) in 'Crypto.PubKey.RSA.Prim'
+ 100% (  2 /  2) in 'Crypto.Random.Entropy'
+ 100% (  5 /  5) in 'Crypto.Random.EntropyPool'
+ 100% (  5 /  5) in 'Crypto.Random.Types'
+ 100% (  5 /  5) in 'Crypto.Number.Generate'
+ 100% (  3 /  3) in 'Crypto.Random.SystemDRG'
+ 100% (  4 /  4) in 'Crypto.Hash.Types'
+ 100% (  2 /  2) in 'Crypto.Hash.Whirlpool'
+ 100% (  2 /  2) in 'Crypto.Hash.Tiger'
+ 100% (  5 /  5) in 'Crypto.Hash.Skein512'
+ 100% (  3 /  3) in 'Crypto.Hash.Skein256'
+ 100% (  3 /  3) in 'Crypto.Hash.SHAKE'
+ 100% (  3 /  3) in 'Crypto.Hash.SHA512t'
+ 100% (  2 /  2) in 'Crypto.Hash.SHA512'
+ 100% (  2 /  2) in 'Crypto.Hash.SHA384'
+ 100% (  5 /  5) in 'Crypto.Hash.SHA3'
+ 100% (  2 /  2) in 'Crypto.Hash.SHA256'
+ 100% (  2 /  2) in 'Crypto.Hash.SHA224'
+ 100% (  2 /  2) in 'Crypto.Hash.SHA1'
+ 100% (  2 /  2) in 'Crypto.Hash.RIPEMD160'
+ 100% (  2 /  2) in 'Crypto.Hash.MD5'
+ 100% (  2 /  2) in 'Crypto.Hash.MD4'
+ 100% (  2 /  2) in 'Crypto.Hash.MD2'
+ 100% (  5 /  5) in 'Crypto.Hash.Keccak'
+ 100% (  8 /  8) in 'Crypto.Hash.IO'
+ 100% (  3 /  3) in 'Crypto.Hash.Blake2sp'
+ 100% (  4 /  4) in 'Crypto.Hash.Blake2s'
+ 100% (  2 /  2) in 'Crypto.Hash.Blake2bp'
+ 100% (  6 /  6) in 'Crypto.Hash.Blake2b'
+  60% (  3 /  5) in 'Crypto.Hash.Blake2'
+  Missing documentation for:
+    Blake2sp (Crypto/Hash/Blake2.hs:112)
+    Blake2bp (Crypto/Hash/Blake2.hs:132)
+  96% ( 45 / 47) in 'Crypto.Hash.Algorithms'
+  Missing documentation for:
+    Blake2bp (Crypto/Hash/Blake2.hs:132)
+    Blake2sp (Crypto/Hash/Blake2.hs:112)
+ 100% ( 20 / 20) in 'Crypto.Hash'
+ 100% (  9 /  9) in 'Crypto.MAC.HMAC'
+ 100% (  5 /  5) in 'Crypto.KDF.HKDF'
+  62% (  5 /  8) in 'Crypto.KDF.PBKDF2'
+  Missing documentation for:
+    fastPBKDF2_SHA1 (Crypto/KDF/PBKDF2.hs:110)
+    fastPBKDF2_SHA256 (Crypto/KDF/PBKDF2.hs:125)
+    fastPBKDF2_SHA512 (Crypto/KDF/PBKDF2.hs:140)
+ 100% (  3 /  3) in 'Crypto.KDF.Scrypt'
+  75% (  9 / 12) in 'Crypto.OTP'
+  Missing documentation for:
+    hotp (Crypto/OTP.hs:67)
+    TOTPParams (Crypto/OTP.hs:124)
+    ClockSkew (Crypto/OTP.hs:126)
+ 100% ( 19 / 19) in 'Crypto.PubKey.DSA'
+ 100% (  3 /  3) in 'Crypto.PubKey.MaskGenFunction'
+ 100% (  8 /  8) in 'Crypto.Error.Types'
+ 100% (  8 /  8) in 'Crypto.Error'
+  70% (  7 / 10) in 'Crypto.KDF.Argon2'
+  Missing documentation for:
+    Parallelism (Crypto/KDF/Argon2.hs:69)
+    defaultOptions (Crypto/KDF/Argon2.hs:93)
+    hash (Crypto/KDF/Argon2.hs:102)
+  92% ( 11 / 12) in 'Crypto.MAC.Poly1305'
+  Missing documentation for:
+    authTag (Crypto/MAC/Poly1305.hs:47)
+ 100% ( 12 / 12) in 'Crypto.PubKey.Ed25519'
+  16% (  7 / 44) in 'Crypto.ECC.Simple.Types'
+  Missing documentation for:
+    Curve (Crypto/ECC/Simple/Types.hs:63)
+    CurveType (Crypto/ECC/Simple/Types.hs:94)
+    CurveBinaryParam (Crypto/ECC/Simple/Types.hs:88)
+    CurvePrimeParam (Crypto/ECC/Simple/Types.hs:91)
+    SEC_p112r1 (Crypto/ECC/Simple/Types.hs:113)
+    SEC_p112r2 (Crypto/ECC/Simple/Types.hs:114)
+    SEC_p128r1 (Crypto/ECC/Simple/Types.hs:115)
+    SEC_p128r2 (Crypto/ECC/Simple/Types.hs:116)
+    SEC_p160k1 (Crypto/ECC/Simple/Types.hs:117)
+    SEC_p160r1 (Crypto/ECC/Simple/Types.hs:118)
+    SEC_p160r2 (Crypto/ECC/Simple/Types.hs:119)
+    SEC_p192k1 (Crypto/ECC/Simple/Types.hs:120)
+    SEC_p192r1 (Crypto/ECC/Simple/Types.hs:121)
+    SEC_p224k1 (Crypto/ECC/Simple/Types.hs:122)
+    SEC_p224r1 (Crypto/ECC/Simple/Types.hs:123)
+    SEC_p256k1 (Crypto/ECC/Simple/Types.hs:124)
+    SEC_p256r1 (Crypto/ECC/Simple/Types.hs:125)
+    SEC_p384r1 (Crypto/ECC/Simple/Types.hs:126)
+    SEC_p521r1 (Crypto/ECC/Simple/Types.hs:127)
+    SEC_t113r1 (Crypto/ECC/Simple/Types.hs:128)
+    SEC_t113r2 (Crypto/ECC/Simple/Types.hs:129)
+    SEC_t131r1 (Crypto/ECC/Simple/Types.hs:130)
+    SEC_t131r2 (Crypto/ECC/Simple/Types.hs:131)
+    SEC_t163k1 (Crypto/ECC/Simple/Types.hs:132)
+    SEC_t163r1 (Crypto/ECC/Simple/Types.hs:133)
+    SEC_t163r2 (Crypto/ECC/Simple/Types.hs:134)
+    SEC_t193r1 (Crypto/ECC/Simple/Types.hs:135)
+    SEC_t193r2 (Crypto/ECC/Simple/Types.hs:136)
+    SEC_t233k1 (Crypto/ECC/Simple/Types.hs:137)
+    SEC_t233r1 (Crypto/ECC/Simple/Types.hs:138)
+    SEC_t239k1 (Crypto/ECC/Simple/Types.hs:139)
+    SEC_t283k1 (Crypto/ECC/Simple/Types.hs:140)
+    SEC_t283r1 (Crypto/ECC/Simple/Types.hs:141)
+    SEC_t409k1 (Crypto/ECC/Simple/Types.hs:142)
+    SEC_t409r1 (Crypto/ECC/Simple/Types.hs:143)
+    SEC_t571k1 (Crypto/ECC/Simple/Types.hs:144)
+    SEC_t571r1 (Crypto/ECC/Simple/Types.hs:145)
+ 100% (  4 /  4) in 'Crypto.Data.Padding'
+ 100% (  3 /  3) in 'Crypto.Data.AFIS'
+ 100% (  2 /  2) in 'Crypto.Cipher.Types.Utils'
+ 100% (  3 /  3) in 'Crypto.Cipher.Types.GF'
+ 100% (  6 /  6) in 'Crypto.Cipher.Types.Base'
+ 100% (  2 /  2) in 'Crypto.Cipher.Types.Stream'
+ 100% (  9 /  9) in 'Crypto.Cipher.Types.AEAD'
+ 100% ( 19 / 19) in 'Crypto.Cipher.Types.Block'
+ 100% ( 25 / 25) in 'Crypto.Cipher.Types'
+   0% (  0 /  2) in 'Crypto.Cipher.Utils'
+  Missing documentation for:
+    Module header
+    validateKeySize (Crypto/Cipher/Utils.hs:11)
+  75% (  3 /  4) in 'Crypto.ConstructHash.MiyaguchiPreneel'
+  Missing documentation for:
+    MiyaguchiPreneel (Crypto/ConstructHash/MiyaguchiPreneel.hs:26)
+ 100% (  4 /  4) in 'Crypto.MAC.CMAC'
+  60% (  3 /  5) in 'Crypto.Cipher.Twofish.Primitive'
+  Missing documentation for:
+    Module header
+    Twofish (Crypto/Cipher/Twofish/Primitive.hs:33)
+   0% (  0 /  4) in 'Crypto.Cipher.Twofish'
+  Missing documentation for:
+    Module header
+    Twofish128 (Crypto/Cipher/Twofish.hs:12)
+    Twofish192 (Crypto/Cipher/Twofish.hs:24)
+    Twofish256 (Crypto/Cipher/Twofish.hs:36)
+ 100% (  5 /  5) in 'Crypto.Cipher.Salsa'
+ 100% (  5 /  5) in 'Crypto.Cipher.XSalsa'
+ 100% (  5 /  5) in 'Crypto.Cipher.RC4'
+ 100% (  4 /  4) in 'Crypto.Cipher.DES.Primitive'
+ 100% (  5 /  5) in 'Crypto.Cipher.TripleDES'
+ 100% (  2 /  2) in 'Crypto.Cipher.DES'
+ 100% (  9 /  9) in 'Crypto.Cipher.ChaCha'
+ 100% ( 12 / 12) in 'Crypto.Cipher.ChaChaPoly1305'
+ 100% (  4 /  4) in 'Crypto.Random.ChaChaDRG'
+  95% ( 19 / 20) in 'Crypto.Random'
+  Missing documentation for:
+    Seed (Crypto/Random.hs:40)
+  91% ( 10 / 11) in 'Crypto.ECC.Simple.Prim'
+  Missing documentation for:
+    scalarFromInteger (Crypto/ECC/Simple/Prim.hs:35)
+ 100% ( 12 / 12) in 'Crypto.PubKey.Curve25519'
+ 100% ( 12 / 12) in 'Crypto.PubKey.Curve448'
+ 100% (  2 /  2) in 'Crypto.PubKey.Ed448'
+ 100% ( 27 / 27) in 'Crypto.PubKey.ECC.P256'
+  27% (  3 / 11) in 'Crypto.ECC'
+  Missing documentation for:
+    Curve_P384R1 (Crypto/ECC.hs:127)
+    Curve_P521R1 (Crypto/ECC.hs:149)
+    Curve_X25519 (Crypto/ECC.hs:171)
+    Curve_X448 (Crypto/ECC.hs:188)
+    EllipticCurve (Crypto/ECC.hs:51)
+    EllipticCurveDH (Crypto/ECC.hs:74)
+    EllipticCurveArith (Crypto/ECC.hs:83)
+    SharedSecret (Crypto/ECC.hs:48)
+ 100% (  9 /  9) in 'Crypto.PubKey.ECC.Prim'
+ 100% ( 12 / 12) in 'Crypto.PubKey.ECC.ECDSA'
+ 100% (  3 /  3) in 'Crypto.PubKey.ECC.Generate'
+ 100% (  3 /  3) in 'Crypto.PubKey.ECIES'
+ 100% (  2 /  2) in 'Crypto.Random.Probabilistic'
+ 100% ( 10 / 10) in 'Crypto.Number.Prime'
+ 100% ( 10 / 10) in 'Crypto.PubKey.DH'
+ 100% (  8 /  8) in 'Crypto.PubKey.ECC.DH'
+ 100% ( 19 / 19) in 'Crypto.PubKey.ElGamal'
+ 100% (  9 /  9) in 'Crypto.PubKey.RSA'
+ 100% (  9 /  9) in 'Crypto.PubKey.RSA.OAEP'
+ 100% ( 15 / 15) in 'Crypto.PubKey.RSA.PKCS15'
+ 100% (  9 /  9) in 'Crypto.PubKey.RSA.PSS'
+ 100% (  5 /  5) in 'Crypto.Cipher.Camellia.Primitive'
+ 100% (  2 /  2) in 'Crypto.Cipher.Camellia'
+ 100% (  2 /  2) in 'Crypto.Cipher.Blowfish.Box'
+ 100% (  6 /  6) in 'Crypto.Cipher.Blowfish.Primitive'
+ 100% (  5 /  5) in 'Crypto.KDF.BCrypt'
+ 100% (  6 /  6) in 'Crypto.Cipher.Blowfish'
+ 100% ( 27 / 27) in 'Crypto.Cipher.AES.Primitive'
+ 100% (  4 /  4) in 'Crypto.Cipher.AES'
+Warning: Crypto.Hash.IO: could not find link destinations for:
+    IsDivisibleBy8 IsAtLeast IsAtMost
+Warning: Crypto.Hash.Algorithms: could not find link destinations for:
+    IsDivisibleBy8 IsAtLeast IsAtMost hashDigestASN1
+Warning: Crypto.PubKey.RSA.PKCS15: could not find link destinations for:
+    hashDigestASN1
+Documentation created:
+.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/doc/html/cryptonite/index.html
 Installing library in
-/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.15/8.0.2/lib/x86_64-osx-ghc-8.0.2/cryptonite-0.23-7aE9caGlGrwDnGcKBpfJ80
+/Users/Sam/.stack/snapshots/x86_64-osx/lts-9.17/8.0.2/lib/x86_64-osx-ghc-8.0.2/cryptonite-0.23-7aE9caGlGrwDnGcKBpfJ80
 Registering cryptonite-0.23...
