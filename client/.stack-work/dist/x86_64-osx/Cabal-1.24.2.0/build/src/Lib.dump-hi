@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2018-01-12 01:23:23.682201 UTC
+2018-01-13 00:49:42.703327 UTC
 
 interface client-0.1.0.0-EWgUGy1Y8f12f5qDGtsfUi:Lib 8002
-  interface hash: ad4f78c03f2aee422e0934ce9d438345
+  interface hash: 05f2b21eae01bb0e55ef14bf9ffa869f
   ABI hash: e27361ce7f2f3d29c1426ec0021246d1
   export-list hash: 6065a41b9bf764c7dd16343cbc51fec6
   orphan hash: ca0430cf3881cedd4b82c67a0e52de0d
@@ -243,8 +243,8 @@ import  -/  base-4.9.1.0:System.Environment 08cb808e8e6a7821e6f8cfa76a977431
 import  -/  base-4.9.1.0:System.IO c9de64c5f5407c4cf1c52500c4d15200
 import  -/  base-4.9.1.0:Text.Read 75c59863e882ebaec4532e9465e2ee9b
 import  -/  cabal-file-th-0.2.4@cabal-file-th-0.2.4-A8eX74dd8VkCM7ViVF2n79:Distribution.PackageDescription.TH ed8cf657ab94c0ecbf0c60d45e2f58f6
-import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-KaBL5t5x2QT85Zf0jOG9nN:API 1998e0b4028103927bc51e22040cbae4
-import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-KaBL5t5x2QT85Zf0jOG9nN:ClientAPI 6b1dd0dee4f39d86eadfd6baccf19aca
+import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-KaBL5t5x2QT85Zf0jOG9nN:API 919cbd043100946b21dbf3b3548d9a25
+import  -/  file-server-api-0.1.0.0@file-server-api-0.1.0.0-KaBL5t5x2QT85Zf0jOG9nN:ClientAPI e5f9c46d19084a720c0f9f0fe1f06dbe
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 import  -/  git-embed-0.1.0@git-embed-0.1.0-CTVZWW1MQCjqsznzsHhCb:Git.Embed 984aeb22c77d2bdb5638e4f05866c542
 import  -/  http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ:Network.HTTP.Client 5fcc60d23df427f66e62e8521ee35210

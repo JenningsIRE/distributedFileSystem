@@ -50,20 +50,27 @@ doReportCall f h p = reportExceptionOr (putStrLn . resp) (SC.runClientM f =<< en
 
 doCall f h p = SC.runClientM f =<< env h p
 
-doPostDirectory :: String -> String -> Maybe String -> Maybe String -> IO ()
-doPostDirectory fileName dirName h dirPort = do
+upload :: String -> String -> Maybe String -> Maybe String -> IO ()
+upload fileName dirName h dirPort = do
   let filePath = dirName ++ fileName
-  address <- doCall (postDirectory $ Message fileName dirName) h dirPort
-  case address of
-    Left err -> putStrLn "Something went wrong"
-    Right resp -> case resp of
-        [] -> putStrLn $ "No such directory: " ++ dirName
-        [x@(Message fsIP fsPort)] -> do
-          contents <- readFile fileName
-          doReportCall (postFile $ Message filePath contents) (Just fsIP) (Just fsPort)
+  lock <- doCall (lockFile $ Message filePath "name" ) h (Just (show 8040))
+  case lock of
+    Right True -> do
+      address <- doCall (postDirectory $ Message fileName dirName) h dirPort
+      case address of
+        Left err -> putStrLn "Something went wrong"
+        Right resp -> case resp of
+            [] -> putStrLn $ "No such directory: " ++ dirName
+            [x@(Message fsIP fsPort)] -> do
+              contents <- readFile fileName
+              doReportCall (postFile $ Message filePath contents) (Just fsIP) (Just fsPort)
+              doReportCall (unlockFile $ Message filePath "name") h (Just (show 8040))
+    otherwise -> putStrLn "locked"
 
-doGetDirectory :: String -> String -> Maybe String -> Maybe String -> IO ()
-doGetDirectory fileName dirName h dirPort = do
+
+
+download :: String -> String -> Maybe String -> Maybe String -> IO ()
+download fileName dirName h dirPort = do
   let filePath = dirName ++ fileName
   address <- doCall (postDirectory $ Message fileName dirName) h dirPort
   case address of
@@ -78,8 +85,8 @@ doGetDirectory fileName dirName h dirPort = do
 
 someFunc :: IO ()
 someFunc = do
-  doPostDirectory "test.txt" "server" (Just "localhost") (Just "8000")
-  doGetDirectory "test.txt" "server" (Just "localhost") (Just "8000")
+  upload "test.txt" "server" (Just "localhost") (Just "8000")
+  download "test.txt" "server" (Just "localhost") (Just "8000")
 
 withInfo :: Parser a -> String -> ParserInfo a
 withInfo opts desc = info (helper <*> opts) $ progDesc desc
