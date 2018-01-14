@@ -58,7 +58,7 @@ startApp = withLogging $ \ aplogger -> do
   runSettings settings app
 
 type FullDirectoryAPI = "postDirectory"             :> ReqBody '[JSON] Message  :> Post '[JSON] [Message]
-                   :<|> "getDirectory"              :> QueryParam "name" String :> Get '[JSON] [Message]
+                   :<|> "getDirectory"              :> ReqBody '[JSON] Message  :> Post '[JSON] [DirectoryResponse]
                    :<|> "addServer"                :> ReqBody '[JSON] Message :> Post '[JSON] Bool
 
 app :: Application
@@ -67,16 +67,31 @@ app = serve api server
 api :: Proxy FullDirectoryAPI
 api = Proxy
 
-data ServerAddress = ServerAddress  { myName        :: String
-                      , ip            :: String
-                      , port          :: String
-                      }deriving (Show, Generic, ToJSON, FromJSON, ToBSON, FromBSON)
 
 
-findServer :: String -> IO [ServerAddress]
-findServer name = liftIO $ do
-  fileServer <- withMongoDbConnection $ find (select ["myName" =: name] "FS_INFO") >>= drainCursor
-  return (DL.take 1 $ catMaybes $ DL.map (\ b -> fromBSON b :: Maybe ServerAddress) fileServer)
+findServer :: String -> IO [DirectoryResponse]
+findServer key = liftIO $ do
+  warnLog $ "Finding server with name: " ++ key
+  fileServer <- withMongoDbConnection $ find (select ["fileName" =: key] "ADDRESS") >>= drainCursor
+  return (DL.take 1 $ catMaybes $ DL.map (\ b -> fromBSON b :: Maybe DirectoryResponse) fileServer)
+
+findCache :: String -> IO [DirectoryResponse]
+findCache key = liftIO $ do
+  warnLog $ "Finding cache with name: " ++ key
+  cache <- withMongoDbConnection $ find (select ["fileName" =: key] "CACHE") >>= drainCursor
+  return (DL.take 1 $ catMaybes $ DL.map (\ b -> fromBSON b :: Maybe DirectoryResponse) cache)
+
+
+updateCache :: String -> IO String
+updateCache key = do
+  currentTime <- getCurrentTime
+  let time = show currentTime
+  warnLog $ "updating cache " ++ time
+  let cache = DirectoryResponse key "ip" "port" time
+  warnLog $ "Adding cache with name: " ++ key
+  withMongoDbConnection $ upsert (select ["fileName" =: key] "CACHE") $ toBSON cache
+  return time
+
 
 server :: Server FullDirectoryAPI
 server = postDirectory
@@ -89,24 +104,38 @@ server = postDirectory
       serverAddress <- findServer dirName
       case serverAddress of
         [] -> return ([] :: [Message])
-        (info@(ServerAddress name ip port):_) -> return [Message ip port]
+        (info@(DirectoryResponse name ip port _):_) -> do
+          time <- updateCache filepath
+          return [Message ip port]
 
     addServer :: Message -> Handler Bool
     addServer msg@(Message dirName port) = liftIO $ do
       let ip = "localhost"
-      let newServer = ServerAddress dirName ip port
-      withMongoDbConnection $ upsert (select ["myName" =: dirName] "FS_INFO") $ toBSON newServer
+      let newServer = DirectoryResponse dirName ip port "time"
+      warnLog $ "Adding server with name: " ++ dirName
+      withMongoDbConnection $ upsert (select ["fileName" =: dirName] "ADDRESS") $ toBSON newServer
       return True
 
-    getDirectory :: Maybe String -> Handler [Message]
-    getDirectory (Just dirName) = liftIO $ do
+    getDirectory :: Message -> Handler [DirectoryResponse]
+    getDirectory msg@(Message fileName dirName) = liftIO $ do
+      let filepath = dirName ++ fileName
       serverAddress <- findServer dirName
       case serverAddress of
-        [] -> return ([] :: [Message])
-        (info@(ServerAddress name ip port):_) -> return [Message ip port]
+        [] -> return ([] :: [DirectoryResponse])
+        (info@(DirectoryResponse name ip port _):_) -> do
+          cache <- findCache filepath
+          case cache of
+            [] -> do
+              warnLog "not cached"
+              return [DirectoryResponse name ip port "time"]
+            (x@(DirectoryResponse _ _ _ time):_) -> do
+              warnLog time
+              return [DirectoryResponse name ip port time]
 
-    getDirectory Nothing = liftIO $ do
-      return  ([] :: [Message])
+
+
+--    getDirectory Nothing = liftIO $ do
+--      return  ([] :: [DirectoryResponse])
 
 -- | error stuff
 custom404Error msg = err404 { errBody = msg }

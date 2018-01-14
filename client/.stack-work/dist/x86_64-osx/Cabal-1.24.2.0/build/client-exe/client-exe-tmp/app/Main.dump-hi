@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2018-01-12 23:39:17.615066 UTC
+2018-01-13 22:15:30.276823 UTC
 
 interface main@main:Main 8002
-  interface hash: e69b26bf97ef513428c3d92743926964
-  ABI hash: 3fa76493b7ecbce2a8dd08ed2027e40c
-  export-list hash: 728848940e4e7d62593612fc43f55fa2
+  interface hash: 331351d1e70246f3375fb1b1218bcd8a
+  ABI hash: e9f4f91fad1bea11836c075f7a1b282c
+  export-list hash: 573acd7d3156d1eef428fc956d7ed19b
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 89b32c76de141f1ab957fe0e36caebab
   sig of: Nothing
@@ -15,15 +15,20 @@ exports:
   Main.main
 module dependencies:
 package dependencies: Cabal-1.24.2.0@Cabal-1.24.2.0
+                      MonadRandom-0.5.1@MonadRandom-0.5.1-6uvIhB08u1RHnyKFfb2cRN
                       aeson-1.1.2.0@aeson-1.1.2.0-7ssY6fy1GxZGXxTPcOtf2k
                       ansi-terminal-0.6.3.1@ansi-terminal-0.6.3.1-3RTqikoQf47ajVD9m8zgB
                       ansi-wl-pprint-0.6.7.3@ansi-wl-pprint-0.6.7.3-A79v826bgPr574HtaZPPqC
+                      appar-0.1.4@appar-0.1.4-DGWHHt2WRn9FI49prcwO9
                       array-0.5.1.1@array-0.5.1.1
+                      async-2.1.1.1@async-2.1.1.1-8yywY4inVGRLJSCg60gBXj
                       attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ
                       attoparsec-iso8601-1.0.0.0@attoparsec-iso8601-1.0.0.0-CiauZZhskHA6jYy7CqE2mZ
+                      auto-update-0.1.4@auto-update-0.1.4-EmUvNdmhEju51bHrtaEMpz
                       base-4.9.1.0
                       base-compat-0.9.3@base-compat-0.9.3-KeJp8zYMpcS9WibvTcxU22
                       base-orphans-0.6@base-orphans-0.6-AbJ3lKVXygDCG0eeQEv8Iu
+                      base16-bytestring-0.1.1.6@base16-bytestring-0.1.1.6-4E2p94lTx8gIceMhu8Kl9o
                       base64-bytestring-1.0.0.1@base64-bytestring-1.0.0.1-4O9TExPPz6eI82Yj7L4SIj
                       basement-0.0.4@basement-0.0.4-5G9Gc8Ht9hD9gydJD2I2TQ
                       bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw
@@ -33,20 +38,25 @@ package dependencies: Cabal-1.24.2.0@Cabal-1.24.2.0
                       blaze-markup-0.8.0.0@blaze-markup-0.8.0.0-GsxkVbRgODkgUQDmmDVob
                       bson-0.3.2.3@bson-0.3.2.3-Iehu4r10AM7DJbw1eJ6rnI
                       bson-generic-0.0.8@bson-generic-0.0.8-JZVOqBk1rL7HpOeD6vuRQ4
+                      byteorder-1.0.4@byteorder-1.0.4-9NlNHkBVdo7F1prFVKrkcH
                       bytestring-0.10.8.1@bytestring-0.10.8.1
                       cabal-file-th-0.2.4@cabal-file-th-0.2.4-A8eX74dd8VkCM7ViVF2n79
                       case-insensitive-1.2.0.10@case-insensitive-1.2.0.10-1D5OUKQ7UrJ7IpOe0di4Un
-                      client-0.1.0.0@client-0.1.0.0-EWgUGy1Y8f12f5qDGtsfUi
+                      client-0.1.0.0@client-0.1.0.0-JghbxLBMba84Ocec4MGYKs
                       comonad-5.0.2@comonad-5.0.2-Fq9Xy9jdx6uIyJZn00E6Yc
                       containers-0.5.7.1@containers-0.5.7.1
                       cookie-0.4.3@cookie-0.4.3-LVlxdgOdUJj73o1VFenWKF
                       cryptohash-0.11.9@cryptohash-0.11.9-5dDfrhx2UhlI8lrNc4mH7Y
                       cryptonite-0.23@cryptonite-0.23-7aE9caGlGrwDnGcKBpfJ80
+                      data-binary-ieee754-0.4.4@data-binary-ieee754-0.4.4-7iiF2mP1jcB6tVSPgIyBOi
                       data-default-class-0.1.2.0@data-default-class-0.1.2.0-GsXqKN6o1X9jr0fF5qCVD
                       deepseq-1.4.2.0@deepseq-1.4.2.0 directory-1.3.0.0@directory-1.3.0.0
                       distributive-0.5.3@distributive-0.5.3-IX4kyVcHAyoH4uFYrsjY1R
                       dlist-0.8.0.3@dlist-0.8.0.3-BHFBNaw8k6n9WiaUNzoXpk
+                      easy-file-0.2.1@easy-file-0.2.1-rguMBNaECxLikt4CCDx0D
+                      entropy-0.3.8@entropy-0.3.8-14HIw40nRRY968j6AdY1H4
                       exceptions-0.8.3@exceptions-0.8.3-ADEDRATtUrMK1JW4zMQ9U
+                      fast-logger-2.4.10@fast-logger-2.4.10-7GMVhEi1femFXwSQxV5ynm
                       file-embed-0.0.10@file-embed-0.0.10-KWMmUDaNSRP7AxWSEHlrrK
                       file-server-api-0.1.0.0@file-server-api-0.1.0.0-KaBL5t5x2QT85Zf0jOG9nN
                       filepath-1.4.1.1@filepath-1.4.1.1
@@ -54,28 +64,37 @@ package dependencies: Cabal-1.24.2.0@Cabal-1.24.2.0
                       ghc-boot-th-8.0.2@ghc-boot-th-8.0.2 ghc-prim-0.5.0.0
                       git-embed-0.1.0@git-embed-0.1.0-CTVZWW1MQCjqsznzsHhCb
                       hashable-1.2.6.1@hashable-1.2.6.1-2ZLNuHq395GGIHwEHuqZol
+                      hashtables-1.2.2.1@hashtables-1.2.2.1-9cxVj3Rv4gl9EXt1N3YUJV
+                      hslogger-1.2.10@hslogger-1.2.10-Li6ZV5C1ftGLPA71zPNMlf
                       http-api-data-0.3.7.1@http-api-data-0.3.7.1-AT41KDpP9ayH63FPNXWrvF
                       http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ
                       http-date-0.0.6.1@http-date-0.0.6.1-AkYFHBFn90lGSerD29arC9
                       http-media-0.6.4@http-media-0.6.4-L2HKUvjwG4m4RLl78rlCa
                       http-types-0.9.1@http-types-0.9.1-G7E1zHPzooHCYxKqGuQmxY
-                      integer-gmp-1.0.0.1
+                      http2-1.6.3@http2-1.6.3-5WuWRsIVuKR43Sq9Cs2O4Z integer-gmp-1.0.0.1
                       integer-logarithms-1.0.2@integer-logarithms-1.0.2-92lMiWV9mmYAwfMEYgfQ0D
+                      iproute-1.7.1@iproute-1.7.1-EJjAtfniBUorobFQnk7lR
                       lifted-base-0.2.3.11@lifted-base-0.2.3.11-Ei0JSPdt7KOCD2HIA5jFqV
                       memory-0.14.9@memory-0.14.9-DuHWmOqOt5MKvG5MS8KASe
                       mime-types-0.1.0.7@mime-types-0.1.0.7-6b3z22GcDYZLEl2kkfCUAB
                       mmorph-1.0.9@mmorph-1.0.9-5bASEvmIkr5CpdAYXwPsn0
                       monad-control-1.0.2.2@monad-control-1.0.2.2-1Ci8dYJ8Tb7E3HTcTqOb8l
+                      mongoDB-2.3.0@mongoDB-2.3.0-LMlZ04SwfGtHlf6ES8HUVs
                       mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6
                       natural-transformation-0.4@natural-transformation-0.4-1wekIVD0YQa62debXjfFg3
                       network-2.6.3.2@network-2.6.3.2-IsLM4TXcLoRI0fmmBYVyQz
                       network-uri-2.6.1.0@network-uri-2.6.1.0-7BN1tbB3iHQ2XgvmqLAYph
+                      nonce-1.0.4@nonce-1.0.4-5fejSyqCGbVIbnmnVdRr5r
+                      old-locale-1.0.0.7@old-locale-1.0.0.7-KGBP1BSKxH5GCm0LnZP04j
+                      old-time-1.1.0.3@old-time-1.1.0.3-KWRsMSdY26c2L27Y9n9cyq
                       optparse-applicative-0.13.2.0@optparse-applicative-0.13.2.0-EqIYOWOFTvf23sT5QTYn9U
                       parsec-3.1.11@parsec-3.1.11-1aqiimsgq2dCv7eoaC8WuX
                       pretty-1.1.3.3@pretty-1.1.3.3
                       primitive-0.6.2.0@primitive-0.6.2.0-4578caNkWQ54Gt1mxLF2Yh
                       process-1.4.3.0@process-1.4.3.0
+                      psqueues-0.2.4.0@psqueues-0.2.4.0-CvAhEbuBRGQCwl61vq8zYS
                       random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
+                      random-shuffle-0.0.4@random-shuffle-0.0.4-DbASQFPGfOt3FEamOnbdrs
                       resourcet-1.1.9@resourcet-1.1.9-L2BUQrxWZMwDiwhcuyPuNi
                       safe-0.3.15@safe-0.3.15-2Yd45VWFfdcKqKyispOifY
                       scientific-0.3.5.2@scientific-0.3.5.2-FM2NdrNTcdbCDq9wuNnhIA
@@ -83,6 +102,7 @@ package dependencies: Cabal-1.24.2.0@Cabal-1.24.2.0
                       servant-0.11@servant-0.11-5n0Jq59NGG63K7rfpU5Dxs
                       servant-client-0.11@servant-client-0.11-5IX98jL2AfeLFFt59hCp4y
                       servant-server-0.11.0.1@servant-server-0.11.0.1-Dzlz1R4sOiMKQugTBmyK0x
+                      simple-sendfile-0.2.25@simple-sendfile-0.2.25-4uYtK5a0djFILo2ePfLs47
                       stm-2.4.4.1@stm-2.4.4.1-JQn4hNPyYjP5m9AcbI88Ve
                       streaming-commons-0.1.17@streaming-commons-0.1.17-6xuIA5RXrs65yyeq3HWIWP
                       string-conversions-0.4.0.1@string-conversions-0.4.0.1-HK2T4drDKhqGigpJdBBdRG
@@ -98,6 +118,7 @@ package dependencies: Cabal-1.24.2.0@Cabal-1.24.2.0
                       transformers-compat-0.5.1.4@transformers-compat-0.5.1.4-IuFogs8HAVUJBWVNMhtssu
                       unix-2.7.2.1@unix-2.7.2.1
                       unix-compat-0.4.3.1@unix-compat-0.4.3.1-Ausmw6d7KIwA7sl52mzqxC
+                      unix-time-0.3.7@unix-time-0.3.7-EhnEKT4D7hJajV74Sk5BE
                       unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-Bp9XgxjuHxcI4tFehVMDGC
                       uri-bytestring-0.2.3.3@uri-bytestring-0.2.3.3-Hc1wKsF7VwW2mAD17PrIxh
                       utf8-string-1.0.1.1@utf8-string-1.0.1.1-1DpjxLeTvGg7ttZZojxJR5
@@ -106,6 +127,8 @@ package dependencies: Cabal-1.24.2.0@Cabal-1.24.2.0
                       vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ
                       wai-3.2.1.1@wai-3.2.1.1-GYhAFGd1F2uKjCUZVPyC2C
                       wai-app-static-3.1.6.1@wai-app-static-3.1.6.1-7lzPCIcKJr41gr3SLmdLji
+                      wai-logger-2.3.0@wai-logger-2.3.0-G2LMsBpHwLV49tDfVWxzX4
+                      warp-3.2.13@warp-3.2.13-FhWulh599WH9bUCGJnpWGc
                       word8-0.1.3@word8-0.1.3-9o1uWQQ6KysJq8GGsVHHit
                       zlib-0.6.1.2@zlib-0.6.1.2-7negTfm2ujt1gW4wr40MUp
 orphans: attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ:Data.Attoparsec.ByteString.Char8
@@ -120,6 +143,7 @@ orphans: attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ:Data.Att
          file-server-api-0.1.0.0@file-server-api-0.1.0.0-KaBL5t5x2QT85Zf0jOG9nN:API
          hashable-1.2.6.1@hashable-1.2.6.1-2ZLNuHq395GGIHwEHuqZol:Data.Hashable.Generic
          http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ:Network.HTTP.Client.Request
+         mongoDB-2.3.0@mongoDB-2.3.0-LMlZ04SwfGtHlf6ES8HUVs:Database.MongoDB.Internal.Util
          network-2.6.3.2@network-2.6.3.2-IsLM4TXcLoRI0fmmBYVyQz:Network.Socket
          stm-2.4.4.1@stm-2.4.4.1-JQn4hNPyYjP5m9AcbI88Ve:Control.Monad.STM
          text-1.2.2.2@text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00:Data.Text
@@ -131,6 +155,7 @@ orphans: attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ:Data.Att
          time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
          time-1.6.0.1@time-1.6.0.1:Data.Time.LocalTime.LocalTime
          transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
+         unix-time-0.3.7@unix-time-0.3.7-EhnEKT4D7hJajV74Sk5BE:Data.UnixTime.Diff
          vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Fusion.Bundle
          vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Unboxed
 family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semigroup
@@ -143,6 +168,7 @@ family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semig
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Verbosity
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Version
                          Cabal-1.24.2.0@Cabal-1.24.2.0:Language.Haskell.Extension
+                         MonadRandom-0.5.1@MonadRandom-0.5.1-6uvIhB08u1RHnyKFfb2cRN:Control.Monad.Trans.Random.Lazy
                          attoparsec-0.13.1.0@attoparsec-0.13.1.0-3ql4hcH9pGfBAlE21oqFTQ:Data.Attoparsec.Internal.Types
                          base-4.9.1.0:Control.Applicative base-4.9.1.0:Data.Complex
                          base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Compose
@@ -178,6 +204,7 @@ family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semig
                          bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Tannen
                          bifunctors-5.4.2@bifunctors-5.4.2-KcF2f75KyQm5BjgJ8WkHCw:Data.Bifunctor.Wrapped
                          bson-generic-0.0.8@bson-generic-0.0.8-JZVOqBk1rL7HpOeD6vuRQ4:Data.Bson.Generic
+                         client-0.1.0.0@client-0.1.0.0-JghbxLBMba84Ocec4MGYKs:Lib
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
@@ -195,6 +222,8 @@ family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semig
                          ghc-boot-th-8.0.2@ghc-boot-th-8.0.2:GHC.LanguageExtensions.Type
                          http-api-data-0.3.7.1@http-api-data-0.3.7.1-AT41KDpP9ayH63FPNXWrvF:Web.Internal.FormUrlEncoded
                          http-client-0.5.7.1@http-client-0.5.7.1-JXMrQZyx8tLLaSc7JvXnkJ:Network.HTTP.Client
+                         iproute-1.7.1@iproute-1.7.1-EJjAtfniBUorobFQnk7lR:Data.IP.Addr
+                         iproute-1.7.1@iproute-1.7.1-EJjAtfniBUorobFQnk7lR:Data.IP.Range
                          monad-control-1.0.2.2@monad-control-1.0.2.2-1Ci8dYJ8Tb7E3HTcTqOb8l:Control.Monad.Trans.Control
                          network-uri-2.6.1.0@network-uri-2.6.1.0-7BN1tbB3iHQ2XgvmqLAYph:Network.URI
                          pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.Annotated.HughesPJ
@@ -229,7 +258,7 @@ family instance modules: Cabal-1.24.2.0@Cabal-1.24.2.0:Distribution.Compat.Semig
                          vector-0.12.0.1@vector-0.12.0.1-692PQMDMB6pIQ1uGwefDcQ:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-7negTfm2ujt1gW4wr40MUp:Codec.Compression.Zlib.Stream
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
-import  -/  client-0.1.0.0@client-0.1.0.0-EWgUGy1Y8f12f5qDGtsfUi:Lib e27361ce7f2f3d29c1426ec0021246d1
+import  -/  client-0.1.0.0@client-0.1.0.0-JghbxLBMba84Ocec4MGYKs:Lib bcfb837a598f9d76723d65057b49205c
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module
@@ -243,12 +272,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-e5522a367cfb99f0adb369bdd95b079e
+777cf1b6d261fdc4b0d4912764774326
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.someFunc1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-8f5e3299eb2b0713c6fbec16f2630ef0
+f119ec2821f2f09c07aee5ba4a972853
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

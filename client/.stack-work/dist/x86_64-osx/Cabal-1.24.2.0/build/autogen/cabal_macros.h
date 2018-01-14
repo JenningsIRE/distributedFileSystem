@@ -14,6 +14,13 @@
   (major1) == 1 && (major2) <  24 || \
   (major1) == 1 && (major2) == 24 && (minor) <= 2)
 
+/* package aeson-1.1.2.0 */
+#define VERSION_aeson "1.1.2.0"
+#define MIN_VERSION_aeson(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  1 || \
+  (major1) == 1 && (major2) == 1 && (minor) <= 2)
+
 /* package ansi-terminal-0.6.3.1 */
 #define VERSION_ansi_terminal "0.6.3.1"
 #define MIN_VERSION_ansi_terminal(major1,major2,minor) (\
@@ -27,6 +34,27 @@
   (major1) <  4 || \
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 1)
+
+/* package bson-0.3.2.3 */
+#define VERSION_bson "0.3.2.3"
+#define MIN_VERSION_bson(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  3 || \
+  (major1) == 0 && (major2) == 3 && (minor) <= 2)
+
+/* package bson-generic-0.0.8 */
+#define VERSION_bson_generic "0.0.8"
+#define MIN_VERSION_bson_generic(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  0 || \
+  (major1) == 0 && (major2) == 0 && (minor) <= 8)
+
+/* package bytestring-0.10.8.1 */
+#define VERSION_bytestring "0.10.8.1"
+#define MIN_VERSION_bytestring(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  10 || \
+  (major1) == 0 && (major2) == 10 && (minor) <= 8)
 
 /* package cabal-file-th-0.2.4 */
 #define VERSION_cabal_file_th "0.2.4"
@@ -49,12 +77,33 @@
   (major1) == 0 && (major2) <  1 || \
   (major1) == 0 && (major2) == 1 && (minor) <= 0)
 
+/* package hslogger-1.2.10 */
+#define VERSION_hslogger "1.2.10"
+#define MIN_VERSION_hslogger(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 10)
+
 /* package http-client-0.5.7.1 */
 #define VERSION_http_client "0.5.7.1"
 #define MIN_VERSION_http_client(major1,major2,minor) (\
   (major1) <  0 || \
   (major1) == 0 && (major2) <  5 || \
   (major1) == 0 && (major2) == 5 && (minor) <= 7)
+
+/* package mongoDB-2.3.0 */
+#define VERSION_mongoDB "2.3.0"
+#define MIN_VERSION_mongoDB(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  3 || \
+  (major1) == 2 && (major2) == 3 && (minor) <= 0)
+
+/* package mtl-2.2.1 */
+#define VERSION_mtl "2.2.1"
+#define MIN_VERSION_mtl(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  2 || \
+  (major1) == 2 && (major2) == 2 && (minor) <= 1)
 
 /* package optparse-applicative-0.13.2.0 */
 #define VERSION_optparse_applicative "0.13.2.0"
@@ -70,6 +119,20 @@
   (major1) == 1 && (major2) <  1 || \
   (major1) == 1 && (major2) == 1 && (minor) <= 3)
 
+/* package process-1.4.3.0 */
+#define VERSION_process "1.4.3.0"
+#define MIN_VERSION_process(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  4 || \
+  (major1) == 1 && (major2) == 4 && (minor) <= 3)
+
+/* package resourcet-1.1.9 */
+#define VERSION_resourcet "1.1.9"
+#define MIN_VERSION_resourcet(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  1 || \
+  (major1) == 1 && (major2) == 1 && (minor) <= 9)
+
 /* package servant-0.11 */
 #define VERSION_servant "0.11"
 #define MIN_VERSION_servant(major1,major2,minor) (\
@@ -84,12 +147,54 @@
   (major1) == 0 && (major2) <  11 || \
   (major1) == 0 && (major2) == 11 && (minor) <= 0)
 
-/* package aeson-1.1.2.0 */
-#define VERSION_aeson "1.1.2.0"
-#define MIN_VERSION_aeson(major1,major2,minor) (\
+/* package servant-server-0.11.0.1 */
+#define VERSION_servant_server "0.11.0.1"
+#define MIN_VERSION_servant_server(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  11 || \
+  (major1) == 0 && (major2) == 11 && (minor) <= 0)
+
+/* package text-1.2.2.2 */
+#define VERSION_text "1.2.2.2"
+#define MIN_VERSION_text(major1,major2,minor) (\
   (major1) <  1 || \
-  (major1) == 1 && (major2) <  1 || \
-  (major1) == 1 && (major2) == 1 && (minor) <= 2)
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 2)
+
+/* package time-1.6.0.1 */
+#define VERSION_time "1.6.0.1"
+#define MIN_VERSION_time(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  6 || \
+  (major1) == 1 && (major2) == 6 && (minor) <= 0)
+
+/* package transformers-0.5.2.0 */
+#define VERSION_transformers "0.5.2.0"
+#define MIN_VERSION_transformers(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  5 || \
+  (major1) == 0 && (major2) == 5 && (minor) <= 2)
+
+/* package wai-3.2.1.1 */
+#define VERSION_wai "3.2.1.1"
+#define MIN_VERSION_wai(major1,major2,minor) (\
+  (major1) <  3 || \
+  (major1) == 3 && (major2) <  2 || \
+  (major1) == 3 && (major2) == 2 && (minor) <= 1)
+
+/* package wai-logger-2.3.0 */
+#define VERSION_wai_logger "2.3.0"
+#define MIN_VERSION_wai_logger(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  3 || \
+  (major1) == 2 && (major2) == 3 && (minor) <= 0)
+
+/* package warp-3.2.13 */
+#define VERSION_warp "3.2.13"
+#define MIN_VERSION_warp(major1,major2,minor) (\
+  (major1) <  3 || \
+  (major1) == 3 && (major2) <  2 || \
+  (major1) == 3 && (major2) == 2 && (minor) <= 13)
 
 /* package hspec-2.4.4 */
 #define VERSION_hspec "2.4.4"
@@ -182,7 +287,7 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 2)
 
-#define CURRENT_COMPONENT_ID "client-0.1.0.0-EWgUGy1Y8f12f5qDGtsfUi"
+#define CURRENT_COMPONENT_ID "client-0.1.0.0-JghbxLBMba84Ocec4MGYKs"
 
-#define CURRENT_PACKAGE_KEY "client-0.1.0.0-EWgUGy1Y8f12f5qDGtsfUi"
+#define CURRENT_PACKAGE_KEY "client-0.1.0.0-JghbxLBMba84Ocec4MGYKs"
 
